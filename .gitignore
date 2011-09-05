@@ -1,1 +1,4 @@
-.pentadactyl/info/default/
+.pentadactyl/info/default/*
+.ssh/*
+!.ssh/authorized_keys
+!.ssh/config
