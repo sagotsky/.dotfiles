@@ -1,6 +1,0 @@
-if [ ! -z /etc/debian_chroot ] ; then alias 32="schroot -p -c 32bit" ; fi 
-alias cxpath="export PATH=$PATH:~/.cxoffice/bin"
-alias links="elinks"
-alias gish="cd ~/raid/games/gish ; dchroot -d ./gish"
-alias xmobar.stdin=' xmobar -t "%StdinReader%" -c "[Run StdinReader]"'
-alias transp="xprop -frame -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY 0xa0000000"
