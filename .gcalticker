@@ -1,0 +1,19 @@
+calendars = Jon Sagotsky 
+calendars = Work
+calendars = OpenScholar Calendar
+calendars = J&J
+calendars = Jenn Sagotsky
+calendars = Stranger Ways
+
+colors = green
+colors = red
+colors = red
+colors = cyan
+colors = '#6666ff'
+colors = purple
+
+format = dzen
+days = 14
+notify = true
+refresh = 900
+alert = 3

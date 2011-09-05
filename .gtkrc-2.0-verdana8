@@ -1,0 +1,14 @@
+# -- THEME AUTO-WRITTEN DO NOT EDIT
+include "/home/sagotsky/.themes/Equinox_Solstice/gtk-2.0/gtkrc"
+
+style "user-font" {
+	font_name = "Verdana 8.5"
+}
+
+widget_class "*" style "user-font"
+
+gtk-font-name="Verdana 8.5"
+
+include "/home/sagotsky/.gtkrc.mine"
+
+# -- THEME AUTO-WRITTEN DO NOT EDIT

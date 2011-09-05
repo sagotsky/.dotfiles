@@ -1,0 +1,9 @@
+source $HOME/.screenrc
+
+sleep 35
+screen -t sagotsky@gmail alpine -i -p $HOME/.pinerc-gmail
+split
+focus
+screen -t jsagotsky@iq.harvard alpine -i -p $HOME/.pinerc-harvard
+focus
+focus

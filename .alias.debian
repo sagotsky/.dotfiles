@@ -1,0 +1,11 @@
+alias aptauto="sudo apt-get autoremove"
+alias apti="sudo apt-get install "
+alias aptir="sudo apt-get install --reinstall"
+alias aptfi="sudo apt-get -f install "
+alias aptls='dpkg --get-selections'
+alias aptr="sudo apt-get remove "
+alias aptc="apt-cache search "
+alias apts="apt-cache show "
+alias aptu="sudo apt-get update"
+alias aptug="sudo apt-get update && sudo apt-get upgrade"
+alias aptdug="sudo apt-get update && sudo apt-get dist-upgrade"

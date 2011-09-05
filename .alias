@@ -1,0 +1,27 @@
+###aliases
+
+alias ack='ack-grep '
+alias bd='popd'
+alias bell="echo -e '\a'"
+alias bt='btdownloadcurses.bittornado --minport 34567 --maxport 34577 --max_upload_rate 25 --responsefile'
+alias btupload='btdownloadcurses.bittornado --minport 34567 --maxport 34577 --max_upload_rate 200 --responsefile'
+alias capture="yes 'Y' | gdb -e 'p close(1)' -ex 'p creat(\"/tmp/output\",0600)' -ex 'q' -p "
+alias dux='du -sk ./* | sort -n | awk '\''BEGIN{ pref[1]="K"; pref[2]="M"; pref[3]="G";} { total = total + $1; x = $1; y = 1; while( x > 1024 ) { x = (x + 1023)/1024; y++; } printf("%g%s\t%s\n",int(x*10)/10,pref[y],$2); } END { y = 1; while( total > 1024 ) { total = (total + 1023)/1024; y++; } printf("Total: %g%s\n",int(total*10)/10,pref[y]); }'\'''
+alias e='emacs -nw'
+alias fontcache-refresh=' fc-cache -f'
+alias ls='ls --color=auto'
+alias myip='curl http://whatismyip.org ; echo'
+alias n='nano'
+alias tf='tail -f'
+alias s='screen'
+alias sx='screen -x'
+alias su='su -m'
+alias sudo='A=`alias` sudo -E '
+alias wake-rj="ssh dh ./wol-rj.sh ; delay 60 ; ssh rj"
+alias wgetr="wget -r robots=off -r -nc -np "
+alias v='vim '
+alias xsel='xsel --logfile ~/.Xsel.log'
+
+# aliases CAN do args
+alias arg="sh -c 'echo \$3 \$2 \$1' --"
+
