@@ -1,3 +1,4 @@
+*.swp
 .pentadactyl/info/default
 .ssh/*
 !.ssh/authorized_keys
