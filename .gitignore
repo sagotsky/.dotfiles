@@ -3,3 +3,4 @@
 .ssh/*
 !.ssh/authorized_keys
 !.ssh/config
+.vim/.netrwhist
