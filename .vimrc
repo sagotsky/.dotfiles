@@ -3,9 +3,9 @@ set nowrap 				"no word wrap
 set smartcase 			"case affects word boundaries
 set autoindent 			"emacs style indents ==========broken
 set smartindent  		"emacs style indents ==========broken
-set tabstop=8 			"tab width
-set shiftwidth=4 		"tab width
-set softtabstop=4		"deletes 4 spaces as though they were a tab.
+set tabstop=4 			"tab width
+set shiftwidth=2 		"tab width
+set softtabstop=2		"deletes 4 spaces as though they were a tab.
 set showmatch 			"shows matching parens
 set ruler 				"line/position always visible
 set incsearch 			"search as you type
