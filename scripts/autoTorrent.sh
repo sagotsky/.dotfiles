@@ -6,7 +6,7 @@
 #             ratio    hours  port   up    down
 BT="en-ctorrent -E 1:1.5 -e 6 -p 34569 -U 20 -D 100 "
 #BT="ctorrent -e 0 -p 34569 -U 20 -D 100 "
-RSSTV="/home/sagotsky/Video/rsstv"
+RSSTV="/home/sagotsky/Videos/rsstv"
 LOGFILE="/tmp/autoTorrent.log"
 
 function download() {
