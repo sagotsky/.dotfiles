@@ -1,5 +1,5 @@
 *.swp
-.pentadactyl/info/default
+.pentadactyl/info
 .ssh/*
 !.ssh/authorized_keys
 !.ssh/config
