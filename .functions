@@ -184,4 +184,10 @@ function rep() {
 
 #for f in "cd" ; do export $f ; done
 
+# prints color codes for use in tmux and vim
+function colors() {
+  for i in {0..255} ; do     
+    printf "\x1b[38;5;${i}mcolour${i}\n"; 
+  done | less
+}
 

@@ -145,9 +145,11 @@ for FILE in $FILES ; do
   fi ; 
 done
 
-if [ -f "$HOME/.motd" ] ; then
-  cat "$HOME/.motd" 
-fi
+#if [ -f "$HOME/.motd" ] ; then
+  #cat "$HOME/.motd" 
+#fi
+
+#[ -n "$TMUX" ] && export TERM=screen-256color
 
 ## long bash hist, append (not overwrite)
 export HISTFILESIZE=10000
