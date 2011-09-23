@@ -34,18 +34,7 @@ map <F8> :set invnumber<CR>
 " (could something map to shift-insert??)
 "
 " N normal, I insert, V visual+select, S select, X visual, C command, O oper
-"
-" readline shortscuts in command line
-"cnoremap <C-A> <Home>
-"cnoremap <C-E> <End>
-"cnoremap <C-K> <C-U>
-cnoremap <C-P> <C-Up>
-cnoremap <C-N> <C-Down>
-"cnoremap <C-b> <left>
-"cnoremap <C-f> <right>
-"cnoremap <M-f> <c-right>
-cnoremap <M-b> <c-left>             " works, but flashes
-
+source ~/.vim/readline.vim
 
 filetype plugin on		"enable filetype plugin
 filetype indent on
