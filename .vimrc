@@ -76,6 +76,7 @@ au BufNewFile,BufRead *.rc set filetype=sh
 au BufNewFile,BufRead .xsession set filetype=sh
 au BufNewFile,BufRead .functions set filetype=sh
 au BufNewFile,BufRead .alias set filetype=sh
+au BufNewFile,BufRead *.conf set filetype=sh
 au BufNewFile,BufRead .vimperatorrc set filetype=vim
 au BufRead,BufNewFile *.install set filetype=php
 au BufRead,BufNewFile *.profile set filetype=php
