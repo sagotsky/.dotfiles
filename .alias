@@ -18,6 +18,7 @@ alias sx='screen -x'
 alias su='su -m'
 alias sudo='sudo -E '
 alias t='tmux -2'
+alias tx='tmux -2 attach'
 alias wake-rj="ssh dh ./wol-rj.sh ; delay 60 ; ssh rj"
 alias wgetr="wget -r robots=off -r -nc -np "
 alias v='vim '
