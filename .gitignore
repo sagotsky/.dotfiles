@@ -4,3 +4,5 @@
 !.ssh/authorized_keys
 !.ssh/config
 .vim/.netrwhist
+.xmonad/*
+!.xmonad/xmonad.hs
