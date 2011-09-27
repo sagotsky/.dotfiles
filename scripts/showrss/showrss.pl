@@ -73,7 +73,7 @@ sub init {
             next;
         }
 
-        print `curl --globoff --silent $torrent -o $output_dir/$filename.torrent`;
+        print `curl --globoff --location --silent $torrent -o $output_dir/$filename.torrent`;
         if ($? > 0) {
             print "Error downloading $torrent\n";
         } else {
