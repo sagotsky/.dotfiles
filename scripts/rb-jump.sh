@@ -6,7 +6,7 @@
 MUSIC="$HOME/Music/"
 #DMENU_OPTS="-l 12 -b -i -fn -*-lucida-bold-r-*-*-15-*-*-*-*-*-*-* -sb #cfb000 -sf #000 -nf #fff -nb #4a525a -m 0"
 #DMENU_OPTS="-l 12 -b -i -fn -*-lucida-bold-r-*-*-15-*-*-*-*-*-*-* -sb #123 -sf #fff -nf #0f0 -nb #123 -m 0"
-DMENU_OPTS="-l 12 -b -i -fn -*-lucida-bold-r-*-*-15-*-*-*-*-*-*-* -sb #123 -sf #cfb000 -nf #fff -nb #123 -m 0"
+DMENU_OPTS="-l 12 -t -b -i -m 0 -fn -*-lucida-bold-r-*-*-15-*-*-*-*-*-*-* -sb #123 -sf #cfb000 -nf #fff -nb #123 "
 FIND_SONGS=`cat <<EOF
 -iregex .*\(mp3\|ogg\|flac\)
 EOF
