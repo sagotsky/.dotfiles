@@ -18,6 +18,8 @@ set maxitems=12
 
 cnoremap <C-g> <Esc>
 
+" tabrename command
+com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
