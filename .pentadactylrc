@@ -9,7 +9,7 @@ set editor="xterm -e /usr/bin/vim"
 "m menu, T toolbar, B bookmark, n tab number, N tab number over icon, brl scrollbars
 set guioptions=bCrsNMc 
 set visualbell
-set strictfocus
+"set strictfocus
 set autocomplete=
 set maxitems=12
 

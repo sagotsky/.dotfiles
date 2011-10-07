@@ -20,7 +20,7 @@ alias sudo='sudo -E '
 alias t='tmux -2'
 alias tx='tmux -2 attach'
 alias wake-rj="ssh dh ./wol-rj.sh ; delay 60 ; ssh rj"
-alias wgetr="wget -r robots=off -r -nc -np "
+alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='vim '
 alias xsel='xsel --logfile ~/.Xsel.log'
 
