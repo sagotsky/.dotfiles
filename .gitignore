@@ -6,5 +6,5 @@
 .vim/.netrwhist
 .xmonad/*
 !.xmonad/xmonad.hs
-scripts/fmarks
-scripts/gcal-ticker
+scripts/fmarks/*
+scripts/gcal-ticker/*
