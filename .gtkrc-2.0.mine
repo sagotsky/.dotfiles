@@ -11,17 +11,16 @@
 # work uses weird home dirs
 #http://developer.gnome.org/gtk/2.24/GtkSettings.html
 
-include "/home/sagotsky/.themes/Graphite/gtk-2.0/gtkrc"
+include "/usr/share/themes/MurrinaCandido/gtk-2.0/gtkrc"
 
 gtk-menu-popup-delay = 0
 
 style "default"
 {
-  font_name = "Verdana 9"
+  font_name = "Verdana 8"
 }
 
 class "*" style "default"
-
-gtk-font-name = "Verdana 9"
-
-gtk-icon-theme-name="Neu"
+widget_class "*" style "default"
+gtk-font-name = "Verdana 8"
+gtk-icon-theme-name = "Neu"
