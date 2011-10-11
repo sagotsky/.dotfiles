@@ -21,14 +21,19 @@ cnoremap <C-g> <Esc>
 " tabrename command
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 
+" automatically rename some pages
+autocmd PageLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
+  content.document.title = content.document.title.replace(/OpenScholar - \w+ /, '');
+EOF
+
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
 (function(){
- var feedPanel = document.createElement("statusbarpanel");
- feedPanel.setAttribute("id", "feed-panel-clone");
- feedPanel.appendChild(document.getElementById("feed-button"));
- feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
- document.getElementById("status-bar")
- .insertBefore(feedPanel, document.getElementById("security-button"));
+  var feedPanel = document.createElement("statusbarpanel");
+  feedPanel.setAttribute("id", "feed-panel-clone");
+  feedPanel.appendChild(document.getElementById("feed-button"));
+  feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
+  document.getElementById("status-bar")
+  .insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
