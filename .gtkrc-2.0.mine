@@ -11,7 +11,8 @@
 # work uses weird home dirs
 #http://developer.gnome.org/gtk/2.24/GtkSettings.html
 
-include "/usr/share/themes/MurrinaCandido/gtk-2.0/gtkrc"
+include "/home/sagotsky/.themes/Unity/gtk-2.0/gtkrc"
+#include "/usr/share/themes/Unity/gtk-2.0/gtkrc"
 
 gtk-menu-popup-delay = 0
 
