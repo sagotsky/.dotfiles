@@ -21,9 +21,8 @@ cnoremap <C-g> <Esc>
 " tabrename command
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 
-" automatically rename some pages
-autocmd PageLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
-  content.document.title = content.document.title.replace(/OpenScholar - \w+ /, '');
+autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
+  doc.title = doc.title.replace(/OpenScholar - \w+ /, '');
 EOF
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
