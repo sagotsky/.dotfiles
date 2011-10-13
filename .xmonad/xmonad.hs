@@ -71,6 +71,8 @@ myLayout =   -- ewmhDesktopsLayout
 myManageHook =  composeAll
     [ 
      className =? "MPlayer"        --> doFloat
+     ,className =? "xine"        --> doFullFloat
+     --,className =? "totem"        --> doFloat
     --, className =? "Gimp"           --> doFloat
     , className =? "Gnome-calculator"           --> doFloat
     , resource  =? "Do" --> doIgnore
