@@ -8,3 +8,4 @@
 !.xmonad/xmonad.hs
 scripts/fmarks/*
 scripts/gcal-ticker/*
+scripts/local/*
