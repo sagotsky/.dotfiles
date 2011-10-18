@@ -17,7 +17,7 @@ set maxitems=12
 "com     todo    :sidebar MultiPanel
 
 cnoremap <C-g> <Esc>
-nnoremap <C-r> reloadall<CR>
+nnoremap <C-r> :reloadall<CR>
 
 " tabrename command
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
