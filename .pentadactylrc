@@ -12,12 +12,21 @@ set visualbell
 "set strictfocus
 set autocomplete=
 set maxitems=12
+" remove pentadactyl from title
+set titlestring=''
 
 " opens sidebar page, which is defaulted to my gtasks somehow
 "com     todo    :sidebar MultiPanel
 
 cnoremap <C-g> <Esc>
 nnoremap <C-r> :reloadall<CR>
+
+" faster scrolling
+noremap h 4h
+noremap j 4j
+noremap k 4k
+noremap l 4l
+
 
 " tabrename command
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
