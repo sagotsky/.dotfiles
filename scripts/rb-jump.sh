@@ -12,19 +12,22 @@ FIND_SONGS=`cat <<EOF
 EOF
 `
 FIND_OPTS=$FIND_SONGS
-CMD="--play-uri"
+CMD="--play-uri"                    # default: play now
 
 while getopts "de" opt; do
     case $opt in
-        e)
+        e)                          # enqueue song
             CMD="--enqueue"
             ;;
-        d)
+        d)                          # enqueue directory
             FIND_OPTS="-type d"
-            CMD="--enqueue" # can't play them all at once...
+            CMD="--enqueue" 
             ;;
     esac
 done
+
+#  find /var/music/ -type f -name '*.mp3' -printf '%h\n' | uniq
+# above is another way to only get populated directories.
 
 # dropped sort from pipes.  sort blocked until find finished.  may speed up drawing
 SONGFILE=$( find $MUSIC $FIND_OPTS | sed -e "s/\/home\/sagotsky\/Music\///g" | dmenu $DMENU_OPTS )

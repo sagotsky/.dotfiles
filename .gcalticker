@@ -17,3 +17,4 @@ days = 14
 notify = true
 refresh = 900
 alert = 3
+notifyoptions=" -t 5000 -i /usr/share/pixmaps/gnome-set-time.png -h int:x:1200 -h int:y:20 "
