@@ -20,7 +20,7 @@ while getopts "de" opt; do
             CMD="--enqueue"
             ;;
         d)                          # enqueue directory
-            FIND_OPTS="-type d"
+            FIND_OPTS='( -type d -o -type l )'
             CMD="--enqueue" 
             ;;
     esac
