@@ -159,7 +159,7 @@ myKeys = [
     , ("<XF86Mail>", spawn "/home/sagotsky/scripts/active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
-    , ("M-b", spawn "feh --bg-center $(find /home/sagotsky/pictures/wallpaper/ | sort -R | head -n 1)") -- dmenu for jumping rhythmbox songs
+    --, ("M-b", spawn "feh --bg-center $(find /home/sagotsky/pictures/wallpaper/ | sort -R | head -n 1)") -- dmenu for jumping rhythmbox songs
 
     -- music
     , ("<XF86AudioPlay>", spawn "rhythmbox-client --play-pause") --vol up
