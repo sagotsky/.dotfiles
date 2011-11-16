@@ -145,11 +145,10 @@ for FILE in $FILES ; do
   fi ; 
 done
 
-#if [ -f "$HOME/.motd" ] ; then
-  #cat "$HOME/.motd" 
-#fi
-
-#[ -n "$TMUX" ] && export TERM=screen-256color
+# shortcut to ssh to hostname of anything named in .ssh/config
+#for host in $(grep '^host \w' .ssh/config | cut -f2 -d' ') ; do 
+  #alias $host="ssh $host" 
+#done
 
 ## long bash hist, append (not overwrite)
 export HISTFILESIZE=10000
