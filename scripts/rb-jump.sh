@@ -30,7 +30,7 @@ done
 # above is another way to only get populated directories.
 
 # dropped sort from pipes.  sort blocked until find finished.  may speed up drawing
-SONGFILE=$( find -L $MUSIC $FIND_OPTS | sed -e "s/\/home\/sagotsky\/Music\///g" | dmenu $DMENU_OPTS )
+SONGFILE=$( find -L $MUSIC $FIND_OPTS | sed -e "s/\/home\/sagotsky\/Music\///g" | sort | dmenu $DMENU_OPTS )
 if [ `echo $SONGFILE | wc -c` -gt 1 ] ; then
     #find "$MUSIC/$SONGFILE" $FIND_SONGS -exec rhythmbox-client "$CMD" "{}" \;
     find -L "$MUSIC/$SONGFILE" $FIND_SONGS |\
