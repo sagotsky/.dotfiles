@@ -103,15 +103,6 @@ function ssx() {
 
 }
 
-# git checkout-branch - choose branch from a list instead of typing.
-function git-cb() {
-  OPTS=$(git branch | tr -d '*' | xargs)
-  select opt in $OPTS ; do
-    git checkout $opt
-    break;
-  done
-}
-
 function calc() {
 	awk "BEGIN{ print $* }" ;
 }
