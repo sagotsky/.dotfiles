@@ -72,5 +72,7 @@ au BufRead,BufNewFile *.profile set filetype=php
 au BufRead,BufNewFile *.module set filetype=php
 au BufRead,BufNewFile *.inc set filetype=php
 au BufRead,BufNewFile *.php set filetype=php
+au BufRead,BufNewFile *.js set filetype=javascript
+au BufRead,BufNewFile *.json set filetype=javascript
 
 
