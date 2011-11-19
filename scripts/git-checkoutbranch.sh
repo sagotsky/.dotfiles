@@ -1,8 +1,10 @@
 #!/bin/bash
 
-
-select opt in $(git branch | tr -d '*' | xargs) ; do
-  git checkout $opt
+OPTS=$(git branch | tr -d '*' | xargs)
+select opt in $OPTS; do
+  if [ $opt ] ; then
+    git checkout $opt
+  fi
   break;
 done
 
