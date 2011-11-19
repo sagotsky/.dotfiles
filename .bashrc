@@ -151,8 +151,8 @@ done
 #done
 
 ## long bash hist, append (not overwrite)
-export HISTFILESIZE=10000
-export HISTSIZE=10000
+export HISTFILESIZE=50000
+export HISTSIZE=50000
 #export HISTCONTROL=erasedups # removed because it stopped me from counting frequently used commands
 shopt -s histappend
 set -o history # if this doesn't come last, other hist commands show up in hist
