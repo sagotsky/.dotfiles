@@ -31,9 +31,23 @@ noremap l 4l
 " tabrename command
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 
+" Redmine renamer strips openscholar project name leaving tix id and desc
 autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
   doc.title = doc.title.replace(/OpenScholar - \w+ /, '');
 EOF
+
+" gmail firebug disabler
+autocmd DOMLoad 'https://mail.google.com/mail/u/0/#inbox' fbp off
+
+" broken attempt at calendar auto scroll.  div doesn't exist at load.  events
+" clear before it loads, so i'm having trouble editing div once it does show
+" up.
+"autocmd DOMLoad 'https://www.google.com/calendar/b/0/render?pli=1' -js <<EOF
+"window.addEventListener("onmouseover", function() {
+  "var calendarDiv = document.getElementById('scrolltimedeventswk');
+  "calendarDiv.scrollTop = 100000;
+"});
+"EOF
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
