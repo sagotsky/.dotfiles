@@ -37,7 +37,7 @@ autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
 EOF
 
 " gmail firebug disabler
-autocmd DOMLoad 'https://mail.google.com/mail/u/0/#inbox' fbp off
+autocmd DOMLoad 'https://mail.google.com/*' fbp off
 
 " broken attempt at calendar auto scroll.  div doesn't exist at load.  events
 " clear before it loads, so i'm having trouble editing div once it does show

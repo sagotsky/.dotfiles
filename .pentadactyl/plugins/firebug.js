@@ -23,8 +23,7 @@ var FirebugPentadactyl = function () {
     _exec: function (args, query) {
       var self = this;
       args.forEach(function (cmd) {
-        alert(cmd);
-        //self[cmd.replace('-', '_')](query);
+        self[cmd.replace('-', '_')](query);
       });
     },
     _initialized: false,
