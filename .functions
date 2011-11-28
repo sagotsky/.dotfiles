@@ -194,5 +194,5 @@ function colors() {
 # find directory and cd to it.  awesome for drupal modules with known names 8 dirs deep
 function fd() {
   DIR=$(find ./ -type d -name $1 2>/dev/null) 
-  pushd $DIR
+  [ -d "$DIR" -a "$DIR" != '' ] && pushd $DIR
 }
