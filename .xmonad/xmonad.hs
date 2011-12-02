@@ -122,7 +122,7 @@ main = do
                            <+> manageHook defaultConfig
              ,logHook = dynamicLogWithPP $ xmobarPP 
                          { ppOutput = hPutStrLn xmproc
-                         , ppTitle = xmobarColor  "white" "" . shorten 80 . wrap " " " "
+                         , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
                          , ppUrgent = xmobarColor myUrgentBorderColor "" . wrap "◄ "  " ►"
                          , ppCurrent = xmobarColor myFocusedBorderColor "" . wrap "<" ">"
                          , ppVisible = xmobarColor myFocusedBorderColor "" . wrap "" ""
@@ -181,13 +181,12 @@ myKeys = [
     ,("M-S-o", spawn "transset-df -a --inc 0.1")
     ,("M-o",   spawn "transset-df -a --dec 0.1")
 
-    -- DynamicWorkspaces 
-    , ("M-d",   removeWorkspace )
+    -- WM Shortcuts  
+    , ("M-d",   removeWorkspace )                                   --DynamicWorkspaces
     , ("M-'",   selectWorkspace myXPConfig )
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) )
-
-    --CycleWS
-    , ("M-0", toggleWS)
+    , ("M--", swapNextScreen)                                         --CycleWS
+    , ("M-0", toggleWS)                                              --CycleWS
 	]
 
 

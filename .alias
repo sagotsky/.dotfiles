@@ -14,6 +14,7 @@ alias ls='ls --color=auto'
 alias myip='curl http://whatismyip.org ; echo'
 alias n='nano'
 alias tf='tail -f'
+alias rb="rhythmbox-client "
 alias s='screen'
 alias sx='screen -x'
 alias su='su -m'
