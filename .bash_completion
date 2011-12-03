@@ -1,0 +1,16 @@
+_rb() 
+{
+  local cur prev opts
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  opts="--no-start --quit --no-present --hide --next --previous --notify --play --pause --play-pause --play-uri= --enqueue --clear-queue --print-playing --print-playing-format --set-volume --volume-up --volume-down --print-volume --mute --unmute --set-rating"
+
+  if [[ ${cur} == -* ]] ; then
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+  fi
+}
+
+complete -F _rb rhythmbox-client
+complete -F _rb rb
