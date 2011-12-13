@@ -201,7 +201,11 @@ function fd() {
 function xnest() {
   NTH=$(find /tmp/.X*-lock | wc -l)
   X=":$NTH.0"
+
   Xephyr $X &
+  PID=$!
+
   sleep 1
   DISPLAY=$X $@
+  kill $PID
 }
