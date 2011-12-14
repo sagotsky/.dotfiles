@@ -199,10 +199,19 @@ function fd() {
 
 # xephy wrapper
 function xnest() {
+  if [[ $1 == '-h' ]] ; then
+    echo -e "Usage: xnest [widthxheight] program\n\n"
+  fi
+
+  if [[ $1 =~ [0-9]+x[0-9] ]] ; then
+    RESOLUTION=" -screen $1 "
+    shift
+  fi
+
   NTH=$(find /tmp/.X*-lock | wc -l)
   X=":$NTH.0"
 
-  Xephyr $X &
+  Xephyr $X $RESOLUTION &
   PID=$!
 
   sleep 1
