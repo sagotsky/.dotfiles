@@ -25,6 +25,7 @@ nautilus-open-terminal
 mutt
 pidgin
 p7zip-full
+python-docutils
 openssh-client
 openssh-server
 screen
