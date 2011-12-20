@@ -1,0 +1,3 @@
+[submodule "scripts/gcal-ticker"]
+	path = scripts/gcal-ticker
+	url = git@github.com:sagotsky/gcal-ticker.git

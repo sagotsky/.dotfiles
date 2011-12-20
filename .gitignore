@@ -7,6 +7,4 @@
 .xmonad/*
 !.xmonad/xmonad.hs
 scripts/fmarks/*
-scripts/gcal-ticker
-scripts/gcal-ticker/*
 scripts/local/*
