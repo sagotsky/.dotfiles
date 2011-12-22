@@ -146,7 +146,7 @@ for FILE in $FILES ; do
 done
 
 # recolor terminal if xtermcontrol config file is present.  see .bash_logout for uncoloring.
-if [[ $(which xtermcontrol) && -f "$HOME/.xtermcontrol" ]] ; then
+if [ $(which xtermcontrol) -a -f "$HOME/.xtermcontrol" -a "$TERM" == 'xterm' ] ; then
   export XTERMCONTROL_BG=$(xtermcontrol --file=/dev/null --get-bg)
   export XTERMCONTROL_FG=$(xtermcontrol --file=/dev/null --get-fg)
   xtermcontrol
