@@ -1,0 +1,16 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "#cccccf"
+       , position = TopW L 100
+       , lowerOnStart = True
+       , commands = [ Run MultiCpu ["-L","30","-H","90","--normal","white","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%","-L","60","-H","90","--normal","white","--high","red"] 10
+		    , Run Date "%A, %b %d %I:%M" "date" 590
+		    , Run StdinReader
+                    , Run PipeReader "/home/sagotsky/.music.out" "music"
+		    , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ <fc=lightseagreen> %music%</fc> · ♫ %vol% · %multicpu% · %memory% · <fc=lightskyblue3>%date%</fc>"
+       }
