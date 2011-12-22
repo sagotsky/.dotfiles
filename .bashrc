@@ -145,6 +145,13 @@ for FILE in $FILES ; do
   fi ; 
 done
 
+# recolor terminal if xtermcontrol config file is present.  see .bash_logout for uncoloring.
+if [ $(which xtermcontrol) -a -f ~/.xtermcontrol ] ; then
+  export XTERMCONTROL_BG=$(xtermcontrol --file=/dev/null --get-bg)
+  export XTERMCONTROL_FG=$(xtermcontrol --file=/dev/null --get-fg)
+  xtermcontrol
+fi
+
 # shortcut to ssh to hostname of anything named in .ssh/config
 #for host in $(grep '^host \w' .ssh/config | cut -f2 -d' ') ; do 
   #alias $host="ssh $host" 
