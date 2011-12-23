@@ -75,6 +75,7 @@ myManageHook =  composeAll
      --,className =? "totem"        --> doFloat
     --, className =? "Gimp"           --> doFloat
     , className =? "Gnome-calculator"           --> doFloat
+    , className =? "doukutsu"           --> doFloat
     , resource  =? "Do" --> doIgnore
 
     , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
