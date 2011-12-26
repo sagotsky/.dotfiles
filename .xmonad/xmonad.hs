@@ -73,7 +73,7 @@ myManageHook =  composeAll
      className =? "MPlayer"        --> doFloat
      ,className =? "xine"        --> doFullFloat
      --,className =? "totem"        --> doFloat
-    --, className =? "Gimp"           --> doFloat
+    , className =? "Gimp"           --> (ask >>= doF . W.sink)
     , className =? "Gnome-calculator"           --> doFloat
     , className =? "doukutsu"           --> doFloat
     , resource  =? "Do" --> doIgnore
@@ -90,11 +90,8 @@ myManageHook =  composeAll
     , className =? "Operapluginwrapper-ia32-linux" --> doFullFloat
     , className =? "Exe" --> doFullFloat
     , className =? "Zend Studio" --> doShift "zend-6" 
-
-    --, isFullsreen                                       --> myDoFullFloat
-    --myDoFullFloat :: ManageHook
-    --myDoFullFloat = doF W.focusDown <+> doFullFloat
     ] 
+    --where unfloat = ask >>= doF . W.sink
 
 
 -- myStartupHook = return ()
@@ -188,6 +185,9 @@ myKeys = [
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) )
     , ("M--", swapNextScreen)                                         --CycleWS
     , ("M-0", toggleWS)                                              --CycleWS
+
+    -- restart is broke...
+    --, ("M-q", spawn "xmonad --recompile; xmonad --restart")
 	]
 
 
