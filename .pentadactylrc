@@ -39,16 +39,6 @@ EOF
 " gmail firebug disabler
 autocmd DOMLoad 'https://mail.google.com/*' fbp off
 
-" broken attempt at calendar auto scroll.  div doesn't exist at load.  events
-" clear before it loads, so i'm having trouble editing div once it does show
-" up.
-"autocmd DOMLoad 'https://www.google.com/calendar/b/0/render?pli=1' -js <<EOF
-"window.addEventListener("onmouseover", function() {
-  "var calendarDiv = document.getElementById('scrolltimedeventswk');
-  "calendarDiv.scrollTop = 100000;
-"});
-"EOF
-
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
 (function(){
@@ -60,3 +50,6 @@ javascript <<EOF
   .insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
+
+" passkeys.  on matching websites send keys directly to dom
+set passkeys+=google.com/reader:j,k,v,?,<SPACE>
