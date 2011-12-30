@@ -28,10 +28,22 @@ def callapi(url):
 
 # get format array to show which items to print
 def format(options):
-  if (options.list):
-    return ['git_url', '\n']
+  formats = {
+      'list'      : ['git_url', '\n'],
+      'default'   : ['name', '\n', 'description', '\n', 'git_url', '\n\n'],
+      'verbose'   : ['name', '\n', 'description', '\n', 'git_url', '\nLast Push: ', 'pushed_at', '\n\n'], 
+      }
 
-  return ['name', '\n', 'description', '\n', 'git_url', '\n\n']
+  #if (options.list):
+    #return ['git_url', '\n']
+  
+  if not options.verbosity in formats:
+    options.verbosity = 'default'
+    
+  return formats[ options.verbosity ]
+
+
+  #return ['name', '\n', 'description', '\n', 'git_url', '\n\n']
 
 # figure out what url suffix to use
 def getUrl(options):
@@ -63,17 +75,26 @@ if __name__ == '__main__':
 
   parser.add_option('-u', '--user',
       dest='user',
-      help='GitHub username.  Defaults to your local account.',
+      help='Specifies a GitHub username.  Otherwise uses your local username.',
       default=getuser()
       )
 
   parser.add_option('-l', '--list',
-      dest='list',
-      action='store_true',
+      dest='verbosity',
+      action='store_const',
+      const='list',
       help='Only list the URL of the git repositories.'
       )
 
+  parser.add_option('-v', '--verbose',
+      dest='verbosity',
+      action='store_const',
+      const='verbose',
+      help='Show additional information about each repository',
+      )
+
   (options, args) = parser.parse_args()
+
 
   url = getUrl(options)
   response = callapi(url)
