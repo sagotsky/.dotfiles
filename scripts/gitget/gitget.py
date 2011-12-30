@@ -11,27 +11,29 @@ from getpass import getuser
 # url of github api
 api = 'https://api.github.com/'
 
-# get results from github url.  format them.
+# get results from github url.  format them.  return array full of output texts
 def callapi(url):
   s = urllib.urlopen(url)
   response = json.loads( s.read() )
-  t = ''
+  out = []
   for item in response:
+    t = ''
     for term in format(options):
       if term in item:
         t += item[term]
       else:
         t += term
+    out.append(t)
 
   s.close()
-  return t
+  return out
 
 # get format array to show which items to print
 def format(options):
   formats = {
       'list'      : ['git_url', '\n'],
-      'default'   : ['name', '\n', 'description', '\n', 'git_url', '\n\n'],
-      'verbose'   : ['name', '\n', 'description', '\n', 'git_url', '\nLast Push: ', 'pushed_at', '\n\n'], 
+      'default'   : ['name', '\n', 'description', '\n', 'git_url', '\n'],
+      'verbose'   : ['name', '\n', 'description', '\n', 'git_url', '\nLast Push: ', 'pushed_at', '\n'], 
       }
 
   #if (options.list):
@@ -57,7 +59,10 @@ def getUrl(options):
 # main
 if __name__ == '__main__':
   # get options from cli
-  parser = OptionParser()
+  usage = 'usage: %prog [options] [search_term(s)]'
+  description='Search your watched or owned repositories on github.  Provide optional search terms to match strings.'
+  description+='example: %prog --repos --user torvalds kernel'
+  parser = OptionParser(usage=usage, description=description)
 
   parser.add_option('-w', '--watch', '--watched',
       action='store_const',
@@ -93,9 +98,22 @@ if __name__ == '__main__':
       help='Show additional information about each repository',
       )
 
+# --dest, --install
+
   (options, args) = parser.parse_args()
 
 
   url = getUrl(options)
   response = callapi(url)
-  print response
+
+  # drop results that don't match args terms
+  for repo in response:
+    show = True
+    for arg in args:
+      if not arg in repo:
+        show = False
+
+    if show:
+      print repo
+    
+    
