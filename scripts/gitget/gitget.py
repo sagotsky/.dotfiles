@@ -5,6 +5,7 @@
 
 import json
 import urllib
+import subprocess
 from optparse import OptionParser
 from getpass import getuser
 
@@ -23,7 +24,7 @@ def callapi(url):
         t += item[term]
       else:
         t += term
-    out.append(t)
+    out.append({'repo':item['name'], 'txt':t, 'git_url':item['git_url']})
 
   s.close()
   return out
@@ -59,7 +60,7 @@ def getUrl(options):
 # main
 if __name__ == '__main__':
   # get options from cli
-  usage = 'usage: %prog [options] [search_term(s)]'
+  usage = 'usage: %prog [options] <search_term(s)>'
   description='Search your watched or owned repositories on github.  Provide optional search terms to match strings.'
   description+='example: %prog --repos --user torvalds kernel'
   parser = OptionParser(usage=usage, description=description)
@@ -98,6 +99,12 @@ if __name__ == '__main__':
       help='Show additional information about each repository',
       )
 
+  parser.add_option('-c', '--clone',
+      dest='clone',
+      action='store_true',
+      help='Clone matched repositories.'
+      )
+
 # --dest, --install
 
   (options, args) = parser.parse_args()
@@ -108,12 +115,15 @@ if __name__ == '__main__':
 
   # drop results that don't match args terms
   for repo in response:
-    show = True
+    keep = True
     for arg in args:
-      if not arg in repo:
-        show = False
+      if not arg in repo['txt']:
+        keep = False
 
-    if show:
-      print repo
+    if keep:
+      print repo['txt']
+      if options.clone:
+        subprocess.call(['git', 'clone', repo['git_url'] ])
+
     
     
