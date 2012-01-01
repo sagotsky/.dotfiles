@@ -6,19 +6,35 @@
 import json
 import urllib
 import subprocess
+import sys
 from optparse import OptionParser
 from getpass import getuser
 
+
 # url of github api
-api = 'https://api.github.com/'
+api_v3 = 'https://api.github.com/'
+api_v2 = 'http://github.com/api/v2/json/'
+api = api_v3
 
 # get results from github url.  format them.  return array full of output texts
 def callapi(url):
   s = urllib.urlopen(url)
   response = json.loads( s.read() )
   out = []
+
+  #more v2 adjustment
+  if 'repositories' in response:
+    response = response['repositories']
+
   for item in response:
+    if item == 'error':
+      print response['error']
+      break
     t = ''
+    # update v2 keys
+    if 'url' in item:
+      item['git_url'] = item['url']
+
     for term in format(options):
       if term in item:
         t += item[term]
@@ -33,13 +49,11 @@ def callapi(url):
 def format(options):
   formats = {
       'list'      : ['git_url', '\n'],
-      'default'   : ['name', '\n', 'description', '\n', 'git_url', '\n'],
+      'default'   : ['name', ' :: ', 'description' ],
       'verbose'   : ['name', '\n', 'description', '\n', 'git_url', '\nLast Push: ', 'pushed_at', '\n'], 
       }
+# use str.format instead
 
-  #if (options.list):
-    #return ['git_url', '\n']
-  
   if not options.verbosity in formats:
     options.verbosity = 'default'
     
@@ -49,39 +63,46 @@ def format(options):
   #return ['name', '\n', 'description', '\n', 'git_url', '\n\n']
 
 # figure out what url suffix to use
-def getUrl(options):
+def getUrl(options, args):
   url_suffixes = {
       'watched'   : 'users/' + options.user + '/watched',
       'repos'     : 'users/' + options.user + '/repos',
   }
 
-  return api + url_suffixes[options.method]
+  if options.method:
+    return api + url_suffixes[options.method]
+  else:
+    return api_v2 + 'repos/search/' + '+'.join(args)
 
 # main
 if __name__ == '__main__':
+  # show usage if no args are provided
+  if len(sys.argv) < 2:
+    sys.argv.append('--help')
+
   # get options from cli
   usage = 'usage: %prog [options] <search_term(s)>'
-  description='Search your watched or owned repositories on github.  Provide optional search terms to match strings.'
-  description+='example: %prog --repos --user torvalds kernel'
-  parser = OptionParser(usage=usage, description=description)
+  description='Search repositories on github.  Provide optional search terms to match strings.'
+  epilog='Example: gitget.py --repos --user torvalds kernel'
+  parser = OptionParser(usage=usage, description=description, epilog=epilog)
 
   parser.add_option('-w', '--watch', '--watched',
       action='store_const',
       const='watched',
       dest='method',
-      help='Show repositories watched by user'
+      help='Show all repositories watched by user'
       )
 
   parser.add_option('-r', '--repos', 
       action='store_const',
       const='repos',
       dest='method',
-      help='Show repositories owned by user'
+      help='Show all repositories owned by user'
       )
 
   parser.add_option('-u', '--user',
       dest='user',
-      help='Specifies a GitHub username.  Otherwise uses your local username.',
+      help='Specifies a GitHub username when fetching watched or owned repositories.  Otherwise uses your local username.',
       default=getuser()
       )
 
@@ -105,12 +126,13 @@ if __name__ == '__main__':
       help='Clone matched repositories.'
       )
 
-# --dest, --install
+# --dest
 
   (options, args) = parser.parse_args()
 
 
-  url = getUrl(options)
+  url = getUrl(options, args)
+  print url
   response = callapi(url)
 
   # drop results that don't match args terms
