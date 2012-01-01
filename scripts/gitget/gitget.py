@@ -38,7 +38,11 @@ def callapi(url):
     if 'username' in item:
       item['owner'] = {'login':item['username']}
 
-    t = get_format(options).format(item)
+    try:
+      t = get_format(options).format(item)
+    except UnicodeError:
+      item = _uni_to_str(item)
+
     out.append({'repo':item['name'], 'txt':t, 'git_url':item['git_url']})
 
   s.close()
@@ -59,6 +63,19 @@ def get_format(options):
   # TODO: remove array business in format string.  replace {str} with {0[str]} via regex
   return formats[ options.verbosity ]
 
+
+# convert unicode to strings recursively in an object
+# python 2.7.3 doesn't do this correctly.  should be fixed later.
+def _uni_to_str(obj):
+  new = {}
+  for i in obj:
+    if type(obj[i]) == unicode:
+      new[i] = obj[i].encode('ascii', 'ignore')
+    elif type(obj[i]) == dict:
+      new[i] = _uni_to_str(obj[i])
+    else:
+      new[i] = obj[i]
+  return new
 
 # figure out what url suffix to use
 def getUrl(options, args):
