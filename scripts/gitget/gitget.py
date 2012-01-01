@@ -14,7 +14,8 @@ from getpass import getuser
 # url of github api
 api_v3 = 'https://api.github.com/'
 api_v2 = 'http://github.com/api/v2/json/'
-api = api_v3
+api    = api_v3
+
 
 # get results from github url.  format them.  return array full of output texts
 def callapi(url):
@@ -34,33 +35,30 @@ def callapi(url):
     # update v2 keys
     if 'url' in item:
       item['git_url'] = item['url']
+    if 'username' in item:
+      item['owner'] = {'login':item['username']}
 
-    for term in format(options):
-      if term in item:
-        t += item[term]
-      else:
-        t += term
+    t = get_format(options).format(item)
     out.append({'repo':item['name'], 'txt':t, 'git_url':item['git_url']})
 
   s.close()
   return out
 
+
 # get format array to show which items to print
-def format(options):
+def get_format(options):
   formats = {
-      'list'      : ['git_url', '\n'],
-      'default'   : ['name', ' :: ', 'description' ],
-      'verbose'   : ['name', '\n', 'description', '\n', 'git_url', '\nLast Push: ', 'pushed_at', '\n'], 
+      'list'    : '{0[git_url]}',
+      'default' : '{0[name]} :: {0[description]}',
+      'verbose' : '{0[name]}\n{0[description]}\n{0[git_url]}\nAuthor: {0[owner][login]}\nLast Push: {0[pushed_at]}\n',
       }
-# use str.format instead
 
   if not options.verbosity in formats:
     options.verbosity = 'default'
-    
+
+  # TODO: remove array business in format string.  replace {str} with {0[str]} via regex
   return formats[ options.verbosity ]
 
-
-  #return ['name', '\n', 'description', '\n', 'git_url', '\n\n']
 
 # figure out what url suffix to use
 def getUrl(options, args):
@@ -132,7 +130,6 @@ if __name__ == '__main__':
 
 
   url = getUrl(options, args)
-  print url
   response = callapi(url)
 
   # drop results that don't match args terms
