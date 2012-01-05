@@ -14,7 +14,7 @@ while FILE=$(inotifywait -q $FILES -e ACCESS -e CLOSE_WRITE) ; do
     cut -f1 -d: |\
     numsum | while read num ; do
       if [ $num -gt 0 ] ; then
-        echo "[$num]"
+        echo " [$num]"
       else 
         echo ''
       fi
