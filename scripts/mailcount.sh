@@ -2,12 +2,24 @@
 
 # gets mail counts from tbird
 # https://github.com/teleshoes/thunderbird-unread-count/blob/master/unread_count-0.0.1-tb-linux.xpi
+# requires inotify-wait
 
 COUNT=0
-find ~/.thunderbird -name 'unread-counts' |\
-  inotifywait -q --fromfile - -e ACCESS -e CLOSE_WRITE |\
-  cut -f1 -d' ' |\
-  cut -f1 -d: 
+FILES=$(find ~/.thunderbird -name 'unread-counts')
+
+echo '' # produce some output so xmobar doesn't say updating...
+
+while FILE=$(inotifywait -q $FILES -e ACCESS -e CLOSE_WRITE) ; do
+  cat $(echo $FILE | cut -f1 -d' ') |\
+    cut -f1 -d: |\
+    numsum | while read num ; do
+      if [ $num -gt 0 ] ; then
+        echo "[$num]"
+      else 
+        echo ''
+      fi
+    done
+done
 
 
 #| xargs cat | while read line ; do

@@ -74,5 +74,6 @@ au BufRead,BufNewFile *.inc set filetype=php
 au BufRead,BufNewFile *.php set filetype=php
 au BufRead,BufNewFile *.js set filetype=javascript
 au BufRead,BufNewFile *.json set filetype=javascript
+au BufRead,BufNewFile *.xmobarrc set filetype=haskell
 
 

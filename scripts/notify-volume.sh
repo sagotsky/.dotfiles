@@ -18,6 +18,8 @@ volume_n() {
     volume | tr -d "%" 
 }
 
+volume_n
+
 # loop only runs when inotify didn't fail (not present on all systems)
 # and when parent process is xmobar.  this _should_ ensure script quits after xmonad resets
 
