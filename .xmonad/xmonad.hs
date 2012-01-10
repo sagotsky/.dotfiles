@@ -186,9 +186,8 @@ myKeys = [
     , ("M--", swapNextScreen)                                         --CycleWS
     , ("M-0", toggleWS)                                              --CycleWS
 
-    -- system tray.  some apps still get stuck there.  
-    ,( "M-p", spawn "trayer --align left --width 50% --edge bottom --height 64") -- show tray
-    ,( "M-S-p", spawn "killall -u sagotsky trayer") --kill tray
+    ,( "M-p", spawn "/home/sagotsky/scripts/trayer-toggle.sh") -- show tray
+    
     -- restart is broke...
     --, ("M-q", spawn "xmonad --recompile; xmonad --restart")
 	]
