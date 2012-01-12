@@ -6,6 +6,7 @@ export CVS_RSH='ssh'
 export PAGER='less'
 export LESS='-R -j2'  # color for less, search results show on second line.
 export VIMRUNTIME=$(find /usr/share/vim/vim* -maxdepth 0 -type d | sort -r | head -n 1)
+export GREP_OPTIONS='--color=auto'
 
 ## Count columns at each cmd
 shopt -s checkwinsize
