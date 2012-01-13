@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # wrapper for notin
 # sends notification updates to dzen2
@@ -17,7 +17,7 @@ function height() {
 }
 
 export HEIGHT=$(height)
-DZEN_OPTS="$DZEN_OPTS -y ` expr $HEIGHT - 15 `"
+#DZEN_OPTS="$DZEN_OPTS -y ` expr $HEIGHT - 15 `"
 
 function format() {
   echo $@ |\
@@ -26,7 +26,7 @@ function format() {
     sed -e 's/<\/i>/^fg()/g' 
 }
 
-killall notification-daemon
+killall notification-daemon &> /dev/null
 
 notin.py | while read line ; do
   if [[ "$line" ]] ; then
