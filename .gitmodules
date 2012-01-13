@@ -1,3 +1,6 @@
 [submodule "scripts/gcal-ticker"]
 	path = scripts/gcal-ticker
 	url = git@github.com:sagotsky/gcal-ticker.git
+[submodule ".pentadactyl/plugins/firebug-pentadactyl"]
+	path = .pentadactyl/plugins/firebug-pentadacty
+	url = git://github.com/maksimr/firebug-pentadactyl.git

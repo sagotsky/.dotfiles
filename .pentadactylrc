@@ -37,7 +37,7 @@ autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
 EOF
 
 " gmail firebug disabler
-"autocmd DOMLoad 'https://mail.google.com/*' fbp off
+autocmd DOMLoad 'https://mail.google.com/*' firebug close
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
