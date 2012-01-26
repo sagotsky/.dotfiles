@@ -69,14 +69,10 @@ branch=$( git branch 2>/dev/null | grep '*' | tr -d ' *')
 # check status.  diff color if dirty?
 if [[ $branch != "" ]] ; then
   url=$(git config --get remote.origin.url)
-  status=$(git status 2>/dev/null | grep 'working directory clean')
-  if [[ $status ]] ; then
-    #clean
-    color="0;36m"
-  else 
-    #dirty
-    color='0;33m'
-  fi
+  color='0;33m' # changed yellow
+  git diff --quiet && [ $(git ls-files --others --exclude-standard | wc -l) -eq 0 ] && \
+    color="0;36m" # clean blue
+
   white='0;39m'
   echo "\n$url<\[\033[$color\]$branch\[\e[$white\]>"
 fi
