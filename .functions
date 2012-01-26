@@ -218,3 +218,12 @@ function xnest() {
   DISPLAY=$X $@
   kill $PID
 }
+
+# tail follow and beep
+function tfb() {
+  tail -F $@ | while true ; do
+    if read -t 60 LINE ; then 
+      echo -e "\a$LINE"
+    fi
+  done
+}
