@@ -187,6 +187,9 @@ myKeys = [
     , ("M-0", toggleWS)                                              --CycleWS
 
     ,( "M-p", spawn "/home/sagotsky/scripts/trayer-toggle.sh") -- show tray
+
+    -- misc scripts
+    , ("M-y", spawn "/home/sagotsky/scripts/cli-board.sh") -- copies text into clip board
     
     -- restart is broke...
     --, ("M-q", spawn "xmonad --recompile; xmonad --restart")
