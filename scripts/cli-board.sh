@@ -11,6 +11,7 @@ DMENU_OPTS="-t -i -b -m 0 -nb #ffb -nf black -sb #aa7 -sf white -p cli-board $FO
 FILE=$(find $DIR -type f -printf '%f\n'  | dmenu $DMENU_OPTS)
 export DISPLAY=:0.0
 
+# -d, dig into directory?
 if [ -x "$DIR/$FILE" ] ; then
   echo $($DIR/$FILE) | xsel -i
 else 

@@ -14,6 +14,7 @@ set autocomplete=
 set maxitems=12
 " remove pentadactyl from title
 set titlestring=''
+set defsearch='duckduckgo'
 
 " opens sidebar page, which is defaulted to my gtasks somehow
 "com     todo    :sidebar MultiPanel
@@ -38,6 +39,12 @@ EOF
 
 " gmail firebug disabler
 autocmd DOMLoad 'https://mail.google.com/*' firebug disable
+
+" slow-it.  puts a delay in front of reddit.
+autocmd DOMLoad 'http://reddit.com/*' -js <<EOF
+  document.body.style.display = 'none'
+  window.setTimeout('alert("delayed")', 5000);
+EOF
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
