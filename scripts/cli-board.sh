@@ -5,16 +5,26 @@
 # copies contents or output (if executable) into clipboard
 
 
-DIR="$HOME/.cli-board/"
+CLIBOARDHOME="$HOME/.cli-board/"
 FONT=' -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* '
 DMENU_OPTS="-t -i -b -m 0 -nb #ffb -nf black -sb #aa7 -sf white -p cli-board $FONT"
-FILE=$(find $DIR -type f -printf '%f\n'  | dmenu $DMENU_OPTS)
 export DISPLAY=:0.0
 
-# -d, dig into directory?
-if [ -x "$DIR/$FILE" ] ; then
-  echo $($DIR/$FILE) | xsel -i
-else 
-  cat "$DIR/$FILE" | xsel -i
-fi
+getfile() {
+  DIR="$@"
+  FILE=$(find $DIR -mindepth 1 -maxdepth 1 -printf '%f\n' -regex '^[^\.]' |\
+    dmenu $DMENU_OPTS)
 
+  # -d, dig into directory?
+  if [ -d "$DIR/$FILE" ] ; then
+    getfile "$DIR/$FILE"  
+  else 
+    if [ -x "$DIR/$FILE" ] ; then
+      echo $($DIR/$FILE) | xsel -i
+    else 
+      cat "$DIR/$FILE" | xsel -i
+    fi
+  fi
+}
+
+getfile "$CLIBOARDHOME"
