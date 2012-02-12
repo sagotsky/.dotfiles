@@ -14,7 +14,7 @@ set autocomplete=
 set maxitems=12
 " remove pentadactyl from title
 set titlestring=''
-set defsearch='duckduckgo'
+set defsearch=duckduckgo-ssl
 
 " opens sidebar page, which is defaulted to my gtasks somehow
 "com     todo    :sidebar MultiPanel
