@@ -69,6 +69,7 @@ au BufNewFile,BufRead *.conf set filetype=sh
 au BufNewFile,BufRead .pentadactylrc set filetype=vim
 au BufRead,BufNewFile *.install set filetype=php
 au BufRead,BufNewFile *.profile set filetype=php
+au BufRead,BufNewFile *.md set filetype=mkd
 au BufRead,BufNewFile *.module set filetype=php
 au BufRead,BufNewFile *.inc set filetype=php
 au BufRead,BufNewFile *.php set filetype=php
