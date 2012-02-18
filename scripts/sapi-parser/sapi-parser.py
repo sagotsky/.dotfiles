@@ -6,6 +6,7 @@
 
 from sys import argv
 import argparse
+import re
 
 class SapiParser:
   def __init__(self):
@@ -13,6 +14,7 @@ class SapiParser:
     self.paths = []
     self.ops = {} 
     self.argparse = argparse.ArgumentParser(description='Sapi Parser')
+    self.query_alter = False
 
   def url(self, url):
     self.url = url
@@ -36,14 +38,22 @@ class SapiParser:
       if param in self.ops:
         s += param + '=' + self.ops[param] + '&'
 
-    print s
+    if self.query_alter:
+      s = re.sub(self.query_alter[0], self.query_alter[1], s)
+
+    return s
 
   def addArg(self, arg, target, value, help_text):
     self.argparse.add_argument(arg, dest=target, help=help_text)
     self.ops[target] = value
+    # take an otional dict.  pre/postfix, callback, regex?
 
   def parseArgs(self):
     self.argparse.parse_args()
+
+  # ugly hackiness.  regex to alter the query after it's built
+  def addQueryAlter(self, regex, replace):
+    self.query_alter = [regex, replace]
 
 oed = SapiParser()
 oed.url('http://www.oed.com/srupage')
@@ -57,8 +67,12 @@ oed.addParam('query')
 
 
 oed.addArg('--op', 'operation', 'val', 'help text')
+oed.addArg('-q', 'query', 'val', 'Term to define')
+oed.addQueryAlter('query=', 'query=cql.serverChoice+=+')
 oed.parseArgs()
 
-oed.query()
+print oed.query()
 #http://www.oed.com/srupage?operation=searchRetrieve&query=cql.serverChoice+=+test&maximumRecords=100&startRecord=1
                                                            #wtf?
+
+# names?  soapdish would be cool if this was actually soap...
