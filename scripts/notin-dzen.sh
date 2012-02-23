@@ -8,7 +8,8 @@
 C_PROGRAM='darkgoldenrod'
 C_ITALICS='khaki'
 
-DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn 6x12 -p 5 -u "
+TIME=3
+DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn 6x12 -p $TIME -u "
 
 function height() {
   xwininfo -root |\

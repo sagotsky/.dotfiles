@@ -1,3 +1,5 @@
 #!/bin/bash
 
-curl -s http://whatismyip.org ; echo
+shopt -s expand_aliases
+source ~/.alias
+myip
