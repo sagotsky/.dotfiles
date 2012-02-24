@@ -194,14 +194,18 @@ function colors() {
 # find directory and cd to it.  awesome for drupal modules with known names 8 dirs deep
 function fd() {
   OLD=$(pwd)
+  OLD_IFS=${IFS}
+  IFS='%%' # lets select use directories with spaces
 
-  DIR=$(find ./ -type d -name $1 2>/dev/null) 
-  [ -d "$DIR" -a "$DIR" != '' ] && pushd $DIR || select D in $DIR ; do
+  DIR=$(find ./ -type d -name "$@" -printf '%p%%' 2>/dev/null) 
+  [ -d "'$DIR'" -a "$DIR" != '' ] && pushd $DIR || select D in $DIR ; do
     if [ $D ] ; then
       pushd $D
     fi
     break
   done 
+
+  IFS=${OLD_IFS}
 
   if [ "$OLD" == "$(pwd)" ] ; then 
     false
