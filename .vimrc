@@ -13,8 +13,9 @@ set cursorline 			"underlines current line
 set number				"line numbers on
 set ignorecase			"case insensitive searches with /
 set hlsearch			"highlights search results                             
-set scrolloff=4
+set scrolloff=4         "scroll at 4 lines from top/bottom
 set expandtab			"inserts spaces instead of tabs
+set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
 
 try                             "persistent undo files
     set undodir=~/.vim_runtime/undodir
@@ -68,7 +69,9 @@ au BufNewFile,BufRead .alias set filetype=sh
 au BufNewFile,BufRead *.conf set filetype=sh
 au BufNewFile,BufRead .pentadactylrc set filetype=vim
 au BufRead,BufNewFile *.install set filetype=php
+au BufRead,BufNewFile *.drush set filetype=php
 au BufRead,BufNewFile *.profile set filetype=php
+au BufRead,BufNewFile *.test set filetype=php
 au BufRead,BufNewFile *.md set filetype=mkd
 au BufRead,BufNewFile *.module set filetype=php
 au BufRead,BufNewFile *.inc set filetype=php
