@@ -2,8 +2,12 @@
 
 #ls which does ls -lh on result of which.  useful if /usr/bin/$BINARY is a symlink 
 function lw() { 
-	 if [ $# -gt 0 ] ; then 
-	    for bin in $@ ; do ls -lh `which $bin` ; done 
+	 if [ $# -gt 1 ] ; then 
+	    for bin in $@ ; do lw $bin ; done 
+     elif [ $# -gt 0 ] ; then
+       bin=$(which $1)
+       ls -lh $bin
+       [ -L $bin ] && lw $(readlink $bin)
 	 else 
 	    echo "lw (ls which) requires more than 0 arguments"
 	 fi  
@@ -195,10 +199,14 @@ function colors() {
 function fd() {
   OLD=$(pwd)
   OLD_IFS=${IFS}
-  IFS='%%' # lets select use directories with spaces
+  
+  # $@ gives $1 $2 $3... we need $1\ $2\ $3, with spaces not IFS in between.
+  # array_join for bash?
 
-  DIR=$(find ./ -type d -name "$@" -printf '%p%%' 2>/dev/null) 
-  [ -d "'$DIR'" -a "$DIR" != '' ] && pushd $DIR || select D in $DIR ; do
+  DIR=$(find ./ -type d -name $@ 2>/dev/null) 
+  #IFS='\n' # lets select use directories with spaces
+  echo $DIR
+  [ -d "$DIR" -a "$DIR" != '' ] && pushd $DIR || select D in $DIR ; do
     if [ $D ] ; then
       pushd $D
     fi
