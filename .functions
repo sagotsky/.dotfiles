@@ -4,10 +4,10 @@
 function lw() { 
 	 if [ $# -gt 1 ] ; then 
 	    for bin in $@ ; do lw $bin ; done 
-     elif [ $# -gt 0 ] ; then
+     elif [ $# -gt 0  ] ; then
        bin=$(which $1)
-       ls -lh $bin
-       [ -L $bin ] && lw $(readlink $bin)
+       [[ $? && -e $bin ]] && ls -lh $bin
+       [ -L "$bin" ] && lw $(readlink $bin) || true
 	 else 
 	    echo "lw (ls which) requires more than 0 arguments"
 	 fi  
