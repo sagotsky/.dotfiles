@@ -56,6 +56,7 @@ function pack() {
 		*.tar.gz)		tar -cvzf $DEST "$@" ;;  
 		*.zip)			zip -r $DEST "$@" ;;
 		*.xpi)			zip -r $DEST "$@" ;;
+        *.7z)           7z a $DEST "$@" ;;
 		*)				echo "Unknown file type - $DEST" ;;
 	   esac
 	 fi
