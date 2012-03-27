@@ -49,7 +49,7 @@ class SapiParser:
     # take an otional dict.  pre/postfix, callback, regex?
 
   def parseArgs(self):
-    self.argparse.parse_args()
+    self.args = self.argparse.parse_args()
 
   # ugly hackiness.  regex to alter the query after it's built
   def addQueryAlter(self, regex, replace):

@@ -30,6 +30,7 @@ import XMonad.Util.EZConfig
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Prompt
 import XMonad.Actions.CycleWS
+-- import XMonad.Hooks.FadeInactive -- changes opacity of inactive windows.  when xcompmgr is mature, try this instead of borders to indicate activity
 
 myTerminal = "x-terminal-emulator"
 
@@ -53,7 +54,7 @@ myShowWName = showWName' defaultSWNConfig
 	}
 
 myLayout =   -- ewmhDesktopsLayout
-            onWorkspace "music-2" wide $
+            --onWorkspace "music-2" wide $
             avoidStruts
            ( smartBorders
            ( tall ||| wide ||| Grid |||  Full ))
@@ -157,7 +158,8 @@ myKeys = [
     , ("<XF86Mail>", spawn "/home/sagotsky/scripts/active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
-    , ("M-b", spawn "/home/sagotsky/scripts/wallpaper.sh") -- dmenu for jumping rhythmbox songs
+--    , ("M-b", spawn "/home/sagotsky/scripts/wallpaper.sh") -- dmenu for jumping rhythmbox songs
+    ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
 
     -- music
     , ("<XF86AudioPlay>", spawn "rhythmbox-client --play-pause") --vol up
