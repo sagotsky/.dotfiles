@@ -35,6 +35,24 @@ com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 " send to google-chrome
 com chrome -nargs=0 execute "!google-chrome " + content.location
 
+" send to different work sites.
+com goto-scholar -nargs=0  -description 'Visit page on scholar.harvard' -js 
+  \ url = content.location + '';
+  \ url = url.replace(/\/\/.*?\//, '//scholar.harvard.edu/')
+  \ commands.execute(("tabopen ") + url )
+com goto-test -nargs=0  -description 'Visit page on testing' -js 
+  \ url = content.location + '';
+  \ url = url.replace(/\/\/.*?\//, '//scholar-test.iq.harvard.edu/')
+  \ commands.execute(("tabopen ") + url )
+com goto-projects -nargs=0  -description 'Visit page on projects' -js 
+  \ url = content.location + '';
+  \ url = url.replace(/\/\/.*?\//, '//projects.iq.harvard.edu/')
+  \ commands.execute(("tabopen ") + url )
+com goto-js -nargs=0  -description 'Visit page on jons sandbox' -js 
+  \ url = content.location + '';
+  \ url = url.replace(/\/\/.*?\//, '//scholar-jsagotskydev.iq.harvard.edu/')
+  \ commands.execute(("tabopen ") + url )
+
 " Redmine renamer strips openscholar project name leaving tix id and desc
 autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
   doc.title = doc.title.replace(/OpenScholar - \w+ /, '');
@@ -43,7 +61,7 @@ EOF
 " gmail firebug disabler
 autocmd DOMLoad 'https://mail.google.com/*' firebug disable
 
-" slow-it.  puts a delay in front of reddit.
+" slow-it.  puts a delay in front of reddit.  or will when it's wroking
 autocmd DOMLoad 'http://reddit.com/*' -js <<EOF
   document.body.style.display = 'none'
   window.setTimeout('alert("delayed")', 5000);
