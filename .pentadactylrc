@@ -62,10 +62,20 @@ EOF
 autocmd DOMLoad 'https://mail.google.com/*' firebug disable
 
 " slow-it.  puts a delay in front of reddit.  or will when it's wroking
-autocmd DOMLoad 'http://reddit.com/*' -js <<EOF
-  document.body.style.display = 'none'
-  window.setTimeout('alert("delayed")', 5000);
+autocmd! DOMLoad 'https?://www.reddit.com/*'  -js <<EOF
+  var title = doc.title;
+  var restore = function() { 
+    doc.body.style.display = 'inline';
+    doc.title = title;
+    }
+  doc.body.style.display = 'none';
+  doc.title = 'Patience is a virtue';
+  content.window.setTimeout(restore, 60000);
 EOF
+
+"  document.body.style.display = 'none'
+"  window.setTimeout('alert("delayed")', 5000);
+"EOF
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
