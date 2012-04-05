@@ -59,7 +59,11 @@ autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
 EOF
 
 " gmail firebug disabler
+" needs a way to check if firebug plugin exists first...
 autocmd DOMLoad 'https://mail.google.com/*' firebug disable
+
+" gdocs bypass shortcuts.
+autocmd LocationChange docs.google.com :normal! <C-z>
 
 " slow-it.  puts a delay in front of reddit.  or will when it's wroking
 autocmd! DOMLoad 'https?://www.reddit.com/*'  -js <<EOF
@@ -70,12 +74,8 @@ autocmd! DOMLoad 'https?://www.reddit.com/*'  -js <<EOF
     }
   doc.body.style.display = 'none';
   doc.title = 'Patience is a virtue';
-  content.window.setTimeout(restore, 60000);
+  content.window.setTimeout(restore, 5000);
 EOF
-
-"  document.body.style.display = 'none'
-"  window.setTimeout('alert("delayed")', 5000);
-"EOF
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
