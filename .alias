@@ -13,7 +13,7 @@ alias e='emacs -nw'
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
 alias ls='ls --color=auto'
-alias myip='curl http://whatismyip.org ; echo'
+alias myip='curl http://icanhazip.com ; echo'
 alias n='nano'
 alias tf='tail -f'
 alias rb="rhythmbox-client "
