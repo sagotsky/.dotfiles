@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=XSession
+Exec=dotxsession.sh
+TryExec=/usr/bin/dotxsession.sh
+Name=xsession script
+Comment=Runs users .xsession.  (Move to /usr/share/xsessions)
