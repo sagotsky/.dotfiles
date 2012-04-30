@@ -4,6 +4,13 @@
 # https://github.com/teleshoes/thunderbird-unread-count/blob/master/unread_count-0.0.1-tb-linux.xpi
 # requires inotify-wait
 
+# kill dupes
+for pid in $(pidof -x mailcount.sh) ; do
+  if [ "$pid" != "$$" ] ; then
+    kill -9 $pid
+  fi
+done
+
 COUNT=0
 FILES=$(find ~/.thunderbird -name 'unread-counts')
 
@@ -28,7 +35,7 @@ done
   #COUNT=$(( $COUNT + $(echo $line | cut -d: -f1) ))
 #done
 
-if [ $COUNT -gt -1 ] ; then
-  echo "[$COUNT]" 
-fi
+#if [ $COUNT -gt -1 ] ; then
+  #echo "[$COUNT]" 
+#fi
 
