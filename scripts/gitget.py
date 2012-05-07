@@ -1,0 +1,1 @@
+/home/sagotsky/scripts/gitget/gitget.py
