@@ -1,6 +1,7 @@
 ###aliases
 
 alias ack='ack-grep '
+alias appleterm='/usr/lib/xscreensaver/apple2 -text -program bash -fast'
 alias bd='popd'
 alias bell="echo -e '\a'"
 alias bt='btdownloadcurses.bittornado --minport 34567 --maxport 34577 --max_upload_rate 25 --responsefile'
