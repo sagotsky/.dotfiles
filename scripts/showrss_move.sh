@@ -25,7 +25,7 @@ for FILE in $(ssh $DDWRT -q ls $SHOWS 2>/dev/null | grep -v xauth) ; do
 done
 
 # and make sure rtorrent is still running.
-ssh freewifi pidof rtorrent || service rtorrent start
+ssh freewifi pidof rtorrent || service rtorrent start &>/dev/null
 
 # one file at a time so they can each be copied instead of waiting for all to dl
 # give root passwordless access and run at startup
