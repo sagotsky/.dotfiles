@@ -19,14 +19,14 @@ set defsearch=duckduckgo-ssl
 " opens sidebar page, which is defaulted to my gtasks somehow
 "com     todo    :sidebar MultiPanel
 
-cnoremap <C-g> <Esc>
-nnoremap <C-r> :reloadall<CR>
+cmap -builtin <C-g> <Esc>
+nmap -builtin <C-r> :reloadall<CR>
 
 " faster scrolling
-noremap h 4h
-noremap j 4j
-noremap k 4k
-noremap l 4l
+map -builtin h 4h
+map -builtin j 4j
+map -builtin k 4k
+map -builtin l 4l
 
 
 " tabrename command
