@@ -14,10 +14,8 @@ set autocomplete=
 set maxitems=12
 " remove pentadactyl from title
 set titlestring=''
-set defsearch=duckduckgo-ssl
+set defsearch=google
 
-" opens sidebar page, which is defaulted to my gtasks somehow
-"com     todo    :sidebar MultiPanel
 
 cmap -builtin <C-g> <Esc>
 nmap -builtin <C-r> :reloadall<CR>
@@ -28,6 +26,8 @@ map -builtin j 4j
 map -builtin k 4k
 map -builtin l 4l
 
+" ZZ is zoom zoom, not quit
+map -builtin ZZ zz 
 
 " tabrename command
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
