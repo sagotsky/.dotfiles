@@ -91,14 +91,11 @@ myManageHook =  composeAll
     , className =? "Operapluginwrapper-ia32-linux" --> doFullFloat
     , className =? "Exe" --> doFullFloat
     , className =? "Zend Studio" --> doShift "zend-6" 
+    , className  =? "Unity-2d-panel" --> doIgnore
+    , className  =? "Unity-2d-launcher" --> doIgnore
     ] 
     --where unfloat = ask >>= doF . W.sink
-
-
--- myStartupHook = return ()
--- tells java programs that they can work in this wm.
---myStartupHook = ewmhDesktopsStartup >> setWMName "LG3D"
-
+    --where doDelete = ask >>= doF . W.delete
 
 main = do 
   xmproc <- spawnPipe "xmobar"
@@ -153,33 +150,39 @@ main = do
 myKeys = [ 
     -- application shortcuts
 	  ("<XF86HomePage>", spawn "nautilus --no-desktop") --home
-	, ("<XF86Favorites>", spawn "/home/sagotsky/scripts/gdmSwitch.sh jenn") --user switch
-	, ("<XF86Search>", spawn "xcalib -a -i") -- screen color invert
-    , ("<XF86Mail>", spawn "/home/sagotsky/scripts/active_win_man.sh") -- manpage for active win
+	, ("<XF86Favorites>", spawn "gdmSwitch.sh jenn") --user switch
+    , ("<XF86Mail>", spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
---    , ("M-b", spawn "/home/sagotsky/scripts/wallpaper.sh") -- dmenu for jumping rhythmbox songs
+--    , ("M-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
     ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
 
     -- music
     , ("<XF86AudioPlay>", spawn "rhythmbox-client --play-pause") --vol up
 	, ("<XF86Forward>", spawn "rhythmbox-client --next") --Next
 	, ("<XF86Back>", spawn "rhythmbox-client --previous") --Back
-	, ("<XF86AudioRaiseVolume>", spawn "/home/sagotsky/scripts/vol-up.sh") --vol up
-	, ("<XF86AudioLowerVolume>", spawn "/home/sagotsky/scripts/vol-down.sh") --vol down
-	, ("<XF86AudioMute>", spawn "/home/sagotsky/scripts/vol-mute.sh") --vol mute
+	, ("<XF86AudioRaiseVolume>", spawn "vol-up.sh") --vol up
+	, ("<XF86AudioLowerVolume>", spawn "vol-down.sh") --vol down
+	, ("<XF86AudioMute>", spawn "vol-mute.sh") --vol mute
 	, ("<XF86LaunchA>", spawn "rhythmbox-client --set-rating 1") -- rate 1-5
 	, ("<XF86LaunchB>", spawn "rhythmbox-client --set-rating 2") -- rate 1-5
 	, ("<XF86LaunchC>", spawn "rhythmbox-client --set-rating 3") -- rate 1-5
 	, ("<XF86LaunchD>", spawn "rhythmbox-client --set-rating 4") -- rate 1-5
 	, ("<XF86LaunchE>", spawn "rhythmbox-client --set-rating 5") -- rate 1-5
-    , ("M-m",   spawn "/home/sagotsky/scripts/rb-jump.sh") -- dmenu for jumping rhythmbox songs
-    , ("M-S-m", spawn "/home/sagotsky/scripts/rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
-    , ("M-C-m", spawn "/home/sagotsky/scripts/rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
+    , ("M-m",   spawn "rb-jump.sh") -- dmenu for jumping rhythmbox songs
+    , ("M-S-m", spawn "rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
+    , ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
 
     -- transparency
     ,("M-S-o", spawn "transset-df -a --inc 0.1")
     ,("M-o",   spawn "transset-df -a --dec 0.1")
+
+    --xcalib screen options
+	, ("<XF86Search>", spawn "xcalib -a -i") -- screen color invert
+    , ("C-<XF86Search>", spawn "xcalib -c") -- screen color reset
+    , ("S-<XF86Search>", spawn "xcalib -a -co 95") -- screen contrast decrease
+    , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
+
 
     -- WM Shortcuts  
     , ("M-d",   removeWorkspace )                                   --DynamicWorkspaces
@@ -187,14 +190,11 @@ myKeys = [
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) )
     , ("M--", swapNextScreen)                                         --CycleWS
     , ("M-0", toggleWS)                                              --CycleWS
-
-    ,( "M-p", spawn "/home/sagotsky/scripts/trayer-toggle.sh") -- show tray
+    ,( "M-p", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
+    ,( "M-u", spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
 
     -- misc scripts
-    , ("M-y", spawn "/home/sagotsky/scripts/cli-board.sh") -- copies text into clip board
-    
-    -- restart is broke...
-    --, ("M-q", spawn "xmonad --recompile; xmonad --restart")
+    , ("M-y", spawn "cli-board.sh") -- copies text into clip board
 	]
 
 
