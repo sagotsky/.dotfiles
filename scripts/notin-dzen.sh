@@ -28,6 +28,7 @@ function format() {
 }
 
 killall notification-daemon &> /dev/null
+killall notify-osd  &> /dev/null
 
 notin.py | while read line ; do
   if [[ "$line" ]] ; then

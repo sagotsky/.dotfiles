@@ -1,6 +1,7 @@
 calendars = Jon Sagotsky 
 calendars = Work
 calendars = OpenScholar Calendar
+calendars = Harvard Web Publishing Initiative
 calendars = J&J
 calendars = Jenn Sagotsky
 calendars = Stranger Ways
@@ -8,6 +9,7 @@ calendars = Stranger Ways
 colors = green
 colors = red
 colors = red
+colors = orange
 colors = cyan
 colors = '#6666ff'
 colors = purple
