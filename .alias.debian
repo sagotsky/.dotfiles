@@ -1,4 +1,5 @@
 alias aptauto="sudo apt-get autoremove"
+alias aptbuild="sudo apt-get build-dep "
 alias apti="sudo apt-get install "
 alias aptir="sudo apt-get install --reinstall"
 alias aptfi="sudo apt-get -f install "
