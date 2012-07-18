@@ -200,11 +200,12 @@ function colors() {
 function fd() {
   OLD=$(pwd)
   OLD_IFS=${IFS}
+  SEARCH=$(echo "$@" | tr -d '/')
   
   # $@ gives $1 $2 $3... we need $1\ $2\ $3, with spaces not IFS in between.
   # array_join for bash?
 
-  DIR=$(find ./ -type d -name $@ 2>/dev/null | sort) 
+  DIR=$(find ./ -type d -name $SEARCH 2>/dev/null | sort) 
   #IFS='\n' # lets select use directories with spaces
   [ -d "$DIR" -a "$DIR" != '' ] && pushd $DIR || select D in $DIR ; do
     if [ $D ] ; then
