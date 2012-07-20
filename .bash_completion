@@ -1,3 +1,4 @@
+# rhythmbox client
 _rb() 
 {
   local cur prev opts
@@ -14,3 +15,27 @@ _rb()
 
 complete -F _rb rhythmbox-client
 complete -F _rb rb
+
+# find directory - see .functions
+_fd() {
+  local cur prev opts base
+  COMPREPLY=()
+
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  FIND_LIMIT=150
+  dirs=$(find ./ -name "${cur}*" -type d -printf '%f\n' | head -n $FIND_LIMIT) 
+
+  if [[ $(echo $dirs | wc -w) -gt 0 ]] ; then
+
+    if [ $(echo $dirs | wc -w) -eq $FIND_LIMIT ] ; then
+      echo -e "\nBailing after $FIND_LIMIT results..." >&2
+    fi
+
+    COMPREPLY=( $(compgen -W "${dirs}" -- ${cur}) )
+    return 0
+  fi
+}
+
+complete -F _fd fd
