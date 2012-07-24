@@ -88,6 +88,7 @@ myManageHook =  composeAll
     , className =? "Skype.real"  --> doShift "chat-5" 
     , className =? "xterm-mail" --> doShift "email-3"
     -- the above is achieved by "xterm -class xterm-mail"
+    , className =? "URxvt" --> doFullFloat
     , className =? "Operapluginwrapper-ia32-linux" --> doFullFloat
     , className =? "Exe" --> doFullFloat
     , className =? "Zend Studio" --> doShift "zend-6" 
@@ -156,6 +157,7 @@ myKeys = [
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
 --    , ("M-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
     ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
+    ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
 
     -- music
     , ("<XF86AudioPlay>", spawn "rhythmbox-client --play-pause") --vol up
