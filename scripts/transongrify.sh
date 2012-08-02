@@ -85,7 +85,20 @@ ogg_tag() {     # recieves list of "name value\n" from stdin
   vorbiscomment -w "$FILE" $TAGS
 }
 
-hook_get_meta() {
+
+m4a_dec() {
+  faad --stdio --quiet "$@"
+}
+m4a_enc() {
+  faac -w - -o -
+}
+m4a_index() {
+  faad -i "$@" 2>&1 | grep '^\(title\|artist\|album\|genre\|track\)' | tr -d ':'
+}
+m4a_tag() {
+}
+
+hook_index() {
   echo 'write me'
 }
 
@@ -94,9 +107,9 @@ hook_tag() {
   #array arg?
 }
 
-hook_dependencies() {
-  echo 'bin bin2 etc'
-}
+#hook_dependencies() {
+  #echo 'bin bin2 etc'
+#}
 
 # put each hook set in ext.module or something.  include on demand.
 
@@ -150,8 +163,8 @@ convert() {
     # try to tag the files as well
     INDEX="${SRC_EXT}_index"
     TAG="${FMT}_tag"
-    type -t $TAG
-    type -t $INDEX
+    #type -t $TAG
+    #type -t $INDEX
     if [[ $(type -t $INDEX) == 'function' && $(type -t $TAG) == 'function'  ]] ; then
       echo tagging: $INDEX "$FILE" \| $TAG "$FILE" #needs to be dest file...
       $INDEX "$FILE" | $TAG "$DEST"
