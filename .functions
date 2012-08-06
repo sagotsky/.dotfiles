@@ -275,3 +275,8 @@ function malloc() {
     sh -c "MEMBLOB=\$(dd if=/dev/urandom bs=1MB count=$N) ; sleep 1"
   fi
 }
+
+# shortcut for drupal.org git clone
+function do_git() {
+  git clone ssh://jsagotsky@git.drupal.org/project/$1.git
+}
