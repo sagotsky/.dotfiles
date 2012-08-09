@@ -198,33 +198,6 @@ function colors() {
 
 # find directory and cd to it.  awesome for drupal modules with known names 8 dirs deep
 function fd() {
-  OLD=$(pwd)
-  SEARCH=$(echo "$@" | tr -d '/')
-  
-  # $@ gives $1 $2 $3... we need $1\ $2\ $3, with spaces not IFS in between.
-  # array_join for bash?
-
-  #if [[ $(echo $SEARCH | wc -w) -gt 1 ]] ; then 
-    #echo $SEARCH
-    #SEARCH=\'$(echo $SEARCH | sed -e 's/ /\\\ /g')\'
-    #echo $SEARCH
-  #fi
-
-  DIR=$(find ./ -type d -name "$SEARCH" 2>/dev/null | sort) 
-  [ -d "$DIR" -a "$DIR" != '' ] && pushd "$DIR" || select D in "$DIR" ; do
-    if [ $D ] ; then
-      pushd $D
-    fi
-    break
-  done 
-
-  if [ "$OLD" == "$(pwd)" ] ; then 
-    false
-  fi
-}
-
-# dev version of fd.  uses array so select can display choices with spaces
-function ffd() {
   SEARCH=$(echo "$@" | tr -d '/')
 
   dirs=()
