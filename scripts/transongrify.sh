@@ -98,6 +98,13 @@ m4a_tag() {
   echo m4a
 }
 
+
+flac_dec() {
+  flac --decode --silent --stdout "$@"
+}
+flac_index() {
+  metaflac --list --block-type=VORBIS_COMMENT "$@"
+}
 # hooks
 # EXT_dec() decodes a file.  wav to stdout
 # EXT_env() encodes a file.  takes stdin
