@@ -6,8 +6,9 @@
 # decoder outputs to stdout
 # encoder recieves AND outputs to stdout
 
-PROCS=4 # 1 process at a time
+PROCS=$(cat /proc/cpuinfo  | grep ^processor | wc -l) # 1 process per core
 export DESTINATION='/tmp/' # ./ when mature?
+export VERBOSE=1
 set -a
 
 
@@ -27,7 +28,7 @@ mp3_tag() {     # recieves list of "name value\n" from stdin
   while read line ; do
     case $line in
       artist*)  CMD='-a' ;;
-      #genre*)   CMD='-g' ;;
+      genre*)   CMD='-g' ;;
       album*)   CMD='-l' ;;
       track*)   CMD='-n' ;;
       title*)   CMD='-t' ;;
@@ -40,11 +41,9 @@ mp3_tag() {     # recieves list of "name value\n" from stdin
     CMD="$CMD"
 
     if [[ "$ARG" != "" && "$CMD" != "" ]] ; then
-      TAGS="$TAGS $CMD '$ARG' "
+      mp3info "$FILE" $CMD "$ARG"
     fi
   done
-
-  mp3info $TAGS "$FILE"
 }
 
 wav_enc() {
@@ -96,20 +95,14 @@ m4a_index() {
   faad -i "$@" 2>&1 | grep '^\(title\|artist\|album\|genre\|track\)' | tr -d ':'
 }
 m4a_tag() {
+  echo m4a
 }
 
-hook_index() {
-  echo 'write me'
-}
-
-hook_tag() {
-  echo 'me too'
-  #array arg?
-}
-
-#hook_dependencies() {
-  #echo 'bin bin2 etc'
-#}
+# hooks
+# EXT_dec() decodes a file.  wav to stdout
+# EXT_env() encodes a file.  takes stdin
+# EXT_index() reads out tags.  
+# EXT_tag() reads in tags.  applies to file, $@.
 
 # put each hook set in ext.module or something.  include on demand.
 
@@ -156,23 +149,33 @@ convert() {
   FILE="$@"
   SRC_EXT=${FILE##*.}  # lowercase it?
   DEC="${SRC_EXT}_dec"
+  debug "Converting $FILE"
+
   if [[ -f $FILE && $(type -t $DEC) == 'function' ]] ; then
     DEST="$DESTINATION/${FILE%.*}.$FMT"
     $DEC "$FILE" | $ENC > "$DEST" 
 
+    debug "Converted $FILE to $DEST"
+
     # try to tag the files as well
     INDEX="${SRC_EXT}_index"
     TAG="${FMT}_tag"
-    #type -t $TAG
-    #type -t $INDEX
     if [[ $(type -t $INDEX) == 'function' && $(type -t $TAG) == 'function'  ]] ; then
-      echo tagging: $INDEX "$FILE" \| $TAG "$FILE" #needs to be dest file...
+      debug tagging: $INDEX "$FILE" \| $TAG "$DEST" #needs to be dest file...
       $INDEX "$FILE" | $TAG "$DEST"
     fi
 
   fi
 }
 export -f convert
+
+# debug output
+debug() {
+  if [ $VERBOSE -eq 1 ] ; then
+    echo $@
+  fi
+}
+export -f debug
 
 # run convert on all input files
 while read line ; do
