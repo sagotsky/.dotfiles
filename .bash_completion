@@ -159,5 +159,7 @@ _fd_filedir()
     COMPREPLY=( "${COMPREPLY[@]}" "${toks[@]}" )
 } # _filedir()
 
-complete -F _fd fd
+if [[ $(type -t _filedir) == 'function' ]] ; then
+  complete -F _fd fd
+fi
 
