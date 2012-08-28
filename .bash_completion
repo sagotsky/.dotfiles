@@ -15,4 +15,3 @@ _rb()
 
 complete -F _rb rhythmbox-client
 complete -F _rb rb
-
