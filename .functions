@@ -280,3 +280,6 @@ function do_git() {
   git clone ssh://jsagotsky@git.drupal.org/project/$1.git
 }
 
+#function highlight() {
+  #pipe a regex through sed to add color.  optional color param?
+#}
