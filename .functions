@@ -254,6 +254,12 @@ function do_git() {
   git clone ssh://jsagotsky@git.drupal.org/project/$1.git
 }
 
-#function highlight() {
-  #pipe a regex through sed to add color.  optional color param?
-#}
+function highlight() {
+  match="\("
+  for token in "$@" ; do 
+    match="${match}\|.*${token}.*"
+  done
+  match="$match\)"
+
+  grep --color=always $match
+}

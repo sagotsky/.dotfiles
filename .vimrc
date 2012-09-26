@@ -17,6 +17,8 @@ set scrolloff=4         "scroll at 4 lines from top/bottom
 set expandtab			"inserts spaces instead of tabs
 set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
 
+set guioptions=aegiLt     "clean gui in gvim
+
 try                             "persistent undo files
     set undodir=~/.vim_runtime/undodir
     set undofile
@@ -80,4 +82,6 @@ au BufRead,BufNewFile *.js set filetype=javascript
 au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.xmobarrc set filetype=haskell
 
-
+au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
+au BufRead,BufNewFile COMMIT_EDITMSG     set wrap
+au BufRead,BufNewFile COMMIT_EDITMSG     set spell
