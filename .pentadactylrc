@@ -74,7 +74,7 @@ EOF
 
 " gmail firebug disabler
 " needs a way to check if firebug plugin exists first...
-autocmd DOMLoad 'https://mail.google.com/*' firebug disable
+"autocmd DOMLoad 'https://mail.google.com/*' firebug disable
 
 " gdocs bypass shortcuts.
 autocmd LocationChange docs.google.com :normal! <C-z>
