@@ -85,6 +85,17 @@ ogg_tag() {     # recieves list of "name value\n" from stdin
   done
   #vorbiscomment -w "$FILE" $TAGS
 }
+ogg_index() {
+  FILE="$@"
+  vorbiscomment --list "$FILE" |\
+    sed -e 's/ARTIST/artist/' |\
+#    sed -e 's/GENRE/genre/' |\
+    sed -e 's/ALBUM/album/' |\
+    sed -e 's/TITLE/title/' |\
+    sed -e 's/DATE/date/' |\
+    tr '=' ' '
+}
+
 
 
 m4a_dec() {
