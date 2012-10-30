@@ -15,3 +15,15 @@ _rb()
 
 complete -F _rb rhythmbox-client
 complete -F _rb rb
+
+# necessary for apt completion
+#have()                                                                                    
+#{
+#  unset -v have 
+#    PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin type $1 &>/dev/null &&
+#    have="yes"
+#}
+#
+#. /etc/bash_completion.d/apt
+#complete -F _apt_get apti
+# _apt_get is checking for install or other command.  wrap it?

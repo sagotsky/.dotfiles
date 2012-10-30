@@ -67,22 +67,35 @@ ogg_tag() {     # recieves list of "name value\n" from stdin
 
     if [[ "$ARG" != '' ]] ; then
       case $line in
-        artist*)  CMD="-t \"ARIST=$ARG\"" ;;
-        #genre*)   CMD="-t \"GENRE=$ARG\"" ;;
-        album*)   CMD="-t \"ALBUM=$ARG\"" ;;
-        track*)   CMD="-t \"TRACKNUMBER=$ARG\"" ;;
-        title*)   CMD="-t \"TITLE=$ARG\"" ;;
-        year*)    CMD="-t \"DATE=$ARG\"" ;;
+        artist*)  CMD="-tARIST=$ARG" ;;
+        #genre*)   CMD="- GENRE=$ARG" ;;
+        album*)   CMD="-tALBUM=$ARG" ;;
+        track*)   CMD="-tTRACKNUMBER=$ARG" ;;
+        title*)   CMD="-tTITLE=$ARG" ;;
+        year*)    CMD="-tDATE=$ARG" ;;
 
         *)        CMD='' ;;
       esac
 
-      TAGS="$TAGS $CMD"
+      if [[ "$CMD" != "" ]] ; then
+        vorbiscomment -a "$CMD" "$FILE"
+      fi
     fi
 
   done
-  vorbiscomment -w "$FILE" $TAGS
+  #vorbiscomment -w "$FILE" $TAGS
 }
+ogg_index() {
+  FILE="$@"
+  vorbiscomment --list "$FILE" |\
+    sed -e 's/ARTIST/artist/' |\
+#    sed -e 's/GENRE/genre/' |\
+    sed -e 's/ALBUM/album/' |\
+    sed -e 's/TITLE/title/' |\
+    sed -e 's/DATE/date/' |\
+    tr '=' ' '
+}
+
 
 
 m4a_dec() {
@@ -102,8 +115,17 @@ m4a_tag() {
 flac_dec() {
   flac --decode --silent --stdout "$@"
 }
+
+#here's a stab at an array.
 flac_index() {
-  metaflac --list --block-type=VORBIS_COMMENT "$@"
+  declare -A index
+
+  tags=("title" "artist" "album" "genre" "track" "year")
+  for tag in "${tags[@]}" ; do
+    index["$tag"]=$(metaflac --list --block-type=VORBIS_COMMENT "$@" | grep -i $tag | cut -f2 -d=)
+  done
+
+  echo $index
 }
 # hooks
 # EXT_dec() decodes a file.  wav to stdout
@@ -170,6 +192,7 @@ convert() {
     if [[ $(type -t $INDEX) == 'function' && $(type -t $TAG) == 'function'  ]] ; then
       debug tagging: $INDEX "$FILE" \| $TAG "$DEST" #needs to be dest file...
       $INDEX "$FILE" | $TAG "$DEST"
+      # $TAG "$DEST" <( $INDEX "FILE" ) # array passing?
     fi
 
   fi
