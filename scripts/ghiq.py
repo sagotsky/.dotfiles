@@ -8,6 +8,7 @@
 import json, urllib, subprocess, github, re, argparse, getpass
 from os.path import expanduser
 from os.path import isfile
+from sys import exit
 
 # -u, --user    Filter by user(s)
 # -l, --label   Filter by label(s)
@@ -165,11 +166,13 @@ def github_login():
 
   # log in
   try:
-    gh = github.Github(login, getpass.getpass())
-  except GithubException as e:
-    print 'Could not log in'
+    pw = getpass.getpass()
+    gh = github.Github(login, pw)
+  #except GithubException as e:
+    #print 'Could not log in'
   except Exception as e:
     print 'Could not log in'
+    exit(1)
 
   # create and store auth token
   make_token = raw_input('Store authorization token for future logins? y/[n] ')
