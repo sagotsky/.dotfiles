@@ -10,3 +10,4 @@ alias apts="apt-cache show "
 alias aptu="sudo apt-get update"
 alias aptug="sudo apt-get update && sudo apt-get upgrade"
 alias aptdug="sudo apt-get update && sudo apt-get dist-upgrade"
+alias apt-usage='dpkg-query -Wf "\${Installed-Size}\t\${Package}\n" | sort -n'
