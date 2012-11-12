@@ -102,6 +102,7 @@ def get_defaults():
   defaults = dict()
 
   #use current git config to get path
+  defaults['repo'] = ''
   repo_by_path = get_git_repo()
   if repo_by_path:
     defaults['repo'] = repo_by_path['repo']
@@ -138,19 +139,19 @@ def parse_options():
   #parser.add_argument('integers', metavar='N', type=int, nargs='+',
                          #help='an integer for the accumulator')
 
-  parser.add_argument('-r, --repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
+  parser.add_argument('-r', '--repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
       help='Specify a git repository by name')
 
-  parser.add_argument('-u, --user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
+  parser.add_argument('-u', '--user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
       help='Filter tickets by assignee(s).  If multiple, separate usernames with commas.')
 
-  parser.add_argument('-l, --label', dest='label', action='store', nargs='?', default=defaults['label'],
+  parser.add_argument('-l', '--label', dest='label', action='store', nargs='?', default=defaults['label'],
       help='Filter tickets by label(s).')
 
   parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['token'],
       help='Authorization token')
 # open, closed, all
-  parser.add_argument('-s, --state', dest='state', action='store', nargs='?', default=defaults['state'],
+  parser.add_argument('-s', '--state', dest='state', action='store', nargs='?', default=defaults['state'],
       help='Authorization token')
 
 # comments (only show up in full body?)
@@ -203,7 +204,14 @@ if __name__ == '__main__':
   user = gh.get_user()
 
   subs = get_subscriptions(user)
-  repo = subs[options['repo']]
+
+  try:
+    repo = subs[options['repo']]
+  except KeyError:
+    print 'Error: You do not have a subscription to ' + `options['repo']` + '.  Did you mean...'
+    print ', '.join(subs.keys())
+    exit(1)
+
   fmt = "#{number} {title}\n{url}\n{labels}\n"
 
   for issue in repo.get_issues():
