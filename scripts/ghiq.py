@@ -9,6 +9,7 @@ import json, urllib, subprocess, github, re, argparse, getpass
 from os.path import expanduser
 from os.path import isfile
 from sys import exit
+from colortrans import colorprint
 
 # -u, --user    Filter by user(s)
 # -l, --label   Filter by label(s)
@@ -203,12 +204,12 @@ if __name__ == '__main__':
   for issue in repo.get_issues():
     if filter_issue(issue, options):
 
-      if issue.state == 'open':
-        state = '[o]'
-      else:
-        state = '[x]'
+      #if issue.state == 'open':
+        #state = '[o]'
+      #else:
+        #state = '[x]'
 
-      print '#' + `issue.number` + '  ' + issue.title + '  ' + state
+      print '#' + `issue.number` + '  ' + issue.title
       #print issue.body
       print '    ' + issue.url
       #print issue.assignee.login + ' ' + `issue.labels`
@@ -216,10 +217,14 @@ if __name__ == '__main__':
       labels = []
       if issue.labels != None:
         for label in issue.labels:
-          labels.append(label.name)
-      print '    ' + ' | '.join(labels)
+          labels.append( colorprint(label.color, label.name) )
+# can lable color be inverted?  or would that be obnoxious
+          #labels.append(label.name + ' ' + label.color)
 
-      print 
+      #print '    ' + ' | '.join(labels)
+      print '    [' + '] ['.join(labels) +']'
+      print
+      
 # label and assignee are objects
     #print issue.title 
     #print issue.id
