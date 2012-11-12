@@ -5,11 +5,12 @@
 
 # CLI app for interacting with your github issue queue
 
-import json, urllib, subprocess, github, re, argparse, getpass
+import json, urllib, subprocess, github, re, argparse, getpass 
 from os.path import expanduser
 from os.path import isfile
 from sys import exit
 from colortrans import colorprint
+import string
 
 # -u, --user    Filter by user(s)
 # -l, --label   Filter by label(s)
@@ -152,6 +153,9 @@ def parse_options():
   parser.add_argument('-s, --state', dest='state', action='store', nargs='?', default=defaults['state'],
       help='Authorization token')
 
+# comments (only show up in full body?)
+# color (probably has to be -k)
+# closed. (-c = shortcut for -s closed)
 
   return parser.parse_args()
 
@@ -200,47 +204,32 @@ if __name__ == '__main__':
 
   subs = get_subscriptions(user)
   repo = subs[options['repo']]
+  fmt = "#{number} {title}\n{url}\n{labels}\n"
 
   for issue in repo.get_issues():
     if filter_issue(issue, options):
 
-      #if issue.state == 'open':
-        #state = '[o]'
-      #else:
-        #state = '[x]'
-
-      print '#' + `issue.number` + '  ' + issue.title
-      #print issue.body
-      print '    ' + issue.url
-      #print issue.assignee.login + ' ' + `issue.labels`
+      tokens = dict()
+      tokens['number'] = issue.number
+      tokens['title'] = issue.title
+      tokens['url'] = issue.url
+      tokens['state'] = issue.state
+      tokens['body'] = issue.body
+      tokens['assignee'] = issue.assignee.login
+      tokens['comments'] = issue.comments
 
       labels = []
       if issue.labels != None:
         for label in issue.labels:
           labels.append( colorprint(label.color, label.name) )
-# can lable color be inverted?  or would that be obnoxious
-          #labels.append(label.name + ' ' + label.color)
+      tokens['labels'] = '[' + '] ['.join(labels) + ']'
+      # can lable color be inverted?  or would that be obnoxious
 
-      #print '    ' + ' | '.join(labels)
-      print '    [' + '] ['.join(labels) +']'
-      print
+      # any other useful tokens?  maybe timestamps?  is there a piont in using those
+      # without having sortability
       
-# label and assignee are objects
-    #print issue.title 
-    #print issue.id
-    #print issue.assignee
-    #print issue.body
-    #print issue.comments
-    #print issue.labels
-    #print issue.number
-    #print issue.state
-    #print issue.url
-    #print 
-    # assignee body comments id labels number state url 
-    #break
-    #exit
-
-  
+      print fmt.format(**tokens)
+      
   #for repo in user.get_repos():
     #print repo.full_name
 
