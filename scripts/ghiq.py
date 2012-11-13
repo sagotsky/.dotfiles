@@ -71,6 +71,8 @@ def filter_issue_by_labels(labels, options):
   for label in labels:
     if search.__contains__(label.name):
       return True
+    if search.__contains__('^'+label.name):
+      return False
 
   return False
 
