@@ -71,32 +71,29 @@ myLayout =   -- ewmhDesktopsLayout
 
 myManageHook =  composeAll
     [ 
-     className =? "MPlayer"        --> doFloat
-     ,className =? "xine"        --> doFullFloat
-     --,className =? "totem"        --> doFloat
-    , className =? "Gimp"           --> (ask >>= doF . W.sink)
-    , className =? "Gnome-calculator"           --> doFloat
-    , className =? "doukutsu"           --> doFloat
-    , resource  =? "Do" --> doIgnore
+     className =? "MPlayer"                           --> doFloat
+     ,className =? "xine"                             --> doFullFloat
+    , className =? "Gimp"                             --> (ask >>= doF . W.sink)
+    , className =? "Gnome-calculator"                 --> doFloat
+    , className =? "doukutsu"                         --> doFloat
+    , resource  =? "Do"                               --> doIgnore
 
     , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
-    --, className =? "Firefox"          --> doShift "web-1" 
-    , className =? "Namoroka"          --> doShift "web-1" 
-    , className =? "Rhythmbox"        --> doShift "music-2" 
-    , className =? "Thunderbird"  --> doShift "email-3" 
-    , className =? "Pidgin"  --> doShift "chat-5" 
-    , className =? "Skype.real"  --> doShift "chat-5" 
-    , className =? "xterm-mail" --> doShift "email-3"
-    -- the above is achieved by "xterm -class xterm-mail"
-    , className =? "URxvt" --> doFullFloat
-    , className =? "Operapluginwrapper-ia32-linux" --> doFullFloat
-    , className =? "Exe" --> doFullFloat
-    , className =? "Zend Studio" --> doShift "zend-6" 
-    , className  =? "Unity-2d-panel" --> doIgnore
-    , className  =? "Unity-2d-launcher" --> doIgnore
+    , className =? "Namoroka"                         --> doShift "web-1" 
+    , className =? "Rhythmbox"                        --> doShift "music-2" 
+    , className =? "Thunderbird"                      --> doShift "email-3" 
+    , className =? "Pidgin"                           --> doShift "chat-5" 
+    , className =? "Skype.real"                       --> doShift "chat-5" 
+    , className =? "xterm-mail"                       --> doShift "email-3"
+    , className =? "Zend Studio"                      --> doShift "zend-6" 
+    , className =? "Transmission"                     --> doShift "9" 
+
+    , className =? "URxvt"                            --> doFullFloat
+    , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
+    , className =? "Exe"                              --> doFullFloat
+    , className  =? "Unity-2d-panel"                  --> doIgnore
+    , className  =? "Unity-2d-launcher"               --> doIgnore
     ] 
-    --where unfloat = ask >>= doF . W.sink
-    --where doDelete = ask >>= doF . W.delete
 
 main = do 
   xmproc <- spawnPipe "xmobar"

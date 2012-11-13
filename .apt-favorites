@@ -6,6 +6,7 @@ cowsay
 curl
 cvs
 elinks
+exuberant-ctags
 figlet
 fortune
 g++
@@ -38,6 +39,7 @@ subversion
 suckless-tools
 sudo
 tmux
+ttf-mscorefonts-installer 
 unrar
 unzip
 vim

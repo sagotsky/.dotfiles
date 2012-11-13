@@ -5,10 +5,12 @@
 
 # CLI app for interacting with your github issue queue
 
-import json, urllib, subprocess, github, re, argparse, getpass
+import json, urllib, subprocess, github, re, argparse, getpass 
 from os.path import expanduser
 from os.path import isfile
 from sys import exit
+from colortrans import colorprint
+import string
 
 # -u, --user    Filter by user(s)
 # -l, --label   Filter by label(s)
@@ -100,6 +102,7 @@ def get_defaults():
   defaults = dict()
 
   #use current git config to get path
+  defaults['repo'] = ''
   repo_by_path = get_git_repo()
   if repo_by_path:
     defaults['repo'] = repo_by_path['repo']
@@ -136,21 +139,24 @@ def parse_options():
   #parser.add_argument('integers', metavar='N', type=int, nargs='+',
                          #help='an integer for the accumulator')
 
-  parser.add_argument('-r, --repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
+  parser.add_argument('-r', '--repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
       help='Specify a git repository by name')
 
-  parser.add_argument('-u, --user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
+  parser.add_argument('-u', '--user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
       help='Filter tickets by assignee(s).  If multiple, separate usernames with commas.')
 
-  parser.add_argument('-l, --label', dest='label', action='store', nargs='?', default=defaults['label'],
+  parser.add_argument('-l', '--label', dest='label', action='store', nargs='?', default=defaults['label'],
       help='Filter tickets by label(s).')
 
   parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['token'],
       help='Authorization token')
 # open, closed, all
-  parser.add_argument('-s, --state', dest='state', action='store', nargs='?', default=defaults['state'],
+  parser.add_argument('-s', '--state', dest='state', action='store', nargs='?', default=defaults['state'],
       help='Authorization token')
 
+# comments (only show up in full body?)
+# color (probably has to be -k)
+# closed. (-c = shortcut for -s closed)
 
   return parser.parse_args()
 
@@ -198,44 +204,40 @@ if __name__ == '__main__':
   user = gh.get_user()
 
   subs = get_subscriptions(user)
-  repo = subs[options['repo']]
+
+  try:
+    repo = subs[options['repo']]
+  except KeyError:
+    print 'Error: You do not have a subscription to ' + `options['repo']` + '.  Did you mean...'
+    print ', '.join(subs.keys())
+    exit(1)
+
+  fmt = "#{number} {title}\n{url}\n{labels}\n"
 
   for issue in repo.get_issues():
     if filter_issue(issue, options):
 
-      if issue.state == 'open':
-        state = '[o]'
-      else:
-        state = '[x]'
-
-      print '#' + `issue.number` + '  ' + issue.title + '  ' + state
-      #print issue.body
-      print '    ' + issue.url
-      #print issue.assignee.login + ' ' + `issue.labels`
+      tokens = dict()
+      tokens['number'] = issue.number
+      tokens['title'] = issue.title
+      tokens['url'] = issue.url
+      tokens['state'] = issue.state
+      tokens['body'] = issue.body
+      tokens['assignee'] = issue.assignee.login
+      tokens['comments'] = issue.comments
 
       labels = []
       if issue.labels != None:
         for label in issue.labels:
-          labels.append(label.name)
-      print '    ' + ' | '.join(labels)
+          labels.append( colorprint(label.color, label.name) )
+      tokens['labels'] = '[' + '] ['.join(labels) + ']'
+      # can lable color be inverted?  or would that be obnoxious
 
-      print 
-# label and assignee are objects
-    #print issue.title 
-    #print issue.id
-    #print issue.assignee
-    #print issue.body
-    #print issue.comments
-    #print issue.labels
-    #print issue.number
-    #print issue.state
-    #print issue.url
-    #print 
-    # assignee body comments id labels number state url 
-    #break
-    #exit
-
-  
+      # any other useful tokens?  maybe timestamps?  is there a piont in using those
+      # without having sortability
+      
+      print fmt.format(**tokens)
+      
   #for repo in user.get_repos():
     #print repo.full_name
 
