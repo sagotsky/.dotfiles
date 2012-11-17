@@ -64,17 +64,20 @@ def get_subscriptions(user):
 
 
 def filter_issue_by_labels(labels, options):
-  if options['label'] == '':
+  if options['label'] == '' or options['label'] == None:
     return True 
 
   search = options['label'].split(',') 
+  negations = [l[0]=='^' for l in search]
+  use_all = not negations.__contains__(False)
+
   for label in labels:
-    if search.__contains__(label.name):
-      return True
     if search.__contains__('^'+label.name):
       return False
+    if search.__contains__(label.name):
+      return True
 
-  return False
+  return use_all
 
 def filter_issue_by_state(state, options):
   return (state == 'all' or (state == options['state']))
@@ -230,8 +233,8 @@ if __name__ == '__main__':
 
       labels = []
       if issue.labels != None:
-        for label in issue.labels:
-          labels.append( colorprint(label.color, label.name) )
+        labels = [colorprint(lbl.color, lbl.name) for lbl in issue.labels]
+
       tokens['labels'] = '[' + '] ['.join(labels) + ']'
       # can lable color be inverted?  or would that be obnoxious
 
