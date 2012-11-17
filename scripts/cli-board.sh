@@ -8,7 +8,7 @@
 CLIBOARDHOME="$HOME/.cli-board/"
 FONT=' -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* '
 DMENU_OPTS="-t -i -b -m 0 -nb #ffb -nf black -sb #aa7 -sf white -p cli-board $FONT"
-export DISPLAY=:0.0
+#export DISPLAY=:0.0
 
 getfile() {
   DIR="$@"
