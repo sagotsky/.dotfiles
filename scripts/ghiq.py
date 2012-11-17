@@ -102,6 +102,7 @@ def filter_issue(issue, options):
   return True
 
 
+
 # return defaults.  option should be None or read from prefs file (which currently only does token)
 def get_defaults():
   defaults = dict()
@@ -193,7 +194,27 @@ def github_login():
 
   return gh
 
+def get_issue_tokens(issue):
+  tokens = dict(
+    number = issue.number,
+    title = issue.title,
+    url = issue.url,
+    state = issue.state,
+    body = issue.body,
+    assignee = issue.assignee.login,
+    comments = issue.comments,
+  )
 
+  labels = []
+  clabels = []
+  if issue.labels != None:
+    clabels = [colorprint(lbl.color, lbl.name) for lbl in issue.labels]
+    labels = [lbl.name for lbl in issue.labels]
+  tokens['labels']  = '[' + '] ['.join(labels) + ']'
+  tokens['clabels'] = '[' + '] ['.join(clabels) + ']'
+  # can lable color be inverted?  or would that be obnoxious
+
+  return tokens
 
 if __name__ == '__main__':
   options = vars(parse_options())
@@ -207,7 +228,6 @@ if __name__ == '__main__':
     gh = github_login()
 
   user = gh.get_user()
-
   subs = get_subscriptions(user)
 
   try:
@@ -217,36 +237,11 @@ if __name__ == '__main__':
     print ', '.join(subs.keys())
     exit(1)
 
-  fmt = "#{number} {title}\n{url}\n{labels}\n"
+  fmt = "#{number} {title}\n{url}\n{clabels}\n"
 
   for issue in repo.get_issues():
     if filter_issue(issue, options):
-
-      tokens = dict()
-      tokens['number'] = issue.number
-      tokens['title'] = issue.title
-      tokens['url'] = issue.url
-      tokens['state'] = issue.state
-      tokens['body'] = issue.body
-      tokens['assignee'] = issue.assignee.login
-      tokens['comments'] = issue.comments
-
-      labels = []
-      if issue.labels != None:
-        labels = [colorprint(lbl.color, lbl.name) for lbl in issue.labels]
-
-      tokens['labels'] = '[' + '] ['.join(labels) + ']'
-      # can lable color be inverted?  or would that be obnoxious
-
-      # any other useful tokens?  maybe timestamps?  is there a piont in using those
-      # without having sortability
-      
+      tokens = get_issue_tokens(issue)
       print fmt.format(**tokens)
       
-  #for repo in user.get_repos():
-    #print repo.full_name
-
-
-
-
 
