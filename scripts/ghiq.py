@@ -37,10 +37,10 @@ import string
 # -vv, -q, -qq, etc limit how much info is shown
 
 
-def save_token(token):
+def save_token(authtoken):
   HOME=expanduser('~')
   fh = open(HOME + '/.ghiq', 'w')
-  fh.write('token=' + token)
+  fh.write('authtoken=' + authtoken)
   fh.close()
 
 def get_git_user():
@@ -57,10 +57,7 @@ def get_git_repo():
 
 
 def get_subscriptions(user):
-  subs = dict() 
-  for sub in user.get_subscriptions():
-    subs[sub.name] = sub
-  return subs
+  return dict((sub.name, sub) for sub in user.get_subscriptions())
 
 
 def filter_issue_by_labels(labels, options):
@@ -113,7 +110,7 @@ def get_defaults():
   if repo_by_path:
     defaults['repo'] = repo_by_path['repo']
 
-  # read in token from file
+  # read in authtoken from file
   HOME=expanduser('~')
   file = HOME + '/.ghiq'
   if isfile(file):
@@ -137,8 +134,8 @@ def get_defaults():
 # override defaults with parsed opts from cli
 def parse_options():
   defaults = get_defaults()
-  if not defaults.has_key('token'):
-    defaults['token'] = ''
+  if not defaults.has_key('authtoken'):
+    defaults['authtoken'] = ''
 
   parser = argparse.ArgumentParser(description='Interact with a GitHub repository\'s issue queue.')
   
@@ -154,11 +151,11 @@ def parse_options():
   parser.add_argument('-l', '--label', dest='label', action='store', nargs='?', default=defaults['label'],
       help='Filter tickets by label(s).')
 
-  parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['token'],
+  parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['authtoken'],
       help='Authorization token')
 # open, closed, all
   parser.add_argument('-s', '--state', dest='state', action='store', nargs='?', default=defaults['state'],
-      help='Authorization token')
+      help='Open/closed state')
 
 # comments (only show up in full body?)
 # color (probably has to be -k)
@@ -221,9 +218,9 @@ if __name__ == '__main__':
 
   # login or die trying
   if options['auth']:
-    token = options.get('auth')
-    gh = github.Github( token )
-    # shuld probably err here if the token is bad
+    authtoken = options.get('auth')
+    gh = github.Github(authtoken)
+    # shuld probably err here if the authtoken is bad
   else:
     gh = github_login()
 
