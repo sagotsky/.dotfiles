@@ -161,6 +161,13 @@ def parse_options():
 # color (probably has to be -k)
 # closed. (-c = shortcut for -s closed)
 
+# search: -s search all, -st search title, -sb search body, -sc search comment.  
+
+# -u update.  maybe user should be assignee?  -o for owner
+
+  parser.add_argument('issue', action='store', default=False, nargs='?', type=int,
+      help='GitHub issue number.  (ie. 123)')
+
   return parser.parse_args()
 
   
@@ -199,8 +206,14 @@ def get_issue_tokens(issue):
     state = issue.state,
     body = issue.body,
     assignee = issue.assignee.login,
-    comments = issue.comments,
   )
+
+  #comments = [str(c.body) + "___________" for c in issue.get_comments()],
+  comments = []
+  for c in issue.get_comments():
+    comments.append('- ' + c.user.login + ' -')
+    comments.append(c.body.strip() + "\n")
+  tokens['comments'] = "\n".join(comments)
 
   labels = []
   clabels = []
@@ -234,11 +247,16 @@ if __name__ == '__main__':
     print ', '.join(subs.keys())
     exit(1)
 
-  fmt = "#{number} {title}\n{url}\n{clabels}\n"
+  if options['issue']:
+    fmt = "#{number} {title}\n{url}\n{clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
+    issue = repo.get_issue(options['issue'])
+    tokens = get_issue_tokens(issue)
+    print fmt.format(**tokens)
+  else:
+    fmt = "#{number} {title}\n{url}\n{clabels}\n"
+    for issue in repo.get_issues():
+      if filter_issue(issue, options):
+        tokens = get_issue_tokens(issue)
+        print fmt.format(**tokens)
 
-  for issue in repo.get_issues():
-    if filter_issue(issue, options):
-      tokens = get_issue_tokens(issue)
-      print fmt.format(**tokens)
-      
 
