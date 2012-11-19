@@ -37,10 +37,10 @@ import string
 # -vv, -q, -qq, etc limit how much info is shown
 
 
-def save_token(token):
+def save_token(authtoken):
   HOME=expanduser('~')
   fh = open(HOME + '/.ghiq', 'w')
-  fh.write('token=' + token)
+  fh.write('authtoken=' + authtoken)
   fh.close()
 
 def get_git_user():
@@ -57,24 +57,24 @@ def get_git_repo():
 
 
 def get_subscriptions(user):
-  subs = dict() 
-  for sub in user.get_subscriptions():
-    subs[sub.name] = sub
-  return subs
+  return dict((sub.name, sub) for sub in user.get_subscriptions())
 
 
 def filter_issue_by_labels(labels, options):
-  if options['label'] == '':
+  if options['label'] == '' or options['label'] == None:
     return True 
 
   search = options['label'].split(',') 
+  negations = [l[0]=='^' for l in search]
+  use_all = not negations.__contains__(False)
+
   for label in labels:
-    if search.__contains__(label.name):
-      return True
     if search.__contains__('^'+label.name):
       return False
+    if search.__contains__(label.name):
+      return True
 
-  return False
+  return use_all
 
 def filter_issue_by_state(state, options):
   return (state == 'all' or (state == options['state']))
@@ -99,6 +99,7 @@ def filter_issue(issue, options):
   return True
 
 
+
 # return defaults.  option should be None or read from prefs file (which currently only does token)
 def get_defaults():
   defaults = dict()
@@ -109,7 +110,7 @@ def get_defaults():
   if repo_by_path:
     defaults['repo'] = repo_by_path['repo']
 
-  # read in token from file
+  # read in authtoken from file
   HOME=expanduser('~')
   file = HOME + '/.ghiq'
   if isfile(file):
@@ -133,8 +134,8 @@ def get_defaults():
 # override defaults with parsed opts from cli
 def parse_options():
   defaults = get_defaults()
-  if not defaults.has_key('token'):
-    defaults['token'] = ''
+  if not defaults.has_key('authtoken'):
+    defaults['authtoken'] = ''
 
   parser = argparse.ArgumentParser(description='Interact with a GitHub repository\'s issue queue.')
   
@@ -150,15 +151,22 @@ def parse_options():
   parser.add_argument('-l', '--label', dest='label', action='store', nargs='?', default=defaults['label'],
       help='Filter tickets by label(s).')
 
-  parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['token'],
+  parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['authtoken'],
       help='Authorization token')
 # open, closed, all
   parser.add_argument('-s', '--state', dest='state', action='store', nargs='?', default=defaults['state'],
-      help='Authorization token')
+      help='Open/closed state')
 
 # comments (only show up in full body?)
 # color (probably has to be -k)
 # closed. (-c = shortcut for -s closed)
+
+# search: -s search all, -st search title, -sb search body, -sc search comment.  
+
+# -u update.  maybe user should be assignee?  -o for owner
+
+  parser.add_argument('issue', action='store', default=False, nargs='?', type=int,
+      help='GitHub issue number.  (ie. 123)')
 
   return parser.parse_args()
 
@@ -190,21 +198,46 @@ def github_login():
 
   return gh
 
+def get_issue_tokens(issue):
+  tokens = dict(
+    number = issue.number,
+    title = issue.title,
+    url = issue.url,
+    state = issue.state,
+    body = issue.body,
+    assignee = issue.assignee.login,
+  )
 
+  #comments = [str(c.body) + "___________" for c in issue.get_comments()],
+  comments = []
+  for c in issue.get_comments():
+    comments.append('- ' + c.user.login + ' -')
+    comments.append(c.body.strip() + "\n")
+  tokens['comments'] = "\n".join(comments)
+
+  labels = []
+  clabels = []
+  if issue.labels != None:
+    clabels = [colorprint(lbl.color, lbl.name) for lbl in issue.labels]
+    labels = [lbl.name for lbl in issue.labels]
+  tokens['labels']  = '[' + '] ['.join(labels) + ']'
+  tokens['clabels'] = '[' + '] ['.join(clabels) + ']'
+  # can lable color be inverted?  or would that be obnoxious
+
+  return tokens
 
 if __name__ == '__main__':
   options = vars(parse_options())
 
   # login or die trying
   if options['auth']:
-    token = options.get('auth')
-    gh = github.Github( token )
-    # shuld probably err here if the token is bad
+    authtoken = options.get('auth')
+    gh = github.Github(authtoken)
+    # shuld probably err here if the authtoken is bad
   else:
     gh = github_login()
 
   user = gh.get_user()
-
   subs = get_subscriptions(user)
 
   try:
@@ -214,36 +247,16 @@ if __name__ == '__main__':
     print ', '.join(subs.keys())
     exit(1)
 
-  fmt = "#{number} {title}\n{url}\n{labels}\n"
-
-  for issue in repo.get_issues():
-    if filter_issue(issue, options):
-
-      tokens = dict()
-      tokens['number'] = issue.number
-      tokens['title'] = issue.title
-      tokens['url'] = issue.url
-      tokens['state'] = issue.state
-      tokens['body'] = issue.body
-      tokens['assignee'] = issue.assignee.login
-      tokens['comments'] = issue.comments
-
-      labels = []
-      if issue.labels != None:
-        for label in issue.labels:
-          labels.append( colorprint(label.color, label.name) )
-      tokens['labels'] = '[' + '] ['.join(labels) + ']'
-      # can lable color be inverted?  or would that be obnoxious
-
-      # any other useful tokens?  maybe timestamps?  is there a piont in using those
-      # without having sortability
-      
-      print fmt.format(**tokens)
-      
-  #for repo in user.get_repos():
-    #print repo.full_name
-
-
-
+  if options['issue']:
+    fmt = "#{number} {title}\n{url}\n{clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
+    issue = repo.get_issue(options['issue'])
+    tokens = get_issue_tokens(issue)
+    print fmt.format(**tokens)
+  else:
+    fmt = "#{number} {title}\n{url}\n{clabels}\n"
+    for issue in repo.get_issues():
+      if filter_issue(issue, options):
+        tokens = get_issue_tokens(issue)
+        print fmt.format(**tokens)
 
 
