@@ -5,12 +5,11 @@
 
 # CLI app for interacting with your github issue queue
 
-import json, urllib, subprocess, github, re, argparse, getpass 
+import json, urllib, subprocess, github, re, argparse, getpass, string, os
 from os.path import expanduser
 from os.path import isfile
 from sys import exit
 from colortrans import colorprint
-import string
 
 # -u, --user    Filter by user(s)
 # -l, --label   Filter by label(s)
@@ -42,6 +41,23 @@ def save_token(authtoken):
   fh = open(HOME + '/.ghiq', 'w')
   fh.write('authtoken=' + authtoken)
   fh.close()
+
+def cache_tokens(subs):
+  dir = expanduser('~') + '/.ghiq.cache/'
+  try: 
+    os.mkdir(dir)
+  except OSError:
+    pass
+
+  do_cache = [sub for sub in subs if sub not in os.listdir(dir) and subs[sub].has_issues]
+  for sub in do_cache:
+    print 'Caching ' + sub + ' for tab completion'
+    assignees = ['"'+x.login+'"' for x in subs[sub].get_assignees()]
+    labels =    ['"'+x.name+'"' for x in subs[sub].get_labels()]
+    fh = open(dir + sub, 'w')
+    fh.write('users: ' + ' '.join(assignees) + '\n')
+    fh.write('labels: ' + ' '.join(labels) + '\n')
+    fh.close()
 
 def get_git_user():
   return subprocess.Popen(['git', 'config', '--get', 'github.user'], stdout=subprocess.PIPE).communicate()[0].strip()
@@ -240,6 +256,10 @@ if __name__ == '__main__':
   user = gh.get_user()
   subs = get_subscriptions(user)
 
+  #build cache
+  cache_tokens(subs)
+
+  #and display issues
   try:
     repo = subs[options['repo']]
   except KeyError:
@@ -248,11 +268,13 @@ if __name__ == '__main__':
     exit(1)
 
   if options['issue']:
+    # one issue
     fmt = "#{number} {title}\n{url}\n{clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
     issue = repo.get_issue(options['issue'])
     tokens = get_issue_tokens(issue)
     print fmt.format(**tokens)
   else:
+    # whole queue
     fmt = "#{number} {title}\n{url}\n{clabels}\n"
     for issue in repo.get_issues():
       if filter_issue(issue, options):
