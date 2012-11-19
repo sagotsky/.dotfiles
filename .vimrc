@@ -19,6 +19,8 @@ set wildmode=longest,list,full    "tab completion fix.  completes as much as pos
 
 set guioptions=aegiLt     "clean gui in gvim
 
+let Tlist_WinWidth = 50   "taglist width
+
 try                             "persistent undo files
     set undodir=~/.vim_runtime/undodir
     set undofile
@@ -32,6 +34,7 @@ endtry
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
+map <F9> :TlistToggle<CR>
 
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 " (could something map to shift-insert??)
