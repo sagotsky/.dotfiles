@@ -5,13 +5,16 @@
 # git config --get remote.origin.url
 
 _ghiq() {
-  local cur prev cli_opts dir
+  local cur prev cli_opts
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
   dir="$HOME/.ghiq.cache/"
 
   get_repo() {
+    echo 'openscholar'
+    return 0
+
     for val in "${COMP_WORDS}" ; do
       lastval=$val
       if [[ "$lastval" == '--repo' || "$lastval" == '-r' ]] ; then
@@ -31,20 +34,26 @@ _ghiq() {
     find "$dir" -type f -printf "%f \n"
   }
 
+  user_opts() {
+    repo=$(get_repo)
+    users=$(grep '^users:' "$dir/$repo" | cut -d ':' -f 2- )
+    echo $users
+  }
+
   label_opts() {
     # figure out the repo
     # works once.  gets lost once partial strings show up.
 
     repo=$(get_repo)
-    echo $repo
-    labels=$(grep '^labels:' $dir/$repo | cut -d: -f2- | tr ' ' '_')
+    labels=$(grep '^labels:' $dir/$repo | cut -d ':' -f 2- )
     echo $labels 
   }
 
   case ${prev} in
     #--label) echo "${COMP_WORDS[@]}" ; return 1 ;;
-    --repo) COMPREPLY=( $(compgen -W "$(repo_opts)" -- ${cur}) ) ; return 0 ;;
-    --label) COMPREPLY=( $(compgen -W "$(label_opts)" -- ${cur}) ) ; return 0 ;;
+    -r|--repo)  COMPREPLY=( $(compgen -W "$(repo_opts)" -- ${cur}) ) ; return 0 ;;
+    -l|--label) COMPREPLY=( $(compgen -W "$(label_opts)" -- ${cur}) ) ; return 0 ;;
+    -u|--user)  COMPREPLY=( $(compgen -W "$(user_opts)" -- ${cur}) ) ; return 0 ;;
   esac
 
   # alternatively, just have one comp reply line and change opts?
