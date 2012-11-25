@@ -3,7 +3,7 @@
 # front end to whatever music player is currently playing
 
 APPS=('rhythmbox' 'nuvolaplayer')
-
+CMDS=('volup' 'voldown' 'mute' 'play' 'back' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
 getplaying() {
   for app in "${APPS[@]}" ; do
     pidof $app >/dev/null && echo $app && return 0
@@ -25,6 +25,7 @@ rhythmbox() {
     back) rhythmbox-client --previous ;;
     toggle) rhythmbox-client --play-pause ;;
     status) rhythmbox-client --print-playing ;;
+    bandsong) rhythmbox-client  rhythmbox-client --print-playing-format '%aa - %tt' ;;
     *) return 1
   esac
 }
@@ -35,9 +36,12 @@ nuvolaplayer() {
     back) nuvolaplayer-client prev ;;
     toggle) nuvolaplayer-client toggle ;;
     status) nuvolaplayer-client status ;;
+    bandsong) echo $(nuvolaplayer-client status | grep '^Artist' | cut -f2 -d:) - $(nuvolaplayer-client status | grep '^Song' | cut -f2 -d:) ;;
     *) return 1
   esac
 }
 
-`getplaying` $1 || global_commands $1
-
+player=$(getplaying) && for cmd in "$@" ; do
+  $player $cmd || global_commands $cmd
+done
+# False $1 doesn't actually work
