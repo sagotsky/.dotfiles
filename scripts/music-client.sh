@@ -25,7 +25,7 @@ rhythmbox() {
     back) rhythmbox-client --previous ;;
     toggle) rhythmbox-client --play-pause ;;
     status) rhythmbox-client --print-playing ;;
-    bandsong) rhythmbox-client  rhythmbox-client --print-playing-format '%aa - %tt' ;;
+    bandsong) rhythmbox-client  --print-playing-format '%aa - %tt' ;;
     *) return 1
   esac
 }

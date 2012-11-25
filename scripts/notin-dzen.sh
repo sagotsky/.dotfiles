@@ -4,6 +4,18 @@
 # sends notification updates to dzen2
 # may do some parsing while we're here
 
+# apps with an _appname() function will have that performed instead of dzen
+
+function _rhythmbox() {
+  rhythmbox-client  --print-playing-format '%aa - %tt' > ~/.music.out &
+}
+
+function _nuvolaplayer() {
+  return 1
+}
+
+
+
 #colors
 C_PROGRAM='darkgoldenrod'
 C_ITALICS='khaki'
@@ -30,8 +42,15 @@ function format() {
 killall notification-daemon &> /dev/null
 killall notify-osd  &> /dev/null
 
+#notin.py | while read line ; do
 notin.py | while read line ; do
   if [[ "$line" ]] ; then
-    format $line | dzen2 $DZEN_OPTS 
+    app=$(echo $line | tr -d '[]' | cut -f1 -d' ')
+    func="_$app"
+    if [[ $(type -t $func) == 'function' ]] ; then
+      $func $line || format $line | dzen2 $DZEN_OPTS
+    else 
+      format $line | dzen2 $DZEN_OPTS 
+    fi
   fi
 done 
