@@ -10,8 +10,14 @@ function _rhythmbox() {
   rhythmbox-client  --print-playing-format '%aa - %tt' > ~/.music.out &
 }
 
-function _nuvolaplayer() {
+function _NuvolaPlayer() {
+  echo "$@"
   return 1
+}
+
+function _Nuvola() {
+# app is fetched wrong...
+  music-client.sh bandsong > ~/.music.out &
 }
 
 
@@ -46,11 +52,11 @@ killall notify-osd  &> /dev/null
 notin.py | while read line ; do
   if [[ "$line" ]] ; then
     app=$(echo $line | tr -d '[]' | cut -f1 -d' ')
-    func="_$app"
+    func=$(echo "_$app" | tr -d ' ')
     if [[ $(type -t $func) == 'function' ]] ; then
-      $func $line || format $line | dzen2 $DZEN_OPTS
+      $func $line || format $line | dzen2 $DZEN_OPTS &
     else 
-      format $line | dzen2 $DZEN_OPTS 
+      format $line | dzen2 $DZEN_OPTS &
     fi
   fi
 done 

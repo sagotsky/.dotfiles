@@ -11,7 +11,7 @@ import dbus.mainloop.glib
 import sys
 
 class Notin(dbus.service.Object):
-    last = '' 
+    last = '' # needs timestamp / expiration date.
 
     def __init__(self, bus, object_path):
         dbus.service.Object.__init__(self, bus, object_path)
@@ -34,10 +34,11 @@ class Notin(dbus.service.Object):
                         "hints": hints,
                         "expire_timeout": expire_timeout}
 
-        if notification['body'] != self.last:
+        current = notification['app_name'] + notification['summary'] + notification['body']
+        if current != self.last:
           print (u"[%(app_name)s] %(summary)s: %(body)s" % notification).encode('utf-8')
           sys.stdout.flush()
-          self.last = notification['body']
+          self.last = current
 
         return 1
 
