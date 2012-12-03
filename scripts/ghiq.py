@@ -199,7 +199,7 @@ def github_login():
   # log in
   try:
     pw = getpass.getpass()
-    gh = github.Github(login, pw)
+    gh = github.Github(login, pw, user_agent='ghiq.py')
   #except GithubException as e:
     #print 'Could not log in'
   except Exception as e:
@@ -218,7 +218,7 @@ def get_issue_tokens(issue):
   tokens = dict(
     number = issue.number,
     title = issue.title,
-    url = issue.url,
+    url = issue.html_url, #url html_url
     state = issue.state,
     body = issue.body,
     assignee = issue.assignee.login,
@@ -248,7 +248,7 @@ if __name__ == '__main__':
   # login or die trying
   if options['auth']:
     authtoken = options.get('auth')
-    gh = github.Github(authtoken)
+    gh = github.Github(authtoken, user_agent='ghiq.py')
     # shuld probably err here if the authtoken is bad
   else:
     gh = github_login()
