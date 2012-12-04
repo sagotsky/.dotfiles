@@ -35,6 +35,9 @@ com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 " send to google-chrome
 com chrome -nargs=0 execute "!google-chrome " + content.location
 
+" send to uzbl
+com uzbl -nargs=0 execute "!uzbl  " + content.location
+
 " send to different work sites.
 com goto-scholar -nargs=0  -description 'Visit page on scholar.harvard' -js 
   \ url = content.location + '';
@@ -51,6 +54,14 @@ com goto-projects -nargs=0  -description 'Visit page on projects' -js
 com goto-js -nargs=0  -description 'Visit page on jons sandbox' -js 
   \ url = content.location + '';
   \ url = url.replace(/\/\/.*?\//, '//scholar-jsagotskydev.iq.harvard.edu/')
+  \ commands.execute(("tabopen ") + url )
+com goto-proddata -nargs=0  -description 'Visit page on jons prod copy' -js 
+  \ url = content.location + '';
+  \ url = url.replace(/\/\/.*?\//, '//prod-data.local/')
+  \ commands.execute(("tabopen ") + url )
+com goto-scholar7 -nargs=0  -description 'Visit page on scholar7.local' -js 
+  \ url = content.location + '';
+  \ url = url.replace(/\/\/.*?\//, '//scholar7.local/')
   \ commands.execute(("tabopen ") + url )
 
 " testing using com command from commands.execute to add array of commands
@@ -72,6 +83,10 @@ autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
   doc.title = doc.title.replace(/OpenScholar - \w+ /, '');
 EOF
 
+" github issue renamer puts #id first
+"autocmd DOMLoad '^https://github.com/.*/.*/issues/.*' -js <<EOF
+  "doc.title = doc.title.replace(/(.*) · Issue (.*) · (.*)/, function(match, $1, $2, $3, offset, original) {return $2 + ' ' + $1 + ' · ' + $3;});
+"EOF
 " gmail firebug disabler
 " needs a way to check if firebug plugin exists first...
 "autocmd DOMLoad 'https://mail.google.com/*' firebug disable
