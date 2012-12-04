@@ -12,7 +12,7 @@ if [ $PWR -gt 20 ] ; then
 fi
 
 if [ $PWR -gt 60 ] ; then
-  COLOR='gray'
+  COLOR='green'
 fi
 
 if [[ $(acpi -a) == 'Adapter 0: on-line' ]] ; then
