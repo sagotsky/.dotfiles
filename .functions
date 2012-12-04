@@ -263,3 +263,11 @@ function highlight() {
 
   grep --color=always $match
 }
+
+function assert_ssh_agent() {
+  if [ -z "${SSH_AGENT_PID+xxx}" ] ; then
+    false 
+  else 
+    true
+  fi
+}
