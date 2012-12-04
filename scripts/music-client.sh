@@ -26,6 +26,11 @@ rhythmbox() {
     toggle) rhythmbox-client --play-pause ;;
     status) rhythmbox-client --print-playing ;;
     bandsong) rhythmbox-client  --print-playing-format '%aa - %tt' ;;
+    rate1) rhythmbox-client --set-rating 1 ;;
+    rate2) rhythmbox-client --set-rating 2 ;;
+    rate3) rhythmbox-client --set-rating 3 ;;
+    rate4) rhythmbox-client --set-rating 4 ;;
+    rate5) rhythmbox-client --set-rating 5 ;;
     *) return 1
   esac
 }
