@@ -64,3 +64,4 @@ _ghiq() {
 
 }
 complete -F _ghiq ghiq.py
+complete -F _ghiq ghiq

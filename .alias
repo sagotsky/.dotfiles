@@ -14,6 +14,7 @@ alias dux='du -sk ./* | sort -n | awk '\''BEGIN{ pref[1]="K"; pref[2]="M"; pref[
 alias e='emacs -nw'
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
+alias ghiq='ghiq.py '
 alias ls='ls --color=auto'
 alias mkpasswd='pwgen -ysCn 16'
 alias myip='curl http://icanhazip.com ; echo'
