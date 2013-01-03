@@ -9,7 +9,7 @@
 # Returns GitHub markdown for showing image
 
 function uploadImage {
-  curl -s -F "image=@$1" -F "key=486690f872c678126a2c09a9e196ce1b" http://imgur.com/api/upload.xml | grep -E -o "<original_image>(.)*</original_image>" | grep -E -o "http://i.imgur.com/[^<]*"
+  curl -s -F "image=@$1" -F "key=6e6376df26ff0ef89e33bb2b49ef9fa8" http://imgur.com/api/upload.xml | grep -E -o "<original_image>(.)*</original_image>" | grep -E -o "http://i.imgur.com/[^<]*"
 }
 
 DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn 6x12 -p -u "
@@ -26,7 +26,7 @@ if $(scrot -s "/tmp/screenshot.png") ; then
 
   url=$(uploadImage "/tmp/screenshot.png")
   firefox $url
-  rm "/tmp/screenshot.png"
+  #rm "/tmp/screenshot.png"
   kill $PID
   echo "![screenshot]($url)" 
 else
