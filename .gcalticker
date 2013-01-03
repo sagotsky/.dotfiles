@@ -1,4 +1,5 @@
 calendars = Jon Sagotsky 
+calendars = Jenn Sagotsky 
 calendars = Work
 calendars = OpenScholar Calendar
 calendars = Harvard Web Publishing Initiative
@@ -6,6 +7,7 @@ calendars = J&J
 calendars = Stranger Ways
 
 colors = green
+colors = blue
 colors = red
 colors = red
 colors = orange
@@ -18,3 +20,4 @@ notify = true
 refresh = 900
 alert = 3
 notifyoptions=" -t 5000 -i /usr/share/pixmaps/gnome-set-time.png -h int:x:1200 -h int:y:20 "
+maxchars = 24
