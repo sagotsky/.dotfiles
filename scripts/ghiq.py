@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # ghiq - GitHub Issue Queue
 # <sagotsky@gmail.com>
