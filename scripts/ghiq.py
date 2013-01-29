@@ -54,9 +54,11 @@ def cache_tokens(subs):
     print 'Caching ' + sub + ' for tab completion'
     assignees = ['"'+x.login+'"' for x in subs[sub].get_assignees()]
     labels =    ['"'+x.name+'"' for x in subs[sub].get_labels()]
+    milestones =    ['"'+x.title+'"' for x in subs[sub].get_milestones()]
     fh = open(dir + sub, 'w')
     fh.write('users: ' + ' '.join(assignees) + '\n')
     fh.write('labels: ' + ' '.join(labels) + '\n')
+    fh.write('milestones: ' + ' '.join(milestones) + '\n')
     fh.close()
 
 def get_git_user():
@@ -145,6 +147,9 @@ def get_defaults():
   #no default label
   defaults['label'] = ''
 
+  #no default milestone
+  defaults['milestone'] = ''
+
   return defaults
 
 # override defaults with parsed opts from cli
@@ -166,6 +171,9 @@ def parse_options():
 
   parser.add_argument('-l', '--label', dest='label', action='store', nargs='?', default=defaults['label'],
       help='Filter tickets by label(s).')
+
+  parser.add_argument('-m', '--milestone', dest='milestone', action='store', nargs='?', default=defaults['milestone'],
+      help='Filter tickets by milestone.')
 
   parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['authtoken'],
       help='Authorization token')
@@ -222,6 +230,8 @@ def get_issue_tokens(issue):
     state = issue.state,
     body = issue.body,
     assignee = issue.assignee.login,
+    #milestone = issue.milestone.title,
+    milestone = '' if issue.milestone==None else issue.milestone.title
   )
 
   #comments = [str(c.body) + "___________" for c in issue.get_comments()],
@@ -269,13 +279,13 @@ if __name__ == '__main__':
 
   if options['issue']:
     # one issue
-    fmt = "#{number} {title}\n{url}\n{clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
+    fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
     issue = repo.get_issue(options['issue'])
     tokens = get_issue_tokens(issue)
     print fmt.format(**tokens)
   else:
     # whole queue
-    fmt = "#{number} {title}\n{url}\n{clabels}\n"
+    fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n"
     for issue in repo.get_issues():
       if filter_issue(issue, options):
         tokens = get_issue_tokens(issue)

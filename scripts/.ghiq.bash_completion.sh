@@ -28,7 +28,7 @@ _ghiq() {
     echo $repo
   }
 
-  cli_opts="--repo --label --user"
+  cli_opts="--repo --label --user --milestone"
 
   repo_opts() {
     find "$dir" -type f -printf "%f \n"
@@ -38,6 +38,12 @@ _ghiq() {
     repo=$(get_repo)
     users=$(grep '^users:' "$dir/$repo" | cut -d ':' -f 2- )
     echo $users
+  }
+
+  milestone_opts() {
+    repo=$(get_repo)
+    milestones=$(grep '^milestones:' "$dir/$repo" | cut -d ':' -f 2- )
+    echo $milestones
   }
 
   label_opts() {
@@ -54,6 +60,7 @@ _ghiq() {
     -r|--repo)  COMPREPLY=( $(compgen -W "$(repo_opts)" -- ${cur}) ) ; return 0 ;;
     -l|--label) COMPREPLY=( $(compgen -W "$(label_opts)" -- ${cur}) ) ; return 0 ;;
     -u|--user)  COMPREPLY=( $(compgen -W "$(user_opts)" -- ${cur}) ) ; return 0 ;;
+    -m|--milestone)  COMPREPLY=( $(compgen -W "$(milestone_opts)" -- ${cur}) ) ; return 0 ;;
   esac
 
   # alternatively, just have one comp reply line and change opts?
