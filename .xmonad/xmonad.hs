@@ -91,6 +91,7 @@ myManageHook =  composeAll
     , className =? "URxvt"                            --> doFullFloat
     , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
     , className =? "Exe"                              --> doFullFloat
+    , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
     , className  =? "Unity-2d-panel"                  --> doIgnore
     , className  =? "Unity-2d-launcher"               --> doIgnore
     ] 
@@ -110,6 +111,7 @@ main = do
 --             ,urgentBorderColor = myUrgentBorderColor
              --,keys = myKeys
                      
+             --,handleEventHook    = fullscreenEventHook
              ,layoutHook = myShowWName myLayout
              ,manageHook = manageSpawn sp 
                             <+> manageDocks <+> myManageHook 
