@@ -31,7 +31,7 @@ _ghiq() {
   cli_opts="--repo --label --user --milestone"
 
   repo_opts() {
-    find "$dir" -type f -printf "%f \n"
+    find "$dir" -type f -printf "%f \n" 2>/dev/null
   }
 
   user_opts() {

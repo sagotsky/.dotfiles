@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 
 # ghiq - GitHub Issue Queue
 # <sagotsky@gmail.com>
@@ -71,51 +71,26 @@ def get_git_repo():
   if len(repo) == 2:
     return dict(owner=repo[0], repo=repo[1])
   else: 
-    return False
+    return ''
 
 
 def get_subscriptions(user):
   return dict((sub.name, sub) for sub in user.get_subscriptions())
 
+# checks that issue's tokens match currently selected options
+def filter_issue_tokens(tokens, options):
+  filterable = ['assignee', 'labels', 'milestone', 'state']
+  for prop in filterable:
+    if options[prop] != '':
+      if prop == 'labels':
+        if options[prop] not in tokens['__labels']:
+          return False
 
-def filter_issue_by_labels(labels, options):
-  if options['label'] == '' or options['label'] == None:
-    return True 
+      else: 
+        if (tokens[prop] != options[prop]):
+          return False
 
-  search = options['label'].split(',') 
-  negations = [l[0]=='^' for l in search]
-  use_all = not negations.__contains__(False)
-
-  for label in labels:
-    if search.__contains__('^'+label.name):
-      return False
-    if search.__contains__(label.name):
-      return True
-
-  return use_all
-
-def filter_issue_by_state(state, options):
-  return (state == 'all' or (state == options['state']))
-
-def filter_issue_by_assignee(user, options):
-  if user == None:
-    return (options['assignee'] == 'None')
-
-  if user.login == options['assignee']:
-    return True
-
-  return False
-
-def filter_issue(issue, options):
-  functions = globals()
-  for prop,value in issue.__dict__.iteritems():
-    func = 'filter_issue_by' + prop
-    if functions.has_key(func):
-      filtered = functions[func](value, options)
-      if filtered == False:
-        return False
   return True
-
 
 
 # return defaults.  option should be None or read from prefs file (which currently only does token)
@@ -142,10 +117,10 @@ def get_defaults():
   defaults['state'] = 'open'
 
   #user gets current git user
-  defaults['assignee'] = get_git_user()
+  defaults['assignee'] = '' #get_git_user()
 
-  #no default label
-  defaults['label'] = ''
+  #no default labels
+  defaults['labels'] = ''
 
   #no default milestone
   defaults['milestone'] = ''
@@ -169,7 +144,7 @@ def parse_options():
   parser.add_argument('-u', '--user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
       help='Filter tickets by assignee(s).  If multiple, separate usernames with commas.')
 
-  parser.add_argument('-l', '--label', dest='label', action='store', nargs='?', default=defaults['label'],
+  parser.add_argument('-l', '--label', dest='labels', action='store', nargs='?', default=defaults['labels'],
       help='Filter tickets by label(s).')
 
   parser.add_argument('-m', '--milestone', dest='milestone', action='store', nargs='?', default=defaults['milestone'],
@@ -192,7 +167,8 @@ def parse_options():
   parser.add_argument('issue', action='store', default=False, nargs='?', type=int,
       help='GitHub issue number.  (ie. 123)')
 
-  return parser.parse_args()
+  args = parser.parse_args()
+  return args
 
   
 
@@ -207,7 +183,7 @@ def github_login():
   # log in
   try:
     pw = getpass.getpass()
-    gh = github.Github(login, pw, user_agent='ghiq.py')
+    gh = github.Github(login, pw) #, user_agent='ghiq.py')
   #except GithubException as e:
     #print 'Could not log in'
   except Exception as e:
@@ -224,12 +200,12 @@ def github_login():
 
 def get_issue_tokens(issue):
   tokens = dict(
-    number = issue.number,
+    number = `issue.number`,
     title = issue.title,
     url = issue.html_url, #url html_url
     state = issue.state,
     body = issue.body,
-    assignee = issue.assignee.login,
+    assignee = '' if issue.assignee==None else issue.assignee.login,
     #milestone = issue.milestone.title,
     milestone = '' if issue.milestone==None else issue.milestone.title
   )
@@ -246,6 +222,7 @@ def get_issue_tokens(issue):
   if issue.labels != None:
     clabels = [colorprint(lbl.color, lbl.name) for lbl in issue.labels]
     labels = [lbl.name for lbl in issue.labels]
+  tokens['__labels'] = labels # keep the array around for other functions
   tokens['labels']  = '[' + '] ['.join(labels) + ']'
   tokens['clabels'] = '[' + '] ['.join(clabels) + ']'
   # can lable color be inverted?  or would that be obnoxious
@@ -258,7 +235,7 @@ if __name__ == '__main__':
   # login or die trying
   if options['auth']:
     authtoken = options.get('auth')
-    gh = github.Github(authtoken, user_agent='ghiq.py')
+    gh = github.Github(authtoken) #, user_agent='ghiq.py')
     # shuld probably err here if the authtoken is bad
   else:
     gh = github_login()
@@ -287,8 +264,8 @@ if __name__ == '__main__':
     # whole queue
     fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n"
     for issue in repo.get_issues():
-      if filter_issue(issue, options):
-        tokens = get_issue_tokens(issue)
+      tokens = get_issue_tokens(issue)
+      if filter_issue_tokens(tokens, options):
         print fmt.format(**tokens)
 
 
