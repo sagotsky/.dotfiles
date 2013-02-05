@@ -11,30 +11,9 @@ from os.path import isfile
 from sys import exit
 from colortrans import colorprint
 
-# -u, --user    Filter by user(s)
-# -l, --label   Filter by label(s)
-# -r, --repo    Filter by repository
-# By default, user and repo will be read from the current .git.  ~/.gitconfig as well?
-# git config --get github.user
-# git config --get remote.origin.url
-# Negation for filters?
-
-
-# phase 1
-# No arg lists tickets
-# Ticket id arg shows that ticket in full
-
 # phase 2 (look at auth first)
 # -n, --new creates new ticket
 # -c, --comment comments on existing ticket
-
-# group by?  counts?
-
-#( other supported parameters: milestone, state, creator)
-
-# tab completion can be achieved by saving user, label into into cahce file.
-# -vv, -q, -qq, etc limit how much info is shown
-
 
 def save_token(authtoken):
   HOME=expanduser('~')
@@ -93,7 +72,7 @@ def filter_issue_tokens(tokens, options):
 # compile a regexx for each filterable property
 def compile_filter_regexes(options):
   #re.I?  case sensitivity yay or nay
-  filterable = ['assignee', 'labels', 'milestone', 'state']
+  filterable = ['assignee', 'labels', 'milestone', 'state', 'body', 'title']
   dict = {}
   for key in filterable:
     if options[key] != '':
@@ -134,6 +113,8 @@ def get_defaults():
 
   #no default milestone
   defaults['milestone'] = ''
+  defaults['title'] = ''
+  defaults['body'] = ''
 
   return defaults
 
@@ -152,13 +133,21 @@ def parse_options():
       help='Specify a git repository by name')
 
   parser.add_argument('-u', '--user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
-      help='Filter tickets by assignee(s).  If multiple, separate usernames with commas.')
+      help='Filter tickets by assignee.')
 
   parser.add_argument('-l', '--label', dest='labels', action='store', nargs='?', default=defaults['labels'],
       help='Filter tickets by label(s).')
 
   parser.add_argument('-m', '--milestone', dest='milestone', action='store', nargs='?', default=defaults['milestone'],
       help='Filter tickets by milestone.')
+
+  parser.add_argument('-t', '--title', dest='title', action='store', nargs='?', default=defaults['title'],
+      help='Filter tickets by title text.')
+
+  parser.add_argument('-b', '--body', dest='body', action='store', nargs='?', default=defaults['body'],
+      help='Filter tickets by body text.')
+
+  # comment text?  
 
   parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['authtoken'],
       help='Authorization token')
