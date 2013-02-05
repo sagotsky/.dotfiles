@@ -79,18 +79,28 @@ def get_subscriptions(user):
 
 # checks that issue's tokens match currently selected options
 def filter_issue_tokens(tokens, options):
-  filterable = ['assignee', 'labels', 'milestone', 'state']
-  for prop in filterable:
-    if options[prop] != '':
-      if prop == 'labels':
-        if options[prop] not in tokens['__labels']:
-          return False
+  for prop, regex in options.iteritems():
 
-      else: 
-        if (tokens[prop] != options[prop]):
-          return False
+    if prop == 'labels':
+      if not filter(regex.match, tokens['__labels']):
+        return False
+    else: 
+      if not re.match(regex, tokens[prop]):
+        return False
 
   return True
+
+# compile a regexx for each filterable property
+def compile_filter_regexes(options):
+  #re.I?  case sensitivity yay or nay
+  filterable = ['assignee', 'labels', 'milestone', 'state']
+  dict = {}
+  for key in filterable:
+    if options[key] != '':
+      dict[key] = re.compile(options[key])
+
+          
+  return dict
 
 
 # return defaults.  option should be None or read from prefs file (which currently only does token)
@@ -265,7 +275,7 @@ if __name__ == '__main__':
     fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n"
     for issue in repo.get_issues():
       tokens = get_issue_tokens(issue)
-      if filter_issue_tokens(tokens, options):
+      if filter_issue_tokens(tokens, compile_filter_regexes(options)):
         print fmt.format(**tokens)
 
 
