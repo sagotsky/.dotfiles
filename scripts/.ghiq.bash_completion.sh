@@ -28,7 +28,7 @@ _ghiq() {
     echo $repo
   }
 
-  cli_opts="--repo --label --user --milestone"
+  cli_opts="--repo --label --user --milestone --title --body"
 
   repo_opts() {
     find "$dir" -type f -printf "%f \n" 2>/dev/null
