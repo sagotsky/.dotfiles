@@ -38,7 +38,7 @@ myBorderWidth = 2
 
 myModMask = mod4Mask -- use super as meta
 
-myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "zend-6", "7", "8", "9", "bt"] 
+myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "zend-6", "7", "8", "9", "0", "bt"] 
 
 myNormalBorderColor = "#444455"
 
@@ -189,10 +189,12 @@ myKeys = [
     , ("M-d",   removeWorkspace )                                   --DynamicWorkspaces
     , ("M-'",   selectWorkspace myXPConfig )
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) )
-    , ("M--", swapNextScreen)                                         --CycleWS
-    , ("M-0", toggleWS)                                              --CycleWS
+    , ("M-S--", swapNextScreen)                                         --CycleWS
+    , ("M--", toggleWS)                                              --CycleWS
     ,( "M-p", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
     ,( "M-u", spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
+    ,("M-0", windows $ W.greedyView "0") 
+    ,("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0"))
 
     -- misc scripts
     , ("M-y", spawn "cli-board.sh") -- copies text into clip board
