@@ -35,7 +35,7 @@ def cache_tokens(subs):
     labels =    ['"'+x.name+'"' for x in subs[sub].get_labels()]
     milestones =    ['"'+x.title+'"' for x in subs[sub].get_milestones()]
     fh = open(dir + sub, 'w')
-    fh.write('users: ' + ' '.join(assignees) + '\n')
+    fh.write('users: ' + ' '.join(assignees) + '\n') # can tab complete owners and assignees
     fh.write('labels: ' + ' '.join(labels) + '\n')
     fh.write('milestones: ' + ' '.join(milestones) + '\n')
     fh.close()
@@ -132,7 +132,7 @@ def parse_options():
   parser.add_argument('-r', '--repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
       help='Specify a git repository by name')
 
-  parser.add_argument('-u', '--user', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
+  parser.add_argument('-a', '--assignee', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
       help='Filter tickets by assignee.')
 
   parser.add_argument('-l', '--label', dest='labels', action='store', nargs='?', default=defaults['labels'],
@@ -245,6 +245,7 @@ if __name__ == '__main__':
   #build cache
   cache_tokens(subs)
 
+
   #and display issues
   try:
     repo = subs[options['repo']]
@@ -253,6 +254,32 @@ if __name__ == '__main__':
     print ', '.join(subs.keys())
     exit(1)
 
+  # get objects for filters
+  query_filters = dict(label='status: needs qa')#,assignee='sagotsky',milestone='Feb')
+  match_attr = dict(label='name', assignee='login', milestone='title')
+  query = dict()
+  for prop,match in query_filters.iteritems():
+    matched = False
+    fn = 'get_' + prop + 's'
+    use_attr = '_'+match_attr[prop]
+    for val in getattr(repo, fn)():
+      attr = val.__dict__.get(use_attr)
+      #if re.match(match, attr):  # this doesn't work.  any labels that match the regex will be used.  but gh will return only issues that have all the labels
+      if match == attr:
+        if prop == 'label':
+          if not query.__contains__('labels'):
+            query['labels'] = []
+          query['labels'].append(val)
+
+          matched = True
+        else:
+          query[prop] = val
+          matched = True
+
+    if not matched:
+      print 'Error: no ' + prop + ' matches ' + match
+      exit(1)
+    
   if options['issue']:
     # one issue
     fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
@@ -262,7 +289,9 @@ if __name__ == '__main__':
   else:
     # whole queue
     fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n"
-    for issue in repo.get_issues():
+    #for issue in repo.get_issues(assignee='sagotsky'):
+    #  this can work, but instead of a string we need to have already fetched a nameduser 
+    for issue in repo.get_issues(**query):
       tokens = get_issue_tokens(issue)
       if filter_issue_tokens(tokens, compile_filter_regexes(options)):
         print fmt.format(**tokens)
