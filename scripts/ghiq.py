@@ -102,20 +102,6 @@ def get_defaults():
       defaults[prop] = value
     fh.close()
 
-  # default open state
-  defaults['state'] = 'open'
-
-  #user gets current git user
-  defaults['assignee'] = '' #get_git_user()
-
-  #no default labels
-  defaults['labels'] = ''
-
-  #no default milestone
-  defaults['milestone'] = ''
-  defaults['title'] = ''
-  defaults['body'] = ''
-
   return defaults
 
 # override defaults with parsed opts from cli
@@ -132,19 +118,19 @@ def parse_options():
   parser.add_argument('-r', '--repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
       help='Specify a git repository by name')
 
-  parser.add_argument('-a', '--assignee', dest='assignee', action='store', nargs='?', default=defaults['assignee'],
+  parser.add_argument('-a', '--assignee', dest='assignee', action='store', nargs='?', default='',
       help='Filter tickets by assignee.')
 
-  parser.add_argument('-l', '--label', dest='labels', action='store', nargs='?', default=defaults['labels'],
+  parser.add_argument('-l', '--label', dest='labels', action='store', nargs='?', default='',
       help='Filter tickets by label(s).')
 
-  parser.add_argument('-m', '--milestone', dest='milestone', action='store', nargs='?', default=defaults['milestone'],
+  parser.add_argument('-m', '--milestone', dest='milestone', action='store', nargs='?', default='',
       help='Filter tickets by milestone.')
 
-  parser.add_argument('-t', '--title', dest='title', action='store', nargs='?', default=defaults['title'],
+  parser.add_argument('-t', '--title', dest='title', action='store', nargs='?', default='',
       help='Filter tickets by title text.')
 
-  parser.add_argument('-b', '--body', dest='body', action='store', nargs='?', default=defaults['body'],
+  parser.add_argument('-b', '--body', dest='body', action='store', nargs='?', default='',
       help='Filter tickets by body text.')
 
   # comment text?  
@@ -152,7 +138,7 @@ def parse_options():
   parser.add_argument('--auth', dest='auth', action='store', nargs='?', default=defaults['authtoken'],
       help='Authorization token')
 # open, closed, all
-  parser.add_argument('-s', '--state', dest='state', action='store', nargs='?', default=defaults['state'],
+  parser.add_argument('-s', '--state', dest='state', action='store', nargs='?', default='',
       help='Open/closed state')
 
 # comments (only show up in full body?)
@@ -255,31 +241,44 @@ if __name__ == '__main__':
     exit(1)
 
   # get objects for filters
-  query_filters = dict(label='status: needs qa')#,assignee='sagotsky',milestone='Feb')
-  match_attr = dict(label='name', assignee='login', milestone='title')
+  query_filters = dict((key, options[key]) for key in ['assignee', 'labels', 'milestone']) # state body and title later
+  match_attr = dict(labels='name', assignee='login', milestone='title')
+
   query = dict()
   for prop,match in query_filters.iteritems():
-    matched = False
-    fn = 'get_' + prop + 's'
-    use_attr = '_'+match_attr[prop]
-    for val in getattr(repo, fn)():
-      attr = val.__dict__.get(use_attr)
-      #if re.match(match, attr):  # this doesn't work.  any labels that match the regex will be used.  but gh will return only issues that have all the labels
-      if match == attr:
-        if prop == 'label':
-          if not query.__contains__('labels'):
-            query['labels'] = []
-          query['labels'].append(val)
+    if len(match):
+      matched = False
+      fn = 'get_' + prop
+      if prop != 'labels':
+        fn += 's'
 
-          matched = True
-        else:
-          query[prop] = val
+      use_attr = '_'+match_attr[prop]
+      for val in getattr(repo, fn)():
+        attr = val.__dict__.get(use_attr)
+        if re.match(match, attr):  # this doesn't work.  any labels that match the regex will be used.  but gh will return only issues that have all the labels
+          if not query.__contains__(prop):
+            query[prop] = []
+
+          query[prop].append(val)
           matched = True
 
-    if not matched:
-      print 'Error: no ' + prop + ' matches ' + match
-      exit(1)
-    
+      if not matched:
+        print 'Error: no ' + prop + ' matches ' + `match` + '.'
+        exit(1)
+
+  # api accepts one arg at a time.  if multiple filters match, filter afterwards instead of using the api
+  for (prop, arg) in query.iteritems():
+    if len(arg) == 1:
+      query[prop] = arg.pop()
+    else: 
+      query[prop] = '*'
+
+  # labels has to be a list or not set
+  if isinstance(query['labels'], github.Label.Label):
+    query['labels'] = [query['labels']]
+  else:
+    del query['labels']
+
   if options['issue']:
     # one issue
     fmt = "#{number} {title}\n{url}\n{milestone} {clabels}\n{assignee} - {state}\n{body}\n\n{comments}"
