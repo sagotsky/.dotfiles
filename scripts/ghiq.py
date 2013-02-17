@@ -274,10 +274,11 @@ if __name__ == '__main__':
       query[prop] = '*'
 
   # labels has to be a list or not set
-  if isinstance(query['labels'], github.Label.Label):
-    query['labels'] = [query['labels']]
-  else:
-    del query['labels']
+  if query.__contains__('labels'):
+    if isinstance(query['labels'], github.Label.Label):
+      query['labels'] = [query['labels']]
+    else:
+     del query['labels']
 
   if options['issue']:
     # one issue
