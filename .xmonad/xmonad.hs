@@ -193,7 +193,7 @@ myKeys = [
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) )
     , ("M-S--", swapNextScreen)                                         --CycleWS
     , ("M--", toggleWS)                                              --CycleWS
-    ,( "M-p", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
+    ,( "M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
     ,( "M-u", spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
     ,("M-0", windows $ W.greedyView "0") 
     ,("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0"))
