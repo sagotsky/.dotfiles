@@ -12,16 +12,14 @@ _ghiq() {
   dir="$HOME/.ghiq.cache/"
 
   get_repo() {
-    echo 'openscholar'
-    return 0
-
-    for val in "${COMP_WORDS}" ; do
-      lastval=$val
+    for val in "${COMP_WORDS[@]}" ; do
+      echo $val 1>&2
       if [[ "$lastval" == '--repo' || "$lastval" == '-r' ]] ; then
         #also make sure it exists
         echo $val
         return 0 
       fi
+      lastval=$val
     done
 
     repo=$(git config --get remote.origin.url | tr '/' ':' | cut -f 2 -d:)
