@@ -1,0 +1,17 @@
+[color]
+    ui = true
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  cb = !~/scripts/git/git-checkoutbranch.sh
+  pp = !git pull && git push
+  track = !~/scripts/git/git-track.sh 
+
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+[core]
+	autocrlf = input
+	pager = less -r
+[format]
+  signoff = true
