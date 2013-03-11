@@ -13,7 +13,6 @@ _ghiq() {
 
   get_repo() {
     for val in "${COMP_WORDS[@]}" ; do
-      echo $val 1>&2
       if [[ "$lastval" == '--repo' || "$lastval" == '-r' ]] ; then
         #also make sure it exists
         echo $val

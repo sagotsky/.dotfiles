@@ -274,6 +274,7 @@ function assert_ssh_agent() {
 
 # downscales a movie to 1000k - good for streaming over powerline to xbox
 function ffmpeg_xbox() {
-  ffmpeg.git -i "$@" -vcodec mpeg4 -b:v 1000k "$@".avi
+  #ffmpeg.git -i "$@" -vcodec mpeg4 -b:v 1000k -s hd480 "$@".avi
+  ffmpeg.git -i "$@" -vcodec h264 -b:v 1000k -s 640x480 "$@".avi
 }
 
