@@ -72,7 +72,7 @@ def filter_issue_tokens(tokens, options):
 # compile a regexx for each filterable property
 def compile_filter_regexes(options):
   #re.I?  case sensitivity yay or nay
-  filterable = ['assignee', 'labels', 'milestone', 'state', 'body', 'title']
+  filterable = ['owner', 'assignee', 'labels', 'milestone', 'state', 'body', 'title']
   dict = {}
   for key in filterable:
     if options[key] != '':
@@ -117,6 +117,9 @@ def parse_options():
 
   parser.add_argument('-r', '--repo', dest='repo', action='store', nargs='?', default=defaults['repo'],
       help='Specify a git repository by name')
+
+  parser.add_argument('-o', '--owner', dest='owner', action='store', nargs='?', default='',
+      help='Filter tickets by owner.')
 
   parser.add_argument('-a', '--assignee', dest='assignee', action='store', nargs='?', default='',
       help='Filter tickets by assignee.')
@@ -191,6 +194,7 @@ def get_issue_tokens(issue):
     state = issue.state,
     body = issue.body,
     assignee = '' if issue.assignee==None else issue.assignee.login,
+    owner = '' if issue.user==None else issue.user.login,
     #milestone = issue.milestone.title,
     milestone = '' if issue.milestone==None else issue.milestone.title
   )

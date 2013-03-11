@@ -56,7 +56,7 @@ _ghiq() {
     #--label) echo "${COMP_WORDS[@]}" ; return 1 ;;
     -r|--repo)  COMPREPLY=( $(compgen -W "$(repo_opts)" -- ${cur}) ) ; return 0 ;;
     -l|--label) COMPREPLY=( $(compgen -W "$(label_opts)" -- ${cur}) ) ; return 0 ;;
-    -a|--assignee)  COMPREPLY=( $(compgen -W "$(user_opts)" -- ${cur}) ) ; return 0 ;;
+    -a|--assignee|-o|--owner)  COMPREPLY=( $(compgen -W "$(user_opts)" -- ${cur}) ) ; return 0 ;;
     -m|--milestone)  COMPREPLY=( $(compgen -W "$(milestone_opts)" -- ${cur}) ) ; return 0 ;;
   esac
 
