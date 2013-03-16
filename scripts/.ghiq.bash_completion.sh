@@ -33,13 +33,13 @@ _ghiq() {
 
   user_opts() {
     repo=$(get_repo)
-    users=$(grep '^users:' "$dir/$repo" | cut -d ':' -f 2- )
+    users=$(grep '^assignee:' "$dir/$repo" | cut -d ':' -f 2- )
     echo $users
   }
 
   milestone_opts() {
     repo=$(get_repo)
-    milestones=$(grep '^milestones:' "$dir/$repo" | cut -d ':' -f 2- )
+    milestones=$(grep '^milestone:' "$dir/$repo" | cut -d ':' -f 2- )
     echo $milestones
   }
 
