@@ -152,7 +152,7 @@ class LabelsProp(GitHubProp):
       return '[' + '] ['.join(labels) + ']'
 
   def repo_get_all(self, repo):
-    return [x.name for x in repo.get_labels()]
+    return dict((l.name, l) for l in repo.get_labels())
 
   def repo_get_prop(self, repo, id):
     labels = []
