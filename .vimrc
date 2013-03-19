@@ -58,7 +58,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
     highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
     highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
     highlight VertSplit		ctermfg=black ctermbg=black
-    highlight SpellBad          ctermbg=52 cterm=underline
+    highlight SpellBad          ctermfg=229 cterm=underline
 endif
 "
 au BufRead,BufNewFile *.txt set filetype=text
