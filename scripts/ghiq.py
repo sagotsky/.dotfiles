@@ -7,6 +7,7 @@ from os.path import expanduser
 from os.path import isfile
 from sys import exit
 from colortrans import colorprint
+from github import GithubObject
 
 
 """
@@ -22,6 +23,7 @@ Each one implements the following:
 The following functions can be overridden:
   repo_get_prop() - Searches list of props, returns list of matches
   set_opts() - Gives class a chance to respond to cli opts
+  format() - Format token for display
 
 The following properties are also available
   filterable - Indicates whether this property can be filtered after downloading issues
@@ -40,6 +42,9 @@ class GitHubProp(object):
 
   def set_opts(self, options):
     pass
+
+  def format(self, token):
+    return token
 
 class BodyProp(GitHubProp):
   cli_flags = ['-b', '--body']
@@ -142,14 +147,12 @@ class LabelsProp(GitHubProp):
   def issue_get_text(self, issue, match=None):
     labels = []
     for label in issue.get_labels():
-      if label is not None:
+      if label is not None and (match == None or any(re.match(match, lbl) for lbl in labels)):
         if self.color:
           labels.append(colorprint(label.color, label.name))
         else:
           labels.append(label.name)
-   
-    if match == None or any(re.match(match, lbl) for lbl in labels):
-      return '[' + '] ['.join(labels) + ']'
+    return labels
 
   def repo_get_all(self, repo):
     return dict((l.name, l) for l in repo.get_labels())
@@ -166,6 +169,12 @@ class LabelsProp(GitHubProp):
 
   def set_opts(self, options):
     color = options['color_labels']
+
+  def format(self, labels):
+    text = '] ['.join(labels)
+    if len(text):
+      return '[' + text + ']'
+    return ''
 
 """
 Assorted helper functions
@@ -313,7 +322,7 @@ if __name__ == '__main__':
     prop.set_opts(options)
 
     if prop.api_query and options[prop.name] == None:     # property must have no value
-      query[prop.name] = 'none'
+      query[prop.name] = GithubObject.NotSet
     elif prop.api_query and len(options[prop.name]):      # property matches value
       query[prop.name] = prop.repo_get_prop(repo, options[prop.name])
       if query[prop.name] == None:
@@ -332,6 +341,7 @@ if __name__ == '__main__':
     tokens = get_issue_tokens(issue)
     show_issue = True
 
+    # get text for all properties
     for prop in properties: 
       matches = True
       if options[prop.name]:
@@ -339,7 +349,12 @@ if __name__ == '__main__':
       if matches == None or matches == '' or matches == []:
         show_issue = False
       else: 
+        # finally, don't print issues that have negatedvalues
         tokens[prop.name] = prop.issue_get_text(issue)
+        if options[prop.name] == None and len(tokens[prop.name]) > 0:
+          show_issue = False
+        else:
+          tokens[prop.name] = prop.format(tokens[prop.name]) # format for display
 
     if show_issue:
       print fmt.format(**tokens)
