@@ -4,6 +4,9 @@
 
 APPS=('rhythmbox' 'nuvolaplayer')
 CMDS=('volup' 'voldown' 'mute' 'play' 'back' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
+
+# add volup commands.  make them print status.  empty status if no playing.
+
 getplaying() {
   for app in "${APPS[@]}" ; do
     pidof $app >/dev/null && echo $app && return 0
