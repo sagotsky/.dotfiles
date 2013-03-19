@@ -15,5 +15,5 @@ while [ -x /usr/bin/inotifywait ] && [ -x /usr/bin/markdown ] ; do
   uzbl $OUT &>/dev/null &
   PID=$!
   inotifywait "$FILE" -e MODIFY &>/dev/null
-  kill $PID
+  kill $PID &>/dev/null
 done
