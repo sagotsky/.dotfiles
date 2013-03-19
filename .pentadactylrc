@@ -33,7 +33,11 @@ map -builtin ZZ zz
 com tabrename -nargs=1 -literal=0 -js content.document.title = args[0];
 
 " send to google-chrome
-com chrome -nargs=0 execute "!google-chrome " + content.location
+com! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
+
+" send to ie-screenshot.  requires bookmark with keyword of 'ie' http://netrenderer.com/index.php
+com! ie -nargs=0 -description 'Preview this page in IE' -js
+  \ commands.execute(("tabopen ") + 'ie ' + content.location)
 
 " send to uzbl
 com uzbl -nargs=0 execute "!uzbl  " + content.location
@@ -120,3 +124,4 @@ EOF
 
 " passkeys.  on matching websites send keys directly to dom
 set passkeys+=google.com/reader:j,k,v,?,<SPACE>
+set passkeys+=theoldreader.com:j,k,o,l,f,<SPACE>
