@@ -124,4 +124,4 @@ EOF
 
 " passkeys.  on matching websites send keys directly to dom
 set passkeys+=google.com/reader:j,k,v,?,<SPACE>
-set passkeys+=theoldreader.com:j,k,o,l,f,<SPACE>
+set passkeys+=theoldreader.com:j,k,l,f,<SPACE>
