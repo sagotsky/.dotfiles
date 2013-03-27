@@ -286,5 +286,5 @@ function ffmpeg_xbox() {
 }
 
 function func() {
-  awk "/function $1\(/,/}/" ~/.functions
+  awk "/function $1\(/,/^}/" ~/.functions
 }
