@@ -56,6 +56,20 @@ function _interval() {
   echo ${notes[$return_index]}
 }
 
+# shuf and sort -R aren't reliable, so...
+function _rand_line() {
+  if [ $(which __shuf) ] ; then
+    while read line; do echo $line; done | shuf -n 1
+  elif [[ $(sort --version | head -n1 | tr -d . | cut -f4 -d' ') -ge 86 ]] ; then # this ones broke!
+    while read line ; do echo $line; done | sort -R | head -n 1
+  else    
+    lines=$(cat)
+    num=$(echo "$lines" | wc -l)
+    nth=$(( $RANDOM % $num + 1))
+    echo "$lines" | head -n $nth | tail -n 1
+  fi
+}
+
 # Given a note, return notes of all named intervals
 function intervals() {
   note=$1
@@ -176,7 +190,7 @@ function play_notes() {
 
 
 # choose a random key and progression, then play them
-my_key=$(echo "$KEYS" | shuf -n 1)
+my_key=$(echo "$KEYS" | _rand_line)
 my_progression=$(echo "$PROGRESSIONS" | shuf -n 1)
 
 progression $my_key $my_progression | while read line ; do
