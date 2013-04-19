@@ -20,6 +20,8 @@ export LESS_TERMCAP_so=$'\E[38;5;46m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;14m' # begin underline
 
+# Disable term flow control.  ctrl-s no longer pauses.  Now bash's C-s can fire, which is hist forward
+stty -ixon
 ## Append debian chroot labels to prompt
 if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
