@@ -26,6 +26,15 @@ export REFRESH_TOKEN="$REFRESH_TOKEN"
 EOF
 }
 
+# check dependecies
+for dep in zenity jshon scrot ; do
+  which $dep &>/dev/null
+  if [ $? -gt 0 ] ; then
+    echo Missing dependency: $dep 1>&2
+    exit 1
+  fi
+done
+
 # write a default imgup.conf
 if [ ! -f ${CONFPATH} ] ; then
   update_tokens
@@ -44,10 +53,6 @@ function auth_pin() {
   "/usr/bin/$browser" "$url" &>/dev/null &
   pin=$(zenity --entry --title 'Imgur Authentication' --text="Please log into imgur, grant access, and paste the pin code here.  \n$url")
 
-  
-  #echo Please log into imgur using this URL and paste the PIN code below
-  #echo https://api.imgur.com/oauth2/authorize?client_id=${APP_ID}\&response_type=pin\&state=auth
-
   #read pin
   response=$(curl -s -d "client_id=${APP_ID}&client_secret=${APP_SECRET}&grant_type=pin&pin=${pin}" https://api.imgur.com/oauth2/token)
   if [[ "$response" == *Invalid* ]] ; then
@@ -65,7 +70,8 @@ function auth() {
 
   # auth with current token.  if they work, keep them
   response=`curl -s -X GET https://api.imgur.com/3/account/me/albums/ --header "Authorization: Bearer ${AUTH_TOKEN}"` # actually just gets albums.  using this to ping
-  if [[ "$response" =~ '"status":200' ]] ; then
+  #if [[ "$response" =~ '"status":200' ]] ; then
+  if [[ $(echo $response | jshon -e status) == 200 ]] ; then
     echo $AUTH_TOKEN $REFRESH_TOKEN 
     return
   fi
@@ -74,12 +80,13 @@ function auth() {
   response=`curl -s -d "client_id=${APP_ID}&client_secret=${APP_SECRET}&grant_type=refresh_token&refresh_token=${REFRESH_TOKEN}"  https://api.imgur.com/oauth2/token`
 
   # enter pin
-  if [[ "$response" != *access_token* ]] ; then
+  #if [[ "$response" != *access_token* ]] ; then
+  if [[ $(echo $response | jshon -e status) != 200 ]] ; then
     response=$(auth_pin)
   fi
 
-  AUTH_TOKEN=$(echo $response | JSON.sh -l | grep 'access_token' | cut -f2 | tr -d '"' )
-  REFRESH_TOKEN=$(echo $response | JSON.sh -l | grep 'refresh_token' | cut -f2 | tr -d '"')
+  AUTH_TOKEN=$(echo $response | jshon -e access_token)
+  REFRESH_TOKEN=$(echo $response | jshon -e refresh_token)
 
   echo $AUTH_TOKEN $REFRESH_TOKEN 
 }
@@ -91,13 +98,14 @@ if [[ "$AUTH_RESPONSE" != "$AUTH_TOKEN $REFRESH_TOKEN" ]] ; then
   source ${CONFPATH}
 fi
 
-# By now auth_token should be up to doate
+# By now auth_token should be useful
 
-# try to auth.  
-
-IMAGE="/tmp/screenshot$(date +'%F.%T').png"
+IMAGE="/tmp/screenshot-$(date +'%F.%T').png"
 scrot -s $IMAGE
-response=`curl -s -X POST --header "Authorization: Bearer ${AUTH_TOKEN}" -F "image=@${IMAGE}" https://api.imgur.com/3/image`
-id=$(echo $response | JSON.sh -l | grep id | cut -f2 | tr -d '"')
-firefox http://imgur.com/$id &
-echo "![screenshot](http://imgur.com/$id.png"
+if [ $? -eq 0 ] ; then
+  response=`curl -s -X POST --header "Authorization: Bearer ${AUTH_TOKEN}" -F "image=@${IMAGE}" https://api.imgur.com/3/image`
+  id=$(echo $response | jshon -e data -e id | tr -d '"')
+  firefox http://imgur.com/$id &
+  echo "![screenshot](http://imgur.com/$id.png"
+fi
+
