@@ -135,6 +135,10 @@ flac_index() {
 
 # put each hook set in ext.module or something.  include on demand.
 
+wma_dec() {
+  ffmpeg -i /tmp/BachCPE_SonataAmin_1.wma -f wav pipe: 
+}
+
 set +a
 
 
