@@ -5,7 +5,7 @@
 # Takes a screenshot.  Uploads it to imgur.  Can auth an account
 # so the image came be edited.
 
-# name: imgup - image up
+# set -xe
 
 CONFPATH=${HOME}/.imgup.conf
 AUTH_TOKEN='x'
@@ -80,7 +80,7 @@ function auth() {
 
   # enter pin
   #if [[ "$response" != *access_token* ]] ; then
-  if [[ $(echo $response | jshon -e status) != 200 ]] ; then
+  if [[ $(echo $response | jshon -Q -e success) == 'false' ]] ; then
     response=$(auth_pin)
   fi
 
@@ -110,8 +110,10 @@ if [ $? -eq 0 ] ; then
 
   response=`curl -s -X POST --header "Authorization: Bearer ${AUTH_TOKEN}" -F "image=@${IMAGE}" https://api.imgur.com/3/image`
   id=$(echo $response | jshon -e data -e id | tr -d '"')
-  firefox http://imgur.com/$id &
-  echo "![screenshot](http://imgur.com/$id.png"
+  if [ "$id" != "" ] ; then
+    firefox http://imgur.com/$id &
+    echo "![screenshot](http://imgur.com/$id.png"
+  fi
 fi
 
 kill $PID
