@@ -112,7 +112,7 @@ if [ $? -eq 0 ] ; then
   id=$(echo $response | jshon -e data -e id | tr -d '"')
   if [ "$id" != "" ] ; then
     firefox http://imgur.com/$id &
-    echo "![screenshot](http://imgur.com/$id.png"
+    echo "![screenshot](http://imgur.com/$id.png)"
   fi
 fi
 
