@@ -285,6 +285,18 @@ function ffmpeg_xbox() {
   ffmpeg.git -i "$@" -vcodec h264 -b:v 1000k -s 640x480 "$@".avi
 }
 
+# lists a function's definition
 function func() {
   awk "/function $1\(/,/^}/" ~/.functions
 }
+
+# wrapper for ssh.  resets xterm colors after connection.  see .ssh/config's localcommands.
+if [ $(which xtermcontrol) -a "$TERM" == 'xterm' ] ; then
+  function ssh() {
+    FG=$(xtermcontrol --get-fg)
+    BG=$(xtermcontrol --get-bg)
+    $(which ssh) "$@"
+    xtermcontrol --fg="$FG"
+    xtermcontrol --bg="$BG"
+  }
+fi
