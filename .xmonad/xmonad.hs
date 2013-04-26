@@ -155,7 +155,7 @@ myKeys = [
 	, ("<XF86Favorites>", spawn "gdmSwitch.sh jenn") --user switch
     , ("<XF86Mail>", spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
-    , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-lucida-bold-r-*-*-16-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
+    , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
 --    , ("M-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
     ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
     ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
