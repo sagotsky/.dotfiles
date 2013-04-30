@@ -11,7 +11,7 @@ function getWinTitle() {
 
 
 browser=$(active_window.sh)
-url=$(./fmarks.pl)
+url=$(fmarks.pl)
 
 case $browser in
   uzbl-core)  uzbl $url  ;;
