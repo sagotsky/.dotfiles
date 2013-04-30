@@ -38,7 +38,7 @@ myBorderWidth = 2
 
 myModMask = mod4Mask -- use super as meta
 
-myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "zend-6", "7", "8", "9", "0", "bt"] 
+myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0", "bt"] 
 
 myNormalBorderColor = "#444455"
 
@@ -86,7 +86,9 @@ myManageHook =  composeAll
     , className =? "Skype"                            --> doShift "chat-5" 
     , className =? "Skype.real"                       --> doShift "chat-5" 
     , className =? "xterm-mail"                       --> doShift "email-3"
-    , className =? "Zend Studio"                      --> doShift "zend-6" 
+    , className =? "Zend Studio"                      --> doShift "ide-6" 
+    , className =? "Sublime_text"                     --> doShift "ide-6" 
+    , className =? "Transmission"                     --> doShift "bt" 
     , className =? "Transmission"                     --> doShift "bt" 
 
     , className =? "URxvt"                            --> doFullFloat
