@@ -19,6 +19,7 @@ alias ls='ls --color=auto'
 alias mkpasswd='pwgen -ysCn 16'
 alias myip='curl http://icanhazip.com ; echo'
 alias n='nano'
+alias nounity='UBUNTU_MENUPROXY="" '
 alias tf='tail -f'
 alias rb="rhythmbox-client "
 alias s='screen'
