@@ -34,7 +34,7 @@ import XMonad.Actions.CycleWS
 
 myTerminal = "x-terminal-emulator"
 
-myBorderWidth = 2
+myBorderWidth = 1
 
 myModMask = mod4Mask -- use super as meta
 
@@ -158,7 +158,8 @@ myKeys = [
     , ("<XF86Mail>", spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
---    , ("M-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
+    , ("M-S-x", spawn "fmarks.sh")
+    , ("M-S-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
     ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
     ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
 

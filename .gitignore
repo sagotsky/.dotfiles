@@ -9,3 +9,7 @@
 scripts/fmarks/*
 scripts/local/*
 *.pyc
+*.sublime-project
+*.sublime-workspace
+
+

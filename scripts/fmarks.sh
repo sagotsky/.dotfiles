@@ -11,7 +11,6 @@ function getWinTitle() {
     xprop -id $(getWinID) | grep "WM_CLASS(STRING)" | sed -e 's/.*= "\([^"]*\)".*/\1/'
 }
 
-
 browser=$($basepath/active_window.sh)
 url=$($basepath/fmarks.pl)
 
