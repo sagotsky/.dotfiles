@@ -34,7 +34,7 @@ import XMonad.Actions.CycleWS
 
 myTerminal = "x-terminal-emulator"
 
-myBorderWidth = 2
+myBorderWidth = 1
 
 myModMask = mod4Mask -- use super as meta
 
