@@ -300,3 +300,9 @@ if [ $(which xtermcontrol) -a "$TERM" == 'xterm' ] ; then
     xtermcontrol --bg="$BG"
   }
 fi
+
+# check if dmenu has an option
+function dmenu_has() {
+  match="\[$@ "
+  [ "$(dmenu -h 2>&1 > /dev/null | grep -- $match)" != '' ]
+}
