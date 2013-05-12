@@ -89,7 +89,7 @@ myManageHook =  composeAll
     , className =? "Zend Studio"                      --> doShift "ide-6" 
     , className =? "Sublime_text"                     --> doShift "ide-6" 
     , className =? "Transmission"                     --> doShift "bt" 
-    , className =? "Transmission"                     --> doShift "bt" 
+    , className =? "Transmission-gtk"                     --> doShift "bt" 
 
     , className =? "URxvt"                            --> doFullFloat
     , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
@@ -102,7 +102,7 @@ myManageHook =  composeAll
 
 main = do 
   xmproc <- spawnPipe "xmobar"
-  sp <- mkSpawner
+  --sp <- mkSpawner
   xmonad $ withUrgencyHook NoUrgencyHook
        $ ewmh defaultConfig
              {terminal = myTerminal
@@ -117,8 +117,9 @@ main = do
                      
              --,handleEventHook    = fullscreenEventHook
              ,layoutHook = myShowWName myLayout
-             ,manageHook = manageSpawn sp 
-                            <+> manageDocks <+> myManageHook 
+             --,manageHook = manageSpawn sp 
+                            -- <+> manageDocks <+> myManageHook 
+             ,manageHook = manageDocks <+> myManageHook 
                            <+> manageHook defaultConfig
              ,logHook = dynamicLogWithPP $ xmobarPP 
                          { ppOutput = hPutStrLn xmproc
@@ -154,7 +155,7 @@ main = do
 myKeys = [ 
     -- application shortcuts
 	  ("<XF86HomePage>", spawn "nautilus --no-desktop") --home
-	, ("<XF86Favorites>", spawn "gdmSwitch.sh jenn") --user switch
+	, ("<XF86Favorites>", spawn "~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Mail>", spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
