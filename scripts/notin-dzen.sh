@@ -6,7 +6,7 @@
 
 # apps with an _appname() function will have that performed instead of dzen
 
-function _rhythmbox() {
+function _Rhythmbox() {
   rhythmbox-client  --print-playing-format '%aa - %tt' > ~/.music.out &
 }
 
