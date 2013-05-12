@@ -145,12 +145,14 @@ PROMPT_COMMAND='COLOR=$(ps1color $?) ; BRANCH=$(gitprompt) ; history -a; history
 # PROMPT_COMMAND instead of PS1 to ensure that ps1color and gitprompt are executed
 
 ## Source some configs (.local files don't go in git)
-FILES=".alias .bashrc.local .alias.local .functions .bash_completion .bashrc.d/fd/fd.sh scripts/.ghiq.bash_completion.sh"
-for FILE in $FILES ; do
-  if [ -f "$HOME/$FILE" ] ; then
-    source "$HOME/$FILE"
-  fi ; 
-done
+if [[ "$-" == *i* ]] ; then  # only for interactive shells
+  FILES=".alias .bashrc.local .alias.local .functions .bash_completion .bashrc.d/fd/fd.sh scripts/.ghiq.bash_completion.sh"
+  for FILE in $FILES ; do
+    if [ -f "$HOME/$FILE" ] ; then
+      source "$HOME/$FILE"
+    fi ; 
+  done
+fi
 
 # recolor terminal if xtermcontrol config file is present.  see .bash_logout for uncoloring.
 if [ $(which xtermcontrol) -a -f "$HOME/.xtermcontrol.bashrc" -a "$TERM" == 'xterm' ] ; then
