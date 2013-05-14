@@ -165,17 +165,17 @@ myKeys = [
     ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
 
     -- music
-    , ("<XF86AudioPlay>", spawn "rhythmbox-client --play-pause") --vol up
-	, ("<XF86Forward>", spawn "rhythmbox-client --next") --Next
-	, ("<XF86Back>", spawn "rhythmbox-client --previous") --Back
+    , ("<XF86AudioPlay>", spawn "music-client.sh toggle") --vol up
+	, ("<XF86Forward>", spawn "music-client.sh next") --Next
+	, ("<XF86Back>", spawn "music-client.sh back") --Back
 	, ("<XF86AudioRaiseVolume>", spawn "vol-up.sh") --vol up
 	, ("<XF86AudioLowerVolume>", spawn "vol-down.sh") --vol down
 	, ("<XF86AudioMute>", spawn "vol-mute.sh") --vol mute
-	, ("<XF86LaunchA>", spawn "rhythmbox-client --set-rating 1") -- rate 1-5
-	, ("<XF86LaunchB>", spawn "rhythmbox-client --set-rating 2") -- rate 1-5
-	, ("<XF86LaunchC>", spawn "rhythmbox-client --set-rating 3") -- rate 1-5
-	, ("<XF86LaunchD>", spawn "rhythmbox-client --set-rating 4") -- rate 1-5
-	, ("<XF86LaunchE>", spawn "rhythmbox-client --set-rating 5") -- rate 1-5
+	, ("<XF86LaunchA>", spawn "music-client.sh rate1") -- rate 1-5
+	, ("<XF86LaunchB>", spawn "music-client.sh rate2") -- rate 1-5
+	, ("<XF86LaunchC>", spawn "music-client.sh rate3") -- rate 1-5
+	, ("<XF86LaunchD>", spawn "music-client.sh rate4") -- rate 1-5
+	, ("<XF86LaunchE>", spawn "music-client.sh rate5") -- rate 1-5
     , ("M-m",   spawn "rb-jump.sh") -- dmenu for jumping rhythmbox songs
     , ("M-S-m", spawn "rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
     , ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
