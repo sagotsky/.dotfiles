@@ -204,7 +204,7 @@ myKeys = [
 
     -- misc scripts
     , ("M-y", spawn "cli-board.sh") -- copies text into clip board
-    , ("M-S-y", spawn "cheat-sheet..sh") -- views files in .cheat-sheets
+    , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
 	]
 
 
