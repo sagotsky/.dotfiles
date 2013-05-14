@@ -1,6 +1,7 @@
 ack-grep
 alpine
 anacron
+apt-file
 beep
 cowsay
 curl

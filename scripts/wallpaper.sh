@@ -2,4 +2,4 @@
 
 # wallpaper switcher
 
-feh --bg-fill "$( find ~/.wallpaper/ | shuf -n1 )"
+feh --bg-tile "$( find ~/.wallpaper/ | shuf -n1 )"
