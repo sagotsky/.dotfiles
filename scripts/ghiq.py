@@ -297,9 +297,10 @@ if __name__ == '__main__':
 
   # login or die trying
   if options['auth']:
-    authtoken = options.get('auth')
-    gh = github.Github(authtoken) #, user_agent='ghiq.py')
+    authtoken = options.get('auth').strip()
+    gh = github.Github(authtoken)#, user_agent='ghiq.py')
   else:
+    print 'Using ghiq without auth token'
     gh = github_login()
 
   user = gh.get_user()
