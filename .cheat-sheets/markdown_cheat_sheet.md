@@ -29,3 +29,7 @@ header 2
 
 - [ ] unchecked checklist item
 - [x] checked checklist item
+
+|Table head 1|Table head 2|
+|---|---|
+|Table data 1|Table data 2|
