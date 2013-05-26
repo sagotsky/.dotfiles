@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # track a new remote branch
-git branch --track "$@" remotes/origin/"$@"
+git branch --track "$@" remotes/origin/"$@" && git checkout "$@"
