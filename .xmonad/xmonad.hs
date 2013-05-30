@@ -78,8 +78,8 @@ myManageHook =  composeAll
     , className =? "doukutsu"                         --> doFloat
     , resource  =? "Do"                               --> doIgnore
 
-    , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
-    , className =? "Namoroka"                         --> doShift "web-1" 
+    -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
+    , className =? "Firefox"                          --> doShift "web-1" 
     , className =? "Rhythmbox"                        --> doShift "music-2" 
     , className =? "Thunderbird"                      --> doShift "email-3" 
     , className =? "Pidgin"                           --> doShift "chat-5" 
