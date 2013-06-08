@@ -158,8 +158,11 @@ myKeys = [
 	, ("<XF86Favorites>", spawn "~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Mail>", spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
-    , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'")
-    , ("M-S-x", spawn "fmarks.sh")
+
+    , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
+    , ("M-S-x", spawn "exec $(xdmenug.py)") -- xdg-menu launch
+    , ("M-g", spawn "fmarks.sh") -- open FF bookmarks in current browser
+    , ("M-S-g", spawn "fmarks.sh -a") -- open FF history in current browser @TODO
     , ("M-S-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
     ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
     ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
