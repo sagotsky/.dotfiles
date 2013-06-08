@@ -162,7 +162,7 @@ myKeys = [
     , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
     , ("M-S-x", spawn "exec $(xdmenug.py)") -- xdg-menu launch
     , ("M-g", spawn "fmarks.sh") -- open FF bookmarks in current browser
-    , ("M-S-g", spawn "fmarks.sh -a") -- open FF history in current browser @TODO
+    , ("M-S-g", spawn "fmarks.sh -a") -- open FF history in current browser 
     , ("M-S-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
     ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
     ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
