@@ -154,60 +154,58 @@ main = do
 
 myKeys = [ 
     -- application shortcuts
-	  ("<XF86HomePage>", spawn "nautilus --no-desktop") --home
-	, ("<XF86Favorites>", spawn "~/scripts/gdm3switch.sh jenn") --user switch
-    , ("<XF86Mail>", spawn "active_win_man.sh") -- manpage for active win
+	  ("<XF86HomePage>",   spawn "nautilus --no-desktop") --home browser
+	, ("<XF86Favorites>",  spawn "~/scripts/gdm3switch.sh jenn") --user switch
+    , ("<XF86Mail>",       spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
-
-    , ("M-x", spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
-    , ("M-S-x", spawn "exec $(xdmenug.py)") -- xdg-menu launch
-    , ("M-g", spawn "fmarks.sh") -- open FF bookmarks in current browser
-    , ("M-S-g", spawn "fmarks.sh -a") -- open FF history in current browser 
-    , ("M-S-b", spawn "wallpaper.sh") -- dmenu for jumping rhythmbox songs
-    ,("M-b", sendMessage ToggleStruts) -- struts are panels.  background needs something new.
-    ,("M-C-<Return>", spawn "urxvt") -- struts are panels.  background needs something new.
+    , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
+    , ("M-S-g",            spawn "fmarks.sh -a") -- open FF history in current browser 
+    , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
 
     -- music
-    , ("<XF86AudioPlay>", spawn "music-client.sh toggle") --vol up
-	, ("<XF86Forward>", spawn "music-client.sh next") --Next
-	, ("<XF86Back>", spawn "music-client.sh back") --Back
+    , ("<XF86AudioPlay>",        spawn "music-client.sh toggle") --vol up
+	, ("<XF86Forward>",          spawn "music-client.sh next") --Next
+	, ("<XF86Back>",             spawn "music-client.sh back") --Back
 	, ("<XF86AudioRaiseVolume>", spawn "vol-up.sh") --vol up
 	, ("<XF86AudioLowerVolume>", spawn "vol-down.sh") --vol down
-	, ("<XF86AudioMute>", spawn "vol-mute.sh") --vol mute
-	, ("<XF86LaunchA>", spawn "music-client.sh rate1") -- rate 1-5
-	, ("<XF86LaunchB>", spawn "music-client.sh rate2") -- rate 1-5
-	, ("<XF86LaunchC>", spawn "music-client.sh rate3") -- rate 1-5
-	, ("<XF86LaunchD>", spawn "music-client.sh rate4") -- rate 1-5
-	, ("<XF86LaunchE>", spawn "music-client.sh rate5") -- rate 1-5
+	, ("<XF86AudioMute>",        spawn "vol-mute.sh") --vol mute
+	, ("<XF86LaunchA>",          spawn "music-client.sh rate1") -- rate 1-5
+	, ("<XF86LaunchB>",          spawn "music-client.sh rate2") -- rate 1-5
+	, ("<XF86LaunchC>",          spawn "music-client.sh rate3") -- rate 1-5
+	, ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
+	, ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
     , ("M-m",   spawn "rb-jump.sh") -- dmenu for jumping rhythmbox songs
     , ("M-S-m", spawn "rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
     , ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
 
     -- transparency
-    ,("M-o",   spawn "transset-df -a --dec 0.1") -- make transparent
-    ,("M-C-o", spawn "transset-df -a --inc 0.1") -- remove transparent
-    ,("M-S-o", spawn "transset-df -a --inc 1") -- reset transparent
+    , ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
+    , ("M-C-o", spawn "transset-df -a --inc 0.03") -- remove transparent
+    , ("M-S-o", spawn "transset-df -a --inc 1") -- reset transparent
 
     --xcalib screen options
-	, ("<XF86Search>", spawn "xcalib -a -i") -- screen color invert
+	, ("<XF86Search>",   spawn "xcalib -a -i") -- screen color invert
     , ("C-<XF86Search>", spawn "xcalib -c") -- screen color reset
     , ("S-<XF86Search>", spawn "xcalib -a -co 95") -- screen contrast decrease
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
-
     -- WM Shortcuts  
-    , ("M-d",   removeWorkspace )                                   --DynamicWorkspaces
-    , ("M-'",   selectWorkspace myXPConfig )
-    , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) )
-    , ("M-S--", swapNextScreen)                                         --CycleWS
-    , ("M--", toggleWS)                                              --CycleWS
-    ,( "M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
-    ,( "M-u", spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
-    ,("M-0", windows $ W.greedyView "0") 
-    ,("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0"))
+    , ("M-x",   spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
+    , ("M-S-x", spawn "exec $(xdmenug.py)") -- xdg-menu launch
+    , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
+    , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
+    , ("M-d",   removeWorkspace ) -- Delete active workspace
+    , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
+    , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
+    , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
+    , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
+    , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
+    , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
+    , ("M-0",   windows $ W.greedyView "0")  -- workspace 0
+    , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
 
     -- misc scripts
-    , ("M-y", spawn "cli-board.sh") -- copies text into clip board
+    , ("M-y",   spawn "cli-board.sh") -- copies text into clip board
     , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
 	]
 
