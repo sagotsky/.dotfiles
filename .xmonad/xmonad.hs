@@ -184,8 +184,9 @@ myKeys = [
     , ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
 
     -- transparency
-    ,("M-S-o", spawn "transset-df -a --inc 0.1")
-    ,("M-o",   spawn "transset-df -a --dec 0.1")
+    ,("M-o",   spawn "transset-df -a --dec 0.1") -- make transparent
+    ,("M-C-o", spawn "transset-df -a --inc 0.1") -- remove transparent
+    ,("M-S-o", spawn "transset-df -a --inc 1") -- reset transparent
 
     --xcalib screen options
 	, ("<XF86Search>", spawn "xcalib -a -i") -- screen color invert
