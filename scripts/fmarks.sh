@@ -21,7 +21,7 @@ if [ "$url" != '' ] ; then
   case $browser in
     uzbl-core)  uzbl $url  ;;
     Navigator) firefox $url ;;
-    midori|firefox|google-chrome|chromium)    $browser $url;;
+    luakit|midori|firefox|google-chrome|chromium)    $browser $url;;
     *) echo "dont know how to open '$url' with '$browser' " ;;
   esac
 fi
