@@ -27,3 +27,5 @@ complete -F _rb rb
 #. /etc/bash_completion.d/apt
 #complete -F _apt_get apti
 # _apt_get is checking for install or other command.  wrap it?
+
+. /usr/share/bash-completion/completions/ssh
