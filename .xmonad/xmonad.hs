@@ -38,7 +38,7 @@ myBorderWidth = 1
 
 myModMask = mod4Mask -- use super as meta
 
-myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0", "bt"] 
+myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
 
 myNormalBorderColor = "#444455"
 
@@ -88,8 +88,6 @@ myManageHook =  composeAll
     , className =? "xterm-mail"                       --> doShift "email-3"
     , className =? "Zend Studio"                      --> doShift "ide-6" 
     , className =? "Sublime_text"                     --> doShift "ide-6" 
-    , className =? "Transmission"                     --> doShift "bt" 
-    , className =? "Transmission-gtk"                     --> doShift "bt" 
 
     , className =? "URxvt"                            --> doFullFloat
     , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
