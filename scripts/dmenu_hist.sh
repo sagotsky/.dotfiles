@@ -8,7 +8,7 @@ if [ ! -f "$file" ] ; then
 fi
 
 IFS=$'\n' stdin="$(cat)"
-sel=$(echo -e "$stdin\n$(cat $file)" | sort | uniq -c | sort -bnr | cut -f8- -d' ' | dmenu $@)
+sel=$(echo -e "$stdin\n$(grep . $file)" | sort | uniq -c | sort -bnr | sed -e 's/.*[0-9]\+ //' | dmenu $@)
 
 echo "$sel" >> "$file"
 echo "$sel"
