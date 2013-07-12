@@ -128,4 +128,4 @@ EOF
 " passkeys.  on matching websites send keys directly to dom
 set passkeys+=google.com/reader:j,k,v,?,<SPACE>
 set passkeys+=theoldreader.com:j,k,l,f,<SPACE>
-set passkeys+=cloud.feedly.com:j,k,v,s,?,<SPACE>
+set passkeys+=cloud.feedly.com:A,j,k,v,s,?,<SPACE>

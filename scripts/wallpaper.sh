@@ -2,4 +2,4 @@
 
 # wallpaper switcher
 
-feh --bg-tile "$( find ~/.wallpaper/ | shuf -n1 )"
+feh --bg-fill --no-xinerama "$( find ~/.wallpaper/ | shuf -n1 )"
