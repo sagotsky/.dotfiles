@@ -19,7 +19,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.Grid  
 --import XMonad.Layout.Magnifier
---import XMonad.Layout.Circle
+import XMonad.Layout.Circle
 --import XMonad.Layout.ResizableTile
 --import XMonad.Layout.Spiral
 import XMonad.Layout.IM
@@ -54,7 +54,7 @@ myShowWName = showWName' defaultSWNConfig
 	}
 
 myLayout =   -- ewmhDesktopsLayout
-            --onWorkspace "music-2" wide $
+            onWorkspace "music-2" Circle $
             avoidStruts
            ( smartBorders
            ( tall ||| wide ||| Grid |||  Full ))
@@ -109,7 +109,7 @@ main = do
              ,modMask = myModMask
              ,workspaces = myWorkspaces
              ,normalBorderColor = myNormalBorderColor
-             ,focusedBorderColor = myFocusedBorderColor
+             ,focusedBorderColor = "#aaaaaa" -- myFocusedBorderColor
 --             ,urgentBorderColor = myUrgentBorderColor
              --,keys = myKeys
                      
@@ -159,6 +159,8 @@ myKeys = [
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-S-g",            spawn "fmarks.sh -a") -- open FF history in current browser 
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
+    , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ~/.dmenu-ssh -l 10 -i -m 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) xterm -e 'ssh $HOST' ")  
+
 
     -- music
     , ("<XF86AudioPlay>",        spawn "music-client.sh toggle") --vol up
