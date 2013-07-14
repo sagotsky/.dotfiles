@@ -1,14 +1,16 @@
 #!/bin/sh
 
 file=$1
+histdir="$HOME/.dmenu-hist/"
+bucket="$histdir/$file"
 shift
 
-if [ ! -f "$file" ] ; then
-  touch "$file"
-fi
+if [ ! -d "$histdir" ] ; then mkdir "$histdir" ; fi
+
+if [ ! -f "$bucket" ] ; then touch "$bucket" ; fi
 
 IFS=$'\n' stdin="$(cat)"
-sel=$(echo -e "$stdin\n$(grep . $file)" | sort | uniq -c | sort -bnr | sed -e 's/.*[0-9]\+ //' | dmenu $@)
+sel=$(echo -e "$stdin\n$(grep . $bucket)" | sort | uniq -c | sort -bnr | sed -e 's/.*[0-9]\+ //' | dmenu $@)
 
-echo "$sel" >> "$file"
+echo "$sel" >> "$bucket"
 echo "$sel"
