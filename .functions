@@ -54,6 +54,7 @@ function pack() {
 	   case $DEST in 
 		*.tar.bz2)		tar -cvjf $DEST "$@" ;;  
 		*.tar.gz)		tar -cvzf $DEST "$@" ;;  
+		*.tgz)  		tar -cvzf $DEST "$@" ;;  
 		*.zip)			zip -r $DEST "$@" ;;
 		*.xpi)			zip -r $DEST "$@" ;;
         *.7z)           7z a $DEST "$@" ;;
