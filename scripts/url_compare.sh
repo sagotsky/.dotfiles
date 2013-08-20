@@ -3,6 +3,7 @@
 PROD_BASE=$1
 DEV_BASE=$2
 DIR=$3
+WIDTH=500
 
 export PHANTOMJS_HOME='/usr/share/doc/phantomjs/'
 
@@ -16,7 +17,12 @@ done
 function url_to_image() {
   url=$1
   file=$2
+  resize=$3
   phantomjs $PHANTOMJS_HOME/examples/rasterize.js $url $file
+
+  if [[ "$resize" != '' ]] ; then
+    convert $file -resize ${resize}x\> $file
+  fi
 }
 
 while read url ; do
@@ -28,11 +34,17 @@ while read url ; do
   DEV_FILE="$DIR/${sub}/dev.png"
   PROD_URL="${PROD_BASE}/${url}"
   DEV_URL="${DEV_BASE}/${url}"
+  STATS_FILE="$DIR/$sub/stats.txt"
 
-  url_to_image "$PROD_URL" "$PROD_FILE"
-  url_to_image "$DEV_URL" "$DEV_FILE"
+  url_to_image "$PROD_URL" "$PROD_FILE" $WIDTH
+  url_to_image "$DEV_URL" "$DEV_FILE" $WIDTH
 
-  compare -metric MAE -compose Src "$PROD_FILE" "$DEV_FILE" "$DIR/$sub/diff.png" 2> "$DIR/$sub/stats.txt"
+  metric=$(compare -metric MAE -compose Src "$PROD_FILE" "$DEV_FILE" "$DIR/$sub/diff.png" 2>&1 | cut -f 1 -d' ') 
+  echo "metric=$metric" > $STATS_FILE
+  echo "dev=$DEV_URL" >> $STATS_FILE
+  echo "prod=$PROD_URL" >> $STATS_FILE
+
+
 done
 
 # this just accepts urls and outputs two files, then their diff.  diff stats into some statistics file (if missing, know that regen is needed)
