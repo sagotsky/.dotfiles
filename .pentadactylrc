@@ -102,16 +102,16 @@ EOF
 autocmd LocationChange docs.google.com :normal! <C-z>
 
 " slow-it.  puts a delay in front of reddit.  or will when it's wroking
-autocmd! DOMLoad 'https?://www.reddit.com/*'  -js <<EOF
-  var title = doc.title;
-  var restore = function() { 
-    doc.body.style.display = 'inline';
-    doc.title = title;
-    }
-  doc.body.style.display = 'none';
-  doc.title = 'Patience is a virtue';
-  content.window.setTimeout(restore, 5000);
-EOF
+"autocmd! DOMLoad 'https?://www.reddit.com/*'  -js <<EOF
+  "var title = doc.title;
+  "var restore = function() { 
+    "doc.body.style.display = 'inline';
+    "doc.title = title;
+    "}
+  "doc.body.style.display = 'none';
+  "doc.title = 'Patience is a virtue';
+  "content.window.setTimeout(restore, 5000);
+"EOF
 
 " move the RSS icon from the now-hidden location bar to the status bar instead
 javascript <<EOF
