@@ -27,6 +27,8 @@ header 2
 
 [Link Text](http://example.com)
 
+![image or screenshot](http://imgur.com/12309871298037129837.png)
+
 - [ ] unchecked checklist item
 - [x] checked checklist item
 

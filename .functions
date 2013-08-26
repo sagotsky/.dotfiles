@@ -54,6 +54,7 @@ function pack() {
 	   case $DEST in 
 		*.tar.bz2)		tar -cvjf $DEST "$@" ;;  
 		*.tar.gz)		tar -cvzf $DEST "$@" ;;  
+		*.tgz)  		tar -cvzf $DEST "$@" ;;  
 		*.zip)			zip -r $DEST "$@" ;;
 		*.xpi)			zip -r $DEST "$@" ;;
         *.7z)           7z a $DEST "$@" ;;
@@ -306,3 +307,14 @@ function dmenu_has() {
   match="\[$@ "
   [ "$(dmenu -h 2>&1 > /dev/null | grep -- $match)" != '' ]
 }
+
+# color print
+function black()   { echo -en "\e[0;30m$@\e[0m"; }
+function red()     { echo -en "\e[0;31m$@\e[0m"; }
+function green()   { echo -en "\e[0;32m$@\e[0m"; }
+function yellow()  { echo -en "\e[0;33m$@\e[0m"; }
+function blue()    { echo -en "\e[0;34m$@\e[0m"; }
+function magenta() { echo -en "\e[0;35m$@\e[0m"; }
+function cyan()    { echo -en "\e[0;36m$@\e[0m"; }
+function white()   { echo -en "\e[0;97m$@\e[0m"; }
+

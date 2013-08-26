@@ -2,7 +2,7 @@
 
 # watch a git dir.  echo its branch
 
-DIR=/var/www/scholar7/profiles/openscholar/.git
+DIR=/var/www/openscholar/.git
 
 echo ' '
 git --git-dir=$DIR branch | grep '\*' | cut -f 2 -d' '
