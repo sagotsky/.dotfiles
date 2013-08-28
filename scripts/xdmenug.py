@@ -10,7 +10,7 @@
 from xdg.Menu import parse, Menu, MenuEntry
 import subprocess
 
-dmenu_opts = '-b -i -l 20 -fn -*-terminus-bold-r-*-*-16 -nf #aaa -nb #000 -sb #aaa -sb #210' #make this an arg later
+dmenu_opts = '-b -i -l 20 -fn -*-terminus-bold-r-*-*-16 -nf #fff -nb #000 -sf #f00 -sb #300' #make this an arg later
 dmenu = 'dmenu ' + dmenu_opts.strip()
 dmenu = dmenu.split(' ')
 

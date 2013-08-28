@@ -12,7 +12,7 @@ function getWinTitle() {
 }
 
 DMENU_OPTS='-l 20 -i -b -fn -*-terminus-bold-r-*-*-12 -sb "#000" -sf "#fff" -nb "#000" -nf "#888"'
-. ~/.functions ; dmenu_has -m && DMENU_OPTS="$DMENU_OPTS -m 0"
+. ~/.functions ; dmenu_has -s && DMENU_OPTS="$DMENU_OPTS -s 0"
 
 browser=$($basepath/active_window.sh)
 url=$($basepath/fmarks.rb "$DMENU_OPTS" "$@")
