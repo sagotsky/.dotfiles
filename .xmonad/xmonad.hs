@@ -13,6 +13,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
+-- import XMonad.Layout.Spacing
 import XMonad.Layout.Named
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -152,12 +153,11 @@ main = do
 
 myKeys = [ 
     -- application shortcuts
-	  ("<XF86HomePage>",   spawn "nautilus --no-desktop") --home browser
+	  ("<XF86HomePage>",   spawn "thunar") --home browser
 	, ("<XF86Favorites>",  spawn "~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Mail>",       spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
-    , ("M-S-g",            spawn "fmarks.sh -a") -- open FF history in current browser 
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
     , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ~/.dmenu-ssh -l 10 -i -m 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) xterm -e 'ssh $HOST' ")  
 

@@ -11,11 +11,11 @@ function getWinTitle() {
     xprop -id $(getWinID) | grep "WM_CLASS(STRING)" | sed -e 's/.*= "\([^"]*\)".*/\1/'
 }
 
-DMENU_OPTS='-l 20 -i -b -fn -*-terminus-bold-r-*-*-16 -sb "#4a525a" -sf "#fe4" -nb "#3a424a" -nf "#fff"'
+DMENU_OPTS='-l 20 -i -b -fn -*-terminus-bold-r-*-*-12 -sb "#000" -sf "#fff" -nb "#000" -nf "#888"'
 . ~/.functions ; dmenu_has -m && DMENU_OPTS="$DMENU_OPTS -m 0"
 
 browser=$($basepath/active_window.sh)
-url=$($basepath/fmarks.pl -d "$DMENU_OPTS" "$@")
+url=$($basepath/fmarks.rb "$DMENU_OPTS" "$@")
 
 if [ "$url" != '' ] ; then
   case $browser in
