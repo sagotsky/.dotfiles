@@ -21,10 +21,17 @@ SQL
 rows.each do |row|
   case row['type']
   when 1
-    # Folder
-  when 2
     # Link
+    p "<a href='#{row['url']}'>#{row['title']}</a>"
+  when 2
+    # Folder
+    p row['title'] + '/'
   when 3
+    p '<hr>'
     # Separator
-  p row['title']
+  else
+    p 'unknown type'
+  end
 end
+
+
