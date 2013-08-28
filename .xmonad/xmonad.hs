@@ -159,7 +159,7 @@ myKeys = [
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
-    , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ~/.dmenu-ssh -l 10 -i -m 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) xterm -e 'ssh $HOST' ")  
+    , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -m 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
 
 
     -- music
