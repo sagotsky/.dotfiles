@@ -159,7 +159,7 @@ myKeys = [
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
-    , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -m 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
+    , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
 
 
     -- music
@@ -190,7 +190,7 @@ myKeys = [
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
     -- WM Shortcuts  
-    , ("M-x",   spawn "dmenu_run -b -i -m 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
+    , ("M-x",   spawn "dmenu_run -b -i -s 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
     , ("M-S-x", spawn "exec $(xdmenug.py)") -- xdg-menu launch
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
