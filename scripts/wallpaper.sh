@@ -1,5 +1,7 @@
 #!/bin/sh
 
 # wallpaper switcher
+IMG=$( find ~/.wallpaper/ | shuf -n1 )
+feh --bg-fill --no-xinerama "$IMG"
 
-feh --bg-fill --no-xinerama "$( find ~/.wallpaper/ | shuf -n1 )"
+notify-send mod-b "$IMG" &
