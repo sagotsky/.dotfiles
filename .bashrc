@@ -4,7 +4,7 @@ export PATH="$HOME/scripts/:$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/
 export EDITOR='vim'
 export CVS_RSH='ssh'
 export PAGER='less'
-export LESS='-R -j2'  # color for less, search results show on second line.
+export LESS='-R -j4 -i'  # color for less, search results show on second line, case insensitive
 export VIMRUNTIME=$(find /usr/share/vim/vim* -maxdepth 0 -type d | sort -r | head -n 1)
 export GREP_OPTIONS='--color=auto'
 
