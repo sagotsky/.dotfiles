@@ -1,4 +1,4 @@
-export PATH="$HOME/scripts/::$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:~/.cabal/bin/:$PATH"
+export PATH="$HOME/scripts/:$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:$PATH"
 
 ## Nice defaults
 export EDITOR='vim'
