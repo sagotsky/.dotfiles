@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 # uses dmenu for selecting from xdg-menu entries
 #
