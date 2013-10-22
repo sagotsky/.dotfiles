@@ -45,6 +45,7 @@ unrar
 unzip
 vim
 wget
+xdotool
 xsel
 xtermcontrol
 zlib1g-dev

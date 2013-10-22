@@ -153,7 +153,7 @@ main = do
 
 myKeys = [ 
     -- application shortcuts
-	  ("<XF86HomePage>",   spawn "thunar") --home browser
+	  ("<XF86HomePage>",   spawn "nautilus") --home browser
 	, ("<XF86Favorites>",  spawn "~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Mail>",       spawn "active_win_man.sh") -- manpage for active win
 	, ("<XF86Calculator>", spawn "gnome-calculator") --calc
@@ -203,11 +203,25 @@ myKeys = [
     , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
     , ("M-0",   windows $ W.greedyView "0")  -- workspace 0
     , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
+    , ("M-;",   spawn "cheese.sh") -- center mouse on active window
 
     -- misc scripts
     , ("M-y",   spawn "cli-board.sh") -- copies text into clip board
     , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
 	]
+
+    {-
+     -- available keys
+     
+     , ("M-a",  spawn "")
+     , ("M-c",  spawn "")
+     , ("M-f",  spawn "")
+     , ("M-i",  spawn "")
+     , ("M-v",  spawn "")
+     , ("M-z",  spawn "")
+    -}
+     
+
 
 
 myXPConfig = defaultXPConfig 
