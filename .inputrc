@@ -1,1 +1,21 @@
 "\e[Z": alias-expand-line
+
+"\C-ga": "git add "
+"\C-gb": "git branch "
+"\C-gc": "git checkout "
+"\C-gC": "git commit "
+"\C-gd": "git diff "
+"\C-gg": "git grep "
+"\C-gi": "git init "
+"\C-gf": "git fetch "
+"\C-gl": "git log "
+"\C-gm": "git mv "
+"\C-gM": "git merge "
+"\C-gp": "git pull "
+"\C-gP": "git push "
+"\C-gr": "git rm "
+"\C-gR": "git reset "
+"\C-gs": "git status -sb "
+"\C-gS": "git show "
+
+
