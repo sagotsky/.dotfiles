@@ -18,4 +18,10 @@
 "\C-gs": "git status -sb "
 "\C-gS": "git show "
 
-
+# \e = alt
+"\eo3": "drush @scholar7-3 "
+"\eo1": "drush @scholar7-1 "
+"\eo2": "drush @scholar7-2 "
+"\eop": "drush @prod-projects-local "
+"\eos": "drush @prod-scholar-local "
+"\eoh": "drush @prod-hwpi-local "

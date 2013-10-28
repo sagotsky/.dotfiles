@@ -8,7 +8,7 @@
 
 function jiggle {
   eval $(xdotool getmouselocation --shell)
-  for n in `seq 40 -2 1` ; do
+  for n in `seq 40 -3 1` ; do
     # we jigglin'?
     if [[ "$n" -gt 0 ]] ; then
       # we jiggling!
