@@ -75,49 +75,18 @@ ps1color() {
 }
 
 function gitprompt() {
-branch=$( git branch 2>/dev/null | grep '*' | tr -d ' *')
-# check status.  diff color if dirty?
-if [[ $branch != "" ]] ; then
-  url=$(git config --get remote.origin.url)
-  color='0;33m' # changed yellow
-  git diff --quiet && [ $(git ls-files --others --exclude-standard | wc -l) -eq 0 ] && \
-    color="0;36m" # clean blue
-
-  white='0;39m'
-  echo "\n$url<\[\033[$color\]$branch\[\e[$white\]>"
-fi
+  branch=$( git branch 2>/dev/null | grep '*' | tr -d ' *')
+  # check status.  diff color if dirty?
+  if [[ $branch != "" ]] ; then
+    url=$(git config --get remote.origin.url)
+    color='0;33m' # changed yellow
+    git diff --quiet && [ $(git ls-files --others --exclude-standard | wc -l) -eq 0 ] && \
+      color="0;36m" # clean blue
+  
+    white='0;39m'
+    echo "\n$url<\[\033[$color\]$branch\[\e[$white\]>"
+  fi
 }
-
-#prints interesting errors above my prompt.
-#df is apparently too slow to be worthwhile.  needs further research
-#maybe other alerts can be added instead?
-#show_errors() {
-#space_on_root=$( df -h / | tail -n 1 | tr -s ' ' | tr -d '%' | cut -d' ' -f 5 )
-#if [ $space_on_root -gt 95 ] ; then echo "$space_on_root\n" ; fi
-#}
-
-# writes to file the current disk usage on / if it is greater than a threshold RE
-#function diskspace() {
-#FILE=$1
-#if [ ! -f $FILE ] ; then 
-#touch $FILE
-## could update it too, but that'll happen automatically later
-#fi
-#if [ $( age $FILE ) -gt 300 ] ; then
-#DF=$(  df -h / | awk '{ print $5 }' | tail -n 1 )
-#RE="9.%"
-#if [[ $DF =~ $RE ]] ; then
-#echo "$DF disk usage on / \n" > $FILE
-#else 
-#echo "" > $FILE
-#fi
-#fi
-#}
-
-#function alerts() {
-#diskspace "$HOME/.bash_alert-diskspace"
-#echo "\[\e[37;41m\]$( cat $_ )\[\e[$DEFAULT\]"
-#}
 
 ## Prompt w/ date, screen session, color if root, deb chroot
 MYPROMPT='<\T> \u@\h$SSN${debian_chroot:+.$debian_chroot}:\w'
@@ -153,18 +122,6 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
     fi ; 
   done
 fi
-
-# recolor terminal if xtermcontrol config file is present.  see .bash_logout for uncoloring.
-if [ $(which xtermcontrol) -a -f "$HOME/.xtermcontrol.bashrc" -a "$TERM" == 'xterm' ] ; then
-  export XTERMCONTROL_BG=$(xtermcontrol --get-bg)
-  export XTERMCONTROL_FG=$(xtermcontrol --get-fg)
-  xtermcontrol --file="$HOME/.xtermcontrol.bashrc"
-fi
-
-# shortcut to ssh to hostname of anything named in .ssh/config
-#for host in $(grep '^host \w' .ssh/config | cut -f2 -d' ') ; do 
-  #alias $host="ssh $host" 
-#done
 
 ## long bash hist, append (not overwrite)
 export HISTFILESIZE=50000

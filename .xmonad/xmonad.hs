@@ -191,7 +191,7 @@ myKeys = [
 
     -- WM Shortcuts  
     , ("M-x",   spawn "dmenu_run -b -i -s 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
-    , ("M-S-x", spawn "exec $(xdmenug.py)") -- xdg-menu launch
+    , ("M-S-x", spawn "$(xdmenug.py)") -- xdg-menu launch
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
     , ("M-d",   removeWorkspace ) -- Delete active workspace
