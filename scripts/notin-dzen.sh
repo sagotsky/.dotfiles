@@ -10,10 +10,10 @@ function _Rhythmbox() {
   rhythmbox-client  --print-playing-format '%aa - %tt' > ~/.music.out &
 }
 
-function _NuvolaPlayer() {
-  echo "$@"
-  return 1
-}
+#function _NuvolaPlayer() {
+#  echo "$@"
+#  return 1
+#}
 
 function _Nuvola() {
 # app is fetched wrong...
@@ -26,8 +26,8 @@ function _Nuvola() {
 C_PROGRAM='darkgoldenrod'
 C_ITALICS='khaki'
 
-TIME=3
-DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn 6x12 -p $TIME -u "
+TIME=5
+DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn termsyn-8 -p $TIME -u "
 
 function height() {
   xwininfo -root |\
@@ -45,8 +45,10 @@ function format() {
     sed -e 's/<\/i>/^fg()/g' 
 }
 
-killall notification-daemon &> /dev/null
-killall notify-osd  &> /dev/null
+for daemon in `echo notification-daemon notify-osd notin.py` ; do
+  killall daemon &> /dev/null
+done
+
 
 #notin.py | while read line ; do
 notin.py | while read line ; do
