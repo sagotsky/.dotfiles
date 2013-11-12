@@ -45,7 +45,7 @@ function format() {
     sed -e 's/<\/i>/^fg()/g' 
 }
 
-for daemon in `echo notification-daemon notify-osd notin.py` ; do
+for daemon in notification-daemon notify-osd notin.py ; do
   killall daemon &> /dev/null
 done
 
