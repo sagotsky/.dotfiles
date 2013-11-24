@@ -7,6 +7,7 @@
 # instead of a file with your password.  
 
 while [ -f ~/.gmail-cookies.txt ] ; do
+  chmod 400 ~/.gmail-cookies.txt
   CURL=$(curl -s -b ~/.gmail-cookies.txt  https://mail.google.com/mail/feed/atom/)
   ERROR=$(echo $CURL | grep '<HTML>')
 
