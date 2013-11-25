@@ -11,6 +11,7 @@ while [ -f ~/.gmail-cookies.txt ] ; do
   chmod 400 ~/.gmail-cookies.txt
   CURL=$(curl -s -b ~/.gmail-cookies.txt  https://mail.google.com/mail/feed/atom/)
   ERROR=$(echo $CURL | grep '<HTML>')
+  MSG=''
 
   if [[ $ERROR != '' ]] ; then
     MSG='[?]';
@@ -23,5 +24,5 @@ while [ -f ~/.gmail-cookies.txt ] ; do
   fi
 
   echo $MSG
-  sleep 15m
+  sleep 1m
 done
