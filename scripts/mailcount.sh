@@ -11,6 +11,9 @@ for pid in $(pidof -x mailcount.sh) ; do
   fi
 done
 
+# kill leftover inotifywaits
+ps ax | grep 'inotifywait.*unread-counts' | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill
+
 COUNT=0
 FILES=$(find ~/.thunderbird -name 'unread-counts')
 
@@ -21,7 +24,8 @@ while FILE=$(inotifywait -q $FILES -e ACCESS -e CLOSE_WRITE) ; do
     cut -f1 -d: |\
     numsum | while read num ; do
       if [ $num -gt 0 ] ; then
-        echo " [$num]"
+        #echo " [$num]"
+        echo ' •'
       else 
         echo ''
       fi
