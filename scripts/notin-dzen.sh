@@ -52,14 +52,18 @@ function format() {
     sed -e 's/<\/i>/^fg()/g' 
 }
 
+# kill other daemons
 for daemon in notification-daemon notify-osd notin.py  ; do
   killall -9 $daemon &> /dev/null
 done
 
+# there can be only one
+pidof -x $0 | sed -e "s/$$//" | xargs kill &>/dev/null
+
 notin.py | while read line ; do
   if [[ "$line" ]] ; then
     line=$(echo $line | sed -e 's/\[notify-send\] \(.*\):/[\1]:/')
-    app=$(echo $line | sed -e 's/\[\(.*\)\].*/\1/' | tr -d ' ' | tr [:upper:] [:lower:]  )
+    app=$(echo $line | sed -e 's/\[\([a-zA-Z0-9 ]*\)\].*/\1/' | tr -d ' ' | tr [:upper:] [:lower:]  )
     func="_$app"
 
     if [[ $(type -t $func) == 'function' ]] ; then
