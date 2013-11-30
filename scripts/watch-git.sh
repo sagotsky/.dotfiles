@@ -4,8 +4,10 @@
 
 DIR=/var/www/openscholar/.git
 
-echo ' '
-git --git-dir=$DIR branch | grep '\*' | cut -f 2 -d' '
+# kill leftover inotifywaits
+ps ax | grep "inotifywait.*$DIR" | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill
+
+echo ' ' git --git-dir=$DIR branch | grep '\*' | cut -f 2 -d' '
 
 while [ $? -eq 0 ] && [ -x /usr/bin/inotifywait ] ; do
   inotifywait "$DIR/HEAD" -e MODIFY &> /dev/null

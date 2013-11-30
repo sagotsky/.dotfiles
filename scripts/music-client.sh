@@ -2,7 +2,7 @@
 
 # front end to whatever music player is currently playing
 
-APPS=('rhythmbox' 'nuvolaplayer')
+APPS=('rhythmbox' 'nuvolaplayer' 'cmus')
 CMDS=('volup' 'voldown' 'mute' 'play' 'back' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
 
 # add volup commands.  make them print status.  empty status if no playing.
@@ -19,6 +19,17 @@ global_commands() {
     volup) ~/scripts/vol-up.sh   ;;
     voldown)~/scripts/vol-down.sh;;
     mute) ~/scripts/vol-mute.sh;;
+  esac
+}
+
+cmus() {
+  case $1 in
+    play) cmus-remote -p   ;;
+    next) cmus-remote -n   ;;
+    back) cmus-remote -b   ;;
+    toggle | pause) cmus-remote -u ;;
+    status) cmus-remote -Q ;;
+    *) return 1
   esac
 }
 
