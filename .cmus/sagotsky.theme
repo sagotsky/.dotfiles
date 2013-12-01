@@ -1,0 +1,59 @@
+# Sagotsky's theme.  Structure borrowed from fishy's theme
+# Tested with font: droidsansmono-16
+
+# 233 -> 255 = black -> white
+# 94 = brownish orange
+
+##### Common User Interface Components ###############################
+# Default text color
+set color_win_fg=252
+
+# Overall background color
+# set color_win_bg=234   # why u no set?  xterm -bg "#1c1c1c" instead
+
+# Command-line colors
+set color_cmdline_bg=233
+set color_cmdline_fg=gray
+set color_error=red
+set color_info=gray
+set color_separator=darkgray
+
+# Bottom status line
+set color_statusline_bg=234
+set color_statusline_fg=250
+
+# Bottom title line
+set color_titleline_bg=235
+set color_titleline_fg=94
+
+# Top title area
+set color_win_title_bg=240
+set color_win_title_fg=white
+
+##### Playing File Colors ###############################
+# Unselected currently playing track's text
+set color_win_cur=white
+
+# Active selection for currently playing track
+set color_win_cur_sel_bg=235
+set color_win_cur_sel_fg=white
+
+# Inactive selection for currently playing track
+set color_win_inactive_cur_sel_bg=235
+set color_win_inactive_cur_sel_fg=white
+
+##### Non-Playing File Colors ###############################
+# Active selection
+set color_win_sel_bg=235
+set color_win_sel_fg=white
+
+# Inactive selection
+set color_win_inactive_sel_bg=black
+set color_win_inactive_sel_fg=white
+
+##### File Browser View Colors ###############################
+# Directory listing color
+set color_win_dir=254
+
+
+
