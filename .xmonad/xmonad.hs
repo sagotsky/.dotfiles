@@ -82,6 +82,7 @@ myManageHook =  composeAll
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
     , className =? "Firefox"                          --> doShift "web-1" 
     , className =? "Rhythmbox"                        --> doShift "music-2" 
+    , className =? "cmus"                             --> doShift "music-2" 
     , className =? "Thunderbird"                      --> doShift "email-3" 
     , className =? "Pidgin"                           --> doShift "chat-5" 
     , className =? "Skype"                            --> doShift "chat-5" 
@@ -90,10 +91,10 @@ myManageHook =  composeAll
     , className =? "Zend Studio"                      --> doShift "ide-6" 
     , className =? "Sublime_text"                     --> doShift "ide-6" 
 
-    , className =? "URxvt"                            --> doFullFloat
     , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
-    , className =? "Exe"                              --> doFullFloat
-    , className =? "<unknown>"                        --> doFullFloat -- fullscreen flash
+    , className =? "Exe"                              --> doFullFloat -- chrome flash
+    , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
+    --, className =? "<unknown>"                        --> doFullFloat -- fullscreen flash
     , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
     , className  =? "Unity-2d-panel"                  --> doIgnore
     , className  =? "Unity-2d-launcher"               --> doIgnore
@@ -193,6 +194,8 @@ myKeys = [
     , ("M-x",   spawn "dmenu_run -b -i -s 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
     , ("M-S-x", spawn "$(xdmenug.py)") -- xdg-menu launch
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
+    , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
+    , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
     , ("M-d",   removeWorkspace ) -- Delete active workspace
     , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
