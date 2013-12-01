@@ -2,7 +2,7 @@
 # Tested with font: droidsansmono-16
 
 # 233 -> 255 = black -> white
-# 94 = brownish orange (still not sold on this color)
+# 214 -> light orange
 
 ##### Common User Interface Components ###############################
 # Default text color
@@ -16,7 +16,7 @@ set color_cmdline_bg=233
 set color_cmdline_fg=gray
 set color_error=red
 set color_info=gray
-set color_separator=darkgray
+set color_separator=238
 
 # Bottom status line
 set color_statusline_bg=234
@@ -24,7 +24,7 @@ set color_statusline_fg=250
 
 # Bottom title line
 set color_titleline_bg=235
-set color_titleline_fg=94
+set color_titleline_fg=214
 
 # Top title area
 set color_win_title_bg=240
@@ -32,14 +32,14 @@ set color_win_title_fg=white
 
 ##### Playing File Colors ###############################
 # Unselected currently playing track's text
-set color_win_cur=white
+set color_win_cur=214
 
 # Active selection for currently playing track
 set color_win_cur_sel_bg=235
 set color_win_cur_sel_fg=white
 
 # Inactive selection for currently playing track
-set color_win_inactive_cur_sel_bg=235
+set color_win_inactive_cur_sel_bg=234
 set color_win_inactive_cur_sel_fg=white
 
 ##### Non-Playing File Colors ###############################
@@ -48,8 +48,8 @@ set color_win_sel_bg=235
 set color_win_sel_fg=white
 
 # Inactive selection
-set color_win_inactive_sel_bg=black
-set color_win_inactive_sel_fg=white
+set color_win_inactive_sel_bg=234
+set color_win_inactive_sel_fg=253
 
 ##### File Browser View Colors ###############################
 # Directory listing color
