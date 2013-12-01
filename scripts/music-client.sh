@@ -26,7 +26,7 @@ cmus() {
   case $1 in
     play) cmus-remote -p   ;;
     next) cmus-remote -n   ;;
-    back) cmus-remote -b   ;;
+    back) cmus-remote -r   ;;
     toggle | pause) cmus-remote -u ;;
     status) cmus-remote -Q ;;
     *) return 1
