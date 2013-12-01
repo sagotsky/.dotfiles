@@ -11,5 +11,7 @@ scripts/local/*
 *.pyc
 *.sublime-project
 *.sublime-workspace
+.cmus/*
+!.cmus/*.theme
 
 
