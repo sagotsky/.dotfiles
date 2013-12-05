@@ -21,18 +21,21 @@ function _cmus() {
 
 # show chat differently
 function _pidgin() {
-  DZEN_OPTS=" -bg linen -fg black -xs 1 -ta l -fn termsyn-8 -p 5 -u "
+# iff pidgin is not active window!
+  DZEN_OPTS=" -bg linen -fg black -xs 1 -ta l -fn inconsolata-16 -p 5 -u "
   echo $@ |
     sed -e "s/^\[\(.*\)\]/^fg(darkgoldenrod)\[\1\]^fg()/" |
     sed -e "s/<i>/^fg(khaki)/g" |
     sed -e 's/<\/i>/^fg()/g' |
-    dzen2 $DZEN_OPTS &
+    dzen2 $DZEN_OPTS
+
+  dzen-clear.sh
 }
 
 #colors
 C_PROGRAM='darkgoldenrod'
 C_ITALICS='khaki'
-TIME=5
+TIME=4
 DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn termsyn-8 -p $TIME -u "
 [[ "$1" == '-d' ]] && DEBUG=1
 
