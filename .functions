@@ -262,14 +262,8 @@ function do_git() {
   git clone ssh://jsagotsky@git.drupal.org/project/$1.git
 }
 
-function highlight() {
-  match="\("
-  for token in "$@" ; do 
-    match="${match}\|.*${token}.*"
-  done
-  match="$match\)"
-
-  grep --color=always $match
+function hl() {
+  sed -e "s/$@/$(yellow $@)/g"
 }
 
 function assert_ssh_agent() {
@@ -306,6 +300,16 @@ fi
 function dmenu_has() {
   match="\[$@ "
   [ "$(dmenu -h 2>&1 > /dev/null | grep -- $match)" != '' ]
+}
+
+function sls() {
+  #lets try to recreate super ls with find
+  if [[ "$#" == 0 || "$1" == '-h' ]] ; then
+    echo 'sls - Use with man finds printf operators'
+    return 1
+  fi
+
+  find ./ -maxdepth 1 -printf "$@\n"
 }
 
 # color print
