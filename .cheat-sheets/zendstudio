@@ -1,0 +1,15 @@
+Jump to
+  File        C-S-r
+  Method      C-S-m
+  Class       C-S-t
+  Editor      C-S-e
+
+List shortcuts    C-S-l
+Outline           C-o
+
+Window
+  Maximize    C-m
+
+
+Debug
+  Toggle Breakpoint   C-S-b
