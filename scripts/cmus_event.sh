@@ -11,4 +11,8 @@ for tag in artist album title date genre tracknumber albumartist ; do
   META[$tag]=$(echo "$STATE" | grep "^tag $tag" | cut -d' ' -f 3- )
 done
 
-notify-send [cmus] "$PRE${META[artist]} - ${META[title]}"
+notify-send cmus "$PRE${META[artist]} - ${META[title]}" &
+
+# focus follows song
+
+cmus-remote -C win-sel-cur
