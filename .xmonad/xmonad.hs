@@ -175,9 +175,12 @@ myKeys = [
 	, ("<XF86LaunchC>",          spawn "music-client.sh rate3") -- rate 1-5
 	, ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
 	, ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
-    , ("M-m",   spawn "rb-jump.sh") -- dmenu for jumping rhythmbox songs
-    , ("M-S-m", spawn "rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
-    , ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
+    --, ("M-m",   spawn "rb-jump.sh") -- dmenu for jumping rhythmbox songs
+    --, ("M-S-m", spawn "rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
+    --, ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
+    , ("M-m", spawn "cmus-filter.sh") -- cmus play song
+    , ("M-S-m", spawn "cmus-filter.sh -l album") -- cmus play album
+    , ("M-C-m", spawn "cmus-filter.sh -r -l album") -- cmus random album
 
     -- transparency
     , ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
