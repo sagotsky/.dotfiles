@@ -45,5 +45,5 @@ if [[ "$LINK" != "" ]] ; then
 fi
 
 # also make a color palette from the new wallpaper
-which image_to_palette.sh && image_to_palette.sh $LINK > $DIR/.palette.txt
+[[ which image_to_palette.sh ]] && image_to_palette.sh $LINK > $DIR/.palette.txt
 
