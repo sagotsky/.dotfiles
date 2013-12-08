@@ -1,0 +1,22 @@
+Declaring
+=========
+
+name[index]=value
+Unix[0]='Debian'
+Unix[1]='Red hat'
+declare -a arrayname=(element1 element2 element3)
+
+declare -A aa
+aa[hello]=world
+aa[ab]=cd
+
+declare -A aa
+aa=([hello]=world [ab]=cd)
+
+
+Looping
+=======
+
+for val in "${Unix[@]}" ; do
+
+for key in "${!Unix[@]}" ; do

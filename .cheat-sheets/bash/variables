@@ -1,0 +1,12 @@
+# things that are kinda like ternary operators
+PORT="${PORT:-8080}" # returns $PORT if set, or defaults to returning 8080
+${var:=default} # as above, but also sets var
+${var:?message} # Use var or die with msg
+
+# Var regexes
+VAR="MyString"
+VAR=${VAR/My/Your} //replace first
+VAR=${VAR//My/Your // replace all.  /g
+
+# length
+echo ${#var}
