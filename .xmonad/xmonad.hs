@@ -78,6 +78,7 @@ myManageHook =  composeAll
     , className =? "Gnome-calculator"                 --> doFloat
     , className =? "doukutsu"                         --> doFloat
     , resource  =? "Do"                               --> doIgnore
+    , resource  =? "feh"                              --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
     , className =? "Firefox"                          --> doShift "web-1" 
@@ -175,12 +176,11 @@ myKeys = [
 	, ("<XF86LaunchC>",          spawn "music-client.sh rate3") -- rate 1-5
 	, ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
 	, ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
-    --, ("M-m",   spawn "rb-jump.sh") -- dmenu for jumping rhythmbox songs
-    --, ("M-S-m", spawn "rb-jump.sh -e") -- dmenu for jumping rhythmbox songs, enqueue
-    --, ("M-C-m", spawn "rb-jump.sh -d") -- dmenu for jumping rhythmbox songs, eneuque dir
     , ("M-m", spawn "cmus-filter.sh") -- cmus play song
     , ("M-S-m", spawn "cmus-filter.sh -l album") -- cmus play album
     , ("M-C-m", spawn "cmus-filter.sh -r -l album") -- cmus random album
+    , ("M-M1-m", spawn "cmus-filter.sh -l artist") -- cmus artist (M1 = alt)
+    , ("M-M1-C-m", spawn "cmus-filter.sh -l artist -r ") -- cmus artist
 
     -- transparency
     , ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
