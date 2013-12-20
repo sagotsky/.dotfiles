@@ -19,11 +19,13 @@ cmus-remote -C win-sel-cur
 
 
 # folder.jpg display
-FILE=$(echo "$STATE" | grep file | cut -f 2- -d' ')
-JPG="${FILE%/*}/folder.jpg"
-WIDTH=$(xwininfo -root | grep Width | cut -f 2 -d:)
-[ -f "$JPG" ] && feh -x "$JPG" -g 200x200+$(( WIDTH/2 -210 ))+16 -B black 2>/dev/null & # get resolution instead of hard coding
-sleep 2 ; killall feh
+if [[ "$2" == 'playing' ]] ; then
+  FILE=$(echo "$STATE" | grep file | cut -f 2- -d' ')
+  JPG="${FILE%/*}/folder.jpg"
+  WIDTH=$(xwininfo -root | grep Width | cut -f 2 -d:)
+  [ -f "$JPG" ] && feh -x "$JPG" -g 200x200+$(( WIDTH/2 -210 ))+16 -B black 2>/dev/null & # get resolution instead of hard coding
+  sleep 2 ; killall feh
+fi
 
 # last.fm
 #[[ `which zomg` ]] && zomg "$(echo "$STATE" | grep '^file' | cut -f 2- -d' ' )"
