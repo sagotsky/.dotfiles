@@ -5,6 +5,7 @@
 
 [[ $2 == 'playing' ]] && PRE='' || PRE='■ '
 
+# notification
 declare -A META
 STATE=$(cmus-remote -Q)
 for tag in artist album title date genre tracknumber albumartist ; do
@@ -14,5 +15,14 @@ done
 notify-send cmus "$PRE${META[artist]} - ${META[title]}" &
 
 # focus follows song
-
 cmus-remote -C win-sel-cur
+
+
+# folder.jpg display
+FILE=$(echo "$STATE" | grep file | cut -f 2- -d' ')
+JPG="${FILE%/*}/folder.jpg"
+[ -f "$JPG" ] && feh -x "$JPG" -g 200x200+1050+16 -B black & # get resolution instead of hard coding
+sleep 2 ; killall feh
+
+# last.fm
+#[[ `which zomg` ]] && zomg "$(echo "$STATE" | grep '^file' | cut -f 2- -d' ' )"
