@@ -21,7 +21,8 @@ cmus-remote -C win-sel-cur
 # folder.jpg display
 FILE=$(echo "$STATE" | grep file | cut -f 2- -d' ')
 JPG="${FILE%/*}/folder.jpg"
-[ -f "$JPG" ] && feh -x "$JPG" -g 200x200+1050+16 -B black & # get resolution instead of hard coding
+WIDTH=$(xwininfo -root | grep Width | cut -f 2 -d:)
+[ -f "$JPG" ] && feh -x "$JPG" -g 200x200+$(( WIDTH/2 -210 ))+16 -B black 2>/dev/null & # get resolution instead of hard coding
 sleep 2 ; killall feh
 
 # last.fm
