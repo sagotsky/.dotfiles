@@ -27,13 +27,18 @@ case "$1" in
     done
     ;;
 
+  newest)
+    IMG=$(find .wallpaper/ -printf '%C@ %f\n' | sort | cut -f 2- -d' ' | tail -n 1)
+    IMG="$DIR/$IMG"
+    ;;
+
   current)
     IMG="$CURRENT"
     ;;
 
   *)
     if [[ $CURRENT == '' || "$1" != "new" && "$1" != 'old' ]] ; then
-      IMG=$( find "$DIR/" | shuf -n1 )
+      IMG=$( find "$DIR/" -type f | shuf -n1 )
     fi
     ;;
 esac
@@ -45,5 +50,5 @@ if [[ "$LINK" != "" ]] ; then
 fi
 
 # also make a color palette from the new wallpaper
-[[ which image_to_palette.sh ]] && image_to_palette.sh $LINK > $DIR/.palette.txt
+[[ `which image_to_palette.sh` ]] && image_to_palette.sh $LINK > $HOME/.palette.txt
 

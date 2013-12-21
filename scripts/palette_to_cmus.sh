@@ -6,7 +6,7 @@ COLORS="$(
   ( 
     while read COLOR ; do
       colortrans.py $COLOR
-    done < "$HOME/.wallpaper/.palette.txt" 
+    done < "$HOME/.palette.txt" 
   ) | cut -f 7 -d' ' |
   sort |
   uniq -c | 
