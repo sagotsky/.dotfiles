@@ -24,7 +24,11 @@ if [[ "$2" == 'playing' ]] ; then
   JPG="${FILE%/*}/folder.jpg"
   WIDTH=$(xwininfo -root | grep Width | cut -f 2 -d:)
   [ -f "$JPG" ] && feh -x "$JPG" -g 200x200+$(( WIDTH/2 -210 ))+16 -B black 2>/dev/null & # get resolution instead of hard coding
-  sleep 2 ; killall feh
+  ( sleep 2 ; killall feh ) &
+
+  # back it rxvt's background
+  echo $JPG
+  [[ -p '/tmp/background-urxvt' ]] && echo "$JPG" >> /tmp/background-urxvt && echo $JPG
 fi
 
 # last.fm
