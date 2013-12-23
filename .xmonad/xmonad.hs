@@ -55,13 +55,14 @@ myShowWName = showWName' defaultSWNConfig
 	}
 
 myLayout =   -- ewmhDesktopsLayout
-            onWorkspace "music-2" Circle $
+            onWorkspace "music-2" circle $
             avoidStruts
            ( smartBorders
-           ( tall ||| wide ||| Grid |||  Full ))
+           ( tall |||  Full ||| layoutHints Grid ||| circle ))
     where
       tall = Tall nmaster delta ratio
-      wide = avoidStruts $ named "Wide" (Mirror tall)
+      --wide = avoidStruts $ named "Wide" (Mirror tall)
+      circle = layoutHints Circle
       nmaster = 1
       delta = 3/100
       ratio = 1/2
