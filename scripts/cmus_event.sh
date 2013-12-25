@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 # Prints metadata from song on cmus events
 # To enable, in cmus use `:set status_display_program=/path/to/cmus_event.sh`
@@ -34,3 +34,5 @@ fi
 
 # last.fm
 [[ $(which scrobbler.pl) && "${META['position']}" -lt 1 ]] && scrobbler.pl $(cat $HOME/.scrobblerrc) -f "$FILE"
+
+true
