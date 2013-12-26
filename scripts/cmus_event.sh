@@ -33,6 +33,6 @@ if [[ "$2" == 'playing' ]] ; then
 fi
 
 # last.fm
-[[ $(which scrobbler.pl) && "${META['position']}" -lt 1 ]] && scrobbler.pl $(cat $HOME/.scrobblerrc) -f "$FILE"
+[[ $(which scrobbler.pl) && "${META['position']}" -lt 1 ]] && echo "$FILE" | scrobbler.pl $(cat $HOME/.scrobblerrc) 
 
 true

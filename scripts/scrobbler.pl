@@ -15,40 +15,39 @@ use Audio::Scrobbler;
 use MP3::Info;
 use Cwd qw(abs_path cwd);
 use Getopt::Long;
+use XML::Feed;
 
 binmode STDOUT, ":utf8";
 
 my $login;
 my $password;
-my $file;
 my $help        = 0;
+my $time        = 60;
 
 sub show_help
 {
-print <<HELP;
-Usage ./$0 -u <user> -p <password> -d <directory_or_file> [-t timeout] [-help]
-The script scrobbles random file from the directory (it may use a single file)
-with a specified interval.
--u <user>           - your login on las.fm
--p <password>       - your password on last.fm
--f <file>           - path to mp3 file
--h --help           - this text :>
-(c) Denis Usanov 2011
+  print <<HELP;
+  Usage ./$0 -u <user> -p <password> [-t time] [-help]
+  List of files provided by stdin will be sent to last.fm
+  -u <user>           - your login on last.fm
+  -p <password>       - your password on last.fm
+  -t <delay>          - Delay between requests.  Default: 60 seconds.
+  -h --help           - this text :>
+  (c) Denis Usanov 2011
 HELP
-    die("\n");
+  die("\n");
 }
 
-
 GetOptions(
-    'user=s'        => \$login,
-    'password=s'    => \$password,
-    'file=s'         => \$file,
-    'help'          => \$help,
+  'user=s'        => \$login,
+  'password=s'    => \$password,
+  'help'          => \$help,
+  't=i'           => \$time,
 ) or show_help;
 
-if ($help || !defined $login || !defined $password || !defined $file)
+if ($help || !defined $login || !defined $password )
 {
-    show_help();
+  show_help();
 }
 
 my $connect = new Audio::Scrobbler(
@@ -63,21 +62,25 @@ my $connect = new Audio::Scrobbler(
 
 my $ua = $connect->get_ua();
 my $hs = $connect->handshake() or next and print "Error while connecting to last.fm: ".$connect->err;
-    
 my $workdir = cwd();
-#my $mp3file = random_file($dir);
 chdir $workdir;
-my $tags = get_mp3tag($file) or die;
-my $info = get_mp3info($file) or die;
-my ($title, $artist, $album, $length) = ($tags->{TITLE}, $tags->{ARTIST}, $tags->{ALBUM}, $info->{MM}*60 + $info->{SS});
-        
-my $submit = $connect->submit(
-  {
-    title	=> $title,
-    artist	=> $artist,
-    album	=> $album,
-    length	=> $length,
-  }
-) or last and print "Error while submitting: ".$connect->err;
 
-print "'$artist - $title' has been scrobbled\n";
+foreach (<>) {
+  chomp;
+  my $tags = get_mp3tag("$_") or die;
+  my $info = get_mp3info("$_") or die;
+  my ($title, $artist, $album, $length) = ($tags->{TITLE}, $tags->{ARTIST}, $tags->{ALBUM}, $info->{MM}*60 + $info->{SS});
+
+  my $submit = $connect->submit(
+    {
+      title	=> $title,
+      artist	=> $artist,
+      album	=> $album,
+      length	=> $length,
+    }
+  ) or last and print "Error while submitting: ".$connect->err;
+
+  print "'$artist - $title' has been scrobbled\n";
+
+  sleep($time);
+}
