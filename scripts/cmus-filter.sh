@@ -36,7 +36,7 @@ SELECT="dmenu -i -l 20 -b -s 0"
 [[ "${args['--random']}" == 'true' ]] && SELECT="shuf -n 1" 
 
 # Get a song or dir and send it to cmus
-DIR=$(find $HOME/Music/ $FINDARGS | $FORMAT | sort | $SELECT )
+DIR=$(find "${args['--dir']}" $FINDARGS | $FORMAT | sort | $SELECT )
 if [[ "$DIR" != "" ]] ; then
   cmus-remote -C "live-filter ~f */$(echo $DIR | tr '()' '*')$CAP" # cmus treats parens as grouping.  
   cmus-remote -C "echo Playing: $DIR"
