@@ -25,7 +25,8 @@ else
   json = JSON.parse(open(url).read)
   all_albums = {}
   json['results'].each do |result|
-    if album.upcase.include? result['collectionName'].upcase
+
+    if album.upcase.include? URI::encode(result['collectionName'].upcase)
       dist =  Text::Levenshtein.distance(result['collectionName'], album)
       all_albums[dist] = result
     end
