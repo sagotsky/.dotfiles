@@ -10,3 +10,14 @@ VAR=${VAR//My/Your // replace all.  /g
 
 # length
 echo ${#var}
+
+# substring extraction
+${string:pos:len}
+
+# substring removal
+${string#sub}    # delete shortest from front
+${string##sub}   # delete longest from front
+${string%sub}    # delete shortest from back
+${string%%sub}   # delete longest from back
+
+

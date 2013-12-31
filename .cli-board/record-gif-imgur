@@ -126,4 +126,4 @@ if [ $? -eq 0 ] ; then
   fi
 fi
 
-kill $PID
+kill "$PID" 2> /dev/null
