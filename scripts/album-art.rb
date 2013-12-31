@@ -25,11 +25,16 @@ else
   json = JSON.parse(open(url).read)
   all_albums = {}
   json['results'].each do |result|
-    dist =  Text::Levenshtein.distance(result['collectionName'], album)
-    all_albums[dist] = result
+    if album.upcase.include? result['collectionName'].upcase
+      dist =  Text::Levenshtein.distance(result['collectionName'], album)
+      all_albums[dist] = result
+    end
   end
-  match = all_albums.keys.sort.first
-  files = [all_albums[match]['artworkUrl100']]
+
+  if all_albums.length > 0
+    match = all_albums.keys.sort.first
+    files = [all_albums[match]['artworkUrl100']]
+  end
 end
 
 
