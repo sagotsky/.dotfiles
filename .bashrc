@@ -43,7 +43,7 @@ fi
 #complete -cf sudo
 
 ## Adds hosts from .ssh/known_hosts to tab completion
-complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+complete -W "$(grep '^host \w' ~/.ssh/config | cut -f 2- -d ' ' | sort | uniq)" ssh
 
 ## variable colors (use sudo su -m to preserve colors)
 ## purple on prev command failure
