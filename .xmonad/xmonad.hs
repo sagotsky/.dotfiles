@@ -195,7 +195,7 @@ myKeys = [
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
     -- WM Shortcuts  
-    , ("M-x",   spawn "dmenu_run -b -i -s 0 -fn -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-* -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a'") -- $path launcher
+    , ("M-x",   spawn "dmenu_run -b -i -s 0 ") -- $path launcher
     , ("M-S-x", spawn "$(xdmenug.py)") -- xdg-menu launch
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
@@ -207,7 +207,7 @@ myKeys = [
     , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
     , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
     , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
-    , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ") -- show panel
+    , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ; dzen-clear.sh") -- show panel
     , ("M-0",   windows $ W.greedyView "0")  -- workspace 0
     , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
     , ("M-;",   spawn "cheese.sh") -- center mouse on active window

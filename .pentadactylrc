@@ -71,24 +71,8 @@ com goto-scholar7 -nargs=0  -description 'Visit page on scholar7.local' -js
   \ url = url.replace(/\/\/.*?\//, '//scholar7.local/')
   \ commands.execute(("tabopen ") + url )
 
-" testing using com command from commands.execute to add array of commands
-"javascript <<EOF
-"var urls = {
-  "scholar:'scholar.harvard.edu',
-  "test:'test.harvard.edu',
-"};
-"
-"for (var u in urls) {
-  "commands.execute(("com ") + 'alert-' + u + '-nargs = 0 -description \'goto\' -js
-    "\ alert(urls[u]);')
-"}
-"EOF
-
-
-" Redmine renamer strips openscholar project name leaving tix id and desc
-autocmd DOMLoad '^https://redmine.hmdc.harvard.edu/issues/.*' -js <<EOF
-  doc.title = doc.title.replace(/OpenScholar - \w+ /, '');
-EOF
+com save -nargs=0 -description 'Send to saved.io' -js
+  \ content.location =  content.location.href.replace('http://', 'http://saved.io/')
 
 " github issue renamer puts #id first
 "autocmd DOMLoad '^https://github.com/.*/.*/issues/.*' -js <<EOF

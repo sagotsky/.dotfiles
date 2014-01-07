@@ -2,6 +2,13 @@
 
 # update album art for currently playing song
 
+# known false positives:
+#   'iron maiden' 'the x factor'
+#   album/cd{1,2}
+#   *&*
+#   vapor trails - original gets remixed art
+# buckethead - bucketheadland, enter t
+
 STATE=$(cmus-remote -Q)
 ALBUM=$(echo "$STATE" | grep '^tag album' | cut -f 3- -d ' ')
 ARTIST=$(echo "$STATE" | grep '^tag artist' | cut -f 3- -d ' ')
@@ -21,6 +28,8 @@ if [[ "$URL" != '' ]] ; then
   file '/tmp/folder.jpg' | grep image && mv /tmp/folder.jpg "$COVER"
 
   CACHED="$HOME/.cmus/albumart/$(echo ${COVER/$HOME\//} | tr '/' '_')"
-  [[ -f "$CACHED" ]] && rm "$CACHED"
+  [[ -f "$CACHED" ]] && rm "$CACHED" 
+  cmus-remote -u
+  cmus-remote -u
 fi
 

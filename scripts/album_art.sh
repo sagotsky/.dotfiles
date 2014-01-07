@@ -9,6 +9,7 @@ function has_mp3() {
 }
 
 function has_albumart() {
+return 1
   [[ "$(find "$PWD/$@/" -maxdepth 1 -iname 'folder.jpg' | wc -l)" != '0' ]] && return 0
 }
 

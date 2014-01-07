@@ -31,6 +31,7 @@ if [[ "$2" == 'playing' ]] ; then
 
   # back it rxvt's background
   [[ -p '/tmp/background-urxvt' ]] && echo "$JPG" >> /tmp/background-urxvt && echo $JPG
+  #cmus-update-art.sh
 fi
 
 # last.fm
