@@ -29,6 +29,7 @@ cmus() {
     back) cmus-remote -r   ;;
     toggle | pause) cmus-remote -u ;;
     status) cmus-remote -Q ;;
+    bandsong) echo "$(cmus-remote -Q | grep '^tag artist' | cut -f 3- -d' ') - $(cmus-remote -Q | grep '^tag album' | cut -f 3- -d' ') - $(cmus-remote -Q | grep '^tag title' | cut -f 3- -d' ')" ;;
     *) return 1
   esac
 }
