@@ -33,7 +33,7 @@ fi
 OFFSET=$(echo ${args['--dir']//\// } | wc -w )
 FORMAT="cut -f $((POS + $OFFSET + 1)) -d/"
 
-SELECT=$( [[ "$DISPLAY" != '' ]] && echo 'dmenu -i -l 20 -b -s 0' || echo 'slmenu -i -b -l 20')
+SELECT=$( [[ "$DISPLAY" != '' ]] && echo 'dmenu -i -l 20 -b -s 0' || echo 'slmenu -i -b -l 13')
 
 [[ "${args['--random']}" == 'true' ]] && SELECT="shuf -n 1" 
 

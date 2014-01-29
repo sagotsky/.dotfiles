@@ -5,39 +5,41 @@
 # stupid script that wraps around music-client.sh so I can hit fewer keys
 # to control my music when ssh'ed in via my iphone
 
-declare -A CMDS
+
+
+MENU=''
 declare -A KEYS
 
-CMDS['(p) play pause']='music-client.sh pause'
-CMDS['(n) next']='music-client.sh next'
-CMDS['(b) back']='music-client.sh back'
-CMDS['(+) louder']='vol-up.sh'
-CMDS['(-) quiet']='vol-down.sh'
-CMDS['(a) rand album']='cmus-filter.sh -r -l album'
-CMDS['(c) choose album']='cmus-filter.sh -l album'
+# read in commands.  hash comments are the message that gets displayed.  comments with a 
+# char in parens will have that char bound to a key.  
+while read line ; do 
+  MSG=${line##*#}
+  CMD=${line%%#*}
+  KEY=$(echo $MSG | sed -e 's/.*(\(.\)).*/\1/')
 
+  [[ "${#KEY}" == "1" ]] && KEYS["$KEY"]="$CMD"
+  MENU="$MENU\n$MSG"
+done <<EOF
+music-client.sh pause         # (p) play pause
+music-client.sh next          # (n) next
+music-client.sh back          # (b) back
 
-# grab parentheses char
-for CMD in "${!CMDS[@]}" ; do
-  KEY=$(echo $CMD | sed -e 's/.*(\(.\)).*/\1/')
-  [[ "${#KEY}" == "1" ]] && KEYS["$KEY"]="${CMDS[$CMD]}"
-done
+vol-up.sh                     # (+) louder
+vol-down.sh                   # (-) quiet
 
-function menu() {
-  for key in "${!CMDS[@]}" ; do
-    echo "$key"
-  done
-  echo
-}
-
+cmus-filter.sh -r -l album    # (z) rand album
+cmus-filter.sh -l album       # (l) choose album
+cmus-filter.sh -l artist      # (a) choose artist
+cmus-filter.sh -l song        # (s) choose song
+EOF
 
 while : ; do 
   CMD="${KEYS[$key]}"
+  [[ "$CMD" != "" ]] && $CMD
+
   clear 
   music-client.sh bandsong
-  menu
-
-  [[ "$CMD" != "" ]] && $CMD
+  echo -e $MENU
   
   read -s -N1 key 
 done
