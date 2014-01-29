@@ -14,6 +14,7 @@ CMDS['(b) back']='music-client.sh back'
 CMDS['(+) louder']='vol-up.sh'
 CMDS['(-) quiet']='vol-down.sh'
 CMDS['(a) rand album']='cmus-filter.sh -r -l album'
+CMDS['(c) choose album']='cmus-filter.sh -l album'
 
 
 # grab parentheses char
