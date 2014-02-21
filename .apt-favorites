@@ -1,5 +1,4 @@
 ack-grep
-alpine
 anacron
 apt-file
 beep
@@ -7,7 +6,7 @@ cowsay
 curl
 cvs
 elinks
-exuberant-ctags
+feh
 figlet
 fortune
 g++
@@ -15,18 +14,12 @@ gcc
 happy
 htop
 inotify-tools
-libghc6-haskell-src-dev
 libnautilus-extension-dev
 libxft-dev
 libxinerama-dev
 make
 makedev
-midori
-nano
 nautilus-open-terminal
-modconf
-mutt
-ndiswrapper
 num-utils
 pidgin
 p7zip-full

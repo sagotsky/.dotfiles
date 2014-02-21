@@ -95,6 +95,8 @@ au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.xmobarrc set filetype=haskell
 au BufRead,BufNewFile *.hs set filetype=haskell
 
+au! BufRead,BufNewFile *.haml         setfiletype haml 
+
 au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
 au BufRead,BufNewFile COMMIT_EDITMSG     set wrap
 au BufRead,BufNewFile COMMIT_EDITMSG     set spell
