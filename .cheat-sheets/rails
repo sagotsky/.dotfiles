@@ -1,0 +1,2 @@
+binding.pry # start a breakpoint
+current_user # loaded user object
