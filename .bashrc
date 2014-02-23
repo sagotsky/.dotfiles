@@ -21,7 +21,7 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;14m' # begin underline
 
 # Disable term flow control.  ctrl-s no longer pauses.  Now bash's C-s can fire, which is hist forward
-stty -ixon
+stty -ixon 2> /dev/null # pseudo ttys like ssh can't handle output
 ## Append debian chroot labels to prompt
 if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
