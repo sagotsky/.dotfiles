@@ -14,6 +14,7 @@ gcc
 happy
 htop
 inotify-tools
+jshon
 libnautilus-extension-dev
 libxft-dev
 libxinerama-dev
@@ -27,6 +28,7 @@ python-docutils
 openssh-client
 openssh-server
 screen
+scrot
 sed
 strace
 subversion
