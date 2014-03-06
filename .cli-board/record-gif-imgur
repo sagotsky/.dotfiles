@@ -123,6 +123,8 @@ if [ $? -eq 0 ] ; then
   if [ "$id" != "" ] ; then
     firefox http://imgur.com/$id &
     echo "![screenshot](http://imgur.com/$id.gif)"
+  else
+    echo $response
   fi
 fi
 
