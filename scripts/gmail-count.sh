@@ -11,7 +11,7 @@ pidof -x $0 | sed -e "s/$$//" | xargs kill
 
 while [ -f ~/.gmail-cookies.txt ] ; do
   SLEEP='15m' # new mail check.  will be faster after mail present or errors so they clear sooner
-  chmod 400 ~/.gmail-cookies.txt
+  chmod 600 ~/.gmail-cookies.txt
   CURL=$(curl -s -b ~/.gmail-cookies.txt  https://mail.google.com/mail/feed/atom/)
   ERROR=$(echo $CURL | grep '<HTML>')
   MSG=''
