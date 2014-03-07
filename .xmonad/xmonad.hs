@@ -113,7 +113,7 @@ main = do
              ,modMask = myModMask
              ,workspaces = myWorkspaces
              ,normalBorderColor = myNormalBorderColor
-             ,focusedBorderColor = "#aaaaaa" -- myFocusedBorderColor
+             ,focusedBorderColor = "#dddddf" -- myFocusedBorderColor
 --             ,urgentBorderColor = myUrgentBorderColor
              --,keys = myKeys
                      
@@ -178,10 +178,10 @@ myKeys = [
 	, ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
 	, ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
     , ("M-m", spawn "cmus-filter.sh") -- cmus play song
-    , ("M-S-m", spawn "cmus-filter.sh -l album") -- cmus play album
-    , ("M-C-m", spawn "cmus-filter.sh -r -l album") -- cmus random album
-    , ("M-M1-m", spawn "cmus-filter.sh -l artist") -- cmus artist (M1 = alt)
-    , ("M-M1-C-m", spawn "cmus-filter.sh -l artist -r ") -- cmus artist
+    , ("M-S-m", spawn "cmus-filter.sh --list album") -- cmus play album
+    , ("M-C-m", spawn "cmus-filter.sh --randomize --list album") -- cmus random album
+    , ("M-M1-m", spawn "cmus-filter.sh --list artist") -- cmus artist (M1 = alt)
+    , ("M-M1-C-m", spawn "cmus-filter.sh --list artist --randomize ") -- cmus artist
 
     -- transparency
     , ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent

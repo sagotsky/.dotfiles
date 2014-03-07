@@ -2,7 +2,7 @@
 
 # 
 
-eval "$(./argh.sh $@)"
+eval "$(argh.sh $@)"
 
 #- hashdash comments will be displayed inline with help
 PORT="${PORT:-8080}" #- returns $PORT if set, or defaults to returning 8080
