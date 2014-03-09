@@ -4,6 +4,6 @@
 urxvt -fn "xft:Droid Sans Mono-16" -bd black -b 2 -bg '#1c1c1c' -fg '#fff' +sb -name cmus -e sh -c 'rxvt-background.sh & cmus' &
 
 sleep 1
-cmus-filter.sh -r -l album
+cmus-filter.sh --randomize --list album
 cmus-remote --play
 cmus-remote --stop

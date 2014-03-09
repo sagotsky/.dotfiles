@@ -7,6 +7,7 @@
 DIR="$HOME/.wallpaper"
 LINK="$HOME/.wallpaper.png"
 CURRENT=$(readlink $LINK)
+FEH_ARGS=' --bg-fill '
 
 case "$1" in
   new|old)
@@ -36,6 +37,11 @@ case "$1" in
     IMG="$CURRENT"
     ;;
 
+  flip)
+    IMG="$CURRENT"
+    FEH_ARGS="$FEH_ARGS -A'|'"
+    ;;
+
   *)
     if [[ $CURRENT == '' || "$1" != "new" && "$1" != 'old' ]] ; then
       IMG=$( find "$DIR/" -type f | shuf -n1 )
@@ -44,7 +50,7 @@ case "$1" in
 esac
 
 notify-send M-S-b "${IMG##*/}" &
-feh --bg-fill --no-xinerama "$IMG"
+feh $FEH_ARGS --no-xinerama "$IMG"
 if [[ "$LINK" != "" ]] ; then
   ln -fs "$IMG" "$LINK"
 fi

@@ -27,10 +27,10 @@ music-client.sh back          # (b) back
 vol-up.sh                     # (+) louder
 vol-down.sh                   # (-) quiet
 
-cmus-filter.sh -r -l album    # (z) rand album
-cmus-filter.sh -l album       # (l) choose album
-cmus-filter.sh -l artist      # (a) choose artist
-cmus-filter.sh -l song        # (s) choose song
+cmus-filter.sh --randomize --list album    # (z) rand album
+cmus-filter.sh --list album       # (l) choose album
+cmus-filter.sh --list artist      # (a) choose artist
+cmus-filter.sh --list song        # (s) choose song
 EOF
 
 while : ; do 
