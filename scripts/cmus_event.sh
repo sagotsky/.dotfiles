@@ -23,10 +23,9 @@ cmus-remote -C win-sel-cur
 # folder.jpg display
 if [[ "$2" == 'playing' ]] ; then
   JPG="${FILE%/*}/folder.jpg"
-  WIDTH=$(xwininfo -root | grep Width | cut -f 2 -d:)
-  MONITORS=$(xrandr | grep ' connected' | wc -l)
+  WIDTH=$(xrandr -q | grep '\*+' | head -n1 | cut -f 4 -d' ' | cut -f 1 -dx)
   if [ -f "$JPG" ] ; then
-    feh -x "$JPG" -g 200x200+$(( WIDTH/MONITORS -210 ))+16 -B black 2>/dev/null &
+    feh -x "$JPG" -g 200x200+$(( WIDTH - 202 ))+16 -B black 2>/dev/null &
     ( FEH="$!" ; sleep 2 ; kill $FEH ) &
   fi
 
