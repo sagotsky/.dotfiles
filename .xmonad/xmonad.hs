@@ -132,9 +132,10 @@ main = do
                          , ppCurrent = xmobarColor "#cc5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
                          , ppVisible = xmobarColor "#cc5500" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
                          , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
-                         , ppLayout  = xmobarColor "#aaaaaa" "" . wrap "" ""  
+                         , ppLayout  = sed (const "") ".*" -- xmobarColor "#aaaaaa" "" . wrap "" ""  
                          , ppHiddenNoWindows =     xmobarColor "#888888" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
                          , ppSep =  " " 
+
                          --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" "" 
                          --Current      workspace with focus
                          --Visible      displayed workspace without focus
