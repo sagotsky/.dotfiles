@@ -125,15 +125,16 @@ main = do
              ,manageHook = manageDocks <+> myManageHook 
                            <+> manageHook defaultConfig
              ,logHook = dynamicLogWithPP $ xmobarPP 
+             -- http://www.alanwood.net/demos/wgl4.html special chars
                          { ppOutput = hPutStrLn xmproc
                          , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
-                         , ppUrgent = xmobarColor myUrgentBorderColor "" . wrap "◄ "  " ►"
-                         , ppCurrent = xmobarColor myFocusedBorderColor "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
-                         , ppVisible = xmobarColor myFocusedBorderColor "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
-                         , ppHidden =     xmobarColor "#888890" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
+                         , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
+                         , ppCurrent = xmobarColor "#cc5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
+                         , ppVisible = xmobarColor "#cc5500" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
+                         , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
                          , ppLayout  = xmobarColor "#aaaaaa" "" . wrap "" ""  
-                         , ppHiddenNoWindows =     xmobarColor "#333333" "" . sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5" -- replace 5 first, then general.
-                         , ppSep =  " · " 
+                         , ppHiddenNoWindows =     xmobarColor "#888888" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
+                         , ppSep =  " " 
                          --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" "" 
                          --Current      workspace with focus
                          --Visible      displayed workspace without focus
