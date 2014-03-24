@@ -3,7 +3,7 @@
 # Prints metadata from song on cmus events
 # To enable, in cmus use `:set status_display_program=/path/to/cmus_event.sh`
 
-[[ $2 == 'playing' ]] && PRE='' || PRE='■ '
+[[ $2 == 'playing' ]] && PRE='' || PRE='▫ ' # actually a square glyph in some fonts
 
 # notification
 declare -A META
