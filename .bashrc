@@ -102,7 +102,7 @@ esac
 
 
 # haven't commited to adding alerts yet.  time reports that it's still slower than a good ole df -h.  le sigh.
-PROMPT_COMMAND='COLOR=$(ps1color $?) ; BRANCH=$(gitprompt) ; history -a; history -r; PS1="${TITLE}\[\e[$COLOR\]$MYPROMPT\[\e[$DEFAULT\]$BRANCH\$ "'
+PROMPT_COMMAND='COLOR=$(ps1color $?) ; BRANCH=$(gitprompt) ; history -a ; history -n ; PS1="${TITLE}\[\e[$COLOR\]$MYPROMPT\[\e[$DEFAULT\]$BRANCH\$ "'
 #                                                                                                                                       git branch
 #                                                                                                                         default color
 #                                                                                                              user@host
