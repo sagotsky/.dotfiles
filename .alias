@@ -7,6 +7,7 @@ alias bell="echo -e '\a'"
 alias bt='btdownloadcurses.bittornado --minport 34567 --maxport 34577 --max_upload_rate 25 --responsefile'
 alias btupload='btdownloadcurses.bittornado --minport 34567 --maxport 34577 --max_upload_rate 200 --responsefile'
 alias capture="yes 'Y' | gdb -e 'p close(1)' -ex 'p creat(\"/tmp/output\",0600)' -ex 'q' -p "
+alias cmus='TERM=xterm-256color cmus'
 alias dot="git --git-dir='$HOME/.dotfiles/.git' --work-tree='$HOME/.dotfiles/' " # work-tree isn't honored by pull in 1.7.2.5.  Works in 1.7.9.3
 alias dq="sh -c 'alias=\$1 ; shift ; drush \$alias sqlq \"\$@\" ' -- "
 alias drush.debug='QUERY_STRING="start_debug=1&debug_host=127.0.0.1&no_remote=0&debug_port=10137&debug_stop=1" drush'
@@ -14,7 +15,7 @@ alias dux='du -sk ./* | sort -n | awk '\''BEGIN{ pref[1]="K"; pref[2]="M"; pref[
 alias e='emacs -nw'
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
-alias gg='git grep '
+alias gg='git grep -i -I -n --color --break --heading --line-number -e '
 alias ghiq='ghiq.py '
 alias ls='ls --color=auto'
 alias mkpasswd='pwgen -ysCn 16'
