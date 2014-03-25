@@ -18,12 +18,51 @@ set expandtab			"inserts spaces instead of tabs
 set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
 
 set guioptions=aegiLt     "clean gui in gvim
+set guifont=Source\ Code\ Pro\ 6.25    " Droid\ Sans\ Mono\ 10 
+let mapleader=","
 
 let Tlist_WinWidth = 50   "taglist width
 
+
+if has('vim_starting')
+  set nocompatible               " Be iMproved
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tpope/vim-rails'
+NeoBundleCheck
+
+let g:unite_enable_start_insert=0
+let g:unite_source_rec_max_cache_files = 0
+call unite#custom#source('grep', 'max_candidates', 0)
+call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
+" C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
+
+" -no-split  -resume
+nnoremap <C-p>              :Unite -start-insert file_rec/async <cr>
+nnoremap <leader><space>    :Unite grep:. <cr>
+nnoremap <leader><c-space>  :UniteWithCursorWord grep:. <cr>
+nnoremap <leader>h          :Unite outline<cr>
+
+
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_recursive_opt=''
+elseif executable('ack')
+  let g:unite_source_grep_command='ack'
+  let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
+  let g:unite_source_grep_recursive_opt=''
+endif
+
 try                             "persistent undo files
-    set undodir=~/.vim_runtime/undodir
-    set undofile
+  set undodir=~/.vim_runtime/undodir
+  set undofile
 catch
 endtry
 
@@ -34,7 +73,6 @@ endtry
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
-map <F9> :TlistToggle<CR>
 
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 " (could something map to shift-insert??)
@@ -47,18 +85,18 @@ filetype indent on
 
 colorscheme ambient 
 if ( $TERM != 'linux')          "don't break vim in vterms
-    set t_Co=256                "ensures 256 color
-    highlight linenr 		ctermfg=darkgray	
-    highlight CursorLine 	ctermbg=235 cterm=bold 
-"    highlight String 		ctermfg=green 
-"    highlight Constant 		ctermfg=red 
-    highlight Comment 		ctermfg=darkgray
-    highlight Search 		ctermfg=white ctermbg=33
-"    highlight Todo		ctermfg=21 ctermbg=11
-    highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
-    highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
-    highlight VertSplit		ctermfg=black ctermbg=black
-    highlight SpellBad          ctermfg=229 cterm=underline
+  set t_Co=256                "ensures 256 color
+  highlight linenr 		ctermfg=darkgray	
+  highlight CursorLine 	ctermbg=235 cterm=bold 
+  "    highlight String 		ctermfg=green 
+  "    highlight Constant 		ctermfg=red 
+  highlight Comment 		ctermfg=darkgray
+  highlight Search 		ctermfg=white ctermbg=33
+  "    highlight Todo		ctermfg=21 ctermbg=11
+  highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
+  highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
+  highlight VertSplit		ctermfg=black ctermbg=black
+  highlight SpellBad          ctermfg=229 cterm=underline
 endif
 "
 au BufRead,BufNewFile *.txt set filetype=text
@@ -96,6 +134,10 @@ au BufRead,BufNewFile *.xmobarrc set filetype=haskell
 au BufRead,BufNewFile *.hs set filetype=haskell
 
 au! BufRead,BufNewFile *.haml         setfiletype haml 
+au BufRead,BufNewFile *.rb        call RubySettings()
+function RubySettings()
+  ab pry binding.pry
+endfunction
 
 au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
 au BufRead,BufNewFile COMMIT_EDITMSG     set wrap
