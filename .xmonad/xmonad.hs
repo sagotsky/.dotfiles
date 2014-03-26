@@ -34,29 +34,18 @@ import XMonad.Prompt
 import XMonad.Actions.CycleWS
 -- import XMonad.Hooks.FadeInactive -- changes opacity of inactive windows.  when xcompmgr is mature, try this instead of borders to indicate activity
 
-myTerminal = "x-terminal-emulator"
+myTerminal            = "x-terminal-emulator"
+myBorderWidth         = 1
+myModMask             = mod4Mask -- use super as meta
+myWorkspaces          = ["web-2", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
+myNormalBorderColor   = "#444455"
+myFocusedBorderColor  = "#cfb000"
+myUrgentBorderColor   = "#ff5500"
 
-myBorderWidth = 1
-
-myModMask = mod4Mask -- use super as meta
-
-myWorkspaces = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
-
-myNormalBorderColor = "#444455"
-
-myFocusedBorderColor = "#cfb000"
-
-myUrgentBorderColor = "#ff5500"
-
-myShowWName = showWName' defaultSWNConfig
-	{ swn_color = myFocusedBorderColor
-	, swn_bgcolor = myNormalBorderColor
-	, swn_font = "xft:Verdana:pixelsize=50:antialias=true"
-	, swn_fade = 0.5 
-	}
 
 myLayout =   -- ewmhDesktopsLayout
             onWorkspace "music-2" circle $
+            onWorkspace "chat-5" circle $
             avoidStruts
            ( smartBorders
            ( tall |||  Full ||| layoutHints Grid ||| circle ))
@@ -75,17 +64,23 @@ myLayout =   -- ewmhDesktopsLayout
 myManageHook =  composeAll
     [ 
      className =? "MPlayer"                           --> doFloat
-     ,className =? "xine"                             --> doFullFloat
-    , className =? "Gimp"                             --> (ask >>= doF . W.sink)
     , className =? "Gnome-calculator"                 --> doFloat
     , className =? "doukutsu"                         --> doFloat
+    , className =? "xine"                             --> doFullFloat
+    , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
+    , className =? "Exe"                              --> doFullFloat -- chrome flash
+    , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
+    , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
+    , className =? "Gimp"                             --> (ask >>= doF . W.sink)
     , resource  =? "Do"                               --> doIgnore
     , resource  =? "feh"                              --> doIgnore
+    , className =? "Unity-2d-panel"                  --> doIgnore
+    , className =? "Unity-2d-launcher"               --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
     , className =? "Firefox"                          --> doShift "web-1" 
     , className =? "Rhythmbox"                        --> doShift "music-2" 
-    , resource =? "cmus"                             --> doShift "music-2" 
+    , resource =? "cmus"                              --> doShift "music-2" 
     , className =? "Thunderbird"                      --> doShift "email-3" 
     , className =? "Pidgin"                           --> doShift "chat-5" 
     , className =? "Skype"                            --> doShift "chat-5" 
@@ -93,14 +88,6 @@ myManageHook =  composeAll
     , className =? "xterm-mail"                       --> doShift "email-3"
     , className =? "Zend Studio"                      --> doShift "ide-6" 
     , className =? "Sublime_text"                     --> doShift "ide-6" 
-
-    , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
-    , className =? "Exe"                              --> doFullFloat -- chrome flash
-    , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
-    --, className =? "<unknown>"                        --> doFullFloat -- fullscreen flash
-    , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
-    , className  =? "Unity-2d-panel"                  --> doIgnore
-    , className  =? "Unity-2d-launcher"               --> doIgnore
     ] 
 
 main = do 
@@ -116,7 +103,6 @@ main = do
              ,normalBorderColor = myNormalBorderColor
              ,focusedBorderColor = "#dddddf" -- myFocusedBorderColor
 --             ,urgentBorderColor = myUrgentBorderColor
-             --,keys = myKeys
                      
              --,handleEventHook    = fullscreenEventHook
              ,layoutHook = myShowWName myLayout
@@ -129,11 +115,11 @@ main = do
                          { ppOutput = hPutStrLn xmproc
                          , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
                          , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
-                         , ppCurrent = xmobarColor "#cc5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
-                         , ppVisible = xmobarColor "#cc5500" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
+                         , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
+                         , ppVisible = xmobarColor "#ec5500" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
                          , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
                          , ppLayout  = sed (const "") ".*" -- xmobarColor "#aaaaaa" "" . wrap "" ""  
-                         , ppHiddenNoWindows =     xmobarColor "#888888" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
+                         , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
                          , ppSep =  " " 
 
                          --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" "" 
@@ -168,6 +154,7 @@ myKeys = [
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
     , ("M-s", spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
+    , ("M-v",              spawn "gvim -c 'cd ~/repos/plm'") 
 
 
     -- music
@@ -259,3 +246,9 @@ myXPConfig = defaultXPConfig
 -- intToStr ::  Int -> String
 -- intToStr i = show i
 
+myShowWName = showWName' defaultSWNConfig
+	{ swn_color = myFocusedBorderColor
+	, swn_bgcolor = myNormalBorderColor
+	, swn_font = "xft:Verdana:pixelsize=50:antialias=true"
+	, swn_fade = 0.5 
+	}
