@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# imgur_auth_upload.sh
+# 
+# Takes a screenshot.  Uploads it to imgur.  Can auth an account
+# so the image came be edited.
+
+# set -xe
+
+# By now auth_token should be useful
+
+IMAGE="/tmp/screenshot-$(date +'%F.%T').png"
+echo "Screenshot -> Imgur: Click a window or drag a selection." | dzen2 $DZEN_OPTS &
+PID=$!
+scrot -s $IMAGE
+kill $PID
+echo $IMAGE

@@ -1,0 +1,7 @@
+.map{&:key}     # .map{ |x| x.key}
+
+$&  Last string matched by regex
+$'  String following last regex match
+$`  String preceding last regex match
+$n  nth group matched by regex
+

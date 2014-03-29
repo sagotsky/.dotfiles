@@ -111,7 +111,7 @@ if [ $? -eq 0 ] ; then
   response=`curl -s -X POST --header "Authorization: Bearer ${AUTH_TOKEN}" -F "image=@${IMAGE}" https://api.imgur.com/3/image`
   id=$(echo $response | jshon -e data -e id | tr -d '"')
   if [ "$id" != "" ] ; then
-    firefox http://imgur.com/$id &
+    firefox "http://imgur.com/$id" &
     echo "![screenshot](http://imgur.com/$id.png)"
   fi
 fi
