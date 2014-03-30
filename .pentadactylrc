@@ -45,6 +45,9 @@ com uzbl -nargs=0 execute "!uzbl  " + content.location + " &> /dev/null &"
 " send to luakit
 com luakit -nargs=0 execute "!luakit  " + content.location + " &> /dev/null &"
 
+"send to dwb
+com dwb -nargs=0 execute "!dwb  " + content.location + " &> /dev/null &"  
+
 " send to different work sites.
 com goto-scholar -nargs=0  -description 'Visit page on scholar.harvard' -js 
   \ url = content.location + '';
