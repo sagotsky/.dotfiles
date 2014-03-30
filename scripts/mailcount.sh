@@ -15,9 +15,10 @@ done
 ps ax | grep 'inotifywait.*unread-counts' | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill
 
 COUNT=0
-FILES=$(find ~/.thunderbird -name 'unread-counts')
+FILES=$(find ~/.thunderbird -name 'unread-counts' 2>/dev/null)
 
-echo '' # produce some output so xmobar doesn't say updating...
+
+echo ' ' # produce some output so xmobar doesn't say updating...
 
 while FILE=$(inotifywait -q $FILES -e ACCESS -e CLOSE_WRITE) ; do
   cat $(echo $FILE | cut -f1 -d' ') |\

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # gmail-count.sh
 # 
@@ -7,12 +7,13 @@
 # instead of a file with your password.  
 
 # there can be only one
-pidof -x $0 | sed -e "s/$$//" | xargs kill
+pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null
+USER=0 # env var?
 
 while [ -f ~/.gmail-cookies.txt ] ; do
   SLEEP='15m' # new mail check.  will be faster after mail present or errors so they clear sooner
   chmod 600 ~/.gmail-cookies.txt
-  CURL=$(curl -s -b ~/.gmail-cookies.txt  https://mail.google.com/mail/feed/atom/)
+  CURL=$(curl -s -b ~/.gmail-cookies.txt  https://mail.google.com/mail/u/$USER/feed/atom/)
   ERROR=$(echo $CURL | grep '<HTML>')
   MSG=''
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # wallpaper switcher.  no arg gives random.  new or old arg does
 # 1 file newer or older than current.  current is determined by
