@@ -4,6 +4,7 @@ calendars = Work
 calendars = OpenScholar Calendar
 calendars = J&J
 calendars = Stranger Ways
+calendars = jsagotsky@patientslikeme.com
 
 colors = green
 colors = blue
@@ -11,6 +12,7 @@ colors = red
 colors = red
 colors = '#6666ff'
 colors = purple
+colors = red
 
 format = dzen
 days = 21

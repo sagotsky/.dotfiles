@@ -22,6 +22,7 @@ make
 makedev
 nautilus-open-terminal
 num-utils
+numlockx
 pidgin
 p7zip-full
 python-docutils
