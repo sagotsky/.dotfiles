@@ -14,5 +14,6 @@ EOF
 ) |  dmenu -b -l 20 -i
 )
 
-[[ $? && "$TERM" != "" ]] && xterm -bg '#202025' -fa 'Source Code Pro-10' -e ri $TERM
+[[ $? && "$TERM" != "" ]] && xterm -bg '#202025' -fa 'Source Code Pro-10' -e "bash -i -c 'ri $TERM'"
+
 
