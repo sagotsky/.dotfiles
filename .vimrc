@@ -18,7 +18,7 @@ set expandtab			"inserts spaces instead of tabs
 set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
 set showcmd             " keybindings show their full name
 set guioptions=aegiLt     "clean gui in gvim
-set guifont=Source\ Code\ Pro\ 6.25    " Droid\ Sans\ Mono\ 10 
+set guifont=Source\ Code\ Pro\ 10   " Droid\ Sans\ Mono\ 10 
 let mapleader=" "
 
 
@@ -34,6 +34,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundleCheck
 
 
@@ -136,7 +137,12 @@ au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.xmobarrc set filetype=haskell
 au BufRead,BufNewFile *.hs set filetype=haskell
 
-au! BufRead,BufNewFile *.haml         setfiletype haml 
+au! BufRead,BufNewFile *.haml         call HamlSettings()
+function HamlSettings()
+  setfiletype haml 
+  IndentGuidesEnable
+endfunction
+
 au BufRead,BufNewFile *.rb        call RubySettings()
 function RubySettings()
   ab pry binding.pry
