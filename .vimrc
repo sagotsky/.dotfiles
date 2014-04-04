@@ -34,31 +34,32 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-endwise'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundleCheck
 
 
 " Unite.vim options and keys
-let g:unite_enable_start_insert=0
 let g:unite_source_rec_max_cache_files = 0
 call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
-" -no-split  -resume
-nnoremap <leader>p          :Unite -start-insert file_rec/async <cr>
-nnoremap <leader>g          :Unite grep:. <cr>
-nnoremap <leader>G          :UniteWithCursorWord grep:. <cr>
+
+let g:unite_enable_start_insert=1
+nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer<cr>
 
+nnoremap <leader>g          :Unite -no-start-insert grep:. <cr>
+nnoremap <leader>G          :UniteWithCursorWord -no-start-insert grep:. <cr>
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4 --ignore flex --ignore tmp'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp'
   let g:unite_source_grep_recursive_opt=''
 elseif executable('ack')
   let g:unite_source_grep_command='ack'
-  let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
+  let g:unite_source_grep_default_opts='--no-heading --no-color -a '
   let g:unite_source_grep_recursive_opt=''
 endif
 
