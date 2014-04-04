@@ -1,24 +1,12 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # set up ssh tunnels to home exactly once but refresh them if they die
 
-function mk_tunnel() {
-  echo tunneling
-  while true ; do ssh -R 12345:127.0.0.1:2222 rj ; sleep 3m ; done
-}
+ssh-keyed || xterm -e 'ssh-add'
 
-set -a
-function do_ssh() {
-  echo doing ssh: $@
-  while true ; do ssh -R $@ ; done
-}
 
-screen -ls | grep tunnels || (
-  screen -d -m -S tunnels 
-  while read tunnel ; do
-    screen -S tunnels -X screen bash -c do_ssh\ "$tunnel"
-  done <<EOF
-    12345:127.0.0.1:2222 rj
-    3000:127.0.0.1:3000 rj
-EOF
-)
+while : ; do
+  autossh -R 12345:127.0.0.1:2222 -R 3000:127.0.0.1:3000 rj
+  sleep 3m
+done
+#nohup autossh -f -R 3000:127.0.0.1:3000 rj

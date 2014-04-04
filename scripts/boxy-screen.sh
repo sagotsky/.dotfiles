@@ -8,3 +8,5 @@ disper -l -d eDP1 &>/dev/null && \
   disper -e DP2,eDP1 -t left
 
 wallpaper.sh current
+xrandr --dpi 96
+xmodmap.sh
