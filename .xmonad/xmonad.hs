@@ -4,10 +4,15 @@ import System.IO
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Data.Ratio
+import Data.Traversable (traverse)
+import Data.Maybe (listToMaybe, maybeToList)
+import Data.List ( (\\) )
+
 import Text.Regex.XMLSchema.String
 import XMonad.Operations
 import XMonad.Config
 import XMonad.Util.Run
+import XMonad.Util.NamedWindows (getName)
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -96,13 +101,15 @@ main = do
              -- http://www.alanwood.net/demos/wgl4.html special chars
                { ppOutput = hPutStrLn xmproc
                  , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
-                 , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
+                 , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"    --- should urget be semi random?  ie #ddd-fff fluctuating or throbbing?  might be a good haskell excersie
                  , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
                  , ppVisible = xmobarColor "#ec5500" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
                  , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
                  , ppLayout  = sed (const "") ".*" -- xmobarColor "#aaaaaa" "" . wrap "" ""  
                  , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
                  , ppSep =  " " 
+                 , ppExtras = [ logTitles ]
+                 , ppOrder  = \(ws:l:t:ts:_) -> ws : l : t : [xmobarColor "#666666" "" ts]
                  --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" "" 
                  --Current      workspace with focus
                  --Visible      displayed workspace without focus
@@ -185,6 +192,7 @@ myKeys = [
     , ("M-;",   spawn "cheese.sh") -- center mouse on active window
 
     -- misc scripts
+    , ("M-/",   spawn "ri-menu.sh") -- rails docs menu
     , ("M-y",   spawn "cli-board.sh") -- copies text into clip board
     , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
 	]
@@ -216,8 +224,19 @@ myXPConfig = defaultXPConfig
                 }
 
 myShowWName = showWName' defaultSWNConfig
-	{ swn_color = "#101015"
-	, swn_bgcolor = "white"
+	{ swn_bgcolor = "#101015"
+	, swn_color = "white"
 	, swn_font = "xft:Verdana:pixelsize=50:antialias=true"
 	, swn_fade = 0.5 
 	}
+
+-- if they're all here we could regex them into one char each, showing window count
+--logTitles :: X (Maybe String) -- this is a Logger
+--logTitles = withWindowSet $ fmap (Just . unwords) -- fuse the window names
+  -- . traverse (fmap show . getName) -- show window names
+  -- .  tail . W.index -- all windows except master
+
+logTitles :: X (Maybe String) -- this is a Logger
+logTitles = withWindowSet $ fmap (Just . unwords) -- fuse window names
+  . traverse (fmap show . getName) -- show window names
+  . (\ws -> W.index ws \\ maybeToList (W.peek ws))
