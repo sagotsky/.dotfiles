@@ -36,6 +36,8 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'airblade/vim-gitgutter'
+
 NeoBundleCheck
 
 
@@ -62,6 +64,7 @@ elseif executable('ack')
   let g:unite_source_grep_default_opts='--no-heading --no-color -a '
   let g:unite_source_grep_recursive_opt=''
 endif
+
 
 try                             "persistent undo files
   set undodir=~/.vim_runtime/undodir
@@ -100,8 +103,21 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
   highlight VertSplit		ctermfg=black ctermbg=black
   highlight SpellBad          ctermfg=229 cterm=underline
+
+
+  " gitgutter
+  hi SignColumn guibg=#202020
+  hi GitGutterAddDefault guibg=#202020
+  hi GitGutterChangeDefault guibg=#202020
+  hi GitGutterChangeDeleteDefault guibg=#202020
+  hi GitGutterChangeLineDefault guibg=#202020
+  hi GitGutterChangeDeleteDefault guibg=#202020
 endif
 
+" indentguides colors
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  guibg=#202020   ctermbg=3
+hi IndentGuidesEven guibg=#2a2a2a ctermbg=4
 
 " Buffer types
 au BufRead,BufNewFile *.txt set filetype=text

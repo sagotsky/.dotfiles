@@ -2,6 +2,7 @@ neobundle.vim
 unite-outline
 unite.vim
 vim-endwise
+vim-gitgutter
 vim-indent-guides
 vim-rails
 vimproc.vim
