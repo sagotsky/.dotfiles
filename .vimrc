@@ -82,7 +82,37 @@ map <F8> :set invnumber<CR>
 map <leader><S-CR> :! xterm &<cr><cr>
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
-cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<cr>
+cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
+
+let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
+let s:minfontsize = 6
+let s:maxfontsize = 16
+function! AdjustFontSize(amount)
+  if has("gui_gtk2") && has("gui_running")
+    let fontname = substitute(&guifont, s:pattern, '\1', '')
+    let cursize = substitute(&guifont, s:pattern, '\2', '')
+    let newsize = cursize + a:amount
+    if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
+      let newfont = fontname . newsize
+      let &guifont = newfont
+    endif
+  else
+    echoerr "You need to run the GTK2 version of Vim to use this function."
+  endif
+endfunction
+
+function! LargerFont()
+  call AdjustFontSize(1)
+endfunction
+command! LargerFont call LargerFont()
+
+function! SmallerFont()
+  call AdjustFontSize(-1)
+endfunction
+command! SmallerFont call SmallerFont()
+
+map <leader>+ :LargerFont<CR>
+map <leader>- :SmallerFont<CR>
 
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 " (could something map to shift-insert??)
@@ -116,6 +146,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi GitGutterChangeDeleteDefault guibg=#202020
   hi GitGutterChangeLineDefault guibg=#202020
   hi GitGutterChangeDeleteDefault guibg=#202020
+  hi GitGutterDeleteDefault guibg=#202020
 endif
 
 " indentguides colors
