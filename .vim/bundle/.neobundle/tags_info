@@ -1,5 +1,8 @@
 neobundle.vim
+neocomplcache
+neocomplete
 unite-outline
+unite-tag
 unite.vim
 vim-endwise
 vim-gitgutter

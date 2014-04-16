@@ -30,6 +30,8 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'h1mesuke/unite-outline'
@@ -37,6 +39,7 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tsukkee/unite-tag'
 
 NeoBundleCheck
 
@@ -51,6 +54,7 @@ let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer<cr>
+nnoremap <leader>t          :Unite tag<cr>
 
 nnoremap <leader>g          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>G          :UniteWithCursorWord -no-start-insert grep:. <cr>
@@ -72,9 +76,9 @@ try                             "persistent undo files
 catch
 endtry
 
-:com Sudow !sudo tee %	
-:com W w
-:com Q q
+:com! Sudow !sudo tee %	
+:com! W w
+:com! Q q
 
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
@@ -95,6 +99,8 @@ function! AdjustFontSize(amount)
     if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
       let newfont = fontname . newsize
       let &guifont = newfont
+      " try launching xterm -e exit or something
+      silent !xterm -e sleep .1;exit
     endif
   else
     echoerr "You need to run the GTK2 version of Vim to use this function."
@@ -140,13 +146,13 @@ if ( $TERM != 'linux')          "don't break vim in vterms
 
 
   " gitgutter
-  hi SignColumn guibg=#202020
-  hi GitGutterAddDefault guibg=#202020
-  hi GitGutterChangeDefault guibg=#202020
-  hi GitGutterChangeDeleteDefault guibg=#202020
-  hi GitGutterChangeLineDefault guibg=#202020
-  hi GitGutterChangeDeleteDefault guibg=#202020
-  hi GitGutterDeleteDefault guibg=#202020
+  hi SignColumn guibg=#202020 ctermbg=233
+  hi GitGutterAddDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=233
+  hi GitGutterDeleteDefault guibg=#202020 ctermbg=233
 endif
 
 " indentguides colors
@@ -190,13 +196,13 @@ au BufRead,BufNewFile *.xmobarrc set filetype=haskell
 au BufRead,BufNewFile *.hs set filetype=haskell
 
 au! BufRead,BufNewFile *.haml         call HamlSettings()
-function HamlSettings()
+function! HamlSettings()
   setfiletype haml 
   IndentGuidesEnable
 endfunction
 
 au BufRead,BufNewFile *.rb        call RubySettings()
-function RubySettings()
+function! RubySettings()
   ab pry binding.pry
 endfunction
 
