@@ -4,7 +4,7 @@
 #gconftool-2 -s /desktop/gnome/url-handlers/ssh/enabled --type Boolean false
 
 if [[ "$@" =~ 'ssh://' ]] ; then
-  xterm -bg '#223' -e "ssh  -oStrictHostKeyChecking=no ${@##ssh://}"
+  xterm -bg '#223' -e "ssh  -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null ${@##ssh://}"
 fi
 
 
