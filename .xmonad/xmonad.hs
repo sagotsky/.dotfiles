@@ -37,7 +37,7 @@ import XMonad.Actions.CycleWS
 myTerminal            = "x-terminal-emulator"
 myBorderWidth         = 1
 myModMask             = mod4Mask 
-myWorkspaces          = ["web-2", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
+myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
 myNormalBorderColor   = "#444455"
 myFocusedBorderColor  = "#cfb000"
 myUrgentBorderColor   = "#ff5500"
@@ -46,9 +46,11 @@ myLayout = onWorkspace "music-2" circle $
             onWorkspace "chat-5" circle $
             avoidStruts
            ( smartBorders
-           ( tall |||  Full ||| circle ))
+           -- ## |- [] ()
+           ( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
     where
       tall = Tall nmaster delta ratio
+      wide = Mirror $ Tall nmaster delta ratio
       circle = layoutHints Circle
       nmaster = 1
       delta = 3/100
@@ -105,7 +107,7 @@ main = do
                  , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
                  , ppVisible = xmobarColor "#ec5500" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
                  , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
-                 , ppLayout  = sed (const "") ".*" -- xmobarColor "#aaaaaa" "" . wrap "" ""  
+                 , ppLayout  = xmobarColor "#444444" "" . wrap "" ""  
                  , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
                  , ppSep =  " " 
                  , ppExtras = [ logTitles ]
