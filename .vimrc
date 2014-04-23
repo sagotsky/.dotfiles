@@ -37,6 +37,7 @@ NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tsukkee/unite-tag'
@@ -46,6 +47,7 @@ NeoBundleCheck
 
 " Unite.vim options and keys
 let g:unite_source_rec_max_cache_files = 0
+let g:unite_split_rule = 'botright' 
 call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
@@ -55,6 +57,7 @@ nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer<cr>
 nnoremap <leader>t          :Unite tag<cr>
+nnoremap <leader>T          :UniteWithCursorWord tag<cr>
 
 nnoremap <leader>g          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>G          :UniteWithCursorWord -no-start-insert grep:. <cr>
@@ -84,6 +87,8 @@ map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
 map <leader><S-CR> :! xterm &<cr><cr>
+map <leader>s :e ~/.vimrc<cr>
+map <leader>S :so ~/.vimrc<cr>
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
 cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>

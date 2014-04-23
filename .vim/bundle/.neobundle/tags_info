@@ -5,6 +5,7 @@ unite-outline
 unite-tag
 unite.vim
 vim-endwise
+vim-fugitive
 vim-gitgutter
 vim-indent-guides
 vim-rails
