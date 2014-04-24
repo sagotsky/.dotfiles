@@ -15,7 +15,7 @@ colors = purple
 colors = red
 
 format = dzen
-days = 21
+days = 28
 notify = true
 refresh = 900
 alert = 3

@@ -5,6 +5,9 @@
 
 SOUND_DEV="/dev/snd/controlC0"
 
+# there can be only one
+pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null    
+
 # this should grab the field with the percentage.  maybe break on " " and grep line with %?
 volume() {
 	amixer -D default sget Master,0 \
