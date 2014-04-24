@@ -4,14 +4,16 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , position = TopW L 100
        , lowerOnStart = True
        , commands = [ Run MultiCpu ["-L","30","-H","90","--normal","white","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%","-L","60","-H","90","--normal","white","--high","red"] 10
-                    , Run Date "%A, %b %d %I:%M" "date" 590
+                    , Run Memory ["-t","Mem: <usedratio>%","-L","50","-H","75","--normal","white","--high","red"] 10
+                    , Run Date "%a, %b %d %I:%M" "date" 590
                     , Run StdinReader
                     , Run PipeReader "/home/sagotsky/.music.out" "music"
                     , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
-                    , Run CommandReader "/home/sagotsky/scripts/mailcount.sh" "mail"
+                    , Run CommandReader "/home/sagotsky/scripts/gmail-count.sh" "mail"
+                    , Run CommandReader "/home/sagotsky/scripts/watch-git.sh" "git"
+                    , Run Com "/home/sagotsky/scripts/battery.sh" [] "battery" 300
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=lightseagreen> %music%</fc> · ♫ %vol% · %multicpu% · %memory% · <fc=lightskyblue3>%date%</fc><fc=red>%mail%</fc>"
+       , template = "%StdinReader% }{ <fc=green>%git%</fc><fc=lightseagreen> %music%</fc> · ♫ %vol% · %multicpu% · %memory% · %battery% <fc=lightskyblue3>%date%</fc><fc=skyblue>%mail%</fc>"
        }
