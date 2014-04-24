@@ -43,8 +43,12 @@ case "$1" in
     ;;
 
   *)
-    if [[ $CURRENT == '' || "$1" != "new" && "$1" != 'old' ]] ; then
-      IMG=$( find "$DIR/" -type f | shuf -n1 )
+    if [[ -f "$1" ]] ; then
+      IMG="$1"
+    else
+      if [[ $CURRENT == '' || "$1" != "new" && "$1" != 'old' ]] ; then
+        IMG=$( find "$DIR/" -type f | shuf -n1 )
+      fi
     fi
     ;;
 esac
