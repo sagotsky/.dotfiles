@@ -41,6 +41,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'lucapette/vim-ruby-doc'
 
 NeoBundleCheck
 
@@ -162,6 +163,7 @@ endif
 
 " indentguides colors
 let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 0
 hi IndentGuidesOdd  guibg=#202020   ctermbg=3
 hi IndentGuidesEven guibg=#2a2a2a ctermbg=4
 

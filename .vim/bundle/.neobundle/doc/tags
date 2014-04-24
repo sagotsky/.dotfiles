@@ -81,6 +81,9 @@
 :NeoCompleteTagMakeCache	neocomplete.txt	/*:NeoCompleteTagMakeCache*
 :NeoCompleteToggle	neocomplete.txt	/*:NeoCompleteToggle*
 :NeoCompleteUnlock	neocomplete.txt	/*:NeoCompleteUnlock*
+:RailsDoc	ruby-doc.txt	/*:RailsDoc*
+:RspecDoc	ruby-doc.txt	/*:RspecDoc*
+:RubyDoc	ruby-doc.txt	/*:RubyDoc*
 :Unite	unite.txt	/*:Unite*
 :UniteBookmarkAdd	unite.txt	/*:UniteBookmarkAdd*
 :UniteClose	unite.txt	/*:UniteClose*
@@ -347,6 +350,13 @@ g:rails_abbreviations	rails.txt	/*g:rails_abbreviations*
 g:rails_ctags_arguments	rails.txt	/*g:rails_ctags_arguments*
 g:rails_gem_projections	rails.txt	/*g:rails_gem_projections*
 g:rails_projections	rails.txt	/*g:rails_projections*
+g:ruby_doc_command	ruby-doc.txt	/*g:ruby_doc_command*
+g:ruby_doc_rails_mapping	ruby-doc.txt	/*g:ruby_doc_rails_mapping*
+g:ruby_doc_rails_search_host	ruby-doc.txt	/*g:ruby_doc_rails_search_host*
+g:ruby_doc_rspec_mapping	ruby-doc.txt	/*g:ruby_doc_rspec_mapping*
+g:ruby_doc_rspec_search_host	ruby-doc.txt	/*g:ruby_doc_rspec_search_host*
+g:ruby_doc_ruby	ruby-doc.txt	/*g:ruby_doc_ruby*
+g:ruby_doc_ruby_host	ruby-doc.txt	/*g:ruby_doc_ruby_host*
 g:stderrencoding	vimproc.txt	/*g:stderrencoding*
 g:stdinencoding	vimproc.txt	/*g:stdinencoding*
 g:stdoutencoding	vimproc.txt	/*g:stdoutencoding*
@@ -851,6 +861,10 @@ rails-syntax-yaml	rails.txt	/*rails-syntax-yaml*
 rails-type-navigation	rails.txt	/*rails-type-navigation*
 rails-vim-integration	rails.txt	/*rails-vim-integration*
 rails.txt	rails.txt	/*rails.txt*
+ruby-doc-configuration	ruby-doc.txt	/*ruby-doc-configuration*
+ruby-doc-copyright	ruby-doc.txt	/*ruby-doc-copyright*
+ruby-doc-introduction	ruby-doc.txt	/*ruby-doc-introduction*
+ruby-doc.txt	ruby-doc.txt	/*ruby-doc.txt*
 syntax_complete	neocomplcache.txt	/*syntax_complete*
 tags_complete	neocomplcache.txt	/*tags_complete*
 unite	unite.txt	/*unite*

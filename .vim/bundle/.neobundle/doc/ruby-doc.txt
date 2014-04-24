@@ -1,0 +1,56 @@
+*ruby-doc.txt*   Browse Ruby RSpec and Rails API docs quickly
+
+1. Introduction           |ruby-doc-introduction|
+2. Configuration          |ruby-doc-configuration|
+3. Copyright              |ruby-doc-copyright|
+================================================
+
+
+1. Introduction                              *ruby-doc-introduction*
+
+In Normal mode, when your cursor is on something you would look up type:
+
+- RB for Ruby
+- RS for RSpec
+- RR for Rails
+
+and the plugin will open a new tab in your browser (or a new instance of the
+browser) to the related docs.
+
+                                               *:RubyDoc* *:RspecDoc* *:RailsDoc*
+
+The plugin adds three command-line commands for searching arbitrary stuff.
+Example:
+
+>
+   :RubyDoc each
+
+2. Configuration                                  *ruby-doc-configuration*
+
+By default, the plugin uses the xdg-open command to look up the docs but you
+can easily change the command. For example, if you are OSX you would like to
+change it:
+
+                                                      *g:ruby_doc_command*  >
+    let g:ruby_doc_command='open'
+
+Furthermore, you can choose your own mapping in the following way:
+
+   *g:ruby_doc_ruby* *g:ruby_doc_rspec_mapping* *g:ruby_doc_rails_mapping*  >
+
+   let g:ruby_doc_ruby_mapping='KK'
+
+
+You can change the host where the plugin should search for documentation:
+
+   *g:ruby_doc_ruby_host* *g:ruby_doc_rspec_search_host* *g:ruby_doc_rails_search_host*  >
+
+   let g:ruby_doc_ruby_host='https://apidock/ruby'
+
+
+3. Copyright                                           *ruby-doc-copyright*
+
+Copyright (c) Luca Pette. Distributed under the same terms as Vim itself.
+See |license|.
+
+ vim:tw=78:ts=8:ft=help:norl:
