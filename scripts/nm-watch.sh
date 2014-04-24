@@ -15,7 +15,7 @@ while : ; do
   CURRENT=$(connected)
 
   case "$CURRENT" in 
-    '') echo 'Net = ☹' ;;
+    '') echo 'Net Down' ;;
     "$LAST") echo ''    ;;
     *) echo "$CURRENT" ;;
   esac 
