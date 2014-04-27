@@ -2,19 +2,21 @@
 " name: sagotsky2
 " ==sagotsky2_Colorscheme_Settings==
 
+
 "StatusLine settings
-hi StatusLine           color: #efefef  !important; background: #000000  !important; font-size: 10pt  !important; font-family: Envy Code R !important; 
+hi StatusLine           color: #ccc  !important; ; font-size: 10pt  !important; font-family: Envy Code R !important;
 
 "CmdLine settings excluding Gradient
-hi CmdLine              background: inherit; color: #efefef; !important; font-size: 10pt  !important; font-family: Envy Code R !important;
-hi Normal               color: #efefef !important; background: #202530 !important;
+hi CmdLine              background: black; color: #efefef; !important; font-size: 10pt  !important; font-family: Envy Code R !important; 
+hi Normal               color: #ddd !important; ; background: #202025; ; _box-shadow: inset 0 0 150px 50px black; background: rgba(0,0,0,.8)
 hi CompDesc             color: #aaaaaa; width: 50%; font-size: 9pt;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
-hi CompItem[selected]   background: #666666; color: #efefef; 
+hi CompItem[selected]   background: transparent
+hi CompItem[selected]>* text-shadow: 0 0px  4px white, 0 0 1px black; color: white;
 hi CompMsg              font-style: italic; margin-left: 16px;
 hi CompResult           width: 45%; overflow: hidden;font-size: 10pt; font-family: Envy Code R !important ; font-weight: normal;
-hi CompTitle            color: #efefef; background: #222222; font-weight: bold;
-hi CompTitle>*          padding: 0 .5ex;
+hi CompTitle            color: white; background: transparent; font-weight: bold; 
+hi CompTitle>*          border: 0 transparent solid; border-top-width: .5em; border-bottom-width: 1em;
 hi Filter               font-weight: bold;color: #efefef;
 
 "Used with ]f and [f
@@ -25,7 +27,7 @@ hi ErrorMsg             color: #ffffff; background: red; font-weight: bold;
 
 
 "Hint section
-hi Hint               	font-family: Sans; font-size: 11px; font-weight: bold; color: #f6e9e9 !important; background-color: #ff2200 !important; border: solid 1px black !important; padding: 1px; -moz-border-radius: 4px;
+hi Hint               	font-family: Sans; font-size: 11px; font-weight: bold; color: #f6e9e9 !important; background-color: #ff2200 !important; border: solid 1px black !important; padding: 1px; 
 hi Hint::after          content: attr(number);
 hi HintActive           background: blue !important; color: #ffffff !important;
 hi HintElem             background-color: inherit !important; "#ffffff !important; "font-color: #ffffff  !important;
@@ -39,7 +41,6 @@ hi ModeMsg              color: #efefef; background: #222222; "CmdLine when Not i
 hi MoreMsg              color: #efefef; background: #222222;
 hi NonText              color: lightblue; min-height: 16px; padding-left: 2px;
 hi Question             color: #ffffff; background: #222222; font-weight: bold;
-" hi Search               font-size: inherit; padding: 0; color: #222222; background-color: yellow; padding: 0;
 hi Function             color: lightgreen; background: #222222;
 hi Number               color: tan; background: #222222
 hi String               color: #222222; background: #efefef;
@@ -51,3 +52,45 @@ hi LineNr               color: #efefef; background: #222222;
 
 "For other descriptions of each item, please see ``Styling'' section included with Pentadactyl
 " vi:filetype=vim foldmethod=marker fdl=0
+
+hi Indicator color: #D7005F;
+hi ContentSeparator border-top: 1px solid #000; display: -moz-box;
+
+
+"style -name tab chrome://* <<EOM
+"  #content { background-color: #ccc; } /* tabbar */
+"  .tabs-alltabs-button { padding: 0 !important; }
+"  .tabs-container > stack { display: none; } /* remove tab selection menu */
+"  /*.tabs-container .box-inherit.scrollbox-innerbox { border-bottom: 1px solid #404040; } /* tab bar position: top */
+"  .tabs-container scrollbox {
+"  background-color: #adadad;
+"  border-bottom: 1px solid #000;
+"  }
+"  .tabbrowser-tab {
+"  -moz-apperance: none !important;
+"  margin: 0 !important;
+"  padding: 0 !important;
+"  -moz-border-radius-topleft: 0 !important;
+"  -moz-border-radius-topright: 0 !important;
+"  -moz-border-radius-bottomright: 0 !important;
+"  -moz-border-radius-bottomleft: 0 !important;
+"  border-bottom: 1px solid #000 !important;
+"  background-image: none !important;
+"  background-color: #ff6974 !important;
+"  text-align: left !important;
+"  }
+"  .tabbrowser-tab[selected=false] { background: #999 !important; }
+"  .tabbrowser-tab[selected=true] .tab-text { color: #ddd !important; }
+"  .tab-icon-image { margin-bottom: -4px; }
+"  .tab-image-left,
+"  .tab-image-middle,
+"  .tab-image-right {
+"  background-image: none !important;
+"  }
+"EOM
+"
+"style -name statusbar chrome://* <<EOM
+"  #status-bar statusbarpanel { padding: 0 1px !important; }
+"  statusbarpanel > * { margin: 0 !important; padding: 0 !important; }
+"EOM
+"

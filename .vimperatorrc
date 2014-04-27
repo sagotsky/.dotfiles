@@ -1,2 +1,14 @@
-so ~/.pentadactyl/colors/sagotsky2.penta
+colorschem sagotsky2
+set titlestring=''
+set defsearch=google
 
+" ZZ is zoom zoom, not quit
+map ZZ zz 
+noremap j 5j
+noremap k 5k
+
+" tabrename command
+command! tabrename -nargs=? javascript content.document.title = "<args>";
+
+" send to google-chrome
+command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
