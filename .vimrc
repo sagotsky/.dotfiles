@@ -19,6 +19,7 @@ set wildmode=longest,list,full    "tab completion fix.  completes as much as pos
 set showcmd             " keybindings show their full name
 set guioptions=aegiLt     "clean gui in gvim
 set guifont=Source\ Code\ Pro\ 10   " Droid\ Sans\ Mono\ 10 
+set clipboard+=unnamed    " yank -> X11 buffer
 let mapleader=" "
 
 
