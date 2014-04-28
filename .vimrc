@@ -195,6 +195,7 @@ au BufRead,BufNewFile *.php set filetype=php
 au BufRead,BufNewFile *.py set filetype=python
 
 au BufNewFile,BufRead .pentadactylrc set filetype=vim
+au BufNewFile,BufRead .vimperatorrc set filetype=vim
 au BufNewFile,BufRead .vimrc set filetype=vim
 
 au BufRead,BufNewFile *.js set filetype=javascript
