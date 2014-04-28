@@ -8,7 +8,7 @@ hi StatusLine           color: #ccc  !important; ; font-size: 10pt  !important; 
 
 "CmdLine settings excluding Gradient
 hi CmdLine              background: black; color: #efefef; !important; font-size: 10pt  !important; font-family: Envy Code R !important; 
-hi Normal               color: #ddd !important; ; background: #202025; ; _box-shadow: inset 0 0 150px 50px black; background: rgba(0,0,0,.8)
+hi Normal               color: #ddd !important; ; background: #202025; ; _box-shadow: inset 0 0 150px 50px black; background: rgba(0,0,0,.8); 
 hi CompDesc             color: #aaaaaa; width: 50%; font-size: 9pt;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
 hi CompItem[selected]   background: transparent
