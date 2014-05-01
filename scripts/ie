@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# start an ie vm.  arg is version number.  works with ievms.sh name scheme
+
+if [[ "$#" != 1 ]] ; then
+  echo 'Specify an ie version number'
+  exit 1
+fi
+
+VirtualBox --startvm "$(vboxmanage list vms | grep IE$1 | sed -e 's/"\(.*\)".*/\1/')"
