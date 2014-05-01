@@ -18,7 +18,7 @@ set expandtab			"inserts spaces instead of tabs
 set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
 set showcmd             " keybindings show their full name
 set guioptions=aegiLt     "clean gui in gvim
-set guifont=Source\ Code\ Pro\ 10   " Droid\ Sans\ Mono\ 10 
+set guifont=Source\ Code\ Pro\ 12   " Droid\ Sans\ Mono\ 10 
 set clipboard+=unnamed    " yank -> X11 buffer
 let mapleader=" "
 
@@ -59,7 +59,7 @@ nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer<cr>
 nnoremap <leader>t          :Unite tag<cr>
-nnoremap <leader>T          :UniteWithCursorWord tag<cr>
+nnoremap <leader>T          :UniteWithCursorWord -no-start-insert tag<cr>
 
 nnoremap <leader>g          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>G          :UniteWithCursorWord -no-start-insert grep:. <cr>
