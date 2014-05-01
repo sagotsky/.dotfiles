@@ -1,14 +1,19 @@
-colorschem sagotsky2
+colorscheme sagotsky2
 set titlestring=''
 set defsearch=google
 
-" ZZ is zoom zoom, not quit
 map ZZ zz 
 noremap j 5j
 noremap k 5k
+noremap s og 
+
 
 " tabrename command
 command! tabrename -nargs=? javascript content.document.title = "<args>";
 
 " send to google-chrome
 command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
+
+" rc reading, loading
+com! rc     !gvim ~/.vimperatorrc 
+com! sorc   so "~/.vimperatorrc"
