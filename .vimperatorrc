@@ -1,6 +1,7 @@
 colorscheme sagotsky2
 set titlestring=''
 set defsearch=google
+set gui+=nonavigation
 
 map ZZ zz 
 noremap j 5j
