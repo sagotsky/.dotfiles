@@ -21,7 +21,17 @@ style "default"
   font_name = "Verdana 8"
 }
 
-class "*" style "default"
-widget_class "*" style "default"
+style "scroll"
+{
+  GtkScrollbar::slider-width        = 4
+  GtkScrollbar::has-backward-stepper = 0
+  GtkScrollbar::has-forward-stepper = 0
+  bg[NORMAL]        = "#FFFFFF" # empty space
+  bg[SELECTED]   = "#66666a"    # bar itselc
+
+}
+
+
+class "*" style "scroll"
 gtk-font-name = "Verdana 8"
 gtk-icon-theme-name = "Neu"
