@@ -1,20 +1,24 @@
 " ==Pentadactyl_Color_Scheme==
 " name: sagotsky2
 " ==sagotsky2_Colorscheme_Settings==
+" /* vim: set filetype=vim : */
 
 
 "StatusLine settings
-hi StatusLine           color: #ccc  !important; ; font-size: 10pt  !important; font-family: Envy Code R !important;
+hi StatusLine           color: #ccc  !important; font-size: 10pt  !important; font-family: Envy Code R !important; border-width: 0 !important; 
+hi StatusLine>*:nth-child(4)    border-radius: 4px; padding: 0 5px;background-color: #202025; color: white; box-shadow: 0px 0px 2px 1px #aaa inset; margin: 0 1ex;
+hi StatusLine>*:nth-child(5)    color: #666;
+hi StatusLine>*:nth-child(7)    font-weight: bold; color: white; margin: 0 1ex;
 
 "CmdLine settings excluding Gradient
 hi CmdLine              background: black; color: #efefef; !important; font-size: 10pt  !important; font-family: Envy Code R !important; 
-hi Normal               color: #ddd !important; ; background: #202025; ; _box-shadow: inset 0 0 150px 50px black; background: rgba(0,0,0,.9); 
+hi Normal               color: #ddd !important; background: rgba(0,0,0,.9);overflow-x: hidden !important;
 hi CompDesc             color: #aaaaaa; width: 50%; font-size: 9pt;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
 hi CompItem[selected]   background: transparent
 hi CompItem[selected]>* text-shadow: 0 0px  6px white, 0 0 2px #009 ; color: white; font-weight: bold;  font-size: 130% !important
 " hi CompItem[selected]+* font-size: 130% !important; color: red
- hi CompMsg              font-style: italic; margin-left: 16px;
+hi CompMsg              font-style: italic; margin-left: 16px;
 hi CompResult           width: 45%; overflow: hidden;font-size: 10pt; font-family: Envy Code R !important ; font-weight: normal;
 hi CompTitle            color: white; background: transparent; font-weight: bold; 
 hi CompTitle>*          border: 0 transparent solid; border-top-width: .5em; border-bottom-width: 1em;
@@ -95,3 +99,7 @@ hi ContentSeparator border-top: 1px solid #000; display: -moz-box;
 "  statusbarpanel > * { margin: 0 !important; padding: 0 !important; }
 "EOM
 "
+
+"style -name scrollbar chrome://* <<EOM
+  "#content browser {margin-right: -12px;}
+"EOM

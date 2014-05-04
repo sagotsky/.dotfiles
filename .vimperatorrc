@@ -1,12 +1,19 @@
 colorscheme sagotsky2
+let mapleader=","
 set titlestring=''
 set defsearch=google
-set gui+=nonavigation
+set gui=none
 
-map ZZ zz 
-noremap j 5j
-noremap k 5k
-noremap s og 
+noremap ZZ  zz 
+noremap j   5j
+noremap k   5k
+noremap s   og 
+
+" rc reading, loading
+com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
+com! sorc   so ~/.vimperatorrc
+noremap <leader>s :rc <cr>
+noremap <leader>S :sorc <cr>
 
 
 " tabrename command
@@ -15,6 +22,3 @@ command! tabrename -nargs=? javascript content.document.title = "<args>";
 " send to google-chrome
 command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
 
-" rc reading, loading
-com! rc     !gvim ~/.vimperatorrc 
-com! sorc   so "~/.vimperatorrc"
