@@ -6,7 +6,7 @@
 
 "StatusLine settings
 hi StatusLine           color: #ccc  !important; font-size: 10pt  !important; font-family: Envy Code R !important; border-width: 0 !important; 
-hi StatusLine>*:nth-child(4)    border-radius: 4px; padding: 0 5px;background-color: #202025; color: white; box-shadow: 0px 0px 2px 1px #aaa inset; margin: 0 1ex;
+hi StatusLine>*:nth-child(4)    border-radius: 4px; padding: 0 5px;background-color: #202025; color: white; box-shadow: 0px 0px 2px 1px #667 inset; margin: 0 1ex;
 hi StatusLine>*:nth-child(5)    color: #666;
 hi StatusLine>*:nth-child(7)    font-weight: bold; color: white; margin: 0 1ex;
 
