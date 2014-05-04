@@ -4,6 +4,8 @@
 !.ssh/authorized_keys
 !.ssh/config
 .vim/.netrwhist
+.vim/bundle
+.vimperator/info
 .xmonad/*
 !.xmonad/xmonad.hs
 scripts/fmarks/*
