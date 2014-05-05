@@ -32,6 +32,6 @@ style "scroll"
 }
 
 
-class "*" style "scroll"
+widget_class "*Scrollbar" style "scroll"
 gtk-font-name = "Verdana 8"
 gtk-icon-theme-name = "Neu"
