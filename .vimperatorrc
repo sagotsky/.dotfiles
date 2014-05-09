@@ -1,3 +1,4 @@
+echo 'Init vimperatorrc'
 colorscheme sagotsky2
 let mapleader=","
 set titlestring=''
@@ -17,8 +18,19 @@ noremap <leader>S :sorc <cr>
 
 
 " tabrename command
-command! tabrename -nargs=? javascript content.document.title = "<args>";
+command! tabrename -nargs=? javascript content.document.title = "<args>"; 
 
 " send to google-chrome
 command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
 
+
+
+javascript <<EOF
+  function vimp_formulate() {
+    $ = document.querySelectorAll
+    alert($)
+    alert($('input'))   //.reduce( function(ret, val) { j = window.jQuery(val); name = j.attr('name'); value = j.attr('value'); if (typeof ret[name] == 'undefined') { ret[name] = [value] } else {ret[name].push(value)}; return ret; }, {})
+  }
+EOF
+" randomly fills out radio buttons in a form
+command! formulate -nargs=0 javascript vimp_formulate()
