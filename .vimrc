@@ -207,7 +207,7 @@ au BufRead,BufNewFile *.hs set filetype=haskell
 au! BufRead,BufNewFile *.haml         call HamlSettings()
 function! HamlSettings()
   setfiletype haml 
-  IndentGuidesEnable
+  "IndentGuidesEnable
 endfunction
 
 au BufRead,BufNewFile *.rb        call RubySettings()

@@ -1,24 +1,64 @@
+""" Settings and init
+
+echo new Date().toString()
 colorscheme sagotsky2
 let mapleader=","
 set titlestring=''
 set defsearch=google
 set gui=none
 
+""" Command keys
+
 noremap ZZ  zz 
 noremap j   5j
 noremap k   5k
 noremap s   og 
 
+""" Custom command keys
+
 " rc reading, loading
-com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
-com! sorc   so ~/.vimperatorrc
 noremap <leader>s :rc <cr>
 noremap <leader>S :sorc <cr>
+noremap <leader>g :togglegui <cr>
 
+""" Custom commands
+com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
+com! sorc   so ~/.vimperatorrc
 
-" tabrename command
-command! tabrename -nargs=? javascript content.document.title = "<args>";
+" rename a tab (not sticky though)
+command! tabrename -nargs=? javascript content.document.title = "<args>"; 
 
-" send to google-chrome
+" send to chrome
 command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
+
+" display all or no gui.  (for the wife)
+command! togglegui -nargs=0 javascript togglegui()
+javascript <<EOF
+  function togglegui() {
+    liberator.globalVariables.gui = (liberator.globalVariables.gui == 'all') ? 'none' : 'all'
+    liberator.execute('set gui=' + liberator.globalVariables.gui) 
+  }
+EOF
+
+" Click a radio button from each named group
+command! formulate -nargs=0 javascript vimp_formulate()
+javascript <<EOF
+  function vimp_formulate() {
+    nl = content.document.querySelectorAll('input[type=radio]')
+
+    radio_groups = Array.prototype.slice.call(nl).reduce( function(ret, val) { 
+      if (typeof(ret[val.name]) == 'undefined') {
+        ret[val.name] = [];
+      } 
+      ret[val.name].push(val.id);
+      return ret; 
+    }, {})
+
+    for (name in radio_groups) {
+      ids = radio_groups[name];
+      var id = ids[ Math.floor(Math.random() * ids.length) ];
+      content.document.querySelector('#' + id).click()
+    }
+  }
+EOF
 

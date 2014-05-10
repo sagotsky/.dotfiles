@@ -12,7 +12,7 @@ hi StatusLine>*:nth-child(7)    font-weight: bold; color: white; margin: 0 1ex;
 
 "CmdLine settings excluding Gradient
 hi CmdLine              background: black; color: #efefef; !important; font-size: 10pt  !important; font-family: Envy Code R !important; 
-hi Normal               color: #ddd !important; background: rgba(0,0,0,.9);overflow-x: hidden !important;
+hi Normal               color: #ddd !important; background: rgba(0,0,0,.95);overflow-x: hidden !important;
 hi CompDesc             color: #aaaaaa; width: 50%; font-size: 9pt;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
 hi CompItem[selected]   background: transparent
@@ -28,7 +28,7 @@ hi Filter               font-weight: bold;color: #efefef;
 hi FrameIndicator       background-color: #222222; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
 
 hi Bell                 border: 0 none; background-color: #ffffff;
-hi ErrorMsg             color: #ffffff; background: red; font-weight: bold;
+hi ErrorMsg             color: #ffffff; background: #300; font-weight: bold;
 
 
 "Hint section
