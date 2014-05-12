@@ -35,7 +35,7 @@ command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /de
 command! togglegui -nargs=0 javascript togglegui()
 javascript <<EOF
   function togglegui() {
-    liberator.globalVariables.gui = (liberator.globalVariables.gui == 'all') ? 'none' : 'all'
+    liberator.globalVariables.gui = (liberator.globalVariables.gui == 'none' || typeof(liberator.globalVariables.gui) == 'undefined') ? 'menu,navigation,tabs' : 'none'
     liberator.execute('set gui=' + liberator.globalVariables.gui) 
   }
 EOF
@@ -62,3 +62,23 @@ javascript <<EOF
   }
 EOF
 
+
+" passkeys.  ignorekeys inverted.
+command! passkeys -nargs=+ javascript vimp_passkeys("<args>")
+javascript <<EOF
+  function vimp_passkeys(pass_keys) {
+    all_keys = ":?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    pass_keys = pass_keys.split(' ')
+    keep_keys = all_keys.reduce( function(ret, key) {
+      (pass_keys.indexOf(key) == -1) && ret.push(key);
+      return ret;
+      }, []);
+
+    // reduce as diff works.  ignorekeys does not.
+    liberator.execute('ignorekeys add -except=' + keep_keys.join('') + ' ' + content.window.location.href)
+  }
+EOF
+
+" Todo: 
+"   jquery loader
+"   js - javascript with automatic alert/content.conole.log/echo/overlay
