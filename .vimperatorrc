@@ -79,6 +79,34 @@ javascript <<EOF
   }
 EOF
 
+command! annotate -nargs=+ javascript vimp_annotate("<args>")
+javascript <<EOF
+  function vimp_annotate(text) {
+    typeof(content.wrappedJSObject.$) == 'function' || vimp_jquery()
+    alert(content.wrappedJSObject.$)
+    content.$('body').one('click', function(e) {
+      content.$('body').append('<div style="font-size: 300%; color:#ffa; text-shadow: -2px 0 2px black, 2px 0 2px black, 0 -2px 2px black, 0 2px 2px black ;  position: absolute; top:'+e.clientY+'px; left: '+e.clientX+'px; z-index: 50;">'+text+'</div>')
+      return false;
+    })
+  }
+
+  function vimp_jquery() {
+    " this really should just return a $
+    "
+    "var script = content.document.createElement("SCRIPT");
+    "script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
+    "script.type = 'text/javascript';
+    "content.document.getElementsByTagName("head")[0].appendChild(script);
+    win = content;
+    if (win.wrappedJSObject)
+      win = win.wrappedJSObject;
+      if (!('jQuery' in win)) {
+        head = util.evaluateXPath('//head | //xhtml:head', win.document).snapshotItem(0);
+        head.appendChild(util.xmlToDom(<script type="text/javascript">{script}</script>, win.document));
+      }
+    }
+  }
+EOF
 " Todo: 
 "   jquery loader
 "   js - javascript with automatic alert/content.conole.log/echo/overlay
