@@ -32,17 +32,17 @@ command! tabrename -nargs=? javascript content.document.title = "<args>";
 command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
 
 " display all or no gui.  (for the wife)
+command! annotate -nargs=+ javascript vimp_annotate("<args>")
 command! togglegui -nargs=0 javascript togglegui()
+" command! passkeys -nargs=+ javascript vimp_passkeys("<args>")
+command! formulate -nargs=0 javascript vimp_formulate()
+
 javascript <<EOF
   function togglegui() {
     liberator.globalVariables.gui = (liberator.globalVariables.gui == 'none' || typeof(liberator.globalVariables.gui) == 'undefined') ? 'menu,navigation,tabs' : 'none'
     liberator.execute('set gui=' + liberator.globalVariables.gui) 
   }
-EOF
 
-" Click a radio button from each named group
-command! formulate -nargs=0 javascript vimp_formulate()
-javascript <<EOF
   function vimp_formulate() {
     nl = content.document.querySelectorAll('input[type=radio]')
 
@@ -60,12 +60,7 @@ javascript <<EOF
       content.document.querySelector('#' + id).click()
     }
   }
-EOF
 
-
-" passkeys.  ignorekeys inverted.
-command! passkeys -nargs=+ javascript vimp_passkeys("<args>")
-javascript <<EOF
   function vimp_passkeys(pass_keys) {
     all_keys = ":?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     pass_keys = pass_keys.split(' ')
@@ -75,39 +70,33 @@ javascript <<EOF
       }, []);
 
     // reduce as diff works.  ignorekeys does not.
-    liberator.execute('ignorekeys add -except=' + keep_keys.join('') + ' ' + content.window.location.href)
+    //liberator.execute('ignorekeys add -except=' + keep_keys.join('') + ' ' + content.window.location.href)
     //ignorekeys.get  - no more liberator.execute
   }
-EOF
 
-command! annotate -nargs=+ javascript vimp_annotate("<args>")
-javascript <<EOF
   function vimp_annotate(text) {
-    typeof(content.wrappedJSObject.$) == 'function' || vimp_jquery()
-    alert(content.wrappedJSObject.$)
-    content.$('body').one('click', function(e) {
-      content.$('body').append('<div style="font-size: 300%; color:#ffa; text-shadow: -2px 0 2px black, 2px 0 2px black, 0 -2px 2px black, 0 2px 2px black ;  position: absolute; top:'+e.clientY+'px; left: '+e.clientX+'px; z-index: 50;">'+text+'</div>')
-      return false;
-    })
+    alert(text)
+    //typeof(content.wrappedJSObject.$) == 'function' || vimp_jquery()
+    //alert(content.wrappedJSObject.$)
+    //content.$('body').one('click', function(e) {
+      //content.$('body').append('<div style="font-size: 300%; color:#ffa; text-shadow: -2px 0 2px black, 2px 0 2px black, 0 -2px 2px black, 0 2px 2px black ;  position: absolute; top:'+e.clientY+'px; left: '+e.clientX+'px; z-index: 50;">'+text+'</div>')
+      // red text, white outline, black shadow underneat
+      //return false;
+    //})
   }
 
   function vimp_jquery() {
-    " this really should just return a $
-    "
-    "var script = content.document.createElement("SCRIPT");
-    "script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
-    "script.type = 'text/javascript';
-    "content.document.getElementsByTagName("head")[0].appendChild(script);
-    win = content;
-    if (win.wrappedJSObject)
-      win = win.wrappedJSObject;
-      if (!('jQuery' in win)) {
-        head = util.evaluateXPath('//head | //xhtml:head', win.document).snapshotItem(0);
-        head.appendChild(util.xmlToDom(<script type="text/javascript">{script}</script>, win.document));
-      }
-    }
+    //win = content;
+    //if (win.wrappedJSObject) {
+      //win = win.wrappedJSObject;
+      //if (!('jQuery' in win)) {
+        //head = util.evaluateXPath('//head | //xhtml:head', win.document).snapshotItem(0);
+        //head.appendChild(util.xmlToDom(<script type="text/javascript">{script}</script>, win.document));
+      //}
+    //}
   }
 EOF
+
 " Todo: 
 "   jquery loader
 "   js - javascript with automatic alert/content.conole.log/echo/overlay
