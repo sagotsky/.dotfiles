@@ -76,9 +76,11 @@ javascript <<EOF
 
     // reduce as diff works.  ignorekeys does not.
     liberator.execute('ignorekeys add -except=' + keep_keys.join('') + ' ' + content.window.location.href)
+    //ignorekeys.get  - no more liberator.execute
   }
 EOF
 
 " Todo: 
 "   jquery loader
 "   js - javascript with automatic alert/content.conole.log/echo/overlay
+"   annotation.  add an arrow or text to mouse location.  scale/transform?
