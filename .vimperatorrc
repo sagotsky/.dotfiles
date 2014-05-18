@@ -75,29 +75,35 @@ javascript <<EOF
   }
 
   function vimp_annotate(text) {
-    alert(text)
-    //typeof(content.wrappedJSObject.$) == 'function' || vimp_jquery()
-    //alert(content.wrappedJSObject.$)
-    //content.$('body').one('click', function(e) {
-      //content.$('body').append('<div style="font-size: 300%; color:#ffa; text-shadow: -2px 0 2px black, 2px 0 2px black, 0 -2px 2px black, 0 2px 2px black ;  position: absolute; top:'+e.clientY+'px; left: '+e.clientX+'px; z-index: 50;">'+text+'</div>')
-      // red text, white outline, black shadow underneat
-      //return false;
-    //})
-  }
+    body = content.document.getElementsByTagName('body')[0]
+    cursor = body.style.cursor
 
-  function vimp_jquery() {
-    //win = content;
-    //if (win.wrappedJSObject) {
-      //win = win.wrappedJSObject;
-      //if (!('jQuery' in win)) {
-        //head = util.evaluateXPath('//head | //xhtml:head', win.document).snapshotItem(0);
-        //head.appendChild(util.xmlToDom(<script type="text/javascript">{script}</script>, win.document));
-      //}
-    //}
+    function annotate(e) {
+      var x = e.clientX + content.window.pageXOffset
+      var y = e.clientY + content.window.pageYOffset
+      var elem = content.document.createElement('h1')
+      var style = {color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: y+'px', left: x+'px', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' }
+      for (var prop in style) { elem.style[prop] = style[prop]; }
+
+      var annotation = content.document.createTextNode(text)
+      elem.appendChild(annotation)
+
+      body.appendChild(elem)
+      body.removeEventListener('click', annotate)   
+      body.style.cursor = cursor
+      return false
+    }
+    try { body.addEventListener('click', annotate) }
+    catch (err) { alert(err.toSource()); return; } // bail out before altering cursor
+
+    body.style.cursor = 'crosshair'
   }
 EOF
 
 " Todo: 
-"   jquery loader
 "   js - javascript with automatic alert/content.conole.log/echo/overlay
-"   annotation.  add an arrow or text to mouse location.  scale/transform?
+"   annotation
+"     * add dom node immediately, but transparent.  have it follow mouse.  then
+"     place it
+"     * images.  rotatable?
+"
