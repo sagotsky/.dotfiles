@@ -6,8 +6,8 @@ function lw() {
 	    for bin in $@ ; do lw $bin ; done 
      elif [ $# -gt 0  ] ; then
        bin=$(which $1)
-       [[ $? && -e $bin ]] && ls -lh $bin
-       [ -L "$bin" ] && lw $(readlink $bin) || true
+       [[ "$?" == "0" && -e "$bin" ]] && ls -lh "$bin"
+       [[ -L "$bin" ]] && lw $(readlink $bin) || true
 	 else 
 	    echo "lw (ls which) requires more than 0 arguments"
 	 fi  
@@ -286,7 +286,7 @@ function func() {
 }
 
 # wrapper for ssh.  resets xterm colors after connection.  see .ssh/config's localcommands.
-if [ $(which xtermcontrol) -a "$TERM" == 'xterm' ] ; then
+if [[ -x "$(which xtermcontrol)" && "$TERM" == 'xterm' ]] ; then
   function ssh() {
     FG=$(xtermcontrol --get-fg)
     BG=$(xtermcontrol --get-bg)
