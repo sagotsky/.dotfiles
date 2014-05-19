@@ -90,7 +90,7 @@ javascript <<EOF
     function move_annotation(e) {
       elem = content.document.querySelector('.vimp_annotating');
       elem.style.left = e.clientX + content.window.pageXOffset - elem.offsetWidth/2 + 'px';
-      elem.style.top  = e.clientY + content.window.pageYOffset - elem.offsetHeight/2  + 'px';
+      elem.style.top  = e.clientY + content.window.pageYOffset - elem.offsetHeight  + 'px';
     }
 
     try { 
@@ -98,7 +98,7 @@ javascript <<EOF
       body.addEventListener('mousemove', move_annotation);
 
       body.style.cursor = 'crosshair';
-      var style = {opacity: 0.7, color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: '-10000px', left: '-10000px', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' };
+      var style = {opacity: 0.7, color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: '50%', left: '50%', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' };
       elem = vimp_annotate_text_node(text, style);
       elem.className = 'vimp_annotating';
       body.appendChild(elem);
