@@ -79,24 +79,28 @@ javascript <<EOF
     cursor = body.style.cursor
 
     function annotate(e) {
-      var x = e.clientX + content.window.pageXOffset
-      var y = e.clientY + content.window.pageYOffset
-      var elem = content.document.createElement('h1')
-      var style = {color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: y+'px', left: x+'px', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' }
-      for (var prop in style) { elem.style[prop] = style[prop]; }
+      var x = e.clientX + content.window.pageXOffset;
+      var y = e.clientY + content.window.pageYOffset;
+      var style = {color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: y+'px', left: x+'px', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' };
 
-      var annotation = content.document.createTextNode(text)
-      elem.appendChild(annotation)
-
-      body.appendChild(elem)
-      body.removeEventListener('click', annotate)   
-      body.style.cursor = cursor
-      return false
+      elem = vimp_annotate_text_node(text, style);
+      body.appendChild(elem);
+      body.removeEventListener('click', annotate)   ;
+      body.style.cursor = cursor;
+      return false;
     }
     try { body.addEventListener('click', annotate) }
     catch (err) { alert(err.toSource()); return; } // bail out before altering cursor
 
-    body.style.cursor = 'crosshair'
+    body.style.cursor = 'crosshair';
+  }
+
+  function vimp_annotate_text_node(text, style) {
+    var elem = content.document.createElement('h1');
+    var annotation = content.document.createTextNode(text);
+    elem.appendChild(annotation);
+    for (var prop in style) { elem.style[prop] = style[prop]; }
+    return elem:
   }
 EOF
 
