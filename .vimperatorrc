@@ -75,24 +75,38 @@ javascript <<EOF
   }
 
   function vimp_annotate(text) {
-    body = content.document.getElementsByTagName('body')[0]
-    cursor = body.style.cursor
+    body = content.document.getElementsByTagName('body')[0];
+    cursor = body.style.cursor;
 
-    function annotate(e) {
-      var x = e.clientX + content.window.pageXOffset;
-      var y = e.clientY + content.window.pageYOffset;
-      var style = {color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: y+'px', left: x+'px', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' };
-
-      elem = vimp_annotate_text_node(text, style);
-      body.appendChild(elem);
-      body.removeEventListener('click', annotate)   ;
+    function keep_annotation(e) {
       body.style.cursor = cursor;
-      return false;
+      elem = content.document.querySelector('.vimp_annotating');
+      elem.className = '';
+      elem.style.opacity = 1;
+      body.removeEventListener('click', keep_annotation);
+      body.removeEventListener('mousemove', move_annotation);
     }
-    try { body.addEventListener('click', annotate) }
-    catch (err) { alert(err.toSource()); return; } // bail out before altering cursor
 
-    body.style.cursor = 'crosshair';
+    function move_annotation(e) {
+      elem = content.document.querySelector('.vimp_annotating');
+      elem.style.left = e.clientX + content.window.pageXOffset - elem.offsetWidth/2 + 'px';
+      elem.style.top  = e.clientY + content.window.pageYOffset - elem.offsetHeight/2  + 'px';
+    }
+
+    try { 
+      body.addEventListener('click', keep_annotation);
+      body.addEventListener('mousemove', move_annotation);
+
+      body.style.cursor = 'crosshair';
+      var style = {opacity: 0.7, color: 'red', fontSize: '200%', fontWeight: 'bold', fontFamily: 'fantasy', position: 'absolute', top: '-10000px', left: '-10000px', zIndex: 50, letterSpacing: '1.5px', textShadow: '0 2px 2px #000, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff' };
+      elem = vimp_annotate_text_node(text, style);
+      elem.className = 'vimp_annotating';
+      body.appendChild(elem);
+      //body.removeEventListener('click', annotate)   ;
+    } catch (err) { // bail out before altering cursor
+      alert(err.toSource()); 
+      return; 
+    } 
   }
 
   function vimp_annotate_text_node(text, style) {
@@ -100,11 +114,11 @@ javascript <<EOF
     var annotation = content.document.createTextNode(text);
     elem.appendChild(annotation);
     for (var prop in style) { elem.style[prop] = style[prop]; }
-    return elem:
+    return elem;
   }
 EOF
 
-" Todo: 
+"Todo: 
 "   js - javascript with automatic alert/content.conole.log/echo/overlay
 "   annotation
 "     * add dom node immediately, but transparent.  have it follow mouse.  then
