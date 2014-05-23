@@ -1,0 +1,12 @@
+cdpath=(/var/storage/repos)
+
+
+export PATH="$HOME/.rbenv/bin:$PATH:/usr/lib/postgresql/9.3/bin/"
+eval "$(rbenv init -)"
+
+export ARCHFLAGS="-arch x86_64"
+export RUBY_GC_HEAP_INIT_SLOTS=800000
+export RUBY_HEAP_FREE_MIN=100000
+export RUBY_HEAP_SLOTS_INCREMENT=300000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=79000000
