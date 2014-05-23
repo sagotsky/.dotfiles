@@ -147,6 +147,10 @@ myKeys = [
 
 
     -- music
+    , ("M-<Up>"  ,               spawn "xterm -e music-remote.sh") --vol up
+    , ("M-<Down>",               spawn "music-client.sh toggle") --vol up
+    , ("M-<Right>",              spawn "music-client.sh next") --Next
+    , ("M-<Left>",               spawn "music-client.sh back") --Back
     , ("<XF86AudioPlay>",        spawn "music-client.sh toggle") --vol up
     , ("<XF86Forward>",          spawn "music-client.sh next") --Next
     , ("<XF86Back>",             spawn "music-client.sh back") --Back
