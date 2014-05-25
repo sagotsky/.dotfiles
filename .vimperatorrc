@@ -32,10 +32,10 @@ command! tabrename -nargs=? javascript content.document.title = "<args>";
 command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
 
 " display all or no gui.  (for the wife)
-command! annotate -nargs=+ javascript vimp_annotate("<args>")
-command! togglegui -nargs=0 javascript togglegui()
-" command! passkeys -nargs=+ javascript vimp_passkeys("<args>")
-command! formulate -nargs=0 javascript vimp_formulate()
+command! annotate -nargs=+ javascript vimp_annotate("<args>")     
+command! togglegui -nargs=0 javascript togglegui()                
+command! passkeys -nargs=+ javascript vimp_passkeys("<args>")    
+command! formulate -nargs=0 javascript vimp_formulate()         
 
 javascript <<EOF
   function togglegui() {
@@ -63,15 +63,14 @@ javascript <<EOF
 
   function vimp_passkeys(pass_keys) {
     all_keys = ":?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    pass_keys = pass_keys.split(' ')
+    pass_keys = pass_keys.split('')
     keep_keys = all_keys.reduce( function(ret, key) {
       (pass_keys.indexOf(key) == -1) && ret.push(key);
       return ret;
       }, []);
 
-    // reduce as diff works.  ignorekeys does not.
-    //liberator.execute('ignorekeys add -except=' + keep_keys.join('') + ' ' + content.window.location.href)
-    //ignorekeys.get  - no more liberator.execute
+    // domain => feedly\\.com escaped twice before getting regex?
+    ignoreKeys.add('http://'+content.document.domain, keep_keys)
   }
 
   function vimp_annotate(text) {
