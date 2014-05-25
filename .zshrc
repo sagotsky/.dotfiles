@@ -1,8 +1,9 @@
 # Set up the prompt
 
-autoload -Uz promptinit
-promptinit
-prompt adam1
+
+# autoload -Uz promptinit
+# promptinit
+# prompt suse
 
 setopt histignorealldups sharehistory
 
@@ -36,10 +37,16 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+PROMPT="%n@%m:%~$ "       # user@host:~
+PROMPT="<%*> $PROMPT"     # <hh:mm:ss>
+# fix alt-backsp
+autoload -U select-word-style
+select-word-style bash
+
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
-  for FILE in .alias .alias.local .functions .zshrc.$HOST; do
+  for FILE in .alias .alias.local .functions .zshrc.$HOST .shellrc; do
     [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
   done
 fi

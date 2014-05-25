@@ -1,24 +1,7 @@
 export PATH="$HOME/scripts/:$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:$PATH"
 
-## Nice defaults
-export EDITOR='vim'
-export CVS_RSH='ssh'
-export PAGER='less'
-export LESS='-R -j4 -i'  # color for less, search results show on second line, case insensitive
-export VIMRUNTIME=$(find /usr/share/vim/vim* -maxdepth 0 -type d | sort -r | head -n 1)
-export GREP_OPTIONS='--color=auto'
-
 ## Count columns at each cmd
 shopt -s checkwinsize
-
-# color manpages for less
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;15m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;46m'    # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;14m' # begin underline
 
 # Disable term flow control.  ctrl-s no longer pauses.  Now bash's C-s can fire, which is hist forward
 stty -ixon 2> /dev/null # pseudo ttys like ssh can't handle output
@@ -115,7 +98,7 @@ PROMPT_COMMAND='COLOR=$(ps1color $?) ; BRANCH=$(gitprompt) ; history -a ; histor
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
-  FILES=".alias .bashrc.local .alias.local .functions .bash_completion .bashrc.d/fd/fd.sh scripts/.ghiq.bash_completion.sh"
+  FILES=".alias .bashrc.local .alias.local .functions .bash_completion .bashrc.d/fd/fd.sh scripts/.ghiq.bash_completion.sh .shellrc"
   for FILE in $FILES ; do
     if [ -f "$HOME/$FILE" ] ; then
       source "$HOME/$FILE"
