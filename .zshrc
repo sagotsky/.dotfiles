@@ -39,11 +39,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
-  for FILE in .alias .alias.local .functions ; do
-    if [[ -e "$HOME/$FILE" ]] ; then
-      source "$HOME/$FILE"
-    else 
-      echo "no such file: $FILE"
-    fi ; 
+  for FILE in .alias .alias.local .functions .zshrc.$HOST; do
+    [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
   done
 fi
