@@ -20,6 +20,7 @@ set showcmd             " keybindings show their full name
 set guioptions=aegiLt     "clean gui in gvim
 set guifont=Source\ Code\ Pro\ 12   " Droid\ Sans\ Mono\ 10 
 set clipboard+=unnamed    " yank -> X11 buffer
+set laststatus=2          " 2 lines for status
 let mapleader=" "
 
 
@@ -43,6 +44,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lucapette/vim-ruby-doc'
+
+NeoBundle 'tomasr/molokai'
 
 NeoBundleCheck
 
@@ -136,7 +139,7 @@ source ~/.vim/readline.vim
 filetype plugin on		"enable filetype plugin
 filetype indent on
 
-colorscheme ambient 
+colorscheme molokai 
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
   highlight linenr 		ctermfg=darkgray	
