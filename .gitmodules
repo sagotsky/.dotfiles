@@ -4,6 +4,3 @@
 [submodule ".pentadactyl/plugins/firebug-pentadactyl"]
 	path = .pentadactyl/plugins/firebug-pentadacty
 	url = git://github.com/maksimr/firebug-pentadactyl.git
-[submodule ".zsh/plugins/zsh-git-prompt"]
-	path = .zsh/plugins/zsh-git-prompt
-	url = https://github.com/olivierverdier/zsh-git-prompt

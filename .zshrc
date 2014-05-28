@@ -37,26 +37,12 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+PROMPT="%n@%m:%~$ "       # user@host:~
+PROMPT="<%*> $PROMPT"     # <hh:mm:ss>
 # fix alt-backsp
 autoload -U select-word-style
 select-word-style bash
 
-# try to load selective plugins from oh-my-zsh
-ZSH="$HOME/.zsh/"
-for FILE ($ZSH/plugins/**/*.zsh) ; do source $FILE ; done
-
-
-# Prompt
-
-PROMPT="%n@%m:%~"       # user@host:~
-PROMPT="<%*> $PROMPT"     # <hh:mm:ss>
-PROMPT="$PROMPT \$(git_super_status)$ "     # git info
-
-ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
-# maybe add functions escaped and then sed them up into $()
-
-
-RPROMPT='%h'
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
