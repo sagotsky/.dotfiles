@@ -287,10 +287,12 @@ function func() {
 
 # wrapper for ssh.  resets xterm colors after connection.  see .ssh/config's localcommands.
 if [[ -x "$(which xtermcontrol)" && "$TERM" == 'xterm' ]] ; then
+  _ssh=$(which ssh)
+
   function ssh() {
     FG=$(xtermcontrol --get-fg)
     BG=$(xtermcontrol --get-bg)
-    $(which ssh) "$@"
+    $_ssh "$@"
     xtermcontrol --fg="$FG"
     xtermcontrol --bg="$BG"
   }
