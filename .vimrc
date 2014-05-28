@@ -44,8 +44,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lucapette/vim-ruby-doc'
-
 NeoBundle 'tomasr/molokai'
+NeoBundle 'tacroe/unite-mark'
 
 NeoBundleCheck
 
@@ -56,16 +56,16 @@ let g:unite_split_rule = 'botright'
 call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
+let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\""
 
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer<cr>
-nnoremap <leader>t          :Unite tag<cr>
-nnoremap <leader>T          :UniteWithCursorWord -no-start-insert tag<cr>
+nnoremap <leader>m          :Unite mark<cr>
 
-nnoremap <leader>g          :Unite -no-start-insert grep:. <cr>
-nnoremap <leader>G          :UniteWithCursorWord -no-start-insert grep:. <cr>
+nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
+nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
