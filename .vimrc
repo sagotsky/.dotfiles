@@ -39,17 +39,18 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lucapette/vim-ruby-doc'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tacroe/unite-mark'
-
 NeoBundleCheck
 
 
