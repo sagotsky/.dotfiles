@@ -33,7 +33,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplete'
+if v:version >= 704
+  NeoBundle 'Shougo/neocomplete'
+endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'h1mesuke/unite-outline'
