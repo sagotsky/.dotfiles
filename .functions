@@ -174,7 +174,7 @@ function dec2base() {
 
 # prints n paragraphs of lorem ipsum text.  n defaults to 5 thanks to lipsum.com being cool.
 function loremipsum() {
-     curl -s 'lipsum.com/feed/html' -d amount=$1 | grep -v '<' | grep '\.$'
+     curl -s "http://loripsum.net/api/$1/short/headers/plaintext"
 }
 
 # repeats a command n times.  no loop logic, but should be a small prefix instead of for ;; done
@@ -198,11 +198,11 @@ alias 6='rep 6 '
 #for f in "cd" ; do export $f ; done
 
 # prints color codes for use in tmux and vim
-function colors() {
-  for i in {0..255} ; do     
-    printf "\x1b[38;5;${i}mcolour${i}\n"; 
-  done | less
-}
+#function colors() {
+  #for i in {0..255} ; do     
+    #printf "\x1b[38;5;${i}mcolour${i}\n"; 
+  #done | less
+#}
 
 # xephy wrapper
 function xnest() {
@@ -255,11 +255,6 @@ function malloc() {
     fi
     sh -c "MEMBLOB=\$(dd if=/dev/urandom bs=1MB count=$N) ; sleep 1"
   fi
-}
-
-# shortcut for drupal.org git clone
-function do_git() {
-  git clone ssh://jsagotsky@git.drupal.org/project/$1.git
 }
 
 function hl() {
