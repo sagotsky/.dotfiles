@@ -18,9 +18,12 @@ set expandtab			"inserts spaces instead of tabs
 set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
 set showcmd             " keybindings show their full name
 set guioptions=aegiLt     "clean gui in gvim
-set guifont=Source\ Code\ Pro\ 12   " Droid\ Sans\ Mono\ 10 
+set guifont=Source\ Code\ Pro\ 12   " gvim only font
 set clipboard+=unnamed    " yank -> X11 buffer
 set laststatus=2          " 2 lines for status
+set regexpengine=1          " older engine is somehow faster for ruby syntax highlighting
+set lazyredraw
+set ttyfast
 let mapleader=" "
 
 
