@@ -45,6 +45,7 @@ select-word-style bash
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
+update_current_git_vars
 
 # Prompt
 PROMPT="%n@%m:%~"       # user@host:~

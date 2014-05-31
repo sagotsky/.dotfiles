@@ -34,7 +34,7 @@ alias sudo='sudo -E '
 alias t='tmux -2'
 alias todo='v ~/Dropbox/notes/todo.txt '
 alias tx='tmux -2 attach'
-alias wake-rj="ssh dh ./wol-rj.sh ; delay 60 ; ssh rj"
+alias wake-rj="echo No WOL when the target is wireless... "
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='vim '
 alias xsel='xsel --logfile ~/.Xsel.log'

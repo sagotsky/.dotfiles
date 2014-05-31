@@ -1,26 +1,29 @@
-syntax on 				"always use syntax highlighting
-set nowrap 				"no word wrap
-set smartcase 			"case affects word boundaries
-set autoindent 			"emacs style indents ==========broken
-set smartindent  		"emacs style indents ==========broken
-set tabstop=2 			"tab width
-set shiftwidth=2 		"tab width
-set softtabstop=2		"deletes 4 spaces as though they were a tab.
-set showmatch 			"shows matching parens
-set ruler 				"line/position always visible
-set incsearch 			"search as you type
-set cursorline 			"underlines current line
-set number				"line numbers on
-set ignorecase			"case insensitive searches with /
-set hlsearch			"highlights search results                             
-set scrolloff=4         "scroll at 4 lines from top/bottom
-set expandtab			"inserts spaces instead of tabs
-set wildmode=longest,list,full    "tab completion fix.  completes as much as possible, then lists, then full completes.
-set showcmd             " keybindings show their full name
-set guioptions=aegiLt     "clean gui in gvim
-set guifont=Source\ Code\ Pro\ 12   " Droid\ Sans\ Mono\ 10 
-set clipboard+=unnamed    " yank -> X11 buffer
-set laststatus=2          " 2 lines for status
+syntax on                         " always use syntax highlighting
+set nowrap                        " no word wrap
+set smartcase                     " case affects word boundaries
+set autoindent                    " emacs style indents ==========broken
+set smartindent                   " emacs style indents ==========broken
+set tabstop=2                     " tab width
+set shiftwidth=2                  " tab width
+set softtabstop=2                 " deletes 4 spaces as though they were a tab.
+set showmatch                     " shows matching parens
+set ruler                         " line/position always visible
+set incsearch                     " search as you type
+set cursorline                    " underlines current line
+set number                        " line numbers on
+set ignorecase                    " case insensitive searches with /
+set hlsearch                      " highlights search results
+set scrolloff=4                   " scroll at 4 lines from top/bottom
+set expandtab                     " inserts spaces instead of tabs
+set wildmode=longest,list,full    " tab completion fix.  completes as much as possible, then lists, then full completes.
+set showcmd                       " keybindings show their full name
+set guioptions=aegiLt             " clean gui in gvim
+set guifont=Source\ Code\ Pro\ 12 " gvim only font
+set clipboard+=unnamed            " yank -> X11 buffer
+set laststatus=2                  " 2 lines for status
+set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
+set lazyredraw
+set ttyfast
 let mapleader=" "
 
 
@@ -38,17 +41,19 @@ if v:version >= 704
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lucapette/vim-ruby-doc'
-
 NeoBundle 'tomasr/molokai'
-
+NeoBundle 'tacroe/unite-mark'
+NeoBundle 'godlygeek/tabular'
 NeoBundleCheck
 
 
@@ -58,16 +63,15 @@ let g:unite_split_rule = 'botright'
 call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
+let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\""
 
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer<cr>
-nnoremap <leader>t          :Unite tag<cr>
-nnoremap <leader>T          :UniteWithCursorWord -no-start-insert tag<cr>
-
-nnoremap <leader>g          :Unite -no-start-insert grep:. <cr>
-nnoremap <leader>G          :UniteWithCursorWord -no-start-insert grep:. <cr>
+nnoremap <leader>m          :Unite mark<cr>
+nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
+nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
