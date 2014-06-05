@@ -103,3 +103,9 @@ hi ContentSeparator border-top: 1px solid #000; display: -moz-box;
 "style -name scrollbar chrome://* <<EOM
   "#content browser {margin-right: -12px;}
 "EOM
+
+style -name devtools chrome://browser/content/devtools/* <<EOM
+  * {
+    font-size: 12px !important;
+  }
+EOM

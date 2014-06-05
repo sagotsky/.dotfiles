@@ -18,7 +18,8 @@ set expandtab                     " inserts spaces instead of tabs
 set wildmode=longest,list,full    " tab completion fix.  completes as much as possible, then lists, then full completes.
 set showcmd                       " keybindings show their full name
 set guioptions=aegiLt             " clean gui in gvim
-set guifont=Source\ Code\ Pro\ 12 " gvim only font
+set guifont=Source\ Code\ Pro\ 12 " gvim only font 
+" !$PPID -> xwininfo -> font size
 set clipboard+=unnamed            " yank -> X11 buffer
 set laststatus=2                  " 2 lines for status
 set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
@@ -63,7 +64,7 @@ let g:unite_split_rule = 'botright'
 call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
-let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\""
+let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
 
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
@@ -72,6 +73,7 @@ nnoremap <leader>b          :Unite buffer<cr>
 nnoremap <leader>m          :Unite mark<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
+nnoremap <leader>ur         :UniteResume<cr>
 
 if executable('ag')
   let g:unite_source_grep_command='ag'

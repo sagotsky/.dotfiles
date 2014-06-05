@@ -1,4 +1,5 @@
 # Some common shell vars
+export PATH="$HOME/bin/:$PATH:/sbin:/usr/sbin"
 
 ## Nice defaults
 export EDITOR='vim'
