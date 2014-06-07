@@ -128,4 +128,4 @@ if [ $? -eq 0 ] ; then
   fi
 fi
 
-kill "$PID" 2> /dev/null
+[["$PID" != "" ]] && kill "$PID" 2> /dev/null
