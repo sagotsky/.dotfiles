@@ -73,11 +73,23 @@ module Jot
       puts self.action.run self
     end
 
-    def file_format_lines
-      # booo!  this is only good for printing.  why is width hardcoded?
-      lines = IO.readlines(file)
-      width = lines.length.to_s.length
+    def parse_range(range)
+      range.split(',').flat_map do |num|
+        case num
+        when /^\d+$/
+          num.to_i
+        when /^(\d+)\-(\d+)$/
+          ($1..$2).map(&:to_i)
+        end
+      end
+    end 
 
+    def read(path)
+      IO.readlines path
+    end
+
+    def prepend_index(lines)
+      width = lines.length.to_s.length
       lines.each_with_index.map do |line, index|
         format("%#{width}d| %s", index, line.chomp)
       end
@@ -91,31 +103,6 @@ module Jot
       end
     end
 
-  end
-
-
-  class Options
-    attr_accessor :file
-    attr_accessor :lines
-    attr_accessor :text
-    attr_accessor :action
-
-    
-    def parse_range(range)
-      range.split(',').flat_map do |num|
-        case num
-        when /^\d+$/
-          num.to_i
-        when /^(\d+)\-(\d+)$/
-          ($1..$2).map(&:to_i)
-        end
-      end
-    end 
-
-        
-    def to_s(arg=nil)
-      instance_variables.map { |i| "#{i}: #{instance_variable_get i}" }.to_s
-    end
   end
 
 
@@ -141,17 +128,22 @@ module Jot
 
     # Runs the action defined by this class.  Must be overridden.
     def run(jot)
-      raise 'Action registered but undefined.'
+      raise "Action registered but undefined.  #{self.class} missing run method."
     end 
   end
 
   class Show < Action
     def run(jot)
-      jot.file_format_lines.join("\n")
+      lines = jot.prepend_index(jot.read(jot.file))
+      if jot.lines 
+        lines = lines.each_with_index.reduce([]) do |ret, (line, i)|
+          ret << line if jot.lines.include? i
+          ret
+        end
+      end
+      lines.join "\n"
     end
-
   end
-
 
   class List < Action
     def run(jot)
@@ -166,12 +158,39 @@ module Jot
       'Move line(s) vertically.'
     end
 
+    def initialize(args)
+      direction, count = *args
+      if direction == 'shift' && count.nil?
+        raise "Missing argument.  shift needs to know how many lines to adjust by."
+      end
+
+      count ||= 1
+      count = -1 * count.to_i if direction == 'up'
+
+      super([direction, count])
+    end
+
     def self.match(arg)
       super || ['up', 'down'].include?(arg)
     end
 
-    def action(jot)
+    def run(jot)
+      direction, count = *args
+      lines = jot.lines.sort
+      lines = lines.reverse if count > 1
 
+      moving = jot.read(jot.file).each_with_index.select do |line, i|
+        jot.lines.include? i
+      end
+
+      # adjust lines, but min at 0 so we don't wrap around to the back.
+      moving.map! do |line_index|
+        [line_index[0], [0, line_index[1] + count].max]
+      end
+      
+      #WIP
+
+      binding.pry 
     end
 
     # need to know: range, movement arg
@@ -190,14 +209,12 @@ module Jot
       jot.update_file do |text|
         text.push(args.join(' '))
       end
-      # self.send show?
     end
   end
 end 
 
 
 j = Jot::Jot.new
-#p j.opts
 j.run
 
 =begin
@@ -222,4 +239,5 @@ Todo
                                 # takes args more cleanly if range is explicit.  
 
 - flip, del, edit, in-de dent
+- random?  should it pop or just print?
 =end
