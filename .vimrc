@@ -25,6 +25,7 @@ set laststatus=2                  " 2 lines for status
 set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
 set lazyredraw
 set ttyfast
+let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
 let mapleader=" "
 
 
