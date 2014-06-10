@@ -20,7 +20,7 @@
   #File.open(path, 'a').write note
 #end
 
-require 'pry'
+#require 'pry'
 
 module Jot
   class Jot
@@ -93,7 +93,12 @@ module Jot
     end
 
     def update_file
-      lines = IO.readlines(file)
+      unless File.exists? file
+        Dir.mkdir(Jot::DIR) unless Dir.exists? Jot::DIR
+        File.new(file, 'w').close
+      end
+
+      lines =  IO.readlines(file)
       yield lines if block_given?
       File.open(file, 'w') do |fh|
         fh.puts lines
