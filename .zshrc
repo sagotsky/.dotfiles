@@ -47,6 +47,12 @@ ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
 update_current_git_vars
 
+# ctrl-x-e
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+
 # Prompt
 PROMPT="%n@%m:%~"       # user@host:~
 PROMPT="<%*> $PROMPT"     # <hh:mm:ss>
