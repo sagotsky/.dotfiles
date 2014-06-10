@@ -41,20 +41,16 @@ module Jot
         case arg
         when /^@/    #bucket
           file = arg.gsub /^@/, ''
-          self.file = "#{Jot::DIR}/#{file}"
+          @file = "#{Jot::DIR}/#{file}"
           
         when /^#/     #range
-          p 'tagging'
-          self.tag = arg
+          @tag = arg # wtf does tagging do?  
 
         when /^\d+/ #d[\d\-,]*/
-          self.lines = parse_range arg
-          #self.mode = (ARGV.length > 0) ? ARGV.shift.to_sym : self.mode
-          #mode is show or it'll be set
+          @lines = parse_range arg
           
         #cut off - necessary? might be implicit below
         when /^--$/
-          #ARGV.shift
           action ||= Jot::Append
           break
 
@@ -66,11 +62,12 @@ module Jot
         end
       end 
 
-      self.action = action.new ARGV
+      @action = action.new ARGV
     end
 
     def run
-      puts self.action.run self
+      puts @action.run self
+      puts @action.after self
     end
 
     def parse_range(range)
@@ -123,13 +120,17 @@ module Jot
     end
 
     def initialize(args)
-      self.args = args
+      @args = args
     end
 
     # Runs the action defined by this class.  Must be overridden.
     def run(jot)
       raise "Action registered but undefined.  #{self.class} missing run method."
     end 
+
+    def after(jot)
+      # By default, do nothing
+    end
   end
 
   class Show < Action
@@ -175,25 +176,24 @@ module Jot
     end
 
     def run(jot)
+      return unless jot.lines
+
       direction, count = *args
       lines = jot.lines.sort
-      lines = lines.reverse if count > 1
+      lines = lines.reverse if count > 0
 
-      moving = jot.read(jot.file).each_with_index.select do |line, i|
-        jot.lines.include? i
+      jot.update_file do |text|
+        lines.each do |i|
+          line = text.delete_at i
+          text.insert i+count, line
+        end
       end
-
-      # adjust lines, but min at 0 so we don't wrap around to the back.
-      moving.map! do |line_index|
-        [line_index[0], [0, line_index[1] + count].max]
-      end
-      
-      #WIP
-
-      binding.pry 
     end
 
-    # need to know: range, movement arg
+    def after(jot)
+      jot.lines = nil
+      Show.new([]).run(jot)  # we need a way to highlight affected lines....
+    end
   end
 
   class Move < Action
@@ -204,7 +204,6 @@ module Jot
   end
 
   class Append < Action
-
     def run(jot)
       jot.update_file do |text|
         text.push(args.join(' '))
