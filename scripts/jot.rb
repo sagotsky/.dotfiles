@@ -20,7 +20,8 @@
   #File.open(path, 'a').write note
 #end
 
-#require 'pry'
+require 'pry'
+require 'colorize'
 
 module Jot
   class Jot
@@ -66,8 +67,12 @@ module Jot
     end
 
     def run
-      puts @action.run self
-      puts @action.after self
+      # get before/after, then compare.  items in before but not in after were deleted.  vice versa added.  different index changed.
+
+      #puts @action.run self
+      lines = @action.run self
+      #puts lines.join("\n")
+      puts report lines, green: [1], blue: [2]
     end
 
     def parse_range(range)
@@ -105,6 +110,17 @@ module Jot
       end
     end
 
+    # after running an action, print the lines in the file using hash to determine colors
+    # all should use result hash, except deletions.  how to hanlde those?
+    def report(text, color_lines = {red: [1,2,3]})
+      color_lines.each do |color, lines|
+        lines.each do |n|
+          text[n] = text[n].colorize color
+        end
+      end
+      text
+    end
+
   end
 
 
@@ -132,10 +148,6 @@ module Jot
     def run(jot)
       raise "Action registered but undefined.  #{self.class} missing run method."
     end 
-
-    def after(jot)
-      # By default, do nothing
-    end
   end
 
   class Show < Action
@@ -147,7 +159,7 @@ module Jot
           ret
         end
       end
-      lines.join "\n"
+      lines
     end
   end
 
@@ -193,11 +205,6 @@ module Jot
           text.insert i+count, line
         end
       end
-    end
-
-    def after(jot)
-      jot.lines = nil
-      Show.new([]).run(jot)  # we need a way to highlight affected lines....
     end
   end
 
