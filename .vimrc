@@ -58,8 +58,11 @@ NeoBundle 'lucapette/vim-ruby-doc'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'godlygeek/tabular'
+NeoBundle 'bling/vim-airline'
 NeoBundleCheck
 
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " Unite.vim options and keys
 let g:unite_source_rec_max_cache_files = 0
@@ -68,6 +71,7 @@ call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
+" create a custom find that pipes through sort?  now app shows up first.
 
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
@@ -77,6 +81,24 @@ nnoremap <leader>m          :Unite mark<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
 nnoremap <leader>ur         :UniteResume<cr>
+
+nnoremap <leader>gs         :Gstatus<cr>
+nnoremap <leader>gc         :Gcommit<cr>
+nnoremap <leader>gb         :Gblame<cr>
+nnoremap <leader>gp         :Git pull<cr>
+nnoremap <leader>gP         :Git pp<cr>
+" branch, checkout are taken.  what else works here?  f for feature?
+nnoremap <leader>rc         :! xterm -e "zsh -i -c 'rails c'" <cr><cr>
+nnoremap <leader>rd         :! xterm -e "zsh -i -c 'rails db'" <cr><cr>
+
+map <F7> :set invspell<CR>
+map <F6> :set invwrap<CR>
+map <F8> :set invnumber<CR>
+map <leader><S-CR> :! xterm &<cr><cr>
+map <leader>s :e ~/.vimrc<cr>
+map <leader>S :so ~/.vimrc<cr>
+
+
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
@@ -98,13 +120,6 @@ endtry
 :com! Sudow !sudo tee %	
 :com! W w
 :com! Q q
-
-map <F7> :set invspell<CR>
-map <F6> :set invwrap<CR>
-map <F8> :set invnumber<CR>
-map <leader><S-CR> :! xterm &<cr><cr>
-map <leader>s :e ~/.vimrc<cr>
-map <leader>S :so ~/.vimrc<cr>
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
 cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
@@ -179,8 +194,8 @@ endif
 " indentguides colors
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 0
-hi IndentGuidesOdd  guibg=#202020   ctermbg=3
-hi IndentGuidesEven guibg=#2a2a2a ctermbg=4
+hi IndentGuidesOdd  guibg=#202020   ctermbg=232
+hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
 
 " Buffer types
 au BufRead,BufNewFile *.txt set filetype=text
