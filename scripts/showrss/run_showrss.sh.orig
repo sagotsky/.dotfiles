@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# path specified so that perl can see things that live in opt.
+PATH=$PATH:/opt/bin/
+cd /opt/home/root/showrss/
+/opt/bin/perl /opt/home/root/showrss/showrss.pl -l /opt/home/root/showrss/shows.log -o /mnt/rtorrent/watch/ 
+#/opt/bin/curl http://files.sagotsky.com/date/update.php > /dev/null
+
+/opt/home/root/showrss/showrss_gunzip.sh
+date > /tmp/showrss_last_run

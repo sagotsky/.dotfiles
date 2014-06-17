@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/opt/bin/perl
 use strict;
 use warnings;
 
@@ -58,7 +58,8 @@ sub init {
     usage() if $opt{h};
 
     $output_dir = $opt{o} or $output_dir = "$ENV{PWD}";
-    $feed = $opt{f} or $feed = "http://showrss.karmorra.info/rss.php?user_id=2341\&hd=0\&proper=null\&namespaces=true";
+    $feed = $opt{f} or $feed = "http://showrss.info/rss.php?user_id=2341&hd=0&proper=0&magnets=false";
+    #$feed = $opt{f} or $feed = "http://showrss.karmorra.info/rss.php?user_id=2341\&hd=0\&proper=null\&namespaces=true";
     $log = $opt{l} or $log = "$ENV{HOME}/.showrsspl.log";
 
     my @loggedTorrents = getLog($log); 
@@ -73,7 +74,7 @@ sub init {
             next;
         }
 
-        print `curl --globoff --location --silent $torrent -o $output_dir/$filename.torrent`;
+        print `curl --globoff --location --silent "$torrent" -o "$output_dir/$filename.torrent"`;
         if ($? > 0) {
             print "Error downloading $torrent\n";
         } else {
