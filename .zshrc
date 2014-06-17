@@ -1,5 +1,5 @@
 # Set up the prompt
-
+setopt NO_HUP   # don't kill running processes when exiting the shell
 
 # autoload -Uz promptinit
 # promptinit
