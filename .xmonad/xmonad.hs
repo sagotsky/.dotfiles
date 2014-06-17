@@ -38,7 +38,7 @@ myTerminal            = "x-terminal-emulator"
 myBorderWidth         = 2
 myModMask             = mod4Mask 
 myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
-myNormalBorderColor   = "#444455"
+myNormalBorderColor   = "#222233"
 myFocusedBorderColor  = "#cfb000"
 myUrgentBorderColor   = "#ff5500"
 

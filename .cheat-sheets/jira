@@ -1,0 +1,45 @@
+*strong*
+_emphasis_
+-deleted-
+{{monospaced}}
+bq. Some block quoted text
+
+{quote}
+  here is quotable
+  content to be quoted
+{quote}
+
+h1. Biggest heading
+----
+[http://jira.atlassian.com]
+[Atlassian|http://atlassian.com]
+[~username]
+
+* some
+* bullet
+** indented
+** bullets
+* points
+
+!image.gif|align=right, vspace=4!
+
+||heading 1||heading 2||heading 3||
+|col A1|col A2|col A3|
+|col B1|col B2|col B3|
+
+{panel}
+Some text
+{panel}
+
+{code:xml}
+  <test>
+    <another tag="attribute"/>
+  </test>
+{code}
+
+(y) :thumbsup:
+(n) :thumbsdown:
+(/) :check:
+(x) :fail:
+(!) :caution:
+(?) :question:

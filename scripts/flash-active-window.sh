@@ -1,7 +1,7 @@
 #!/bin/bash
 
 duration='.1s'
-color='red'
+color='#444455'
 
 INFO="$(xwininfo -id `xprop -root | grep '^_NET_ACTIVE_WINDOW(WINDOW)' | cut -f5 -d' '`)"
 WIDTH=$(echo "$INFO" | grep Width | cut -f 2 -d:)
