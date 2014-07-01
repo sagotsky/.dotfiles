@@ -1,3 +1,4 @@
 #!/bin/sh
 
-curl -s 'lipsum.com/feed/html' -d amount=5 | grep -v '<' | grep '\.$'
+ curl -s "http://loripsum.net/api/5/short/headers/plaintext"
+

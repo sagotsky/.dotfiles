@@ -65,6 +65,8 @@ RPROMPT=''
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
+   #.{alias,functions,zshrc,shellrc}{,.local,.$HOST}
+
   for FILE in .alias .alias.local .functions .zshrc.$HOST .shellrc; do
     [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
   done

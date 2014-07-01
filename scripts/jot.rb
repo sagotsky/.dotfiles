@@ -20,7 +20,7 @@
   #File.open(path, 'a').write note
 #end
 
-require 'pry'
+#require 'pry'
 require 'colorize'
 
 module Jot
