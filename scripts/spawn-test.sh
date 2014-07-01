@@ -12,4 +12,5 @@ while :  ; do
   date
   echo $TEST
   bundle exec rake test TEST=$TEST
+  # bundle exec rake test:recent
 done

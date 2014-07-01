@@ -59,10 +59,15 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'scrooloose/syntastic'
 NeoBundleCheck
 
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+
+let g:syntastic_auto_loc_list=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " Unite.vim options and keys
 let g:unite_source_rec_max_cache_files = 0
@@ -84,7 +89,8 @@ nnoremap <leader>ur         :UniteResume<cr>
 
 nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gc         :Gcommit<cr>
-nnoremap <leader>gb         :Gblame<cr>
+nnoremap <leader>gb         :! xterm -e 'zsh -i -c "git cb"'<cr>
+nnoremap <leader>gB         :Gblame<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 " branch, checkout are taken.  what else works here?  f for feature?
@@ -215,11 +221,11 @@ au BufRead,BufNewFile *.md set filetype=mkd
 
 au BufRead,BufNewFile *.install set filetype=php
 au BufRead,BufNewFile *.drush set filetype=php
-au BufRead,BufNewFile *.profile set filetype=php
-au BufRead,BufNewFile *.test set filetype=php
-au BufRead,BufNewFile *.module set filetype=php
-au BufRead,BufNewFile *.inc set filetype=php
-au BufRead,BufNewFile *.php set filetype=php
+au   BufRead,BufNewFile *.profile set filetype=php
+au   BufRead,BufNewFile *.test set filetype=php
+au   BufRead,BufNewFile *.module set filetype=php
+au   BufRead,BufNewFile *.inc set filetype=php
+au   BufRead,BufNewFile *.php set filetype=php
 
 au BufRead,BufNewFile *.py set filetype=python
 
