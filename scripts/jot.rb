@@ -228,7 +228,7 @@ end
 j = Jot::Jot.new
 j.run
 
-=begin
+__END__
 
 Todo
 ====
@@ -258,4 +258,4 @@ Todo
     lines
     text (so that delete can use the initial text instead of processed
   Most of the time only  hue will be provided.
-=end
+
