@@ -1,0 +1,16 @@
+#compdef fd
+
+_comp_fd() {
+  local curcontext="$curcontext" state line                                               
+  typeset -A opt_args
+  _arguments '1: :->match'
+
+  #compadd -Q - "$@" $(find ./ -type d  -name "$line*" -printf "%f\n")
+  compadd "$@" 
+  find ./ -type d  -name "$line*" -printf "%f\n" | while read dirname ; do
+    compadd "$dirname"
+  done
+}
+compdef _comp_fd fd
+
+#_comp_fd $@

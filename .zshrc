@@ -15,6 +15,8 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.history_zsh
 
+fpath=(~/.zsh/completion $fpath)
+
 # Use modern completion system
 autoload -Uz compinit
 compinit

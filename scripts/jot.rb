@@ -228,7 +228,7 @@ end
 j = Jot::Jot.new
 j.run
 
-=begin
+__END__
 
 Todo
 ====
@@ -251,4 +251,11 @@ Todo
 
 - flip, del, edit, in-de dent
 - random?  should it pop or just print?
-=end
+
+- Color
+  Three things are required:
+    hue
+    lines
+    text (so that delete can use the initial text instead of processed
+  Most of the time only  hue will be provided.
+
