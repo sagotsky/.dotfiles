@@ -91,6 +91,7 @@ nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gc         :Gcommit<cr>
 nnoremap <leader>gb         :! xterm -e 'zsh -i -c "git cb"'<cr>
 nnoremap <leader>gB         :Gblame<cr>
+nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 " branch, checkout are taken.  what else works here?  f for feature?
