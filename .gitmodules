@@ -7,3 +7,6 @@
 [submodule "fd"]
 	path = scripts/fd
 	url = git@github.com:sagotsky/fd.git
+[submodule "scripts/fd"]
+	path = scripts/fd
+	url = https://github.com/sagotsky/fd
