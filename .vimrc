@@ -127,6 +127,7 @@ endtry
 :com! Sudow !sudo tee %	
 :com! W w
 :com! Q q
+:com! Bd bd 
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
 cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>

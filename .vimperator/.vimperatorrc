@@ -29,7 +29,7 @@ com! sorc   so ~/.vimperatorrc
 command! tabrename -nargs=? javascript content.document.title = "<args>"; 
 
 " send to chrome
-command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
+command! chrome -nargs=0 execute "!google-chrome '" + content.location + "' &> /dev/null &"
 
 " display all or no gui.  (for the wife)
 command! annotate -nargs=+ javascript vimp_annotate("<args>")     
