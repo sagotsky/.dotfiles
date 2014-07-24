@@ -95,8 +95,8 @@ nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 " branch, checkout are taken.  what else works here?  f for feature?
-nnoremap <leader>rc         :! xterm -e "zsh -i -c 'rails c'" <cr><cr>
-nnoremap <leader>rd         :! xterm -e "zsh -i -c 'rails db'" <cr><cr>
+nnoremap <leader>rc         :! run-in-term.sh rails c <cr><cr>
+nnoremap <leader>rd         :! run-in-term.sh rails db <cr><cr>
 
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
