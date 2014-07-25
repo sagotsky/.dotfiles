@@ -15,5 +15,5 @@ scripts/local/*
 *.sublime-workspace
 .cmus/*
 !.cmus/*.theme
-
+scripts/showrss/shows.log
 
