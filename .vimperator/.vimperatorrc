@@ -29,10 +29,11 @@ com! sorc   so ~/.vimperatorrc
 command! tabrename -nargs=? javascript content.document.title = "<args>"; 
 
 " send to chrome
-command! chrome -nargs=0 execute "!google-chrome " + content.location + " &> /dev/null &"
+command! chrome -nargs=0 execute "!google-chrome '" + content.location + "' &> /dev/null &"
 
 " display all or no gui.  (for the wife)
 command! annotate -nargs=+ javascript vimp_annotate("<args>")     
+command! annotateresolution -nargs=0 javascript vimp_annotate_resolution()
 command! togglegui -nargs=0 javascript togglegui()                
 command! passkeys -nargs=+ javascript vimp_passkeys("<args>")    
 command! formulate -nargs=0 javascript vimp_formulate()         
@@ -106,6 +107,12 @@ javascript <<EOF
       alert(err.toSource()); 
       return; 
     } 
+  }
+
+  function vimp_annotate_resolution() {
+    dims = window.innerWidth + 'x' +  window.innerHeight
+    vimp_annotate(dims) 
+    //,{location: bottom right}, css: 
   }
 
   function vimp_annotate_text_node(text, style) {

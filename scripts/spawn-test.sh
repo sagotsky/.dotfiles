@@ -13,4 +13,5 @@ while :  ; do
   echo $TEST
   bundle exec rake test TEST=$TEST
   # bundle exec rake test:recent
+  echo -e "\a"
 done

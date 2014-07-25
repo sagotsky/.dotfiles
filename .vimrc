@@ -91,11 +91,12 @@ nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gc         :Gcommit<cr>
 nnoremap <leader>gb         :! xterm -e 'zsh -i -c "git cb"'<cr>
 nnoremap <leader>gB         :Gblame<cr>
+nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 " branch, checkout are taken.  what else works here?  f for feature?
-nnoremap <leader>rc         :! xterm -e "zsh -i -c 'rails c'" <cr><cr>
-nnoremap <leader>rd         :! xterm -e "zsh -i -c 'rails db'" <cr><cr>
+nnoremap <leader>rc         :! run-in-term.sh rails c <cr><cr>
+nnoremap <leader>rd         :! run-in-term.sh rails db <cr><cr>
 
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
@@ -126,6 +127,7 @@ endtry
 :com! Sudow !sudo tee %	
 :com! W w
 :com! Q q
+:com! Bd bd 
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
 cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
