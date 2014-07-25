@@ -250,6 +250,12 @@ Todo
                                 # takes args more cleanly if range is explicit.  
 
 - flip, del, edit, in-de dent
+- append/affect child.
+  jot 1: asdf asdf as 
+    adds line as indentation of 1
+  jot 1: up
+    moves entire 1 group up.
+  is : right syntax?
 - random?  should it pop or just print?
 
 - Color
