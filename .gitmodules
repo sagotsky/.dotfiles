@@ -4,6 +4,3 @@
 [submodule ".pentadactyl/plugins/firebug-pentadactyl"]
 	path = .pentadactyl/plugins/firebug-pentadacty
 	url = git://github.com/maksimr/firebug-pentadactyl.git
-[submodule "fd"]
-	path = scripts/fd
-	url = git@github.com:sagotsky/fd.git
