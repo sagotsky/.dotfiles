@@ -81,7 +81,7 @@ let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
-nnoremap <leader>b          :Unite buffer<cr>
+nnoremap <leader>b          :Unite buffer -quick-match<cr>
 nnoremap <leader>m          :Unite mark<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
