@@ -20,7 +20,6 @@
   #File.open(path, 'a').write note
 #end
 
-#require 'pry'
 require 'colorize'
 
 module Jot
@@ -52,12 +51,12 @@ module Jot
           
         #cut off - necessary? might be implicit below
         when /^--$/
-          action ||= Jot::Append
+          action ||= (file) ? Append : Help
           break
 
         else 
           action = Action::ALL.find{ |klass| klass.match(arg) } 
-          action ||= Append
+          action ||= (file) ? Append : Help
           ARGV.unshift(arg)
           break
         end
@@ -71,8 +70,9 @@ module Jot
 
       #puts @action.run self
       lines = @action.run self
-      #puts lines.join("\n")
-      puts report lines, green: [1], blue: [2]
+      
+      #puts report lines, green: [1], blue: [2], red: [0]
+      puts report lines
     end
 
     def parse_range(range)
@@ -115,7 +115,7 @@ module Jot
     def report(text, color_lines = {red: [1,2,3]})
       color_lines.each do |color, lines|
         lines.each do |n|
-          text[n] = text[n].colorize color
+          text[n] = text[n].colorize color if text[n]
         end
       end
       text
@@ -134,6 +134,10 @@ module Jot
       ALL << subclass
     end
 
+    def self.help()
+      "#{self.to_s.split(':').last} -- help missing"
+    end
+
     # Returns true if this action should be used.
     #   Default: match name of class
     def self.match(arg)
@@ -148,6 +152,7 @@ module Jot
     def run(jot)
       raise "Action registered but undefined.  #{self.class} missing run method."
     end 
+
   end
 
   class Show < Action
@@ -156,7 +161,6 @@ module Jot
       if jot.lines 
         lines = lines.each_with_index.reduce([]) do |ret, (line, i)|
           ret << line if jot.lines.include? i
-          ret
         end
       end
       lines
@@ -172,7 +176,7 @@ module Jot
   end
 
   class Shift < Action
-    def help
+    def self.help
       'Move line(s) vertically.'
     end
 
@@ -210,7 +214,7 @@ module Jot
 
   class Move < Action
     # move needs 2 whole files and the range
-    def help
+    def self.help
       'Move line(s) to new bucket'
     end
   end
@@ -220,6 +224,25 @@ module Jot
       jot.update_file do |text|
         text.push(args.join(' '))
       end
+    end
+  end
+
+  class Help < Action
+    def run(*args)
+      p Action::ALL.map &:help
+      msg = <<-EOF
+jot.rb
+
+Usage: jot @notebook text 
+  Write text message into notes named @notebook.
+      EOF
+      [msg]
+
+      # Actions.map &:help, help provides one as well
+    end
+
+    def help()
+      'This help message'
     end
   end
 end 
