@@ -50,6 +50,7 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-rsi'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
@@ -59,8 +60,9 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'terryma/vim-multiple-cursors'
+"NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundleCheck
 
 let g:airline_left_sep=''
@@ -81,7 +83,7 @@ let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
-nnoremap <leader>b          :Unite buffer -quick-match<cr>
+nnoremap <leader>b          :Unite buffer <cr>
 nnoremap <leader>m          :Unite mark<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
@@ -168,7 +170,7 @@ map <leader>- :SmallerFont<CR>
 " (could something map to shift-insert??)
 "
 " N normal, I insert, V visual+select, S select, X visual, C command, O oper
-source ~/.vim/readline.vim
+"source ~/.vim/readline.vim
 
 filetype plugin on		"enable filetype plugin
 filetype indent on
