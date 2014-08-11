@@ -79,7 +79,7 @@ module Jot
       range.split(',').flat_map do |num|
         case num
         when /^\d+$/
-          num.to_i
+          [num.to_i]
         when /^(\d+)\-(\d+)$/
           ($1..$2).map(&:to_i)
         end
