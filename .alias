@@ -28,6 +28,7 @@ alias nounity='UBUNTU_MENUPROXY="" '
 alias tf='tail -f'
 alias rb="rhythmbox-client "
 alias s='screen'
+alias slrake='$( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )' 
 alias ssh-keyed='ssh -q -oBatchMode=yes localhost echo "ssh-key-active" | grep "$_" &> /dev/null'
 alias sx='screen -x'
 alias su='su -m'
