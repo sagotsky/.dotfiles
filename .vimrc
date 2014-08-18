@@ -87,7 +87,7 @@ nnoremap <leader>b          :Unite buffer <cr>
 nnoremap <leader>m          :Unite mark<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
-nnoremap <leader>ur         :UniteResume<cr>
+nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
 
 nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gc         :Gcommit<cr>
