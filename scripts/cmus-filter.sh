@@ -9,6 +9,7 @@ RANDOMIZE="${RANDOMIZE:-}"                         #- Randomize selection instea
 LIST="${LIST:-song}"                               #- List music by tag, as defined by structure [default: song]
 STRUCTURE="${STRUCTURE:-genre/artist/album/song}"  #- Directory structure for your music.  [default: genre/artist/album/song]
 DIR="${DIR:-$HOME/Music/}"                         #- Location of music [default: $HOME/Music/]
+QUERY="${QUERY:-}"                                 #- Search by query instead of a menu pipe.  Uses first result.
 
 # find position of this tag in the given dir strcuture
 POS=0
@@ -24,18 +25,18 @@ else
   FINDARGS=" -mindepth $POS -maxdepth $POS -type d" 
   CAP='/*' 
 fi
+[[ "$QUERY" != '' ]] && FINDARGS="$FINDARGS -iregex .*$QUERY.*"
 
 # Prep our pipes.  FORMAT affects display.  SELECT runs the dmenu.
 OFFSET=$(echo ${DIR//\// } | wc -w )
 FORMAT="cut -f $((POS + $OFFSET + 1)) -d/"
 
-SELECT=$( [[ "$DISPLAY" != '' ]] && echo 'dmenu -i -l 20 -b -s 0' || echo 'slmenu -i -b -l 13')
-  
+SELECT=$( [[ "$DISPLAY" != '' ]] && echo 'dmenu -i -l 20 -b -s 0' || echo 'slmenu -i -b -l 13') 
 [[ "$RANDOMIZE" != '' ]] && SELECT="shuf -n 1" 
-echo $RANDOMIZE
 
 # Get a song or dir and send it to cmus
-DIR=$(find "$DIR" $FINDARGS | $FORMAT | sort | $SELECT )
+DIR="$(find $DIR $FINDARGS)" 
+[[ $(wc -l <<< "$DIR") -gt 1 ]] && DIR="$(echo "$DIR" | $FORMAT | sort | $SELECT )" 
 if [[ "$DIR" != "" ]] ; then
   cmus-remote -C "live-filter ~f */$(echo $DIR | tr '()' '*')$CAP" # cmus treats parens as grouping.  
   cmus-remote -C "echo Playing: $DIR"
