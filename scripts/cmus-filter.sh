@@ -25,7 +25,7 @@ else
   FINDARGS=" -mindepth $POS -maxdepth $POS -type d" 
   CAP='/*' 
 fi
-[[ "$QUERY" != '' ]] && FINDARGS="$FINDARGS -iregex .*$QUERY.*"
+[[ "$QUERY" != '' ]] && FINDARGS="$FINDARGS -iregex .*${QUERY// /\\s}.*" # quoting is hard.  lets swap out spaces for a regex.
 
 # Prep our pipes.  FORMAT affects display.  SELECT runs the dmenu.
 OFFSET=$(echo ${DIR//\// } | wc -w )
@@ -35,8 +35,8 @@ SELECT=$( [[ "$DISPLAY" != '' ]] && echo 'dmenu -i -l 20 -b -s 0' || echo 'slmen
 [[ "$RANDOMIZE" != '' ]] && SELECT="shuf -n 1" 
 
 # Get a song or dir and send it to cmus
-DIR="$(find $DIR $FINDARGS)" 
-[[ $(wc -l <<< "$DIR") -gt 1 ]] && DIR="$(echo "$DIR" | $FORMAT | sort | $SELECT )" 
+DIR="$(find $DIR $FINDARGS | $FORMAT)" 
+[[ $(wc -l <<< "$DIR") -gt 1 ]] && DIR="$(echo "$DIR" | sort | $SELECT )" 
 if [[ "$DIR" != "" ]] ; then
   cmus-remote -C "live-filter ~f */$(echo $DIR | tr '()' '*')$CAP" # cmus treats parens as grouping.  
   cmus-remote -C "echo Playing: $DIR"
