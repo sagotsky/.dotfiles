@@ -163,10 +163,13 @@ myKeys = [
     , ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
     , ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
     , ("M-m", spawn "cmus-filter.sh") -- cmus play song
+    -- TODO better modifier use.  ie alt=artist, shift=album, ctrl += random
     , ("M-S-m", spawn "cmus-filter.sh --list album") -- cmus play album
     , ("M-C-m", spawn "cmus-filter.sh --randomize --list album") -- cmus random album
     , ("M-M1-m", spawn "cmus-filter.sh --list artist") -- cmus artist (M1 = alt)
     , ("M-M1-C-m", spawn "cmus-filter.sh --list artist --randomize ") -- cmus artist
+    , ("M-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | dmenu -i -s 0 -l 20)\"") -- cmus bookmarked albums
+    , ("M-S-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | shuf -n 1)\"") -- cmus random bookmarked albums
 
     -- transparency
     , ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent

@@ -9,6 +9,9 @@
 #   vapor trails - original gets remixed art
 # buckethead - bucketheadland, enter t
 
+# http://www.imagemagick.org/Usage/compare/
+# maybe figure out average color from art.  or loop over term colors, to find the least used and make those the ones cmus gets
+
 STATE=$(cmus-remote -Q)
 ALBUM=$(echo "$STATE" | grep '^tag album' | cut -f 3- -d ' ')
 ARTIST=$(echo "$STATE" | grep '^tag artist' | cut -f 3- -d ' ')
