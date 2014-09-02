@@ -1,4 +1,5 @@
 syntax on                         " always use syntax highlighting
+runtime macros/matchit.vim
 set nowrap                        " no word wrap
 set smartcase                     " case affects word boundaries
 set autoindent                    " emacs style indents ==========broken
@@ -24,6 +25,7 @@ set clipboard+=unnamed            " yank -> X11 buffer
 set laststatus=2                  " 2 lines for status
 set lazyredraw
 set ttyfast
+set history=1000
 let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
 let mapleader=" "
 
@@ -63,6 +65,7 @@ NeoBundle 'bling/vim-airline'
 "NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/ruby-matchit'
+NeoBundle 'haml/haml-contrib'
 NeoBundleCheck
 
 let g:airline_left_sep=''
