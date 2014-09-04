@@ -338,3 +338,15 @@ function bblue()   { echo -en "\e[1;34m$@\e[0m"; }
 function bpurple()  { echo -en "\e[1;35m$@\e[0m"; }
 function bcyan()  { echo -en "\e[1;36m$@\e[0m"; }
 function bwhite()  { echo -en "\e[1;37m$@\e[0m"; }
+
+# watch a file.  do something whenever it changes
+function file-write-do {
+  FILE=$1
+  shift
+  while [ $? -eq 0 ] && [ -x /usr/bin/inotifywait ] ; do
+    inotifywait "$FILE" -e MODIFY &> /dev/null
+    $SHELL -c $@
+    sleep .1
+  done
+
+}
