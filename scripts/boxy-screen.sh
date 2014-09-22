@@ -7,7 +7,7 @@ disper -l -d eDP1 &>/dev/null && \
 disper -l -d DP2 &>/dev/null && \
 disper -e DP2,eDP1 -t left
 
-xrandr --output DP2 --auto --rotate left
+#xrandr --output DP2 --auto --rotate left
 #xmodmap.sh
 xrandr --dpi 96
 wallpaper.sh current

@@ -67,6 +67,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'haml/haml-contrib'
+NeoBundle 'heartsentwined/vim-emblem'
 NeoBundleCheck
 
 let g:airline_left_sep=''
@@ -115,7 +116,7 @@ map <leader>S :so ~/.vimrc<cr>
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp --ignore "*source_maps*" --ignore "*.log"'
   let g:unite_source_grep_recursive_opt=''
 elseif executable('ack')
   let g:unite_source_grep_command='ack'

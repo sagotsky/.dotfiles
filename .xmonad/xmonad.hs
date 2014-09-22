@@ -143,7 +143,8 @@ myKeys = [
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
     , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
     , ("M-S-s",            spawn "xterm -e stage_ssh.sh $(stage_ssh.sh | dmenu -l 10 -i -s 0 -fn terminus-bold-16 )")  
-    , ("M-v",              spawn "gvim -c 'cd ~/repos/plm'") 
+    , ("M-v",              spawn "gvim -c 'cd ~/repos/plm' -c pwd") 
+    , ("M-S-v",            spawn "gvim -c 'cd ~/repos/open-pro' -c pwd") 
 
 
     -- music
@@ -168,7 +169,7 @@ myKeys = [
     , ("M-C-m", spawn "cmus-filter.sh --randomize --list album") -- cmus random album
     , ("M-M1-m", spawn "cmus-filter.sh --list artist") -- cmus artist (M1 = alt)
     , ("M-M1-C-m", spawn "cmus-filter.sh --list artist --randomize ") -- cmus artist
-    , ("M-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | dmenu -i -s 0 -l 20)\"") -- cmus bookmarked albums
+    , ("M-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | dmenu -i -s 0 -l 20 -b)\"") -- cmus bookmarked albums
     , ("M-S-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | shuf -n 1)\"") -- cmus random bookmarked albums
 
     -- transparency
