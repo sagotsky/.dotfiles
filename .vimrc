@@ -47,7 +47,6 @@ if v:version >= 704
   NeoBundle 'Shougo/neocomplete'
 endif
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
