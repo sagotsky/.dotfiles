@@ -29,6 +29,8 @@ if [[ "$2" == 'playing' ]] ; then
     ( FEH="$!" ; sleep 2 ; kill $FEH ) &
   fi
 
+  # else use a blank image?
+
   # back it rxvt's background
   [[ -p '/tmp/background-urxvt' ]] && echo "$JPG" >> /tmp/background-urxvt && echo $JPG
   #cmus-update-art.sh

@@ -1,0 +1,32 @@
+^\ s    # list sessions
+^\ $    # rename session
+^\ c    # new window
+^\ w    # list windows
+^\ ,    # rename window
+^\ &    # kill window
+
+^\ %|"  # split vertical|horizontal
+^\ o    # swap panes
+^\ <sp> # change layout 
+^\ q    # show pane number
+^\ {|}  # move pane left/right
+^\ z    # pane zoom
+^\ 
+^\ [    # copy mode
+  ENTER # exit copy mode, copying selection
+  SPACE
+^\ ]    # and paste it
+
+^\ :resize-pane -U/L/R
+^\ 
+^\ 
+^\ 
+^\ 
+^\ 
+^\ 
+^\ ?    # shortcut help
+^\ t    # clock
+
+
+https://gist.github.com/MohamedAlaa/2961058
+
