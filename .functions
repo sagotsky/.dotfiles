@@ -25,6 +25,7 @@ function x() {
 	 case $@ in 
 	     *.tar.bz2)		tar -xvjf "$@"	;;	
 	     *.tar.gz)		tar -xvzf "$@"	;;
+       *.tar.lzma)    tar -xvf "$@" ;;
 	     *.bz2)		bunzip2 "$@"	;;
 	     *.rar)		unrar x "$@"	;;
 	     *.gz)		gunzip "$@"	;;
