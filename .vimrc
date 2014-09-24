@@ -48,27 +48,29 @@ endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tpope/vim-rails'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tacroe/unite-mark'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-rsi'
-NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'lucapette/vim-ruby-doc'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'tacroe/unite-mark'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
-"NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/ruby-matchit'
-NeoBundle 'haml/haml-contrib'
-NeoBundle 'heartsentwined/vim-emblem'
 NeoBundleCheck
+
+if isdirectory($HOME."/.rbenv")
+  NeoBundle 'vim-scripts/ruby-matchit'
+  NeoBundle 'haml/haml-contrib'
+  NeoBundle 'heartsentwined/vim-emblem'
+  NeoBundle 'tpope/vim-rails'
+  NeoBundle 'lucapette/vim-ruby-doc'
+endif
 
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -263,3 +265,4 @@ endfunction
 au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
 au BufRead,BufNewFile COMMIT_EDITMSG     set wrap
 au BufRead,BufNewFile COMMIT_EDITMSG     set spell
+
