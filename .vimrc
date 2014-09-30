@@ -62,6 +62,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundleCheck
 
 if isdirectory($HOME."/.rbenv")
@@ -74,6 +75,7 @@ endif
 
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_theme='jellybeans'
 
 let g:syntastic_auto_loc_list=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
@@ -83,9 +85,20 @@ let g:unite_source_rec_max_cache_files = 0
 let g:unite_split_rule = 'botright' 
 call unite#custom#source('grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
+call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+  \ 'ignore_pattern', join([
+    \ '\.git/',
+    \ '/source_maps/',
+    \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
 " create a custom find that pipes through sort?  now app shows up first.
+
+" unite customizations TODO
+" - find last n files
+" - find files edited in branch.  comparing to master doesn't work when master
+"   has since gotten merged commits
+" - filter out unwanted folders.  works in ag, but no options for find?
 
 let g:unite_enable_start_insert=1
 nnoremap <leader>p          :Unite file_rec/async <cr>
