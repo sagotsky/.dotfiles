@@ -64,18 +64,6 @@ function pack() {
 	 fi
 }
 
-# like sleep, but spits out a . every second
-function delay() {
-	 typeset -i NUM
-	 NUM=$1
-	 if [ $NUM -gt 0 ] ; then
-	     for i in `seq $NUM` ; do sleep 1 ; echo -n '.' ; done
-	     echo ""
-	 else
-	     echo "Invalid argument.  Please use a positive integer."
-	 fi
-}
-
 # changes cd to pushd.  as a function so that cd with no args still brings you home.  see pd as popd
 function cd() {
     if [ $# -eq 0 ] ; then
@@ -83,31 +71,6 @@ function cd() {
     else
 	pushd "$@" > /dev/null
     fi
-}
-
-# screen attach.  if multiple, presents a menu for choosing.
-function ssx() {
-    OPTS=`screen -ls | grep "[0-9]\." | while read line ; do echo "$line" | sed -e 's/\s/_/g' ; done`
-
-    case $(echo $OPTS | wc -w) in
-	0) 
-	    echo -e "\nNo screen sessions open\n" 
-	    ;;
-	1) 
-	    SESSION=$OPTS
-	    echo -e "\nAttaching to only available screen"
-	    ;;
-	*) 
-	    echo -e "\nPick a screen session"
-	    select opt in $OPTS ; do
-		SESSION=$opt
-		break;
-	    done
-	    ;;
-    esac
-
-    screen -x $(echo $SESSION | sed -e 's/\..*//')
-
 }
 
 function calc() {
@@ -227,37 +190,6 @@ function xnest() {
   kill $PID
 }
 
-# tail follow and beep
-function tfb() {
-  tail -F $@ | while true ; do
-    if read -t 60 LINE ; then 
-      echo -e "\a$LINE"
-    fi
-  done
-}
-
-# tail follow all args and notify-send results
-function tfn() {
-  tail -F $@ | while true ; do # sends same line forever.
-    if read -t 60 LINE ; then 
-      notify-send "$@" "$LINE"
-    fi
-  done
-}
-
-# claims memory.  tells firefox to back off.
-function malloc() {
-  if [[ $# -eq 0 || $1 -eq '-h' || $1 -lt 0 ]] ; then
-    echo -e "usage: malloc N\n\nAllocate N mb, wait, then release it."
-  else 
-    N=$(free -m | grep Mem: | awk '{print int($2/10)}')
-    if [[ $N -gt $1 ]] ;then 
-      N=$1
-    fi
-    sh -c "MEMBLOB=\$(dd if=/dev/urandom bs=1MB count=$N) ; sleep 1"
-  fi
-}
-
 function hl() {
   sed -e "s/$@/$(byellow $@)/g"
 }
@@ -300,17 +232,6 @@ function dmenu_has() {
   [ "$(dmenu -h 2>&1 > /dev/null | grep -- $match)" != '' ]
 }
 
-function sls() {
-  #lets try to recreate super ls with find
-  if [[ "$#" == 0 || "$1" == '-h' ]] ; then
-    echo 'sls - Use with man finds printf operators'
-    return 1
-  fi
-
-  find ./ -maxdepth 1 -printf "$@\n"
-}
-
-# grab dimensions of a window, format for use with byzanz `byzanz-dimensions` file.gif
 function byzanz-dimensions() {
   info="$(xwininfo)"
   x=$(echo "$info" | grep 'Absolute upper-left X' | cut -f 7 -d' ')
