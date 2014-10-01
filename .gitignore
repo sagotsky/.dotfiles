@@ -16,4 +16,4 @@ scripts/local/*
 .cmus/*
 !.cmus/*.theme
 scripts/showrss/shows.log
-
+.vim/autoload/vimproc_unix.so 
