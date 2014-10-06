@@ -55,21 +55,35 @@ zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
 
-# Prompt
-PROMPT="%n@%m:%~"       # user@host:~
-PROMPT="<%*> $PROMPT"     # <hh:mm:ss>
-PROMPT="$PROMPT \$(git_super_status)$ "     # git info
+function prompt_color {
+  STATUS="$? "
+  COLOR='\e[0m'
+
+  [[ "$STATUS" -gt 0 ]] &&  COLOR='\e[0;31m'     # red on error
+  [[ "$(sudo -n /bin/true 2> /dev/null ; echo $?)" == 0 ]] && COLOR="${COLOR/0/4}" # underline on sudo
+  [[ "${UID}" -eq "0" ]] && COLOR='\e[37;41m'   # big bold label on root
+  
+  echo $COLOR
+}
+
+function reset_color {
+  echo '\e[0m'
+}
+
+PROMPT="%n@%m:%~"                       # user@host:~
+PROMPT="<%*> $PROMPT"                   # <hh:mm:ss>
+PROMPT="\$(prompt_color)$PROMPT\$(reset_color) \$(git_super_status)$ " # git info
 
 
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
 # maybe add functions escaped and then sed them up into $()
-RPROMPT=''
+#RPROMPT=''
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
    for FILE in .{alias,functions,zshrc,shellrc}{,.local,.$HOST} ; do
-
-  #for FILE in .alias .alias.local .functions .zshrc.$HOST .shellrc; do
     [[ -e "$HOME/$FILE" && "$FILE" != ".zshrc" ]] && source "$HOME/$FILE"
   done
 fi
+
+true
