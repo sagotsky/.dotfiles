@@ -120,6 +120,8 @@ nnoremap <leader>gP         :Git pp<cr>
 nnoremap <leader>rc         :! run-in-term.sh rails c <cr><cr>
 nnoremap <leader>rd         :! run-in-term.sh rails db <cr><cr>
 
+nnoremap <Leader>z          :Zeal <cr>
+
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
@@ -196,6 +198,11 @@ command! SmallerFont call SmallerFont()
 map <leader>+ :LargerFont<CR>
 map <leader>- :SmallerFont<CR>
 
+function! Zeal()
+  let word = expand("<cword>")
+  execute 'silent !zeal -f -q ' . word . ' &'
+endfunction
+command! Zeal call Zeal()
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 " (could something map to shift-insert??)
 "
