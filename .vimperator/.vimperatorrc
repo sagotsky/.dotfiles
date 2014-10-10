@@ -30,6 +30,8 @@ command! tabrename -nargs=? javascript content.document.title = "<args>";
 
 " send to chrome
 command! chrome -nargs=0 execute "!google-chrome '" + content.location + "' &> /dev/null &"
+command! chromeincognito -nargs=0 execute "!google-chrome --incognito '" + content.location + "' &> /dev/null &"
+command! luakit -nargs=0 execute "!luakit '" + content.location + "' &> /dev/null &"
 
 " display all or no gui.  (for the wife)
 command! annotate -nargs=+ javascript vimp_annotate("<args>")     
