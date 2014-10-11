@@ -42,8 +42,7 @@ myNormalBorderColor   = "#222233"
 myFocusedBorderColor  = "#cfb000"
 myUrgentBorderColor   = "#ff5500"
 
-myLayout = onWorkspace "chat-5" circle $
-            avoidStruts
+myLayout = avoidStruts
            ( smartBorders
            -- ## |- [] ()
            ( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))

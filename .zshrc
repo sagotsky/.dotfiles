@@ -54,6 +54,8 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
+# change cursor for tmux's paned environment
+[[ "$TERM" == 'screen-256color' && -x /usr/bin/xtermcontrol ]] && TERM=xterm xtermcontrol --cursor red
 
 function prompt_color {
   STATUS="$? "
