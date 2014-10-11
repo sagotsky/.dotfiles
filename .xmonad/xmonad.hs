@@ -83,6 +83,7 @@ myManageHook =  composeAll
     , className =? "xterm-mail"                       --> doShift "email-3"
     , className =? "Zend Studio"                      --> doShift "ide-6" 
     , className =? "Sublime_text"                     --> doShift "ide-6" 
+    , className =? "Steam"                            --> doShift "0" 
     ] 
 
 main = do 
