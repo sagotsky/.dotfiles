@@ -58,18 +58,18 @@ bindkey '^x^e' edit-command-line
 [[ "$TERM" == 'screen-256color' && -x /usr/bin/xtermcontrol ]] && TERM=xterm xtermcontrol --cursor red
 
 function prompt_color {
-  STATUS="$? "
-  COLOR='\e[0m'
+  STATUS="$?"
+  COLOR="%{$reset_color%}"
 
-  [[ "$STATUS" -gt 0 ]] &&  COLOR='\e[0;31m'     # red on error
-  [[ "$(sudo -n /bin/true 2> /dev/null ; echo $?)" == 0 ]] && COLOR="${COLOR/0/4}" # underline on sudo
-  [[ "${UID}" -eq "0" ]] && COLOR='\e[37;41m'   # big bold label on root
+  [[ "$STATUS" -gt 0 ]] &&  COLOR="%{$fg[red]%}"     # red on error
+  [[ "$(sudo -n /bin/true 2> /dev/null ; echo $?)" == 0 ]] && COLOR="$COLOR%U" # underline on sudo
+  [[ "${UID}" -eq "0" ]] && COLOR="%{$fg[white]%}%{$bg[red]%}"   # big bold label on root
   
   echo $COLOR
 }
 
 function reset_color {
-  echo '\e[0m'
+  echo "%{$reset_color%}"
 }
 
 PROMPT="%n@%m:%~"                       # user@host:~
