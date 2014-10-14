@@ -56,7 +56,7 @@ function format() {
 }
 
 # kill other daemons
-for daemon in notification-daemon notify-osd notin.py xfce4-notifyd ; do
+for daemon in dunst notification-daemon notify-osd notin.py xfce4-notifyd ; do
   killall -9 $daemon &> /dev/null
 done
 
