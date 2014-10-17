@@ -8,24 +8,22 @@ if [ $# != 1 ] ; then
 fi
 
 function get_display() {
-  USER="$1"
-  w | grep "^$USER.*gdm-session-worker" | cut -f 6 -d' '
+  w | grep "^$1.*gdm-session-worker" | awk '{print $2}'
 }
 
 function get_tty() {
   [[ $# == 1 ]] && (
-    DISPLAY="$1"
-    ps ax -o tty,cmd | grep "[X]org $DISPLAY" | cut -f 1 -d' ' | tr -d tty
+    ps ax -o tty,cmd | grep "[X]org $1" | awk '{print $1}' | tr -d tty
   )
 }
 
 
 DISPLAY="$(get_display $1)"
 TTY="$(get_tty $DISPLAY)"
+echo "display: $DISPLAY tty: $TTY"
 
 if [ "$TTY" == "" ] ; then
   gdmflexiserver 
 else
-  echo $TTY
   sudo chvt $TTY
 fi
