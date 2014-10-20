@@ -23,7 +23,6 @@ if [[ "$LIST" == "song" ]] ; then
   FINDARGS=" -mindepth $POS -type f -iregex .*\.\(mp3\) " # no maxdepth - some albums have cd1/cd2 subdirs
 else
   FINDARGS=" -mindepth $POS -maxdepth $POS -type d" 
-  CAP='/*' 
 fi
 [[ "$QUERY" != '' ]] && FINDARGS="$FINDARGS -iregex .*${QUERY// /\\s}.*" # quoting is hard.  lets swap out spaces for a regex.
 
@@ -34,11 +33,15 @@ FORMAT="cut -f $((POS + $OFFSET + 1)) -d/"
 SELECT=$( [[ "$DISPLAY" != '' ]] && echo 'dmenu -i -l 20 -b -s 0' || echo 'slmenu -i -b -l 13') 
 [[ "$RANDOMIZE" != '' ]] && SELECT="shuf -n 1" 
 
-# Get a song or dir and send it to cmus
-DIR="$(find $DIR $FINDARGS | $FORMAT)" 
-[[ $(wc -l <<< "$DIR") -gt 1 ]] && DIR="$(echo "$DIR" | sort | $SELECT )" 
-if [[ "$DIR" != "" ]] ; then
-  cmus-remote -C "live-filter ~f */$(echo $DIR | tr '()' '*')$CAP" # cmus treats parens as grouping.  
-  cmus-remote -C "echo Playing: $DIR"
+# Get a song or dir and send it to cmus, (yes the extra find is redundant but it should be cached on hd)
+PLAY="$(find $DIR $FINDARGS | $FORMAT)" 
+[[ $(wc -l <<< "$PLAY") -gt 1 ]] && PLAY="$(echo "$PLAY" | sort | $SELECT )" 
+FULLPATH=$(find $DIR $FINDARGS -name "$(echo $PLAY | sed -e 's/\(\[\|\]\)/\\\1/g')")
+
+if [[ "$PLAY" != "" ]] ; then
+  cmus-remote -C live-filter # not sure this is totally necessary
+  cmus-remote -C "add $FULLPATH" 
+  cmus-remote -C "live-filter ~f ${FULLPATH//[\(\)]/*}" 
+  cmus-remote -C "echo Playing: $PLAY"
   cmus-remote -n -p
 fi
