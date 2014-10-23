@@ -88,7 +88,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
-    \ '/source_maps/',
+    \ '\public/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
@@ -200,7 +200,7 @@ map <leader>- :SmallerFont<CR>
 
 function! Zeal()
   let word = expand("<cword>")
-  execute 'silent !zeal -f -q ' . word . ' &'
+  execute 'silent !zeal -f -q ' . word . '&>/dev/null &'
 endfunction
 command! Zeal call Zeal()
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
