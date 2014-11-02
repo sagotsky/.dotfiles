@@ -79,7 +79,9 @@ PROMPT="\$(prompt_color)$PROMPT\$(reset_color) \$(git_super_status)$ " # git inf
 
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
 # maybe add functions escaped and then sed them up into $()
-#RPROMPT=''
+
+# Show pretty background jobs list unless empty
+RPROMPT='%(1j.`jobs | sed -e "s/ .* //" | tr "[" " " | tr "]" ":" | tr -d "\\n"`.)'
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
