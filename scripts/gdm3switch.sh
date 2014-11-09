@@ -24,7 +24,7 @@ echo "display: $DISPLAY tty: $TTY"
 
 if [ "$TTY" == "" ] ; then
   pidof gdm3    && gdmflexiserver 
-  pidof lightdm && echo dm-tool switch-to-user $1
+  pidof lightdm && dm-tool switch-to-user $1
 else
   sudo chvt $TTY
 fi
