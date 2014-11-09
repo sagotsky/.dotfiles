@@ -5,7 +5,7 @@ urxvt -fn "xft:Droid Sans Mono-16" -bd black -b 2 -bg '#1c1c1c' -fg '#fff' +sb -
 
 sleep 1
 cmus-remote -C add Music/
-cmus-filter.sh --randomize --list album
+cmus-filter.sh --list album --query "$(shuf -n 1 < ~/.album-bookmarks)"
 sleep 1
 cmus-remote --play
 cmus-remote --stop

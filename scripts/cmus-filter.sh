@@ -39,8 +39,8 @@ PLAY="$(find $DIR $FINDARGS | $FORMAT)"
 FULLPATH=$(find $DIR $FINDARGS -name "$(echo $PLAY | sed -e 's/\(\[\|\]\)/\\\1/g')")
 
 if [[ "$PLAY" != "" ]] ; then
-  cmus-remote -C live-filter # not sure this is totally necessary
-  cmus-remote -C "add $FULLPATH" 
+  cmus-remote -C "add $FULLPATH" ; sleep 0.1
+  cmus-remote -C 'live-filter' ; sleep 0.1 # not sure this is totally necessary
   cmus-remote -C "live-filter ~f ${FULLPATH//[\(\)]/*}" 
   cmus-remote -C "echo Playing: $PLAY"
   cmus-remote -n -p
