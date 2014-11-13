@@ -14,13 +14,16 @@
 #     VAR="${VAR:-default}"
 #  3. Annotate your variables. hash-dash comments (#-) marks them for argh, provides usage text.
 #     PORT="${PORT:8080}"  #- runs demo server on port (default: 8080)
-#  4. (Optional) Provide additional notes/text with hash-dash comments with novar
+#  4. (Optional) Provide additional notes/text with hash-dash comments with no var
 #     #- Description: script.sh runs a demo script
+#  5. (Optional) Set up an rc file.  script.sh would use ~/.scriptrc and options are specified
+#     as name: value
 ###
 
 
 # get the parent script
 CMD=$(ps -ocommand= -p $PPID | cut -f 2 -d' ')
+RC="$(basename $CMD)" && RC="$HOME/.${RC%%.*}rc"
 [[ -x "$CMD" ]] || CMD=$(which $CMD)
 
 # get ARGS from command line, set vars from shell script
@@ -57,6 +60,7 @@ fi
 # Or return var set commands
 for opt in $(list_opts | cut -f1 -d=) ; do
   value=$(echo "$ARGS" | grep -i $opt | sed -e 's/ *$//' -e 's/\w* //') # use value, or arg name if it's a bool
+  [[ "$value" == '' && -f "$RC" ]] && value=$(grep -i "^$opt: " $RC)
   echo "$opt='$value'"
 done
 
