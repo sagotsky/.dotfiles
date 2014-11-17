@@ -13,6 +13,7 @@ noremap ZZ  zz
 noremap j   5j
 noremap k   5k
 noremap s   og 
+noremap <leader>t :b 
 
 """ Custom command keys
 
@@ -20,6 +21,12 @@ noremap s   og
 noremap <leader>s :rc <cr>
 noremap <leader>S :sorc <cr>
 noremap <leader>g :togglegui <cr>
+
+" dialog shortcuts
+noremap <Leader>db :dialog bookmarks<cr>
+noremap <Leader>dh :dialog history<cr>
+noremap <Leader>dd :dialog downloads<cr>
+
 
 """ Custom commands
 com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
