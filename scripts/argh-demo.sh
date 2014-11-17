@@ -8,7 +8,7 @@ eval "$(argh.sh $@)"
 PORT="${PORT:-8080}" #- returns $PORT if set, or defaults to returning 8080
 TEST="${TEST:-asdf}" #- just a test arg
 DEF="${DEF:-default string}" #- just use the default
-DOTFILE="${DOTFILE:-configure your rc file}" #- make sure a dotfile loads
+DOTFILE="${DOTFILE:-configure your .argh-demorc file to include dotfile: stuff}" #- make sure a dotfile loads
 
 echo $PORT
 echo $TEST
