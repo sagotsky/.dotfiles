@@ -92,3 +92,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 
 
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}•"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}x"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[blue]%}+"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓"
