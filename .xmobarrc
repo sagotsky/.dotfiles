@@ -1,6 +1,6 @@
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , bgColor = "black"
-       , fgColor = "#cccccf"
+       , fgColor = "dimgray"
        , position = TopW L 100
        , lowerOnStart = True
        , commands = [ Run MultiCpu ["-L","30","-H","90","--normal","white","--high","red"] 10
@@ -15,5 +15,5 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=green>%git%</fc><fc=lightseagreen> %music%</fc> · ♫ %vol% · %multicpu% · %memory% · %battery% <fc=lightskyblue3>%date%</fc><fc=skyblue>%mail%</fc>"
+       , template = "%StdinReader% }{ <fc=whitesmoke>%git%</fc><fc=orangered> %music%</fc> · ♫ %vol% · %multicpu% · %memory% · %battery% <fc=white>%date%</fc><fc=skyblue>%mail%</fc>"
        }
