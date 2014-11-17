@@ -63,7 +63,8 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundleCheck
+" NeoBundle 'nono/vim-handlebars'
+NeoBundle 'mustache/vim-mustache-handlebars'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'
@@ -72,6 +73,8 @@ if isdirectory($HOME."/.rbenv")
   NeoBundle 'tpope/vim-rails'
   NeoBundle 'lucapette/vim-ruby-doc'
 endif
+
+NeoBundleCheck
 
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -88,7 +91,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
-    \ '\public/',
+    \ '\public/source_maps/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
@@ -164,7 +167,7 @@ endtry
 :com! Ebranch args `git diff master --name-only`
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
-cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
+"cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
 
 let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
 let s:minfontsize = 6
@@ -200,6 +203,7 @@ map <leader>- :SmallerFont<CR>
 
 function! Zeal()
   let word = expand("<cword>")
+  execute 'silent !killall -9 zeal '
   execute 'silent !zeal -f -q ' . word . '&>/dev/null &'
 endfunction
 command! Zeal call Zeal()
@@ -289,6 +293,12 @@ endfunction
 au BufRead,BufNewFile *.rb        call RubySettings()
 function! RubySettings()
   ab pry binding.pry
+endfunction
+
+au BufRead,BufNewFile *.js        call JavaScriptSettings()
+au BufRead,BufNewFile *.coffee    call JavaScriptSettings()
+function! JavaScriptSettings()
+  ab c_log console.log
 endfunction
 
 au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
