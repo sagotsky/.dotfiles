@@ -9,12 +9,14 @@ shift
 
 # Runs a script in tmux or attaches to existing
 tmux ls | grep -q "$SESSION" || 
-  tmux -2 new-session -d -s "$SESSION" $1
+  tmux -2 new-session -d -s "$SESSION" "$1"
   shift
 
   while [[ "$#" -gt "0" ]] ; do 
     NTH="$(( NTH + 1 ))"
-    tmux new-window -t "$SESSION:$NTH" $1
+    prog="${1}"
+    which rails
+    tmux -v new-window -t "$SESSION:$NTH" "$prog"
     shift
   done
 
