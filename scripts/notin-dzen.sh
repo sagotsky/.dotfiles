@@ -15,7 +15,8 @@ function _nuvolaplayer() {
 }
 
 function _cmus() {
-  echo $@ | cut -f 2- -d':'> ~/.music.out &
+  SONG_INFO="$(echo $@ | cut -f 2- -d':')"
+  echo "${SONG_INFO:0:80}" > ~/.music.out &
 }
 
 
