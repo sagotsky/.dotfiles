@@ -82,6 +82,7 @@ let g:airline_theme='jellybeans'
 
 let g:syntastic_auto_loc_list=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
+let g:syntastic_coffee_coffeelint_args = "--file ".$HOME."/.coffeelint.json"
 
 " Unite.vim options and keys
 let g:unite_source_rec_max_cache_files = 0
@@ -92,6 +93,7 @@ call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
     \ '\public/source_maps/',
+    \ '\public/assets/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
