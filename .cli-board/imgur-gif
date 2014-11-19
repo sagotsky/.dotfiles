@@ -1,0 +1,5 @@
+#!/bin/bash
+
+url="$(byzanz-gif.sh | imgur.sh)"
+x-www-browser $url
+echo "!$url|width=400px!"

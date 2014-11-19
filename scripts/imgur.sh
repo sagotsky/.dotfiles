@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Send image files to imgur
 
@@ -64,12 +64,17 @@ function auth() {
 
 function upload_image() {
   image="$1"
+  echo "Uploading $image..." | dzen2 -p -ta l&
+  PID=$!
+
   response=`curl -s -X POST --header "Authorization: Bearer ${AUTH_TOKEN}" -F "image=@${image}" https://api.imgur.com/3/image`
   if [[ "$(echo $response | jshon -e status)" == '200' ]] ; then
     echo $response | jshon -e data -e link | tr -d '"\\' 
   else 
     echo "error uploading $image"  1>&2
   fi 
+
+  kill $PID
 }
 
 # check dependecies
