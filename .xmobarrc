@@ -3,9 +3,12 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "dimgray"
        , position = TopW L 100
        , lowerOnStart = True
-       , commands = [ Run MultiCpu ["-L","30","-H","90","--normal","white","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%","-L","50","-H","75","--normal","white","--high","red"] 10
-                    , Run Date "%a, %b %d %I:%M" "date" 590
+       , border = BottomBM 0
+       , borderColor = "#777"
+       , iconRoot = "/home/sagotsky/.xmobar/"
+       , commands = [ Run MultiCpu ["-t", "<icon=cpu.xbm/> <total>%", "-L","75","-H","90","--normal","white","--high","red"] 10
+                    , Run Memory ["-t","<icon=mem.xbm/> <usedratio>%","-L","75","-H","90","--normal","white","--high","red"] 10
+                    , Run Date "%m.%d %I:%M" "date" 590
                     , Run StdinReader
                     , Run PipeReader "/home/sagotsky/.music.out" "music"
                     , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
@@ -15,5 +18,8 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=whitesmoke>%git%</fc><fc=orangered> %music%</fc> · ♫ %vol% · %multicpu% · %memory% · %battery% <fc=white>%date%</fc><fc=skyblue>%mail%</fc>"
+       , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>| ♫ %vol%  %multicpu%  %memory% %battery%|<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=skyblue>%mail%</fc>"
+       }
+
+       -- · ♫ %vol%  %multicpu%  %memory% %battery%| <fc=orangered,black>%date%</fc><fc=skyblue>%mail%</fc>"
        }

@@ -29,6 +29,6 @@ while [ -f ~/.gmail-cookies.txt ] ; do
     fi
   fi
 
-  echo $MSG
+  echo "$MSG"
   sleep $SLEEP
 done

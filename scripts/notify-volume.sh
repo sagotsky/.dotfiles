@@ -32,13 +32,17 @@ do
 	inotifywait $SOUND_DEV -e ACCESS -e CLOSE_WRITE > /dev/null 2>/dev/null
     sleep .01
     VOL=$(volume_n)
-    FC="gray"
+    FC="dimgray"
     if [[ "$VOL" -gt 60 ]] ; then 
         FC="white"
     fi
     if [[ "$VOL" -gt 90 ]] ; then 
         FC="red"
     fi
+	echo "<fc=white>$VOL%</fc>"
+  sleep .05
+	echo "<fc=gray>$VOL%</fc>"
+  sleep .05
 	echo "<fc=$FC>$VOL%</fc>"
 done
 
