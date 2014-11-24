@@ -45,7 +45,8 @@ myUrgentBorderColor   = "#ff5500"
 myLayout = avoidStruts
            ( smartBorders
            -- ## |- [] ()
-           ( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
+           --( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
+           ( named "<icon=tall.xbm/>" tall ||| named "<icon=wide.xbm/>" wide ||| named "<icon=full.xbm/>"  Full ||| named "Ο" circle ))
     where
       tall = Tall nmaster delta ratio
       wide = Mirror $ Tall nmaster delta ratio
