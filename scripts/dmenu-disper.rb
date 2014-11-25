@@ -9,12 +9,21 @@ while displays.any? do
   display_res[display] = res
 end
 
-combos = display_res.map{ |k,v| "#{k} [#{v}]" }.tap{ |c| c = c.combination(2).to_a.join('|') if c.length > 1}
+combos = display_res.map{ |k,v| "#{v} [#{k}]".center(16) }
+if combos.count > 1
+  # should this also list single screens?
+  combos = combos.permutation(2).to_a.map{ |p| p.join(' | ') } 
+  opts = "-l #{[5, combos.count].min} "
+  dmenu = IO.popen("dmenu #{opts}", 'r+')
+  dmenu.write combos.join("\n")
+  dmenu.close_write
+  selected =  dmenu.gets
+else 
+  selected = combos.first
+end 
 
+displays = selected.scan(/\[.*?\]/).map{|s| s.delete('[]')}.join ','
 
-dmenu = IO.popen('dmenu ', 'r+')
-dmenu.write combos.join("\n")
-dmenu.close_write
-selected =  dmenu.gets
+`disper -e #{displays} -t bottom`
 
 
