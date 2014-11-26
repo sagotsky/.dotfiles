@@ -21,5 +21,6 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>| ♫ %vol%  %multicpu%  %memory% %battery%|<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=skyblue>%mail%</fc>"
        }
 
+-- TODO: volume/headphones/mute icons
        -- · ♫ %vol%  %multicpu%  %memory% %battery%| <fc=orangered,black>%date%</fc><fc=skyblue>%mail%</fc>"
        }
