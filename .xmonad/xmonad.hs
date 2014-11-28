@@ -46,7 +46,7 @@ myLayout = avoidStruts
            ( smartBorders
            -- ## |- [] ()
            --( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
-           ( named "<icon=tall.xbm/>" tall ||| named "<icon=wide.xbm/>" wide ||| named "<icon=full.xbm/>"  Full ||| named "Ο" circle ))
+           ( named "<icon=tall.xbm/>" tall ||| named "<icon=wide.xbm/>" wide ||| named "<icon=full.xbm/>"  Full ||| named "<icon=circle.xbm/>" circle ))
     where
       tall = Tall nmaster delta ratio
       wide = Mirror $ Tall nmaster delta ratio
@@ -107,7 +107,7 @@ main = do
                  , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
                  , ppVisible = xmobarColor "#a83300" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
                  , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
-                 , ppLayout  = xmobarColor "#844444" "" . wrap "" ""  
+                 , ppLayout  = xmobarColor "#888888" "" . wrap "" ""  
                  , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
                  , ppSep =  " " 
                  , ppExtras = [ logTitles ]

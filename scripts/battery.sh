@@ -1,26 +1,24 @@
 #!/bin/bash  -x
 
-PWR="$(acpi -b | cut -f4 -d' ' | tr -d '%' | tr -d ',')"
-[[ "x$PWR" == "x" ]] && exit
-
-if [[ "$PWR" -gt 0 ]] ; then
-  COLOR='red'
-  ICON='<icon=/usr/share/dzen2/bitmaps/battery.xbm/>'
-  SYM='%'
-fi
-
-if [[ "$PWR" -gt 20 ]] ; then
-  COLOR='yellow'
-fi
-
-if [[ "$PWR" -gt 60 ]] ; then
-  COLOR='grey'
-fi
-
 if [[ $(acpi -a) == 'Adapter 0: on-line' ]] ; then
   echo
-else 
-  echo "<fc=$COLOR>$ICON $PWR$SYM</fc> "
-fi
+  exit 
+fi 
+
+PWR="$(acpi -b | cut -f4 -d' ' | tr -d '%' | tr -d ',')"
+[[ "x$PWR" == "x" ]] && exit
+#https://github.com/zoresvit/dotfiles/tree/master/xmonad/.xmonad/images
+
+case "$PWR" in
+  [7-9]* ) COLOR='dimgrey' ;;
+  [4-6]* ) COLOR='lightgoldenrod' ;;
+  [2-3]* ) COLOR='yellow' ;;
+  * )      COLOR='red' ;;
+esac
+
+ICON='<icon=/usr/share/dzen2/bitmaps/battery.xbm/>'
+SYM='%'
+
+echo "<fc=$COLOR>$ICON $PWR$SYM</fc> "
 
 
