@@ -18,8 +18,7 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>| ♫ %vol%  %multicpu%  %memory% %battery%|<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=skyblue>%mail%</fc>"
+       , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>| ♫ %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=skyblue>%mail%</fc>"
        }
 
-       -- · ♫ %vol%  %multicpu%  %memory% %battery%| <fc=orangered,black>%date%</fc><fc=skyblue>%mail%</fc>"
        }
