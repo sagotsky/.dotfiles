@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'date'
+require 'time'
 
 calendars = ['Jon Sagotsky', 'J&J', 'jsagotsky']
 
@@ -22,7 +23,8 @@ class Event
   end
 
   def soon?
-
+    start = Time.parse("#{start_date} #{start_time}")
+    (start - Time.now > 900)
   end
 end
 
@@ -63,7 +65,12 @@ while true do
     txt << fg('orangered2', "#{day entry.start_date}") unless last == entry.start_date
     last = entry.start_date
 
-    txt << "#{fg 'dimgray', entry.start_time}" if entry.start_time != '00:00'
+    if entry.soon?
+      txt << "#{bg 'dimgray', fg('black', entry.start_time)}" if entry.start_time != '00:00'
+    else 
+      txt << "#{fg 'dimgray', entry.start_time}" if entry.start_time != '00:00'
+    end 
+
     txt << "#{clickable entry.title, 'more'}"
   end
   puts txt.join ' '
