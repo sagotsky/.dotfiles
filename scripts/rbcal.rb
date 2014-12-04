@@ -17,12 +17,12 @@ class Event
     end
   end
 
-  def link_to_full
-    "%{A:#{full}:}#{title}%{A}"
-  end 
-
   def full
     %w[title start_time location description].map{ |f| send(f)}.join("\n")
+  end
+
+  def soon?
+
   end
 end
 
@@ -48,9 +48,13 @@ def bg(color, str)
   "%{B#{color}}#{str}%{B-}"
 end
 
+def clickable(title, more)
+  "%{A:#{more}:}#{title}%{A}"
+end
+
 while true do 
   calendar_opts = calendars.map{ |cal| "--calendar '#{cal}'"}.join ' '
-  agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --details all`.split("\n").map do |line|
+  agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --nomilitary`.split("\n").map do |line|
     Event.new line
   end
 
@@ -60,7 +64,7 @@ while true do
     last = entry.start_date
 
     txt << "#{fg 'dimgray', entry.start_time}" if entry.start_time != '00:00'
-    txt << "#{entry.title}"
+    txt << "#{clickable entry.title, 'more'}"
   end
   puts txt.join ' '
   STDOUT.flush
