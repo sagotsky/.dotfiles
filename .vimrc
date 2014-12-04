@@ -52,6 +52,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-commentary'
@@ -250,6 +251,7 @@ let g:indent_guides_enable_on_vim_startup = 0
 hi IndentGuidesOdd  guibg=#202020   ctermbg=232
 hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
 
+hi normal ctermbg=black
 " Buffer types
 au BufRead,BufNewFile *.txt set filetype=text
 au BufRead,BufNewFile *.txt set wrap
