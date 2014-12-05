@@ -10,6 +10,7 @@
 # By now auth_token should be useful
 
 IMAGE="/tmp/screenshot-$(date +'%F.%T').png"
+DZEN_OPTS='-p -ta l'
 echo "Screenshot -> Imgur: Click a window or drag a selection." | dzen2 $DZEN_OPTS &
 PID=$!
 scrot -s $IMAGE
