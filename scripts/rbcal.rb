@@ -24,7 +24,7 @@ class Event
 
   def soon?
     start = Time.parse("#{start_date} #{start_time}")
-    (start - Time.now > 900)
+    (start - Time.now < 900)
   end
 end
 
