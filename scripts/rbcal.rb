@@ -3,7 +3,7 @@
 require 'date'
 require 'time'
 
-calendars = ['Jon Sagotsky', 'J&J', 'jsagotsky']
+calendars = ENV['CALENDARS'].split(',') || ['Jon Sagotsky', 'J&J', 'jsagotsky']
 
 #class entry 
 class Event
