@@ -2,8 +2,14 @@
 
 require 'date'
 require 'time'
+require 'trollop'
 
-calendars = ENV['CALENDARS'].split(',') || ['Jon Sagotsky', 'J&J', 'jsagotsky']
+#calendars = ENV['CALENDARS'].split(',') || ['Jon Sagotsky', 'J&J', 'jsagotsky']
+opts = Trollop::options do
+  opt :calendars, 'Comma separated list of calendars to display', default: ''
+end
+
+# could it leave off opt and use method_missing instead?
 
 #class entry 
 class Event
@@ -55,7 +61,7 @@ def clickable(title, more)
 end
 
 while true do 
-  calendar_opts = calendars.map{ |cal| "--calendar '#{cal}'"}.join ' '
+  calendar_opts = opts[:calendars].split(',').map{ |cal| "--calendar '#{cal}'"}.join ' '
   agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --nomilitary`.split("\n").map do |line|
     Event.new line
   end
