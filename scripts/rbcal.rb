@@ -72,7 +72,7 @@ while true do
     last = entry.start_date
 
     if entry.soon?
-      txt << "#{bg 'dimgray', fg('black', entry.start_time)}" if entry.start_time != '00:00'
+      txt << "#{bg 'dimgray', fg('white', entry.start_time)}" if entry.start_time != '00:00'
     else 
       txt << "#{fg 'dimgray', entry.start_time}" if entry.start_time != '00:00'
     end 
