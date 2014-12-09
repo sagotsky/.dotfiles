@@ -24,6 +24,8 @@ noremap <leader>g :togglegui <cr>
 
 " dialog shortcuts
 noremap <Leader>db :dialog bookmarks<cr>
+noremap <Leader>dp :dialog preferences<cr>
+noremap <Leader>da :dialog addons<cr>
 noremap <Leader>dh :dialog history<cr>
 noremap <Leader>dd :dialog downloads<cr>
 
