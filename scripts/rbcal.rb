@@ -13,7 +13,7 @@ end
 
 #class entry 
 class Event
-  EVENT_FIELDS = %W[start_date start_time end_date end_time link something title location description]
+  EVENT_FIELDS = %W[start_date start_time end_date end_time link something title location description calendar]
   attr_accessor *EVENT_FIELDS.map(&:to_sym)
 
   def initialize(gcalcli_line)
@@ -62,7 +62,7 @@ end
 
 while true do 
   calendar_opts = opts[:calendars].split(',').map{ |cal| "--calendar '#{cal}'"}.join ' '
-  agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --nomilitary`.split("\n").map do |line|
+  agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --nomilitary --details all`.split("\n").map do |line|
     Event.new line
   end
 
