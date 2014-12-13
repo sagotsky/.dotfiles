@@ -4,6 +4,7 @@ require 'date'
 require 'time'
 require 'trollop'
 require 'pry'
+require 'timeout'
 
 opts = Trollop::options do
   opt :calendars, 'Comma separated list of calendars to display', default: ''
@@ -26,8 +27,7 @@ class Event
 
   def more
     # I think this fails becasue of the : in the time being read by bar.  \: doesn't fix it.
-    #%w[title start_time location description].map{ |f| send(f)}.join("\t")
-    ''
+    %w[title start_time location description].map{ |f| send(f)}.join("\n")
   end
 
   def soon?
@@ -35,9 +35,6 @@ class Event
     (start - Time.now < 900)
   end
 end
-
-# tsv lacks calendar...
-puts "loading... #{opts[:calendars]}"
 
 def time_range
   start = Time.now - 600
@@ -62,6 +59,27 @@ def clickable(title, more)
   "%{A:#{more}:}#{title}%{A}"
 end
 
+# quicker way to color?  clears up some of the entry.soon conditional since we can just set colors there
+def c(text, colors)
+  text = "%{B#{colors[:bg]}}#{text}%{B-}" if colors[:bg]
+  text = "%{F#{colors[:fg]}}#{text}%{F-}" if colors[:fg]
+  text
+end
+
+def sleepwalk(seconds)
+  # do a thing until the timeout breaks it
+  begin 
+    Timeout::timeout(seconds) { yield } 
+  rescue Timeout::Error
+  end 
+end
+
+bar_opts = "-p -f '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -g 1279x12+1280+0"
+bar = IO.popen("bar #{bar_opts}", 'r+')
+bar.write "loading bar...\n"
+#todo trap kill so we can clean bar
+#todo object around bar?
+
 while true do 
   calendar_opts = opts[:calendars].split(',').map{ |cal| "--calendar '#{cal}'"}.join ' '
 
@@ -70,21 +88,21 @@ while true do
   end
 
   last = nil
-  txt = agenda.reduce([]) do |txt, entry|
-    txt << fg('orangered2', "#{day entry.start_date}") unless last == entry.start_date
+  txt = agenda.each.with_index.reduce([]) do |txt, (entry, index)|
+    txt << c("#{day entry.start_date}", fg: 'orangered2') unless last == entry.start_date
     last = entry.start_date
 
-    if entry.soon?
-      txt << "#{bg 'dimgray', fg('white', entry.start_time)}" if entry.start_time != '00:00'
-    else 
-      txt << "#{fg 'dimgray', entry.start_time}" if entry.start_time != '00:00'
-    end 
+    colors = entry.soon? ? {bg: 'dimgray', fg: 'white'} : {fg: 'dimgray'}
+    txt << c(entry.start_time, colors) unless entry.start_time == '00:00'
 
-    txt << "#{clickable entry.title, entry.more}"
+    txt << "#{clickable entry.title, index}"
   end
 
-  puts txt.join(' ').slice(0, 1200)
-  STDOUT.flush
+  bar.write "#{txt.join(' ').slice(0, 1200)}\n"
 
-  sleep 60
+  sleepwalk 60 do 
+    while show_entry = bar.gets.to_i do 
+      puts agenda[show_entry].more
+    end 
+  end
 end 
