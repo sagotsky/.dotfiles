@@ -3,8 +3,8 @@
 require 'date'
 require 'time'
 require 'trollop'
+require 'pry'
 
-#calendars = ENV['CALENDARS'].split(',') || ['Jon Sagotsky', 'J&J', 'jsagotsky']
 opts = Trollop::options do
   opt :calendars, 'Comma separated list of calendars to display', default: ''
 end
@@ -35,7 +35,7 @@ class Event
 end
 
 # tsv lacks calendar...
-puts 'loading...'
+puts "loading... #{opts[:calendars]}"
 
 def time_range
   start = Time.now - 600
@@ -62,6 +62,7 @@ end
 
 while true do 
   calendar_opts = opts[:calendars].split(',').map{ |cal| "--calendar '#{cal}'"}.join ' '
+
   agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --nomilitary --details all`.split("\n").map do |line|
     Event.new line
   end
@@ -79,7 +80,8 @@ while true do
 
     txt << "#{clickable entry.title, 'more'}"
   end
-  puts txt.join ' '
+
+  puts txt.join(' ').slice(0, 1200)
   STDOUT.flush
 
   sleep 60
