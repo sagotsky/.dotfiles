@@ -26,8 +26,7 @@ class Event
   end
 
   def more
-    # I think this fails becasue of the : in the time being read by bar.  \: doesn't fix it.
-    %w[title start_time location description].map{ |f| send(f)}.join("\n")
+    ["<b>#{title}</b>", '', "#{start_time}-#{end_time}", location, description].compact.join "\n"
   end
 
   def soon?
@@ -47,16 +46,8 @@ def day(date)
   days[Date.parse(date).wday]
 end
 
-def fg(color, str)
-  "%{F#{color}}#{str}%{F-}"
-end
-
-def bg(color, str)
-  "%{B#{color}}#{str}%{B-}"
-end
-
-def clickable(title, more)
-  "%{A:#{more}:}#{title}%{A}"
+def clickable(title, index)
+  "%{A:#{index}:}#{title}%{A}"
 end
 
 # quicker way to color?  clears up some of the entry.soon conditional since we can just set colors there
@@ -76,7 +67,7 @@ end
 
 bar_opts = "-p -f '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -g 1279x12+1280+0"
 bar = IO.popen("bar #{bar_opts}", 'r+')
-bar.write "loading bar...\n"
+bar.write "loading agenda ... #{opts[:calendars]}\n"
 #todo trap kill so we can clean bar
 #todo object around bar?
 
@@ -101,8 +92,12 @@ while true do
   bar.write "#{txt.join(' ').slice(0, 1200)}\n"
 
   sleepwalk 60 do 
+    # this approach mostly works, but there will be a delay while gcalcli is waiting.  
+    # not sure how ugly it would be to make a network fetching thread or a bar reading thread 
+    # (although if bar gets its own wrapper, maybe it could get hidden in there...)
     while show_entry = bar.gets.to_i do 
-      puts agenda[show_entry].more
+      msg = agenda[show_entry].more
+      `zenity --info --text "#{msg}" --timeout 2 &`
     end 
   end
 end 
