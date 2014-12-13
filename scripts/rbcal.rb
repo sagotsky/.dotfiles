@@ -24,8 +24,10 @@ class Event
     end
   end
 
-  def full
-    %w[title start_time location description].map{ |f| send(f)}.join("\n")
+  def more
+    # I think this fails becasue of the : in the time being read by bar.  \: doesn't fix it.
+    #%w[title start_time location description].map{ |f| send(f)}.join("\t")
+    ''
   end
 
   def soon?
@@ -78,7 +80,7 @@ while true do
       txt << "#{fg 'dimgray', entry.start_time}" if entry.start_time != '00:00'
     end 
 
-    txt << "#{clickable entry.title, 'more'}"
+    txt << "#{clickable entry.title, entry.more}"
   end
 
   puts txt.join(' ').slice(0, 1200)
