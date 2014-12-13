@@ -10,11 +10,11 @@ PWR="$(acpi -b | cut -f4 -d' ' | tr -d '?' | tr -d ',')"
 #https://github.com/zoresvit/dotfiles/tree/master/xmonad/.xmonad/images
 
 case "$PWR" in
-
-  [7-9]*% ) COLOR='dimgrey' ICON='battery-full';;
-  [4-6]*% ) COLOR='lightgoldenrod' ICON='battery-med';;
-  [2-3]*% ) COLOR='yellow' ICON='battery-low';;
-  * )       COLOR='red' ICON='battery-empty';;
+  100%    ) COLOR='green'          ICON='battery-full'  ;;
+  [7-9]*% ) COLOR='dimgrey'        ICON='battery-full'  ;;
+  [4-6]*% ) COLOR='lightgoldenrod' ICON='battery-med'   ;;
+  [2-3]*% ) COLOR='yellow'         ICON='battery-low'   ;;
+  * )       COLOR='red'            ICON='battery-empty' ;;
 esac
 
 #ICON='<icon=/usr/share/dzen2/bitmaps/battery.xbm/>'
