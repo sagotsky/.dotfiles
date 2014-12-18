@@ -8,6 +8,7 @@ require 'timeout'
 
 opts = Trollop::options do
   opt :calendars, 'Comma separated list of calendars to display', default: ''
+  opt :bar, 'Options to pass into bar.  e.g. --bar="-b -f \'Source Code Pro\' -p"', default: ''
 end
 
 # could it leave off opt and use method_missing instead?
@@ -38,7 +39,7 @@ end
 def time_range
   start = Time.now - 600
   finish = Time.now + 3600*24*21 
-  time = "#{start.hour}:#{start.min} #{finish.day}/#{finish.month}/#{finish.year}"
+  time = "#{start.hour}:#{start.min}"# #{finish.day}/#{finish.month}/#{finish.year}"
 end 
 
 def day(date)
@@ -65,8 +66,7 @@ def sleepwalk(seconds)
   end 
 end
 
-bar_opts = "-p -f '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -g 1279x12+1280+0"
-bar = IO.popen("bar #{bar_opts}", 'r+')
+bar = IO.popen("bar #{opts[:bar]}", 'r+')
 bar.write "loading agenda ... #{opts[:calendars]}\n"
 #todo trap kill so we can clean bar
 #todo object around bar?
@@ -96,7 +96,7 @@ while true do
     # not sure how ugly it would be to make a network fetching thread or a bar reading thread 
     # (although if bar gets its own wrapper, maybe it could get hidden in there...)
     while show_entry = bar.gets.to_i do 
-      msg = agenda[show_entry].more
+      msg = agenda[show_entry].more.gsub '&', '&amp;'
       `zenity --info --text "#{msg}" --timeout 2 &`
     end 
   end
