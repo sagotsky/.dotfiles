@@ -64,8 +64,8 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
-" NeoBundle 'nono/vim-handlebars'
 NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'kshenoy/vim-signature'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'

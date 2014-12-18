@@ -8,7 +8,7 @@
 
 # there can be only one
 pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null
-USER=0 # env var?
+USER=0 # env var? 0 => blue, 1 => red
 
 while [ -f ~/.gmail-cookies.txt ] ; do
   SLEEP='15m' # new mail check.  will be faster after mail present or errors so they clear sooner
