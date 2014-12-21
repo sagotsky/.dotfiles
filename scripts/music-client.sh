@@ -3,7 +3,7 @@
 # front end to whatever music player is currently playing
 
 APPS=('rhythmbox' 'nuvolaplayer' 'cmus')
-CMDS=('volup' 'voldown' 'mute' 'play' 'back' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
+CMDS=('volup' 'voldown' 'mute' 'play' 'pause' 'back' 'stop' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
 
 # add volup commands.  make them print status.  empty status if no playing.
 
@@ -28,6 +28,8 @@ cmus() {
     next) cmus-remote -n   ;;
     back) cmus-remote -r   ;;
     toggle | pause) cmus-remote -u ;;
+    pause) (cmus-remote -Q | grep 'status playing') && cmus-remote -p ;;
+    stop) cmus-remote -s ;;
     status) cmus-remote -Q ;;
     bandsong) echo "$(cmus-remote -Q | grep '^tag artist' | cut -f 3- -d' ') - $(cmus-remote -Q | grep '^tag album' | cut -f 3- -d' ') - $(cmus-remote -Q | grep '^tag title' | cut -f 3- -d' ')" ;;
     *) return 1
@@ -38,6 +40,7 @@ rhythmbox() {
   case $1 in
     play | pause | next) rhythmbox-client --$1 ;;
     back) rhythmbox-client --previous ;;
+    stop) rhythmbox-client --stop ;;
     toggle) rhythmbox-client --play-pause ;;
     status) rhythmbox-client --print-playing ;;
     bandsong) rhythmbox-client  --print-playing-format '%aa - %tt' ;;
