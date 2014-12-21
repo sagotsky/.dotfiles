@@ -82,6 +82,7 @@ ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
 
 # Show pretty background jobs list unless empty
 RPROMPT='%(1j.`jobs | sed -e "s/ .*  //" | tr "[" " " | tr "]" ":" | tr -d "\\n"`.)'
+#RPROMPT="%F{54}$RPROMPT%f"
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
