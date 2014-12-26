@@ -38,8 +38,8 @@ end
 
 def time_range
   start = Time.now - 600
-  finish = Time.now + 3600*24*21 
-  time = "#{start.hour}:#{start.min}"# #{finish.day}/#{finish.month}/#{finish.year}"
+  finish = Time.now + 3600*24*14 
+  time = "#{start.hour}:#{start.min} #{finish.year}-#{finish.month}-#{finish.day}"
 end 
 
 def day(date)

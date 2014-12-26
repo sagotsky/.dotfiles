@@ -24,6 +24,6 @@ end
 
 displays = selected.scan(/\[.*?\]/).map{|s| s.delete('[]')}.join ','
 
-`disper -e #{displays} -t bottom`
+`disper -e #{displays} -t bottom ; xrandr --dpi 96`
 
 
