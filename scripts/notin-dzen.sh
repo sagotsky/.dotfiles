@@ -23,7 +23,7 @@ function _cmus() {
 # show chat differently
 function _pidgin() {
 # iff pidgin is not active window!
-  DZEN_OPTS=" -bg linen -fg black -xs 1 -ta l -fn inconsolata-16 -p 5 -u "
+  DZEN_OPTS=" -bg linen -fg black -xs 1 -ta l -fn fixed-8 -p 5 -u "
   echo $@ |
     sed -e "s/^\[\(.*\)\]/^fg(darkgoldenrod)\[\1\]^fg()/" |
     sed -e "s/<i>/^fg(khaki)/g" |

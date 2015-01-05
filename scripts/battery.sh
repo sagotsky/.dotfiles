@@ -11,9 +11,9 @@ PWR="$(acpi -b | cut -f4 -d' ' | tr -d '?' | tr -d ',')"
 
 case "$PWR" in
   100%    ) COLOR='green'          ICON='battery-full'  ;;
-  [7-9]*% ) COLOR='dimgrey'        ICON='battery-full'  ;;
-  [4-6]*% ) COLOR='lightgoldenrod' ICON='battery-med'   ;;
-  [2-3]*% ) COLOR='yellow'         ICON='battery-low'   ;;
+  [7-9]?% ) COLOR='dimgrey'        ICON='battery-full'  ;;
+  [4-6]?% ) COLOR='lightgoldenrod' ICON='battery-med'   ;;
+  [2-3]?% ) COLOR='yellow'         ICON='battery-low'   ;;
   * )       COLOR='red'            ICON='battery-empty' ;;
 esac
 
