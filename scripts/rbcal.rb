@@ -24,10 +24,10 @@ class Event
     EVENT_FIELDS.each do |field|
       send "#{field}=", fields.shift
     end
-  end
+  end 
 
   def more
-    ["<b>#{title}</b>", '', "#{start_time}-#{end_time}", location, description].compact.join "\n"
+    ["<b><a href='#{link}'>#{title}</a></b>", '', "#{start_time}-#{end_time}", location, description].compact.join "\n"
   end
 
   def soon?
