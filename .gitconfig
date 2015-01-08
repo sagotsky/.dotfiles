@@ -1,17 +1,28 @@
+[user]
+  email = sagotsky@gmail.com
+  name = Jon Sagotsky 
+[core]
+  editor = vim
 [color]
-    ui = true
+  status = auto
+  diff = auto
+  branch = auto
 [alias]
+  co = checkout
   st = status
   ci = commit
-  co = checkout
-  cb = !~/scripts/git/git-checkoutbranch.sh
-  pp = !git pull && git push
-  track = !~/scripts/git/git-track.sh 
 
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-[core]
-	autocrlf = input
-	pager = less -r
-[format]
-  signoff = true
+  pp =        ! (git pull --rebase && git push) || bell
+  track =     ! ~/scripts/git/git-track.sh
+  cb =        ! ~/scripts/git/git-checkoutbranch.sh
+  ls-branch = ! ~/scripts/git/git-ls-branch.sh
+[push]
+  default = tracking
+[grep]
+	extendRegexp = true
+	lineNumber = true
+[help]
+	autocorrect = 5
+[diff]
+  #external = git-meld
+  #external = vimdiff
