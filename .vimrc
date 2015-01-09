@@ -167,7 +167,8 @@ endtry
 :com! W w
 :com! Q q
 :com! Bd bd 
-:com! Ebranch args `git diff master --name-only`
+:com! Bdall 0,9999 bd
+:com! Ebranch args `git ls-branch`
 
 " accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
 "cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
