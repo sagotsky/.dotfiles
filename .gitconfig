@@ -16,6 +16,7 @@
   track =     ! ~/scripts/git/git-track.sh
   cb =        ! ~/scripts/git/git-checkoutbranch.sh
   ls-branch = ! ~/scripts/git/git-ls-branch.sh
+  what-branch=! ~/scripts/git/git-what-branch.sh
 [push]
   default = tracking
 [grep]
