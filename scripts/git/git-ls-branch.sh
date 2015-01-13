@@ -11,7 +11,7 @@ function branches_first_commit() {
 }
 
 BRANCH="${1:-`current_branch`}"
-git log "$(branches_first_commit $BRANCH)"..HEAD --name-only --pretty=format: | sort | uniq
+git log "$(branches_first_commit $BRANCH)"..HEAD --name-only --pretty=format: | sort | uniq | grep '/'
 
 
 
