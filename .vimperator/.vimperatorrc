@@ -48,8 +48,14 @@ command! annotateresolution -nargs=0 javascript vimp_annotate_resolution()
 command! togglegui -nargs=0 javascript togglegui()                
 command! passkeys -nargs=+ javascript vimp_passkeys("<args>")    
 command! formulate -nargs=0 javascript vimp_formulate()         
+command! jq -nargs=+ javascript exec_with_jquery("<args>")
 
 javascript <<EOF
+  function exec_with_jquery(args) {
+    var $ = content.window.wrappedJSObject.jQuery
+    eval(args)
+  }
+
   function togglegui() {
     liberator.globalVariables.gui = (liberator.globalVariables.gui == 'none' || typeof(liberator.globalVariables.gui) == 'undefined') ? 'menu,navigation,tabs' : 'none'
     liberator.execute('set gui=' + liberator.globalVariables.gui) 
