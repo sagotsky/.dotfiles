@@ -8,6 +8,5 @@ function essid() {
   nmcli d | grep connected | grep wlan | awk '{print $4}'
 }
 
-signal
 [[ "$(signal)" -lt 60 ]] && echo "<fc=red><icon=wifi.xbm/> $(signal)%</fc>" || echo ''
 
