@@ -17,7 +17,7 @@ dzen 'gif -> imgur: Click a window.' &
 DIMS=$(byzanz-dimensions) 
 kill $(pidof dzen2 | rev | cut -f 1 -d ' ' | rev) &>/dev/null
   
-byzanz-record -d 60 $DIMS "$IMAGE" --exec "bash -c dzen\ 'Recording window... click to exit'"
+byzanz-record $DIMS "$IMAGE" --exec "bash -c dzen\ 'Recording window... click to exit'"
 echo $IMAGE
 
 
