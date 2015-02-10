@@ -91,7 +91,7 @@ while true do
 
   bar.write "#{txt.join(' ').slice(0, 1200)}\n"
 
-  sleepwalk 60 do 
+  sleepwalk 120 do 
     # this approach mostly works, but there will be a delay while gcalcli is waiting.  
     # not sure how ugly it would be to make a network fetching thread or a bar reading thread 
     # (although if bar gets its own wrapper, maybe it could get hidden in there...)
