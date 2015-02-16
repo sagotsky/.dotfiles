@@ -24,6 +24,7 @@ alias t='tmux -2'
 alias tx='tmux -2 attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='vim '
+alias vnc-server='x11vnc -usepw'
 alias xsel='xsel --logfile ~/.Xsel.log'
 
 # aliases CAN do args

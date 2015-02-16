@@ -35,17 +35,19 @@ com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
 com! sorc   so ~/.vimperatorrc
 
 " rename a tab (not sticky though)
-command! tabrename -nargs=? javascript content.document.title = "<args>"; 
+command! tabrename -description "Rename this tab" -nargs=? javascript content.document.title = "<args>"; 
 
-" send to chrome
-command! chrome -nargs=0 execute "!google-chrome '" + content.location + "' &> /dev/null &"
-command! chromeincognito -nargs=0 execute "!google-chrome --incognito '" + content.location + "' &> /dev/null &"
-command! luakit -nargs=0 execute "!luakit '" + content.location + "' &> /dev/null &"
+" send to other browsers
+command! chrome -description 'Open page in chrome' -nargs=0 execute "!google-chrome '" + content.location + "' &> /dev/null &"
+command! chromeincognito -description 'Open page in chrome incognito' -nargs=0 execute "!google-chrome --incognito '" + content.location + "' &> /dev/null &"
+command! luakit -description 'Open page in luakit' -nargs=0 execute "!luakit '" + content.location + "' &> /dev/null &"
+
+" send to pocket bookmarklet
 
 " display all or no gui.  (for the wife)
+command! togglegui -nargs=0 javascript togglegui()                
 command! annotate -nargs=+ javascript vimp_annotate("<args>")     
 command! annotateresolution -nargs=0 javascript vimp_annotate_resolution()
-command! togglegui -nargs=0 javascript togglegui()                
 command! passkeys -nargs=+ javascript vimp_passkeys("<args>")    
 command! formulate -nargs=0 javascript vimp_formulate()         
 command! jq -nargs=+ javascript exec_with_jquery("<args>")

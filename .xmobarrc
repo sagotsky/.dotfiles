@@ -23,3 +23,4 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        }
 
        }
+       -- TODO: audio state icons.  speaker, headphone, mute

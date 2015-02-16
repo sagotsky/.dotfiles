@@ -113,7 +113,7 @@ main = do
                  , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
                  , ppSep =  " " 
                  , ppExtras = [ logTitles ]
-                 , ppOrder  = \(ws:l:t:ts:_) -> ws : l : t : [xmobarColor "#666666" "" ts]
+                 , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
                  --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" "" 
                  --Current      workspace with focus
                  --Visible      displayed workspace without focus

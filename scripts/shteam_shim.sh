@@ -4,4 +4,4 @@
 # Running the script will cd into that folder and find then run the game launcher
 
 TARGET=$(basename "$0")
-shteam.rb exec $TARGET
+shteam.rb exec "$TARGET"

@@ -66,6 +66,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'kshenoy/vim-signature'
+NeoBundle 'junegunn/vim-peekaboo'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'
