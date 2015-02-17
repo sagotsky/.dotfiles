@@ -94,8 +94,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
-    \ '\public/source_maps/',
-    \ '\public/assets/',
+    \ '^public/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
