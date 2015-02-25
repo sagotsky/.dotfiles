@@ -11,8 +11,8 @@ setopt histignorealldups sharehistory
 bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.history_zsh
 
 fpath=(~/.zsh/completion $fpath)
