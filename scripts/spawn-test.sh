@@ -5,7 +5,7 @@ pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null
 PRE='xvfb-run'
 export DISPLAY="$(cat ~/.display)"
 
-TESTPATH="$HOME/repos/ore/test"
+TESTPATH="$PWD/test"
 cd $TESTPATH/..
 while :  ; do 
   TEST="$(inotifywait $TESTPATH --exclude '.*swp' -r -e modify | tr -s ' MODIFY ' /)"
