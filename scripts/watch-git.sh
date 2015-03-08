@@ -1,18 +1,17 @@
-#!/bin/bash
+#!/bin/zsh
 
 # watch a git dir.  echo its branch
 
-DIR=~/repos/ore/.git
+DIR=~/repos/ore/
 
 # kill leftover inotifywaits
-ps ax | grep "inotifywait.*$DIR" | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill
+#ps ax | grep "inotifywait.*$DIR" | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill
 
-echo " $(git --git-dir=$DIR branch | grep '\*' | cut -f 2 -d' ') "
+echo $(git-super-status.sh $DIR)
 
 while [ $? -eq 0 ] && [ -x /usr/bin/inotifywait ] ; do
-  inotifywait "$DIR/HEAD" -e MODIFY &> /dev/null
-  echo ' --'
+  inotifywait -r "$DIR/.git/" -e MODIFY &> /dev/null
   sleep .2 
-  git --git-dir=$DIR branch | grep '\*' | cut -f 2 -d' '
+  echo $(git-super-status.sh $DIR)
   sleep 1
 done
