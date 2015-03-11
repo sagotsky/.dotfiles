@@ -32,9 +32,9 @@ getfile() {
     getfile "$DIR/$FILE"  
   else 
     if [ -x "$DIR/$FILE" ] ; then
-      echo $($DIR/$FILE) | xsel -i
+      echo $($DIR/$FILE) | xsel-all.sh
     else 
-      cat "$DIR/$FILE" | xsel -i
+      cat "$DIR/$FILE" | xsel-all.sh
     fi
   fi
 }
