@@ -1,13 +1,15 @@
 #!/bin/bash
 
 # there can be only one
-pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null
+~/scripts/there-can-be-only-one.sh
 PRE='xvfb-run'
 export DISPLAY="$(cat ~/.display)"
 
 TESTPATH="$PWD/test"
 cd $TESTPATH/..
-while :  ; do 
+bundle exec rake db:test:prepare
+
+while : ; do 
   TEST="$(inotifywait $TESTPATH --exclude '.*swp' -r -e modify | tr -s ' MODIFY ' /)"
   clear
   date
