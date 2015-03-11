@@ -18,5 +18,5 @@ done
   [[ $conflicts != '0' ]] && echo "x$conflicts"
   [[ $changed != '0' ]]   && echo "+$changed"
   [[ $untracked != '0' ]] && echo "…"
-  [[ $clean == '1' ]]     && echo " :) " #"✓"
+  [[ $clean == '1' ]]     && echo " " #"✓"
 ) | tr -d "\n" 
