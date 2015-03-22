@@ -55,17 +55,16 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-rsi'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'junegunn/vim-peekaboo'
 
 if isdirectory($HOME."/.rbenv")
@@ -75,6 +74,12 @@ if isdirectory($HOME."/.rbenv")
   NeoBundle 'tpope/vim-rails'
   NeoBundle 'lucapette/vim-ruby-doc'
 endif
+
+" experimental
+NeoBundle 'vim-scripts/SQLComplete.vim'
+NeoBundle 'kshenoy/vim-signature'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'vim-scripts/SearchComplete'
 
 NeoBundleCheck
 
@@ -95,6 +100,7 @@ call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
     \ '^public/',
+    \ '^tmp/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
