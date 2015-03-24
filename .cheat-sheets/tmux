@@ -18,12 +18,7 @@
 ^\ ]    # and paste it
 
 ^\ :resize-pane -U/L/R
-^\ 
-^\ 
-^\ 
-^\ 
-^\ 
-^\ 
+^\ :detach -a # detach all other sessions
 ^\ ?    # shortcut help
 ^\ t    # clock
 

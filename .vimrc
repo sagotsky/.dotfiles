@@ -80,6 +80,8 @@ NeoBundle 'vim-scripts/SQLComplete.vim'
 NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'vim-scripts/SearchComplete'
+NeoBundle 'ludovicchabant/vim-gutentags'
+NeoBundle 'lilydjwg/colorizer'
 
 NeoBundleCheck
 
@@ -226,21 +228,23 @@ command! Zeal call Zeal()
 filetype plugin on		"enable filetype plugin
 filetype indent on
 
-colorscheme molokai 
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
-  highlight linenr 		ctermfg=darkgray	
-  highlight CursorLine 	ctermbg=235 cterm=bold 
+  colorscheme railscasts 
+  "highlight linenr 		ctermfg=darkgray	
+  "highlight CursorLine 	ctermbg=235 cterm=bold 
   "    highlight String 		ctermfg=green 
   "    highlight Constant 		ctermfg=red 
-  highlight Comment 		ctermfg=darkgray
-  highlight Search 		ctermfg=white ctermbg=33
+  "highlight Comment 		ctermfg=darkgray
+  "highlight Search 		ctermfg=white ctermbg=33
   "    highlight Todo		ctermfg=21 ctermbg=11
-  highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
-  highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
-  highlight VertSplit		ctermfg=black ctermbg=black
-  highlight SpellBad          ctermfg=229 cterm=underline
-
+  "highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
+  "highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
+  highlight VertSplit		ctermfg=235 ctermbg=235
+  "highlight SpellBad          ctermfg=229 cterm=underline
+  "hi normal ctermbg=black
+  hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
+  hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
 
   " gitgutter
   hi SignColumn guibg=#202020 ctermbg=233
@@ -258,7 +262,6 @@ let g:indent_guides_enable_on_vim_startup = 0
 hi IndentGuidesOdd  guibg=#202020   ctermbg=232
 hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
 
-hi normal ctermbg=black
 " Buffer types
 au BufRead,BufNewFile *.txt set filetype=text
 au BufRead,BufNewFile *.txt set wrap
