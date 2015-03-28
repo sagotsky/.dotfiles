@@ -1,3 +1,5 @@
+" TODO consolidate with .vimrc when the differences are better known
+
 syntax on                         " always use syntax highlighting
 runtime macros/matchit.vim
 set nowrap                        " no word wrap
@@ -36,15 +38,15 @@ endif
 " NeoBundle
 if has('vim_starting')
   set nocompatible    
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.nvim/bundle/neobundle.vim/
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.vim/plugin', }, }
+call neobundle#begin(expand('~/.nvim/bundle/'))
+NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.nvim/plugin', }, }
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 if v:version >= 704
-  NeoBundle 'Shougo/neocomplete'
+  "NeoBundle 'Shougo/neocomplete'
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
@@ -142,8 +144,8 @@ map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
 map <leader><S-CR> :! xterm &<cr><cr>
-map <leader>s :e ~/.vimrc<cr>
-map <leader>S :so ~/.vimrc<cr>
+map <leader>s :e ~/.nvimrc<cr>
+map <leader>S :so ~/.nvimrc<cr>
 
 
 let g:acp_enableAtStartup = 0
@@ -232,6 +234,8 @@ filetype indent on
 
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
+  "let &t_AB="\e[48;5;%dm"
+  "let &t_AF="\e[38;5;%dm"
   colorscheme railscasts 
   "highlight linenr 		ctermfg=darkgray	
   "highlight CursorLine 	ctermbg=235 cterm=bold 
