@@ -1,3 +1,5 @@
+" TODO consolidate with .vimrc when the differences are better known
+
 syntax on                         " always use syntax highlighting
 runtime macros/matchit.vim
 set nowrap                        " no word wrap
@@ -36,15 +38,15 @@ endif
 " NeoBundle
 if has('vim_starting')
   set nocompatible    
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.nvim/bundle/neobundle.vim/
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.vim/plugin', }, }
+call neobundle#begin(expand('~/.nvim/bundle/'))
+NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.nvim/plugin', }, }
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 if v:version >= 704
-  NeoBundle 'Shougo/neocomplete'
+  "NeoBundle 'Shougo/neocomplete'
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
@@ -82,7 +84,7 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'vim-scripts/SearchComplete'
 NeoBundle 'ludovicchabant/vim-gutentags'
 NeoBundle 'lilydjwg/colorizer'
-NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
+"NeoBundle 'gorodinskiy/vim-coloresque'
 
 NeoBundleCheck
 call neobundle#end()
@@ -103,6 +105,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
+    \ '^public/',
     \ '^tmp/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
@@ -141,8 +144,8 @@ map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
 map <leader><S-CR> :! xterm &<cr><cr>
-map <leader>s :e ~/.vimrc<cr>
-map <leader>S :so ~/.vimrc<cr>
+map <leader>s :e ~/.nvimrc<cr>
+map <leader>S :so ~/.nvimrc<cr>
 
 
 let g:acp_enableAtStartup = 0
@@ -231,31 +234,32 @@ filetype indent on
 
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
+  "let &t_AB="\e[48;5;%dm"
+  "let &t_AF="\e[38;5;%dm"
   colorscheme railscasts 
-  execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
   "highlight linenr 		ctermfg=darkgray	
   "highlight CursorLine 	ctermbg=235 cterm=bold 
   "    highlight String 		ctermfg=green 
   "    highlight Constant 		ctermfg=red 
   "highlight Comment 		ctermfg=darkgray
-  highlight Search 		ctermfg=white ctermbg=237 cterm=none
+  "highlight Search 		ctermfg=white ctermbg=33
   "    highlight Todo		ctermfg=21 ctermbg=11
   "highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
   "highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
-  highlight VertSplit		ctermfg=233 ctermbg=233
+  highlight VertSplit		ctermfg=235 ctermbg=235
   "highlight SpellBad          ctermfg=229 cterm=underline
   "hi normal ctermbg=black
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
 
   " gitgutter
-  hi SignColumn guibg=#202020 ctermbg=234
-  hi GitGutterAddDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
-  hi GitGutterDeleteDefault guibg=#202020 ctermbg=234
+  hi SignColumn guibg=#202020 ctermbg=233
+  hi GitGutterAddDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=233
+  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=233
+  hi GitGutterDeleteDefault guibg=#202020 ctermbg=233
 endif
 
 " indentguides colors
@@ -282,21 +286,17 @@ au BufRead,BufNewFile *.md set filetype=mkd
 
 au BufRead,BufNewFile *.install set filetype=php
 au BufRead,BufNewFile *.drush set filetype=php
-au BufRead,BufNewFile *.profile set filetype=php
-au BufRead,BufNewFile *.test set filetype=php
-au BufRead,BufNewFile *.module set filetype=php
-au BufRead,BufNewFile *.inc set filetype=php
-au BufRead,BufNewFile *.php set filetype=php
+au   BufRead,BufNewFile *.profile set filetype=php
+au   BufRead,BufNewFile *.test set filetype=php
+au   BufRead,BufNewFile *.module set filetype=php
+au   BufRead,BufNewFile *.inc set filetype=php
+au   BufRead,BufNewFile *.php set filetype=php
 
 au BufRead,BufNewFile *.py set filetype=python
 
 au BufNewFile,BufRead .pentadactylrc set filetype=vim
 au BufNewFile,BufRead .vimperatorrc set filetype=vim
-au BufNewFile,BufRead .vimrc set filetype=vim
-au! BufRead, BufNewFile *.vim     call VimSettings()
-function! VimSettings()
-  au! Syntax vim source ~/.vim/syntax/vim-theme.vim
-endfunction
+"au BufNewFile,BufRead .vimrc set filetype=vim
 
 au BufRead,BufNewFile *.js set filetype=javascript
 au BufRead,BufNewFile *.json set filetype=javascript
@@ -324,9 +324,3 @@ endfunction
 au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
 au BufRead,BufNewFile COMMIT_EDITMSG     set wrap
 au BufRead,BufNewFile COMMIT_EDITMSG     set spell
-
-augroup autocom
-    autocmd!
-    "executes the command on quit
-     autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/000
-augroup END
