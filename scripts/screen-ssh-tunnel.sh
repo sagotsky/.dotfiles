@@ -6,7 +6,7 @@ killall autossh 2>/dev/null
 
 
 # set up ssh tunnels to home exactly once but refresh them if they die
-TUNNELS='-R 12345:127.0.0.1:22222 -R 30000:127.0.0.1:3000 -R 40000:127.0.0.1:4000'
+TUNNELS='-R 12345:127.0.0.1:22222 -R 30000:127.0.0.1:3000 -R 40000:127.0.0.1:4000 -R 60000:127.0.0.1:60000'
 OPTIONS='-o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o BatchMode=yes'
 AUTOSSH_MAXSTART=2
 

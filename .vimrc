@@ -124,6 +124,11 @@ nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
 nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
 
+nnoremap <leader>wh         :vertical resize -10<cr>
+nnoremap <leader>wl         :vertical resize +10<cr>
+nnoremap <leader>wj         :resize +10<cr>
+nnoremap <leader>wk         :resize -10<cr>
+
 nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gc         :Gcommit<cr>
 nnoremap <leader>gb         :! xterm -e 'zsh -i -c "git cb"'<cr>

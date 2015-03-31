@@ -1,4 +1,8 @@
 bindkey -s '\erc'   "rails console\n"
 bindkey -s '\erd'   "rails db\n"
 bindkey -s '\erb'   "bundle\n"
+
 bindkey -s '\eRr'   "rake routes\n"
+bindkey -s '\eRdm'   "rake db:migrate\n"
+bindkey -s '\eRdr'   "rake db:rollback\n"
+bindkey -s '\eRdtp'   "rake db:test:prepare\n"

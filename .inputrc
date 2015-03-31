@@ -103,4 +103,5 @@ $if Ruby
   "\ew": "whereami\n"
   "\eq": "raise-up\n"
   "\ei": "finish\n"
+  "\ee": "edit\n"
 $endif
