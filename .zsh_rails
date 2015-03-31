@@ -2,3 +2,5 @@ bindkey -s '\erc'   "rails console\n"
 bindkey -s '\erd'   "rails db\n"
 bindkey -s '\erb'   "bundle\n"
 bindkey -s '\eRr'   "rake routes\n"
+
+bindkey -s '\e?'    "cat ~/.zsh_rails"
