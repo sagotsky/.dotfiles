@@ -10,6 +10,7 @@
 .pentadactyl/info
 .ssh/*
 
+tags
 .vim/.netrwhist
 .vim/autoload/*
 .vim/plugin/*

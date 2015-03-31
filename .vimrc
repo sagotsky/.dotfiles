@@ -42,15 +42,12 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.vim/plugin', }, }
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache'
 if v:version >= 704
   NeoBundle 'Shougo/neocomplete'
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'tacroe/unite-mark'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fugitive'
@@ -64,24 +61,22 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'junegunn/vim-peekaboo'
+NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
+NeoBundle 'lilydjwg/colorizer'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'
   NeoBundle 'haml/haml-contrib'
-  NeoBundle 'heartsentwined/vim-emblem'
+  NeoBundle 'mustache/vim-mustache-handlebars'
   NeoBundle 'tpope/vim-rails'
   NeoBundle 'lucapette/vim-ruby-doc'
 endif
 
 " experimental
+NeoBundle 'junegunn/vim-peekaboo'                         " preview yank ring
 NeoBundle 'vim-scripts/SQLComplete.vim'
-NeoBundle 'kshenoy/vim-signature'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'vim-scripts/SearchComplete'
-NeoBundle 'ludovicchabant/vim-gutentags'
-NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc -> comment n lines
+NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
 NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
 
 NeoBundleCheck
