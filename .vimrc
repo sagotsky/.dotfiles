@@ -26,6 +26,9 @@ set laststatus=2                  " 2 lines for status
 set lazyredraw
 set ttyfast
 set history=1000
+set t_ZH=[3m                    " enable italics in some terms
+set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
+
 let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
 let mapleader=" "
 
@@ -247,6 +250,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   "hi normal ctermbg=black
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
+  hi Comment      cterm=italic gui=italic
 
   " gitgutter
   hi SignColumn guibg=#202020 ctermbg=234
