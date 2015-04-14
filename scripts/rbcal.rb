@@ -69,6 +69,7 @@ end
 bar = IO.popen("bar #{opts[:bar]}", 'r+')
 bar.write "loading agenda ... #{opts[:calendars]}\n"
 #todo trap kill so we can clean bar
+# also trap zenity
 #todo object around bar?
 
 while true do 

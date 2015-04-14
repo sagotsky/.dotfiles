@@ -28,6 +28,9 @@ set ttyfast
 set history=1000
 set t_ZH=[3m                    " enable italics in some terms
 set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
+" hi Comment cterm=bold       " urxvt supports multiple font faces.  xterm
+" will stretch, but no good on source pro semi.  if urxvt can do live font
+" size changes, let's switch
 
 let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
 let mapleader=" "
@@ -66,6 +69,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
 NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'
@@ -80,7 +84,9 @@ NeoBundle 'junegunn/vim-peekaboo'                         " preview yank ring
 NeoBundle 'vim-scripts/SQLComplete.vim'
 NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc -> comment n lines
 NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
-NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
+NeoBundle 'benmills/vimux'
+NeoBundle 'jgdavey/vim-turbux'
+let g:turbux_runner = 'vimux'
 
 NeoBundleCheck
 call neobundle#end()
@@ -101,6 +107,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
+    \ '\source_maps/',
     \ '^tmp/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
@@ -140,6 +147,8 @@ nnoremap <leader>rd         :! run-in-term.sh rails db <cr><cr>
 
 nnoremap <Leader>z          :Zeal <cr>
 
+
+imap jj <Esc>
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
@@ -160,7 +169,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp --ignore "*source_maps*" --ignore "*.log"'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp --ignore "*source_maps*" --ignore "*.log"' " ignore doens't take a regex.  ^public/.* eludes me
   let g:unite_source_grep_recursive_opt=''
 elseif executable('ack')
   let g:unite_source_grep_command='ack'
