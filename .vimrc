@@ -53,6 +53,7 @@ if v:version >= 704
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
@@ -107,7 +108,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
-    \ '\source_maps/',
+    \ 'public/source_maps/',
     \ '^tmp/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
@@ -125,6 +126,8 @@ nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer <cr>
 nnoremap <leader>m          :Unite mark<cr>
+nnoremap <leader>r          :Unite file_mru<cr>
+nnoremap <leader>R          :Unite directory_mru<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
 nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
@@ -241,6 +244,8 @@ command! Zeal call Zeal()
 filetype plugin on		"enable filetype plugin
 filetype indent on
 
+set fillchars+=vert:│
+
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
   colorscheme railscasts 
@@ -254,7 +259,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   "    highlight Todo		ctermfg=21 ctermbg=11
   "highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
   "highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
-  highlight VertSplit		ctermfg=233 ctermbg=233
+  highlight VertSplit		ctermfg=234 ctermbg=235
   "highlight SpellBad          ctermfg=229 cterm=underline
   "hi normal ctermbg=black
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
