@@ -13,7 +13,7 @@ end
 
 # could it leave off opt and use method_missing instead?
 
-#class entry 
+
 class Event
   EVENT_FIELDS = %W[start_date start_time end_date end_time link something title location description calendar]
   attr_accessor *EVENT_FIELDS.map(&:to_sym)
@@ -68,11 +68,12 @@ end
 
 bar = IO.popen("bar #{opts[:bar]}", 'r+')
 bar.write "loading agenda ... #{opts[:calendars]}\n"
-#todo trap kill so we can clean bar
-# also trap zenity
-#todo object around bar?
 
-while true do 
+at_exit do
+  `kill $(pgrep -P #{Process.pid})`
+end
+
+loop do 
   calendar_opts = opts[:calendars].split(',').map{ |cal| "--calendar '#{cal}'"}.join ' '
 
   agenda = `gcalcli #{calendar_opts} agenda #{time_range} --tsv --nomilitary --details all`.split("\n").map do |line|
