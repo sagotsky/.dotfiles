@@ -59,7 +59,7 @@ fi
 
 # Or return var set commands
 for opt in $(list_opts | cut -f1 -d=) ; do
-  value=$(echo "$ARGS" | grep -i $opt | sed -e 's/ *$//' -e 's/\w* //') # use value, or arg name if it's a bool
+  value=$(echo "$ARGS" | grep -i "\b${opt}\b" | sed -e 's/ *$//' -e 's/\w* //') # use value, or arg name if it's a bool
   [[ "$value" == '' && -f "$RC" ]] && value=$(grep -i "^$opt: " $RC | cut -f 2- -d:)
   echo "$opt='$value'"
 done

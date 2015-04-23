@@ -11,12 +11,17 @@ pr="${pr:-}"            #- Set pointer color
 hl="${hl:-}"            #- Set highlight color
 pixmap="${pixmap:-}"    #- Set background image.
 fn="${fn:-}"            #- Set font (e.g. "xft:Droid Sans Mono-16")
+fni="${fni:-}"          #- Set italics font (e.g. "xft:Droid Sans Mono-16")
+fnb="${fnb:-}"          #- Set bold font (e.g. "xft:Droid Sans Mono-16")
+fnbi="${fnbi:-}"        #- Set bold italic font (e.g. "xft:Droid Sans Mono-16")
 colorit="${colorit:-}"  #- Set italic image.
 colorbd="${colorbd:-}"  #- Set bold image.
 colorul="${colorul:-}"  #- Set underline image.
 bd="${bd:-}"            #- Set border color
+# TODO: find codes for italic,bold font.  also add helper for changing face on all three
 
-# see: http://www.freebsd.org/cgi/man.cgi?query=urxvt&manpath=ports&sektion=7
+
+# man 7 urxvt for key codes
 declare -A CMDS
 CMDS['title']=2
 CMDS['fg']=10
@@ -31,6 +36,9 @@ CMDS['colorbd']=706
 CMDS['colorul']=707
 CMDS['bd']=708
 CMDS['b']=709
+CMDS['fnb']=711
+CMDS['fni']=712
+CMDS['fnbi']=713
 
 for key in "${!CMDS[@]}" ; do
   if [[ "${!key}" != '' ]] ; then
