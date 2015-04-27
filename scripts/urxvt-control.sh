@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ "$TERM" != rxvt-* && "$TERM" != screen* ]] ; then
+  echo "Your \$TERM ($TERM) does not appear to be an rxvt variant"
+  exit 1
+fi
+
 eval "$(argh.sh $@)"
 
 # change display options on a running urxvt
@@ -43,6 +48,9 @@ CMDS['fnbi']=713
 for key in "${!CMDS[@]}" ; do
   if [[ "${!key}" != '' ]] ; then
     CMD=${CMDS[${key}]}
-    printf '\33]%s;%s\007' $CMD "${!key}"
+    ESCAPE_CODE='\e]%s;%s\007'
+
+    [[ $TERM == screen* ]] && ESCAPE_CODE="\ePtmux;${ESCAPE_CODE//\e/\e\\e}\e\\\\"
+    printf $ESCAPE_CODE $CMD "${!key}"
   fi
 done
