@@ -1,5 +1,4 @@
-" TODO consolidate with .vimrc when the differences are better known
-
+" TODO: consolidate rc files
 syntax on                         " always use syntax highlighting
 runtime macros/matchit.vim
 set nowrap                        " no word wrap
@@ -28,6 +27,12 @@ set laststatus=2                  " 2 lines for status
 set lazyredraw
 set ttyfast
 set history=1000
+set t_ZH=[3m                    " enable italics in some terms
+set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
+" hi Comment cterm=bold       " urxvt supports multiple font faces.  xterm
+" will stretch, but no good on source pro semi.  if urxvt can do live font
+" size changes, let's switch
+
 let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
 let mapleader=" "
 
@@ -40,19 +45,18 @@ if has('vim_starting')
   set nocompatible    
   set runtimepath+=~/.nvim/bundle/neobundle.vim/
 endif
-call neobundle#begin(expand('~/.nvim/bundle/'))
-NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.nvim/plugin', }, }
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundle 'Shougo/vimproc.vim', '0f68bcd93399ecbcde3eaa4efd09107314c9bdee', { 'build' : { 'linux' : 'make -f make_unix.mak ; cp -R autoload/* ~/.vim/autoload/; cp -R plugin/* ~/.vim/plugin', }, }
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache'
 if v:version >= 704
-  "NeoBundle 'Shougo/neocomplete'
+  NeoBundle 'Shougo/neocomplete'
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'tacroe/unite-mark'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fugitive'
@@ -61,30 +65,31 @@ NeoBundle 'tpope/vim-rsi'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'jpo/vim-railscasts-theme', '9035daff38dbbd30229890f26e54d9a7a71deca3'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'junegunn/vim-peekaboo'
+NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
+NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'
   NeoBundle 'haml/haml-contrib'
-  NeoBundle 'heartsentwined/vim-emblem'
+  NeoBundle 'mustache/vim-mustache-handlebars'
   NeoBundle 'tpope/vim-rails'
   NeoBundle 'lucapette/vim-ruby-doc'
 endif
 
 " experimental
+NeoBundle 'junegunn/vim-peekaboo'                         " preview yank ring
 NeoBundle 'vim-scripts/SQLComplete.vim'
-NeoBundle 'kshenoy/vim-signature'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'vim-scripts/SearchComplete'
-NeoBundle 'ludovicchabant/vim-gutentags'
-NeoBundle 'lilydjwg/colorizer'
-"NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc -> comment n lines
+NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
+NeoBundle 'benmills/vimux'
+NeoBundle 'jgdavey/vim-turbux'
+let g:turbux_runner = 'vimux'
 
 NeoBundleCheck
 call neobundle#end()
@@ -92,6 +97,8 @@ call neobundle#end()
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='jellybeans'
+let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#branch#enabled=0
 
 let g:syntastic_auto_loc_list=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
@@ -105,7 +112,7 @@ call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
-    \ '^public/',
+    \ 'public/source_maps/',
     \ '^tmp/',
     \], '\|'))
 " C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
@@ -123,9 +130,16 @@ nnoremap <leader>p          :Unite file_rec/async <cr>
 nnoremap <leader>h          :Unite outline<cr>
 nnoremap <leader>b          :Unite buffer <cr>
 nnoremap <leader>m          :Unite mark<cr>
+nnoremap <leader>r          :Unite file_mru<cr>
+nnoremap <leader>R          :Unite directory_mru<cr>
 nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
 nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
 nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
+
+nnoremap <leader>wh         :vertical resize -10<cr>
+nnoremap <leader>wl         :vertical resize +10<cr>
+nnoremap <leader>wj         :resize +10<cr>
+nnoremap <leader>wk         :resize -10<cr>
 
 nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gc         :Gcommit<cr>
@@ -140,6 +154,8 @@ nnoremap <leader>rd         :! run-in-term.sh rails db <cr><cr>
 
 nnoremap <Leader>z          :Zeal <cr>
 
+
+imap jj <Esc>
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
@@ -160,7 +176,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 if executable('ag')
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp --ignore "*source_maps*" --ignore "*.log"'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp --ignore "*source_maps*" --ignore "*.log"' " ignore doens't take a regex.  ^public/.* eludes me
   let g:unite_source_grep_recursive_opt=''
 elseif executable('ack')
   let g:unite_source_grep_command='ack'
@@ -232,34 +248,36 @@ command! Zeal call Zeal()
 filetype plugin on		"enable filetype plugin
 filetype indent on
 
+set fillchars+=vert:│
+
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
-  "let &t_AB="\e[48;5;%dm"
-  "let &t_AF="\e[38;5;%dm"
   colorscheme railscasts 
+  execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
   "highlight linenr 		ctermfg=darkgray	
   "highlight CursorLine 	ctermbg=235 cterm=bold 
   "    highlight String 		ctermfg=green 
   "    highlight Constant 		ctermfg=red 
   "highlight Comment 		ctermfg=darkgray
-  "highlight Search 		ctermfg=white ctermbg=33
+  highlight Search 		ctermfg=white ctermbg=237 cterm=none
   "    highlight Todo		ctermfg=21 ctermbg=11
   "highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
   "highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
-  highlight VertSplit		ctermfg=235 ctermbg=235
+  highlight VertSplit		ctermfg=234 ctermbg=235
   "highlight SpellBad          ctermfg=229 cterm=underline
   "hi normal ctermbg=black
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
+  hi Comment      cterm=italic gui=italic
 
   " gitgutter
-  hi SignColumn guibg=#202020 ctermbg=233
-  hi GitGutterAddDefault guibg=#202020 ctermbg=233
-  hi GitGutterChangeDefault guibg=#202020 ctermbg=233
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=233
-  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=233
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=233
-  hi GitGutterDeleteDefault guibg=#202020 ctermbg=233
+  hi SignColumn guibg=#202020 ctermbg=234
+  hi GitGutterAddDefault guibg=#202020 ctermbg=234
+  hi GitGutterChangeDefault guibg=#202020 ctermbg=234
+  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
+  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=234
+  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
+  hi GitGutterDeleteDefault guibg=#202020 ctermbg=234
 endif
 
 " indentguides colors
@@ -286,17 +304,21 @@ au BufRead,BufNewFile *.md set filetype=mkd
 
 au BufRead,BufNewFile *.install set filetype=php
 au BufRead,BufNewFile *.drush set filetype=php
-au   BufRead,BufNewFile *.profile set filetype=php
-au   BufRead,BufNewFile *.test set filetype=php
-au   BufRead,BufNewFile *.module set filetype=php
-au   BufRead,BufNewFile *.inc set filetype=php
-au   BufRead,BufNewFile *.php set filetype=php
+au BufRead,BufNewFile *.profile set filetype=php
+au BufRead,BufNewFile *.test set filetype=php
+au BufRead,BufNewFile *.module set filetype=php
+au BufRead,BufNewFile *.inc set filetype=php
+au BufRead,BufNewFile *.php set filetype=php
 
 au BufRead,BufNewFile *.py set filetype=python
 
 au BufNewFile,BufRead .pentadactylrc set filetype=vim
 au BufNewFile,BufRead .vimperatorrc set filetype=vim
-"au BufNewFile,BufRead .vimrc set filetype=vim
+au BufNewFile,BufRead .vimrc set filetype=vim
+au! BufRead, BufNewFile *.vim     call VimSettings()
+function! VimSettings()
+  au! Syntax vim source ~/.vim/syntax/vim-theme.vim
+endfunction
 
 au BufRead,BufNewFile *.js set filetype=javascript
 au BufRead,BufNewFile *.json set filetype=javascript
@@ -324,3 +346,9 @@ endfunction
 au BufRead,BufNewFile COMMIT_EDITMSG     set textwidth=0 
 au BufRead,BufNewFile COMMIT_EDITMSG     set wrap
 au BufRead,BufNewFile COMMIT_EDITMSG     set spell
+
+augroup autocom
+    autocmd!
+    "executes the command on quit
+     autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/000
+augroup END

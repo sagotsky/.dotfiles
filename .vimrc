@@ -44,17 +44,18 @@ if has('vim_starting')
   set nocompatible    
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak ; cp autoload/* ~/.vim/autoload/; cp plugin/* ~/.vim/plugin', }, }
+NeoBundle 'Shougo/vimproc.vim', '0f68bcd93399ecbcde3eaa4efd09107314c9bdee', { 'build' : { 'linux' : 'make -f make_unix.mak ; cp -R autoload/* ~/.vim/autoload/; cp -R plugin/* ~/.vim/plugin', }, }
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-if v:version >= 704
-  NeoBundle 'Shougo/neocomplete'
-endif
+"if v:version >= 704
+  "NeoBundle 'Shougo/neocomplete'
+"endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fugitive'
@@ -63,7 +64,7 @@ NeoBundle 'tpope/vim-rsi'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'jpo/vim-railscasts-theme', '9035daff38dbbd30229890f26e54d9a7a71deca3'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
@@ -264,6 +265,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   highlight VertSplit		ctermfg=234 ctermbg=235
   "highlight SpellBad          ctermfg=229 cterm=underline
   "hi normal ctermbg=black
+  hi Visual      ctermbg=236
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
   hi Comment      cterm=italic gui=italic
