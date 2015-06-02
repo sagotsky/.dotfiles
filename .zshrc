@@ -2,8 +2,6 @@
 setopt NO_HUP   # don't kill running processes when exiting the shell
 
 # autoload -Uz promptinit
-# promptinit
-# prompt suse
 
 setopt histignorealldups sharehistory
 
@@ -75,6 +73,7 @@ function reset_color {
 PROMPT="%n@%m:%~"                       # user@host:~
 PROMPT="<%*> $PROMPT"                   # <hh:mm:ss>
 PROMPT="\$(prompt_color)$PROMPT\$(reset_color) \$(git_super_status)$ " # git info
+# TODO - bell if this term's owner isn't on current screen.  long running procs will always bell when done.  xprop could get ugly (xterm -> tmux -> vim), but maybe setting a global var on init would be cleaner?
 
 
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"

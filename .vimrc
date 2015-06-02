@@ -102,6 +102,7 @@ let g:airline#extensions#branch#enabled=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_coffee_coffeelint_args = "--file ".$HOME."/.coffeelint.json"
+"let g:syntastic_filetype_map = { "mustache": "handlebars" }
 
 " Unite.vim options and keys
 let g:unite_source_rec_max_cache_files = 0
@@ -112,9 +113,11 @@ call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
     \ '\.git/',
     \ 'public/source_maps/',
+    \ 'frontend/\(tmp\|bower_components\|node_modules\|public\|vendor\)/',
     \ '^tmp/',
+    \ '^shared_js/',
+    \ '^survey_creation_app/',
     \], '\|'))
-" C-l in a unite to refresh.  https://github.com/Shougo/unite.vim/issues/374
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
 " create a custom find that pipes through sort?  now app shows up first.
 
@@ -283,7 +286,7 @@ endif
 " indentguides colors
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 0
-hi IndentGuidesOdd  guibg=#202020   ctermbg=232
+hi IndentGuidesOdd  guibg=#202020   ctermbg=235
 hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
 
 " Buffer types
