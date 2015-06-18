@@ -2,7 +2,7 @@
 
 # watch a git dir.  echo its branch
 
-DIR=~/repos/ore/
+DIR=~/repos/plm/
 
 # kill leftover inotifywaits
 #ps ax | grep "inotifywait.*$DIR" | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill

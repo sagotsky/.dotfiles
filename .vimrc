@@ -88,6 +88,7 @@ NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc
 NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
 NeoBundle 'benmills/vimux'
 NeoBundle 'jgdavey/vim-turbux'
+NeoBundle 'kien/ctrlp.vim'
 let g:turbux_runner = 'vimux'
 
 NeoBundleCheck
@@ -117,6 +118,7 @@ call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
     \ '^tmp/',
     \ '^shared_js/',
     \ '^survey_creation_app/',
+    \ '^/log/',
     \], '\|'))
 let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
 " create a custom find that pipes through sort?  now app shows up first.

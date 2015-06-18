@@ -8,3 +8,5 @@ bindkey -s '\erdr'   "time rake db:rollback\n"
 bindkey -s '\erdt'   "rake db:test:prepare\n"
 
 bindkey -s '\e?'    "cat ~/.zsh_rails"
+
+alias irb='pry'
