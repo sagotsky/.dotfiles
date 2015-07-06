@@ -89,6 +89,7 @@ NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags. 
 NeoBundle 'benmills/vimux'
 NeoBundle 'jgdavey/vim-turbux'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'mtscout6/vim-cjsx'
 let g:turbux_runner = 'vimux'
 
 NeoBundleCheck
@@ -101,10 +102,13 @@ let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=0
 
 let g:syntastic_auto_loc_list=1
-let g:syntastic_quiet_messages = {'level': 'warnings'}
+"let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_coffee_coffeelint_args = "--file ".$HOME."/.coffeelint.json"
 "let g:syntastic_filetype_map = { "mustache": "handlebars" }
-
+let g:syntastic_cjsx_checkers=[]
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
+ 
 " Unite.vim options and keys
 let g:unite_source_rec_max_cache_files = 0
 let g:unite_split_rule = 'botright' 
