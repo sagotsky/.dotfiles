@@ -33,6 +33,11 @@ function _pidgin() {
   dzen-clear.sh
 }
 
+function _scudcloudslack_ssb() {
+  flag-urgent.sh scudcloud
+  echo $@ | dzen2
+}
+
 #colors
 C_PROGRAM='darkgoldenrod'
 C_ITALICS='khaki'
@@ -57,6 +62,7 @@ function format() {
 }
 
 # kill other daemons
+there-can-be-only-one.sh
 for daemon in dunst notification-daemon notify-osd notin.py xfce4-notifyd ; do
   killall -9 $daemon &> /dev/null
 done
@@ -67,7 +73,7 @@ pidof -x $0 | sed -e "s/$$//" | xargs kill &>/dev/null
 notin.py | while read line ; do
   if [[ "$line" ]] ; then
     line=$(echo $line | sed -e 's/\[notify-send\] \(.*\):/[\1]:/')
-    app=$(echo $line | sed -e 's/\[\([a-zA-Z0-9 ]*\)\].*/\1/' | tr -d ' ' | tr [:upper:] [:lower:]  )
+    app=$(echo $line | sed -e 's/\[\([_a-zA-Z0-9 ]*\)\].*/\1/' | tr -d ' ' | tr [:upper:] [:lower:]  )
     func="_$app"
 
     if [[ $(type -t $func) == 'function' ]] ; then
