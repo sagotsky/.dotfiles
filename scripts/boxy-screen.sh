@@ -10,5 +10,5 @@ disper -e DP2,eDP1 -t bottom
 
 #xrandr --output DP2 --auto --rotate left
 #xmodmap.sh
-#xrandr --dpi 96
+xrandr --dpi 96
 wallpaper.sh current
