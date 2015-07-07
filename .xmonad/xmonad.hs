@@ -139,7 +139,8 @@ main = do
 myKeys = [ 
     -- application shortcuts
 	  ("<XF86HomePage>",   spawn "nautilus") --home browser
-    , ("<XF86Favorites>",  spawn "music-client.sh stop ; ~/scripts/gdm3switch.sh jenn") --user switch
+    , ("S-<XF86Favorites>",  spawn "music-client.sh stop ; ~/scripts/gdm3switch.sh jenn") --user switch
+    , ("<XF86Favorites>",  spawn " ~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Mail>",       spawn "active_win_man.sh") -- manpage for active win
     , ("<XF86Calculator>", spawn "gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
