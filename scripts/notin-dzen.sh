@@ -34,8 +34,16 @@ function _pidgin() {
 }
 
 function _scudcloudslack_ssb() {
-  flag-urgent.sh scudcloud
-  echo $@ | dzen2
+  if ! [[ "$@" =~ "#robothouse" ]] ; then
+    bg='darkslategray'
+    fg='white'
+    [[ "$line" =~ 'sagotsky' ]] && bg='white' && fg='red'
+    len="$(echo $@ | wc -l)"
+    dzen_opts="-ta l -l $len -bg $bg -fg $fg -p 4 -xs 1"
+
+    flag-urgent.sh scudcloud &
+    echo $@ | dzen2 $dzen_opts
+  fi 
 }
 
 #colors
