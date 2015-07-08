@@ -91,6 +91,7 @@ NeoBundle 'benmills/vimux'
 NeoBundle 'jgdavey/vim-turbux'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mtscout6/vim-cjsx'
+NeoBundle 'wincent/terminus'
 let g:turbux_runner = 'vimux'
 
 NeoBundleCheck
