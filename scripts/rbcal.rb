@@ -39,7 +39,7 @@ end
 def time_range
   start = Time.now - 600
   finish = Time.now + 3600*24*14 
-  time = "#{start.hour}:#{start.min} #{finish.year}-#{finish.month}-#{finish.day}"
+  "#{start.hour}:#{start.min} #{finish.year}-#{finish.month}-#{finish.day}"
 end 
 
 def day(date)
@@ -81,7 +81,7 @@ loop do
   end
 
   last = nil
-  txt = agenda.each.with_index.reduce([]) do |txt, (entry, index)|
+  entries = agenda.each.with_index.reduce([]) do |txt, (entry, index)|
     txt << c("#{day entry.start_date}", fg: 'orangered2') unless last == entry.start_date
     last = entry.start_date
 
@@ -91,7 +91,7 @@ loop do
     txt << "#{clickable entry.title, index}"
   end
 
-  bar.write "#{txt.join(' ').slice(0, 1200)}\n"
+  bar.write "#{entries.join(' ').slice(0, 1200)}\n"
 
   sleepwalk 600 do 
     # this approach mostly works, but there will be a delay while gcalcli is waiting.  
