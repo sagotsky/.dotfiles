@@ -20,7 +20,7 @@ noremap <leader>t :b
 " rc reading, loading
 noremap <leader>s :rc <cr>
 noremap <leader>S :sorc <cr>
-noremap <leader>g :togglegui <cr>
+"noremap <leader>g :togglegui <cr>
 
 " dialog shortcuts
 noremap <Leader>db :dialog bookmarks<cr>

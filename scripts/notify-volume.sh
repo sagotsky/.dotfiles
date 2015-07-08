@@ -10,10 +10,11 @@ pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null
 
 # this should grab the field with the percentage.  maybe break on " " and grep line with %?
 volume() {
-	amixer -D default sget Master,0 \
-	  | grep % \
-	  | sed -e 's/.*\[\(.\{1,3\}%\)\].*/\1/'  \
-          | head -n 1
+	amixer -c 0 |
+	  grep % |
+    head -n 1 |
+	  sed -e 's/.*\[\(.\{1,3\}%\)\].*/\1/'  |
+    head -n 1
 }
 
 

@@ -37,7 +37,7 @@ function _pidgin() {
 C_PROGRAM='darkgoldenrod'
 C_ITALICS='khaki'
 TIME=4
-DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn termsyn-8 -p $TIME -u "
+DZEN_OPTS=" -bg darkslategray -fg white -xs 1 -ta l -fn fixed-8 -p $TIME -u "
 [[ "$1" == '-d' ]] && DEBUG=1
 
 function height() {

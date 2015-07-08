@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-amixer -D default sset Master,0 toggle  > /dev/null
+amixer -c 0 sset Master,0 toggle  > /dev/null
 
 touch /dev/snd/controlC0 
 
