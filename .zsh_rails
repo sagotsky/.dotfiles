@@ -7,6 +7,40 @@ bindkey -s '\erdm'   "time rake db:migrate\n"
 bindkey -s '\erdr'   "time rake db:rollback\n"
 bindkey -s '\erdt'   "rake db:test:prepare\n"
 
-bindkey -s '\e?'    "cat ~/.zsh_rails"
+# TODO: hide the echo
+#bindkey -s '\ergm'   " echo 'rails g migration AddPartNumberToProducts part_number:string:index'\n rails g migration"
+#http://stackoverflow.com/questions/171563/whats-in-your-zshrc/171564#171564
+
+
+bindkey -s '\e?'    "cat ~/.zsh_rails \n"
 
 alias irb='pry'
+
+
+# let's experiment a bit...
+# rgm() {
+#   zle -M "rails g migration AddPartNumberToProducts part_number:string:index"
+#   zle -U 'rails g migration '
+# }
+# zle -N rgm rgm
+# bindkey '\ergm' rgm
+
+#key, name?, cmd, message
+bind_key_cmd_hint() {
+  key=$1
+  cmd=$2
+  hint=$3
+
+  cat <<-EOF
+    ${key}() {
+      zle -U '${cmd} '
+      zle -M '${hint}'
+    }
+
+    zle -N ${key} ${key}
+    bindkey '\e${key}' '${key}'
+EOF
+ }
+
+ eval "`bind_key_cmd_hint 'rgm' 'rails g migration'  'rails g migration AddPartNumberToProducts part_number:string:index'`"
+ eval "`bind_key_cmd_hint 'rgc' 'rails g controller'  'rails g controller NAME action action action '`"
