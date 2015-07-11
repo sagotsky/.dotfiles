@@ -1,5 +1,8 @@
 # ~/.config/dunst/dunstrc
 
+
+# todo: check if scudcloud works as intended
+
 [global]
     #font = Monospace 8
     font = fixed 8
@@ -27,7 +30,7 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "<b><span font_weight="heavy" bgcolor="#444444"> %s </span></b> %b"
+    format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
 
     # Sort messages by urgency.
     sort = yes
@@ -48,7 +51,7 @@
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
-    show_age_threshold = 60
+    show_age_threshold = -1
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
@@ -85,7 +88,7 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    idle_threshold = 120
+    idle_threshold = 0
 
     # Which monitor should the notifications be displayed on.
     monitor = 0
@@ -188,14 +191,14 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
+    background = "#111111"
     foreground = "#555555"
     timeout = 3
 
 [urgency_normal]
     #background = "#285577"
-    background = "#222222"
-    foreground = "#777777"
+    background = "#111111"
+    foreground = "#ffffff"
     timeout = 3
 
 [urgency_critical]
@@ -217,17 +220,25 @@
 [pidgin-me]
   appname = "pidgin"
   body = *sagotsky*
-  urgency = critical
+  urgency = medium
 
 # will multiple matches all fire?  could scudcloud highlight for text matches ie, $user 
 [scudcloud]
-  appname = "scudcloud"
+  appname = "ScudCloud Slack_SSB"
   script = dunst-script.sh
+  urgency = low
 
-[scudcloud-thepit]
-  appname = "scudcloud"
-  body = *thepit*
-  format = "<span color="#ffffff">•</span> %s %b"
+[scudcloud-robothouse]
+  appname = "ScudCloud Slack_SSB"
+  body = *#robothouse*
+  format = ""
+
+[scudcloud-sagotsky]
+  appname = "ScudCloud Slack_SSB"
+  body = *sagotsky*
+  urgency = normal
+  #format = "<span color='#ffffff'>•</span> %s %b"
+  
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

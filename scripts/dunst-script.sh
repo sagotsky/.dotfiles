@@ -6,6 +6,13 @@ BODY=$3
 ICON=$4
 URGENCY=$5
 
+case $APP in
+  'ScudCloud Slack_SSB')
+    flag-urgent.sh scudcloud &
+    ;;
+
+esac
+
 case $SUMMARY in
   cmus) 
     music-client.sh bandsong > ~/.music.out &
