@@ -148,7 +148,6 @@ myKeys = [
     , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
     , ("M-S-s",            spawn "xterm -e stage_ssh.sh $(stage_ssh.sh | dmenu -l 10 -i -s 0 -fn terminus-bold-16 )")  
     , ("M-v",              spawn "sleep .5 ; xdotool type $(xsel | tr -d \"\n\")") -- sleep so I can release Meta
-    , ("<XF86Away>",       spawn "sudo pm-suspend") 
 
 
     -- music
