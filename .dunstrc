@@ -20,7 +20,7 @@
     allow_markup = yes 
 
     # Treat incoming notifications as plain text
-    plain_text = no
+    plain_text = yes
 
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -192,7 +192,7 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#111111"
-    foreground = "#555555"
+    foreground = "#aaaaaa"
     timeout = 3
 
 [urgency_normal]
@@ -220,7 +220,7 @@
 [pidgin-me]
   appname = "pidgin"
   body = *sagotsky*
-  urgency = medium
+  urgency = normal
 
 # will multiple matches all fire?  could scudcloud highlight for text matches ie, $user 
 [scudcloud]
@@ -230,14 +230,14 @@
 
 [scudcloud-robothouse]
   appname = "ScudCloud Slack_SSB"
-  body = *#robothouse*
+  summary = "#robothouse"
   format = ""
+  script = ""
 
 [scudcloud-sagotsky]
   appname = "ScudCloud Slack_SSB"
   body = *sagotsky*
   urgency = normal
-  #format = "<span color='#ffffff'>•</span> %s %b"
   
 
 # Every section that isn't one of the above is interpreted as a rules to
