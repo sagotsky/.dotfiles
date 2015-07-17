@@ -75,8 +75,7 @@ for daemon in dunst notification-daemon notify-osd notin.py xfce4-notifyd ; do
   killall -9 $daemon &> /dev/null
 done
 
-# there can be only one
-pidof -x $0 | sed -e "s/$$//" | xargs kill &>/dev/null
+there-can-be-only-one.sh
 
 notin.py | while read line ; do
   if [[ "$line" ]] ; then
