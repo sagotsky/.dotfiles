@@ -52,10 +52,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "if v:version >= 704
   "NeoBundle 'Shougo/neocomplete'
 "endif
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fugitive'
@@ -92,6 +89,7 @@ NeoBundle 'jgdavey/vim-turbux'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
+NeoBundle 'rking/ag.vim'
 let g:turbux_runner = 'vimux'
 
 NeoBundleCheck
@@ -111,40 +109,12 @@ let g:syntastic_cjsx_checkers=[]
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
  
-" Unite.vim options and keys
-let g:unite_source_rec_max_cache_files = 0
-let g:unite_split_rule = 'botright' 
-call unite#custom#source('grep', 'max_candidates', 0)
-call unite#custom#source('file_rec,file_rec/async,grepocate', 'max_candidates', 0)
-call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_pattern', join([
-    \ '\.git/',
-    \ 'public/source_maps/',
-    \ 'frontend/\(tmp\|bower_components\|node_modules\|public\|vendor\)/',
-    \ '^tmp/',
-    \ '^shared_js/',
-    \ '^survey_creation_app/',
-    \ '^/log/',
-    \], '\|'))
-let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789.'`^<>[]{}()\"
-" create a custom find that pipes through sort?  now app shows up first.
-
-" unite customizations TODO
-" - find last n files
-" - find files edited in branch.  comparing to master doesn't work when master
-"   has since gotten merged commits
-" - filter out unwanted folders.  works in ag, but no options for find?
-
-let g:unite_enable_start_insert=1
-nnoremap <leader>p          :Unite file_rec/async <cr>
-nnoremap <leader>h          :Unite outline<cr>
-nnoremap <leader>b          :Unite buffer <cr>
-nnoremap <leader>m          :Unite mark<cr>
-nnoremap <leader>r          :Unite file_mru<cr>
-nnoremap <leader>R          :Unite directory_mru<cr>
-nnoremap <leader>/          :Unite -no-start-insert grep:. <cr>
-nnoremap <leader>?          :UniteWithCursorWord -no-start-insert grep:. <cr>
-nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
+nnoremap <leader>p          :CtrlP <cr>
+nnoremap <leader>b          :CtrlPBuffer <cr>
+nnoremap <leader>r          :CtrlPMRU<cr>
+nnoremap <leader>/          :Ag 
+nnoremap <leader>?          :Ag <cword> <cr>
+"nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
 
 nnoremap <leader>wh         :vertical resize -10<cr>
 nnoremap <leader>wl         :vertical resize +10<cr>
@@ -159,8 +129,6 @@ nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 " branch, checkout are taken.  what else works here?  f for feature?
-nnoremap <leader>rc         :! run-in-term.sh rails c <cr><cr>
-nnoremap <leader>rd         :! run-in-term.sh rails db <cr><cr>
 
 nnoremap <Leader>z          :Zeal <cr>
 
@@ -280,6 +248,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
   hi Comment      cterm=italic gui=italic
+  hi TabLineFile  ctermbg=0 cterm=bold term=bold 
 
   " gitgutter
   hi SignColumn guibg=#202020 ctermbg=234
