@@ -11,8 +11,7 @@ opts = Trollop::options do
   opt :bar, 'Options to pass into bar.  e.g. --bar="-b -f \'Source Code Pro\' -p"', default: ''
 end
 
-# could it leave off opt and use method_missing instead?
-
+Process.setproctitle('rbcal')
 
 class Event
   EVENT_FIELDS = %W[start_date start_time end_date end_time link something title location description calendar]
