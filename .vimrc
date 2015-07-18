@@ -20,7 +20,6 @@ set wildmode=longest,list,full    " tab completion fix.  completes as much as po
 set showcmd                       " keybindings show their full name
 set guioptions=aegiLt             " clean gui in gvim
 set guifont=Source\ Code\ Pro\ 12 " gvim only font 
-" !$PPID -> xwininfo -> font size
 set clipboard+=unnamed            " yank -> X11 buffer
 set laststatus=2                  " 2 lines for status
 set lazyredraw
@@ -28,140 +27,11 @@ set ttyfast
 set history=1000
 set t_ZH=[3m                    " enable italics in some terms
 set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
-" hi Comment cterm=bold       " urxvt supports multiple font faces.  xterm
-" will stretch, but no good on source pro semi.  if urxvt can do live font
-" size changes, let's switch
-
-let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
-let mapleader=" "
+set fillchars+=vert:│
 
 if v:version >= 704
   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
 endif
-
-" NeoBundle
-if has('vim_starting')
-  set nocompatible    
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/vimproc.vim', '0f68bcd93399ecbcde3eaa4efd09107314c9bdee', { 'build' : { 'linux' : 'make -f make_unix.mak ; cp -R autoload/* ~/.vim/autoload/; cp -R plugin/* ~/.vim/plugin', }, }
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-"if v:version >= 704
-  "NeoBundle 'Shougo/neocomplete'
-"endif
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-rsi'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'jpo/vim-railscasts-theme', '9035daff38dbbd30229890f26e54d9a7a71deca3'
-NeoBundle 'Wutzara/vim-materialtheme'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
-NeoBundle 'lilydjwg/colorizer'
-NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
-
-if isdirectory($HOME."/.rbenv")
-  NeoBundle 'vim-scripts/ruby-matchit'
-  NeoBundle 'haml/haml-contrib'
-  NeoBundle 'mustache/vim-mustache-handlebars'
-  NeoBundle 'tpope/vim-rails'
-  NeoBundle 'lucapette/vim-ruby-doc'
-endif
-
-" experimental
-NeoBundle 'junegunn/vim-peekaboo'                         " preview yank ring
-NeoBundle 'vim-scripts/SQLComplete.vim'
-NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc -> comment n lines
-NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
-NeoBundle 'benmills/vimux'
-NeoBundle 'jgdavey/vim-turbux'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mtscout6/vim-cjsx'
-NeoBundle 'wincent/terminus'
-NeoBundle 'rking/ag.vim'
-let g:turbux_runner = 'vimux'
-
-NeoBundleCheck
-call neobundle#end()
-
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_theme='jellybeans'
-let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#branch#enabled=0
-
-let g:syntastic_auto_loc_list=1
-"let g:syntastic_quiet_messages = {'level': 'warnings'}
-let g:syntastic_coffee_coffeelint_args = "--file ".$HOME."/.coffeelint.json"
-"let g:syntastic_filetype_map = { "mustache": "handlebars" }
-let g:syntastic_cjsx_checkers=[]
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
- 
-nnoremap <leader>p          :CtrlP <cr>
-nnoremap <leader>b          :CtrlPBuffer <cr>
-nnoremap <leader>r          :CtrlPMRU<cr>
-nnoremap <leader>/          :Ag 
-nnoremap <leader>?          :Ag <cword> <cr>
-"nnoremap <leader>ur         :UniteResume -no-start-insert<cr>
-
-nnoremap <leader>wh         :vertical resize -10<cr>
-nnoremap <leader>wl         :vertical resize +10<cr>
-nnoremap <leader>wj         :resize +10<cr>
-nnoremap <leader>wk         :resize -10<cr>
-
-nnoremap <leader>gs         :Gstatus<cr>
-nnoremap <leader>gc         :Gcommit<cr>
-nnoremap <leader>gb         :! xterm -e 'zsh -i -c "git cb"'<cr>
-nnoremap <leader>gB         :Gblame<cr>
-nnoremap <leader>gh         :Gbrowse<cr>
-nnoremap <leader>gp         :Git pull<cr>
-nnoremap <leader>gP         :Git pp<cr>
-" branch, checkout are taken.  what else works here?  f for feature?
-
-nnoremap <Leader>z          :Zeal <cr>
-
-
-imap jj <Esc>
-map <F7> :set invspell<CR>
-map <F6> :set invwrap<CR>
-map <F8> :set invnumber<CR>
-map <leader><S-CR> :! xterm &<cr><cr>
-map <leader>s :e ~/.vimrc<cr>
-map <leader>S :so ~/.vimrc<cr>
-
-
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-
-if executable('ag')
-  let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S --ignore flex --ignore tmp --ignore "*source_maps*" --ignore "*.log"' " ignore doens't take a regex.  ^public/.* eludes me
-  let g:unite_source_grep_recursive_opt=''
-elseif executable('ack')
-  let g:unite_source_grep_command='ack'
-  let g:unite_source_grep_default_opts='--no-heading --no-color -a '
-  let g:unite_source_grep_recursive_opt=''
-endif
-
 
 try                             "persistent undo files
   set undodir=~/.vim_runtime/undodir
@@ -169,102 +39,12 @@ try                             "persistent undo files
 catch
 endtry
 
-:com! Sudow !sudo tee %	
-:com! W w
-:com! Q q
-:com! Bd bd 
-:com! Bdall 0,9999 bd
-:com! Ebranch args `git ls-branch`
-
-" accidental quit prevention (use :quit instead) http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
-"cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'echo "Denied!  Try :Q or :quit to quit the last window."<bar>close' : 'q')<cr>
-
-let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
-let s:minfontsize = 6
-let s:maxfontsize = 16
-function! AdjustFontSize(amount)
-  if has("gui_gtk2") && has("gui_running")
-    let fontname = substitute(&guifont, s:pattern, '\1', '')
-    let cursize = substitute(&guifont, s:pattern, '\2', '')
-    let newsize = cursize + a:amount
-    if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
-      let newfont = fontname . newsize
-      let &guifont = newfont
-      " try launching xterm -e exit or something
-      silent !xterm -e sleep .1;exit
-    endif
-  else
-    echoerr "You need to run the GTK2 version of Vim to use this function."
-  endif
-endfunction
-
-function! LargerFont()
-  call AdjustFontSize(1)
-endfunction
-command! LargerFont call LargerFont()
-
-function! SmallerFont()
-  call AdjustFontSize(-1)
-endfunction
-command! SmallerFont call SmallerFont()
-
-map <leader>+ :LargerFont<CR>
-map <leader>- :SmallerFont<CR>
-
-function! Zeal()
-  let word = expand("<cword>")
-  execute 'silent !killall -9 zeal '
-  execute 'silent !zeal -f -q ' . word . '&>/dev/null &'
-endfunction
-command! Zeal call Zeal()
-" http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
-" (could something map to shift-insert??)
-"
-" N normal, I insert, V visual+select, S select, X visual, C command, O oper
-"source ~/.vim/readline.vim
+for file in split(glob('~/.vimrc.d/*.vim'), '\n')
+  exe 'source' file
+endfor
 
 filetype plugin on		"enable filetype plugin
 filetype indent on
-
-set fillchars+=vert:│
-
-if ( $TERM != 'linux')          "don't break vim in vterms
-  set t_Co=256                "ensures 256 color
-  colorscheme railscasts 
-  execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
-  "highlight linenr 		ctermfg=darkgray	
-  "highlight CursorLine 	ctermbg=235 cterm=bold 
-  "    highlight String 		ctermfg=green 
-  "    highlight Constant 		ctermfg=red 
-  "highlight Comment 		ctermfg=darkgray
-  highlight Search 		ctermfg=white ctermbg=237 cterm=none
-  "    highlight Todo		ctermfg=21 ctermbg=11
-  "highlight StatusLine	cterm=bold ctermfg=white ctermbg=black
-  "highlight StatusLineNC	cterm=bold ctermfg=darkgray ctermbg=black
-  highlight VertSplit		ctermfg=234 ctermbg=235
-  "highlight SpellBad          ctermfg=229 cterm=underline
-  "hi normal ctermbg=black
-  hi Visual      ctermbg=236
-  hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
-  hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
-  hi Comment      cterm=italic gui=italic
-  hi TabLineFile  ctermbg=0 cterm=bold term=bold 
-
-  " gitgutter
-  hi SignColumn guibg=#202020 ctermbg=234
-  hi GitGutterAddDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
-  hi GitGutterDeleteDefault guibg=#202020 ctermbg=234
-endif
-
-" indentguides colors
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_enable_on_vim_startup = 0
-hi IndentGuidesOdd  guibg=#202020   ctermbg=235
-hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
 
 " Buffer types
 au BufRead,BufNewFile *.txt set filetype=text
@@ -309,7 +89,6 @@ au BufRead,BufNewFile *.hs set filetype=haskell
 au! BufRead,BufNewFile *.haml         call HamlSettings()
 function! HamlSettings()
   setfiletype haml 
-  "IndentGuidesEnable
 endfunction
 
 au BufRead,BufNewFile *.rb        call RubySettings()
