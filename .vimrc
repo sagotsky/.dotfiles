@@ -39,20 +39,6 @@ try                             "persistent undo files
 catch
 endtry
 
-" Whenever a file type is set, source ~/.vimrc.d/filetype/${ext}.vim
-augroup filetype
-  autocmd!
-  au! FileType * :call FileTypeSettings()
-augroup END
-
-function! FileTypeSettings()
-  let filetype_settings_source = $HOME . '/.vimrc.d/filetype/' . &filetype .'.vim'
-  echo filetype_settings_source
-  if filereadable(filetype_settings_source)
-    exe 'source '.filetype_settings_source
-  endif
-endfunction
-
 " Source all the .vim files in ~/.vimrc.d
 for file in split(glob('~/.vimrc.d/*.vim'), '\n')
   exe 'source' file
