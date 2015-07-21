@@ -45,6 +45,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'pbrisbin/vim-mkdir'
 
 NeoBundleCheck
 call neobundle#end()
