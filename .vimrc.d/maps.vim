@@ -3,6 +3,8 @@ let mapleader=" "
 nnoremap <leader>p          :CtrlP <cr>
 nnoremap <leader>b          :CtrlPBuffer <cr>
 nnoremap <leader>r          :CtrlPMRU<cr>
+nnoremap <leader>f          :CtrlPFunky<cr>
+nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 nnoremap <leader>/          :Ag 
 nnoremap <leader>?          :Ag <cword> <cr>
 

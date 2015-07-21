@@ -50,6 +50,7 @@ augroup END
 
 function! FileTypeSettings()
   let filetype_settings_source = $HOME . '/.vimrc.d/filetype/' . &filetype .'.vim'
+  echo filetype_settings_source
   if filereadable(filetype_settings_source)
     exe 'source '.filetype_settings_source
   endif

@@ -42,9 +42,11 @@ NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags. 
 NeoBundle 'benmills/vimux'
 NeoBundle 'jgdavey/vim-turbux'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'scrooloose/vimfiles'
 
 NeoBundleCheck
 call neobundle#end()
