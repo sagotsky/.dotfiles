@@ -29,6 +29,8 @@ set t_ZH=[3m                    " enable italics in some terms
 set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
 set fillchars+=vert:│
 
+filetype plugin indent on		
+
 if v:version >= 704
   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
 endif
@@ -38,22 +40,6 @@ try                             "persistent undo files
   set undofile
 catch
 endtry
-
-filetype plugin on		"enable filetype plugin
-filetype indent on
-
-" Whenever a file type is set, source ~/.vimrc.d/filetype/${ext}.vim
-augroup filetype
-  autocmd!
-  au! FileType * :call FileTypeSettings()
-augroup END
-
-function! FileTypeSettings()
-  let filetype_settings_source = $HOME . '/.vimrc.d/filetype/' . &filetype .'.vim'
-  if filereadable(filetype_settings_source)
-    exe 'source '.filetype_settings_source
-  endif
-endfunction
 
 " Source all the .vim files in ~/.vimrc.d
 for file in split(glob('~/.vimrc.d/*.vim'), '\n')
