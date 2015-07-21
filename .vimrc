@@ -29,8 +29,6 @@ set t_ZH=[3m                    " enable italics in some terms
 set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
 set fillchars+=vert:│
 
-filetype plugin indent on		
-
 if v:version >= 704
   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
 endif
@@ -46,8 +44,10 @@ for file in split(glob('~/.vimrc.d/*.vim'), '\n')
   exe 'source' file
 endfor
 
+"executes the command on quit
 augroup autocom
     autocmd!
-    "executes the command on quit
      autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/000
 augroup END
+
+filetype plugin indent on		
