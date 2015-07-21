@@ -39,9 +39,6 @@ try                             "persistent undo files
 catch
 endtry
 
-filetype plugin on		"enable filetype plugin
-filetype indent on
-
 " Whenever a file type is set, source ~/.vimrc.d/filetype/${ext}.vim
 augroup filetype
   autocmd!
@@ -61,8 +58,10 @@ for file in split(glob('~/.vimrc.d/*.vim'), '\n')
   exe 'source' file
 endfor
 
+"executes the command on quit
 augroup autocom
     autocmd!
-    "executes the command on quit
      autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/000
 augroup END
+
+filetype plugin indent on		

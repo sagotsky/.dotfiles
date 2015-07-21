@@ -47,6 +47,8 @@ NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/vimfiles'
+NeoBundle 'pbrisbin/vim-mkdir'
+NeoBundle 'vim-ruby/vim-ruby'
 
 NeoBundleCheck
 call neobundle#end()
