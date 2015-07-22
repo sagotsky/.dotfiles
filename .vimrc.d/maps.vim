@@ -20,14 +20,12 @@ nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 
-
-
 imap jj <Esc>
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
 map <leader><S-CR> :! xterm &<cr><cr>
-map <leader>s :e ~/.vimrc<cr>
+map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
 
 :com! Sudow !sudo tee %	

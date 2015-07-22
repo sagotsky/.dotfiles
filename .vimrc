@@ -45,9 +45,10 @@ for file in split(glob('~/.vimrc.d/*.vim'), '\n')
 endfor
 
 "executes the command on quit
-augroup autocom
-    autocmd!
-     autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/000
-augroup END
+" is this worth keeping?  why does it exist?
+" augroup autocom
+"     autocmd!
+"     autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/0000
+" augroup END
 
 filetype plugin indent on		
