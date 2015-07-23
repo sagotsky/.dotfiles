@@ -14,7 +14,7 @@ while : ; do
   date
   echo $TEST
   #bundle exec rake test TEST=$TEST
-  bin/rake test TEST=$TEST
+  bundle exec rake test TEST=$TEST
   # bundle exec rake test:recent
   echo -e "\a"
 done
