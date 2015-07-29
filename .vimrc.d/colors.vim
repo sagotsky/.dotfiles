@@ -31,4 +31,9 @@ if ( $TERM != 'linux')          "don't break vim in vterms
 
   hi IndentGuidesOdd  guibg=#202020   ctermbg=235
   hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
+
+
+  " mark text beyond 120c with italic.  not sure if this is more or less
+  " obnoxious than a color
+  hi ColorColumn cterm=italic 
 endif

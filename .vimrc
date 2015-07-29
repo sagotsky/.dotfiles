@@ -28,6 +28,7 @@ set history=1000
 set t_ZH=[3m                    " enable italics in some terms
 set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
 set fillchars+=vert:│
+let colorcolumn = join(range(121,999), ",")
 
 if v:version >= 704
   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
