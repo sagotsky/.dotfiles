@@ -15,7 +15,7 @@ alias ls='ls --color=auto'
 alias mkpasswd='pwgen -ysCn 16'
 alias myip='curl http://icanhazip.com ; echo'
 alias nounity='UBUNTU_MENUPROXY="" '
-alias nv='TERM=xterm-256color NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+alias nv='TERM=xterm-256color ___NVIM_TUI_ENABLE_TRUE_COLOR=0 nvim'
 alias tf='tail -f'
 alias rb="rhythmbox-client "
 alias slrake='$( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )' 
