@@ -1,3 +1,5 @@
+shift-mouse # clipboard selectoin
+
 ^\ s    # list sessions
 ^\ $    # rename session
 ^\ c    # new window
