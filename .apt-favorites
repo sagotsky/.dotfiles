@@ -31,6 +31,7 @@ openssh-server
 screen
 scrot
 sed
+software-properties-common
 strace
 subversion
 suckless-tools
