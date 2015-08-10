@@ -50,6 +50,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/vimfiles'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'scrooloose/nerdtree'
 
 NeoBundleCheck
 call neobundle#end()

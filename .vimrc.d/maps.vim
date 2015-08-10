@@ -27,7 +27,7 @@ map <F8> :set invnumber<CR>
 map <leader><S-CR> :! xterm &<cr><cr>
 map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
-nnoremap <leader>ll         :lclose<cr>:cclose<cr>
+nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
 
 :com! Sudow !sudo tee %	
 :com! W w
