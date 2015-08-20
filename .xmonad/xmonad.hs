@@ -148,7 +148,7 @@ myKeys = [
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
     , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
     , ("M-S-s",            spawn "xterm -e stage_ssh.sh $(stage_ssh.sh | dmenu -l 10 -i -s 0 -fn terminus-bold-16 )")  
-    , ("M-v",              spawn "sleep .5 ; xdotool type $(xsel | tr -d \"\n\")") -- sleep so I can release Meta
+    , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
 
 
     -- music
@@ -194,7 +194,7 @@ myKeys = [
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
-    , ("M-d",   removeWorkspace ) -- Delete active workspace
+    , ("M-S-d",   removeWorkspace ) -- Delete active workspace
     , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
     , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
