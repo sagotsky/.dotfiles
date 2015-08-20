@@ -9,9 +9,10 @@ URGENCY=$5
 case $APP in
   'ScudCloud Slack_SSB')
     case $SUMMARY in
-      '#robothouse')
-        ;;
+      '#robothouse') ;;
+      '#jira') ;;
       *)
+        #printf '%14s| %s\n' "$SUMMARY" "$BODY" >> ~/.scudcloud.log
         flag-urgent.sh scudcloud &
         ;;
     esac

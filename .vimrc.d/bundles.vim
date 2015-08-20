@@ -52,6 +52,7 @@ NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ryanoasis/vim-devicons'
+NeoBundle 'ervandew/supertab'
 
 NeoBundleCheck
 call neobundle#end()

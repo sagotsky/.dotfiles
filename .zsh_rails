@@ -6,6 +6,7 @@ bindkey -s '\erdb'   "rails db\n"
 bindkey -s '\erdm'   "time rake db:migrate\n"
 bindkey -s '\erdr'   "time rake db:rollback\n"
 bindkey -s '\erdtp'   "rake db:test:prepare\n"
+bindkey -s '\erdtb'   "rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm'   "rake db:migrate RAILS_ENV=test\n"
 bindkey -s '\erdtr'   "rake db:rollback RAILS_ENV=test\n"
 
