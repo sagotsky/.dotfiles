@@ -80,8 +80,13 @@ ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
 # maybe add functions escaped and then sed them up into $()
 
 # Show pretty background jobs list unless empty
-RPROMPT='%(1j.`jobs | sed -e "s/ .*  //" | tr -d "\n" | tr "]" ":" | tr "[" " "`.)' 
-# add this:  git status 2>/dev/null && git stash list | tail -n 1  | cut -f1 -d:
+function _rprompt_jobs {
+  jobs | sed -e "s/ .*  //" | tr -d "\n" | tr "]" ":" | tr "[" " "
+}
+function _rprompt_git_stash {
+  git status 2>/dev/null && echo "|$(git stash list | tail -n 1  | cut -f1 -d:)"
+}
+RPROMPT='%(1j.$( _rprompt_jobs ).)' #$( _rprompt_git_stash )' 
 #RPROMPT="%F{54}$RPROMPT%f"
 
 ## Source some configs (.local files don't go in git)
