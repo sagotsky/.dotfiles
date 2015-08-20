@@ -194,7 +194,7 @@ myKeys = [
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
-    , ("M-d",   removeWorkspace ) -- Delete active workspace
+    , ("M-S-d",   removeWorkspace ) -- Delete active workspace
     , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
     , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
