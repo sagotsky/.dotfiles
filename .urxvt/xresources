@@ -1,0 +1,4 @@
+URxvt.perl-ext-common: font-size
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.font-step:    1
