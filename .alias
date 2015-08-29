@@ -27,6 +27,9 @@ alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='nv '
 alias vnc-server='x11vnc -usepw'
 alias xsel='xsel --logfile ~/.Xsel.log'
+alias :e='nv '
+alias :q='exit'
+
 
 # aliases CAN do args
 alias arg="sh -c 'echo \$3 \$2 \$1' --"
