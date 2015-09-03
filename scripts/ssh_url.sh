@@ -6,7 +6,7 @@
 [[ "$(hostname)" == "boxy" ]] && nmcli c up 'VPN patientslikeme'
 
 if [[ "$@" =~ 'ssh://' ]] ; then
-  xterm -bg '#223' -e "ssh  -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null ${@##ssh://}"
+  x-terminal-emulator -bg '#223' -e sh -c "sleep 1 ; ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null ${@##ssh://}"
 fi
 
 
