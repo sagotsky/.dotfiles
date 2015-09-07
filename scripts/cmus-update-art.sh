@@ -34,5 +34,7 @@ if [[ "$URL" != '' ]] ; then
   [[ -f "$CACHED" ]] && rm "$CACHED" 
   cmus-remote -u
   cmus-remote -u
+else 
+  echo "$ARTIST - $ALBUM" >> ~/.cmus/albumart-missing.txt
 fi
 

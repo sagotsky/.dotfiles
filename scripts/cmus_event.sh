@@ -27,6 +27,8 @@ if [[ "$2" == 'playing' ]] ; then
   if [ -f "$JPG" ] ; then
     feh -x "$JPG" -g 200x200+$(( WIDTH - 202 ))+16 -B black 2>/dev/null &
     ( FEH="$!" ; sleep 2 ; kill $FEH ) &
+  else 
+    cmus-update-art.sh
   fi
 
   # else use a blank image?
