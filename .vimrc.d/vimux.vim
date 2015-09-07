@@ -1,1 +1,1 @@
-let g:VimuxHeight = "40"
+let g:VimuxHeight = "30"

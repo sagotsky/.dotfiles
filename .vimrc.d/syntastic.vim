@@ -6,4 +6,4 @@ let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
 let g:syntastic_disabled_filetypes = ['sql']
 "
 let g:syntastic_quiet_messages = {
-  \ 'regex': '\(Prefer single-quoted\|Space missing inside\|Space inside . missing\|too many lines\|too long\)'}
+  \ 'regex': '\(interpreted as argument\|Prefer single-quoted\|Space missing inside\|Space inside . missing\|too many lines\|too long\)'}

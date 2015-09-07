@@ -1,7 +1,7 @@
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
   colorscheme railscasts 
-  execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
+  "execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
   " augroup autocom
   "   autocmd!
   "   autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/0000
