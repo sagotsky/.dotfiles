@@ -12,3 +12,4 @@ disper -e DP2,eDP1 -t bottom
 #xmodmap.sh
 xrandr --dpi 96
 wallpaper.sh current
+xbacklight -set 50

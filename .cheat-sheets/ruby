@@ -5,3 +5,4 @@ $'  String following last regex match
 $`  String preceding last regex match
 $n  nth group matched by regex
 
+rake test:files many different files # test a bunch of files

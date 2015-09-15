@@ -29,7 +29,7 @@ map <F9><F9> :NERDTreeFind<cr>
 map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
 nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
-noremap <ENTER> :
+"noremap <ENTER> : this is fucked up in quickfix
 
 :com! Sudow !sudo tee %	
 :com! W w

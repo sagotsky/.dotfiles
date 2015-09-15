@@ -101,7 +101,7 @@ $if Ruby
   "\ej": "\C-lnext\n"
   "\ek": "\C-lstep\n"
   "\ew": "whereami\n"
-  "\eq": "raise-up\n"
-  "\ei": "finish\n"
   "\ee": "edit\n"
+  "\eivg": "instance_variable_get(:@"
+  "\eivs": "instance_variable_set(:@"
 $endif
