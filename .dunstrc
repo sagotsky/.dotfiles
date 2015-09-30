@@ -4,8 +4,9 @@
 # todo: check if scudcloud works as intended
 
 [global]
-    #font = Monospace 8
-    font = fixed 8
+    always_run_script = true
+    font = Monospace 8
+    #font = fixed 8
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -211,6 +212,7 @@
   appname = "notify-send"
   summary = "cmus"
   script = dunst-script.sh
+  timeout = 1
   format = ""
 
 [pidgin]

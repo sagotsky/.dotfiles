@@ -3,14 +3,17 @@ anacron
 apt-file
 beep
 cowsay
+cmus
 curl
 cvs
+dunst
 elinks
 feh
 figlet
 fortune
 g++
 gcc
+git
 happy
 htop
 inotify-tools
@@ -28,6 +31,7 @@ p7zip-full
 python-docutils
 openssh-client
 openssh-server
+rxvt-unicode-256color
 screen
 scrot
 sed
@@ -48,3 +52,4 @@ xsel
 xtermcontrol
 zlib1g-dev
 
+silversearcher-ag
