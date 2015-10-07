@@ -14,7 +14,8 @@ while [[ true ]] ; do
   eval $(keychain -q --eval)
   date
   # 8080 is NATed to rj.  if it curls, we're up.  hopefully this will bypass the spam detector.
-  curl -s robotjesus.net:8080 && autossh $TUNNELS $OPTIONS rj
+  #curl -s robotjesus.net:8080 && autossh $TUNNELS $OPTIONS rj
+  autossh $TUNNELS $OPTIONS rj
   sleep 5m
 done
 

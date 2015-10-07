@@ -8,12 +8,13 @@ require 'open3'
 class DbMint < Thor
   desc "reset", "Resets db on dev env"
   def reset
+    check_mint_env!
     Sh.rake_db_drop
     Sh.create_db_from_template
   end 
 
-  desc "mint_setup", "Instructions for setting up db mint for the first time"
-  def mint_setup
+  desc "setup", "Instructions for setting up db mint for the first time"
+  def setup
     puts <<-EOF
       # Create a new environment
       cp config/environments/development.rb config/environments/mint.rb
@@ -31,6 +32,7 @@ class DbMint < Thor
 
   desc "mint_migrate", "Runs pending migrations on mint"
   def mint_migrate
+    check_mint_env!
     check_current_branch!
     Sh.db_migrate(:mint)
   end
@@ -38,6 +40,7 @@ class DbMint < Thor
   desc "mint_rebuild FILE", "Rebuilds mint db from FILE"
   def mint_rebuild(file)
     check_current_branch!
+    check_mint_env!
 
     Sh.rake_db_drop(:mint)
     Sh.rake_db_create(:mint)
@@ -58,6 +61,10 @@ class DbMint < Thor
 
   private
 
+  def check_mint_env!
+    raise "Set up a mint env first.  `db_mint.rb setup` for instructions" unless has_mint_env?
+  end
+
   def check_current_branch!
     raise "Switch to current to run migrations on your mint db" unless current?
   end 
@@ -67,7 +74,7 @@ class DbMint < Thor
 
     begin
       puts "#{File.exists?(destination) ? 'Resuming' : 'Starting'} download: #{destination}"
-      Rsync.new('developer@10.208.0.207:developer_db.pgdump', destination).run3
+      Rsync.new('developer@10.208.0.207:developer_db.pgdump', destination).run
     rescue Exception => e
       puts "Exception occurred: #{e}"
       print "Would you like to resume download? (Y/n) "
@@ -82,11 +89,16 @@ class DbMint < Thor
     Sh.git_branch == 'current'
   end
 
+  def has_mint_env?
+    File.exists?('config/environments/mint.rb') && YAML.load_file("./config/database.yml").fetch('mint', nil)
+  end
+
   def timestamp
     Time.now.strftime('%y-%m-%d')
   end
 end
 
+# also look into sh from rake
 class Sh
   class << self
     def git_branch
@@ -107,7 +119,7 @@ class Sh
     end 
 
     def rake_plm_users_create_all(env = :development)
-      `bundle exec rake plm:users:create_all`
+      `bundle exec rake plm:users:create_all RAILS_ENV=#{env}`
     end
 
     def create_db_from_template(env = :development)
@@ -136,7 +148,7 @@ class Sh
 end
 
 class Rsync
-  TIMEOUT = 2
+  TIMEOUT = 10
 
   def initialize(target, destination)
     @target = target.strip
@@ -144,6 +156,16 @@ class Rsync
   end
 
   def run
+    run_system
+  end 
+
+  # trying a couple strategies for how to run shell command and see output
+  def run_system
+    sys = system(command)
+    binding.pry  # false when no vpn.  # true when finished.  hurray!
+  end
+
+  def run2
     # popen3 would be nice for explicitly getting stdout/stderr, but one of the pipes tends to block on eof?/closed?/gets.  IO.select?
     Open3.popen2e(command) do |_, stds|
       until stds.eof? do
@@ -155,20 +177,23 @@ class Rsync
   end
 
   def run3
+    c = 0
     Open3.popen3(command) do |stdin, stdout, stderr|
       stdin.close_write
       until stdout.eof? && stderr.eof? do
         IO.select([stdout, stderr]).tap do |ready, _, _|
+          c += 1
           puts ready.map &:gets 
         end
       end
     end 
+    puts "selected: #{c}"
   end
 
   private
 
   def command
-    "rsync -P --timeout #{TIMEOUT} --rsh=ssh #{@target} #{@destination}"
+    "rsync --progress --timeout #{TIMEOUT} --rsh=ssh #{@target} #{@destination}"
   end
 end
 
