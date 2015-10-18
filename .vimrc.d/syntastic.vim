@@ -5,6 +5,7 @@ let g:syntastic_cjsx_checkers=[]
 let g:syntastic_ruby_checkers = ['mri', 'flog'] ", 'rubocop']
 let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
 let g:syntastic_disabled_filetypes = ['sql']
+let g:syntastic_always_populate_loc_list=1 " lprev/lnext work without list now
 
 let g:syntastic_ruby_flog_threshold_warning=10 
 let g:syntastic_ruby_flog_threshold_error=20 
