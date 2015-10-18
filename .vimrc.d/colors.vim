@@ -41,4 +41,8 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " mark text beyond 120c with italic.  not sure if this is more or less
   " obnoxious than a color
   hi ColorColumn cterm=italic 
+  
+  " syntastic
+  hi SyntasticErrorSign ctermbg=NONE ctermfg=white
+  hi SyntasticWarningSign ctermbg=NONE ctermfg=242
 endif

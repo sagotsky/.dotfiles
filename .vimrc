@@ -46,3 +46,7 @@ for file in split(glob('~/.vimrc.d/*.vim'), '\n')
 endfor
 
 filetype plugin indent on		
+
+if has('ruby')
+  echo "has ruby"
+endif
