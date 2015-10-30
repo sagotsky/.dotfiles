@@ -24,6 +24,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
   hi Comment      cterm=italic gui=italic
   hi TabLineFile  ctermbg=0 cterm=bold term=bold 
+  hi TabLineFill  cterm=none
 
   " gitgutter
   hi SignColumn guibg=#202020 ctermbg=234
@@ -40,7 +41,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
 
   " mark text beyond 120c with italic.  not sure if this is more or less
   " obnoxious than a color
-  hi ColorColumn cterm=italic 
+  hi ColorColumn ctermbg=233 
   
   " syntastic
   hi SyntasticErrorSign ctermbg=NONE ctermfg=white

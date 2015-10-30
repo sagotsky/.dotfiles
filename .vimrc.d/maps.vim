@@ -20,6 +20,9 @@ nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 
+nnoremap ]l                 :lnext<cr>
+nnoremap [l                 :lprevious<cr>
+
 imap jj <Esc>
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>

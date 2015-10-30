@@ -97,3 +97,6 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
 fi
 
 true
+
+export NVM_DIR="/home/sagotsky/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

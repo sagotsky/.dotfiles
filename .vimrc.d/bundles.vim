@@ -53,7 +53,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'ervandew/supertab'
-"NeoBundle 'malept/vim-flog' why you no work
+NeoBundle 'blueyed/vim-diminactive'
 
 
 NeoBundleCheck
