@@ -46,7 +46,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
-NeoBundle 'rking/ag.vim'
+" NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/vimfiles'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'vim-ruby/vim-ruby'
@@ -54,6 +54,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'blueyed/vim-diminactive'
+NeoBundle 'mhinz/vim-grepper'         " replaces ag.vim.  uses neovim dispatch.
 
 
 NeoBundleCheck

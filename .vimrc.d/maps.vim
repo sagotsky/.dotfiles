@@ -5,8 +5,10 @@ nnoremap <leader>b          :CtrlPBuffer <cr>
 nnoremap <leader>r          :CtrlPMRU<cr>
 nnoremap <leader>f          :CtrlPFunky<cr>
 nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
-nnoremap <leader>/          :Ag 
-nnoremap <leader>?          :Ag <cword> <cr>
+"nnoremap <leader>/          :Ag 
+"nnoremap <leader>?          :Ag <cword> <cr>
+nnoremap <leader>/          :Grepper! -tool ag -open -switch -dispatch <cr> 
+nnoremap <leader>?          :Grepper! -tool ag -open -switch -query <cword> -dispatch <cr>
 
 nnoremap <leader>wh         :vertical resize -10<cr>
 nnoremap <leader>wl         :vertical resize +10<cr>
