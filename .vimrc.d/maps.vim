@@ -40,5 +40,4 @@ nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
 :com! W w
 :com! Q q
 :com! Bd bd 
-:com! Bdall 0,9999 bd
 :com! Ebranch args `git ls-branch`
