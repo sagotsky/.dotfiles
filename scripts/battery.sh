@@ -17,9 +17,8 @@ case "$PWR" in
   * )       COLOR='red'            ICON='battery-empty' ;;
 esac
 
-#ICON='<icon=/usr/share/dzen2/bitmaps/battery.xbm/>'
+[[ ICON == 'battery-empty' ]] && notify-send "Battery alert" "$PWR" -u critical
 ICON="<icon=$ICON.xbm/>"
-
 echo "<fc=$COLOR>$ICON$PWR</fc> "
 
 
