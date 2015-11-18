@@ -41,13 +41,11 @@ NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc
 NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
 " NeoBundle 'jgdavey/vim-turbux'
 NeoBundle 'sagotsky/vim-turbux'
-"NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'benmills/vimux'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
-" NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/vimfiles'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'vim-ruby/vim-ruby'
