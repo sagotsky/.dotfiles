@@ -73,6 +73,7 @@ myManageHook =  composeAll
     , className =? "Unity-2d-panel"                  --> doIgnore
     , className =? "Unity-2d-launcher"               --> doIgnore
     , className =? "Zenity"                          --> doIgnore
+    , className =? "Screenkey"                       --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
     , className =? "Firefox"                          --> doShift "web-1" 

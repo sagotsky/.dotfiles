@@ -47,3 +47,4 @@ EOF
 
  eval "`bind_key_cmd_hint 'rgm' 'rails g migration'  'rails g migration AddPartNumberToProducts part_number:string:index'`"
  eval "`bind_key_cmd_hint 'rgc' 'rails g controller'  'rails g controller NAME action action action '`"
+ eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task'  'rails g one_off_task NAME'`"
