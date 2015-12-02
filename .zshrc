@@ -41,6 +41,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 autoload -U select-word-style
 select-word-style bash
 
+stty stop undef     # reclaim ctrl-s as forward search
 
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
@@ -68,6 +69,19 @@ function prompt_color {
 
 function reset_color {
   echo "%{$reset_color%}"
+}
+
+# commands that take more than 30s to complete get a visual bell
+# might get obnoxious with long running apps (vim)
+# might get weird with background jobs
+function preexec() {
+  _SECONDS_BEFORE=$SECONDS
+}
+
+function precmd() {
+  if [ ! -z $_SECONDS_BEFORE ] ; then
+    [ $(( $SECONDS - ${_SECONDS_BEFORE} )) -gt 30 ] && echo -e "\a"
+  fi 
 }
 
 PROMPT="%n@%m:%~"                       # user@host:~
@@ -100,3 +114,5 @@ true
 
 export NVM_DIR="/home/sagotsky/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+true
