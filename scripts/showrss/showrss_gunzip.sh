@@ -12,5 +12,5 @@ dir="$HOME/Videos/rsstv"
 find $dir -name '*.torrent.torrent' | while read file ; do
   mv $file ${file%%.torrent}.gz
   gunzip ${file%%.torrent}.gz
-  #rm ${file%%.torrent}.gz
+  mv ${file%%.torrent}.gz ${file%%.torrent}
 done

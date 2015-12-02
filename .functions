@@ -94,6 +94,10 @@ function mgrep() {
     eval $EXEC
 }
 
+function d6() {
+  echo "⚀\n⚁\n⚂\n⚃\n⚄\n⚅" | shuf -n 1
+}
+
 function roll() {
     if [ $# -lt 1 ]  ; then
         echo -e "\nUsage: roll [n] d\n\nRoll n dice of size d.  If left out, n is assumed to be one.\n"
@@ -147,9 +151,9 @@ function rep() {
   N=$1
   if [[ $N =~ ^[0-9]*$ ]] ; then
     shift
-    for n in `seq $N` ; do $@ ; done
+    for n in `seq $N` ; do $* ; done
   else 
-    while true ; do $@ ; done
+    while true ; do $* ; done
   fi
 }
 

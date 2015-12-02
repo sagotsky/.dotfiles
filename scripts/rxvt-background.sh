@@ -12,6 +12,7 @@ ALBUMART="$HOME/.cmus/albumart"
 mkdir "$ALBUMART" 2> /dev/null
    
 
+# compare cached date vs folder.jpg's date.  update as needed
 while : ; do
   if read LINE <$FIFO ; then
     if [[ -f "$LINE" ]] ; then

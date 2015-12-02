@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function signal() {
   grep wlan /proc/net/wireless | awk '{print $3*100/70}' | cut -f 1 -d'.'

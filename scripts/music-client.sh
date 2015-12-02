@@ -5,6 +5,9 @@
 APPS=('rhythmbox' 'nuvolaplayer' 'cmus')
 CMDS=('volup' 'voldown' 'mute' 'play' 'pause' 'back' 'stop' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
 
+# TODO: implement playing, so we can just run that on each app that's open
+# ie
+
 # add volup commands.  make them print status.  empty status if no playing.
 
 getplaying() {
