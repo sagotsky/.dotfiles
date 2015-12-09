@@ -239,6 +239,9 @@
   appname = "ScudCloud Slack_SSB"
   body = *sagotsky*
   urgency = normal
+
+[Electron]
+  script = dunst-script.sh
   
 
 # Every section that isn't one of the above is interpreted as a rules to

@@ -7,6 +7,14 @@ ICON=$4
 URGENCY=$5
 
 case $APP in
+  'Electron') # slack's official client
+    case $SUMMARY in
+      '#robothouse') ;;
+      '#jira') ;;
+      *) flag-urgent.sh Slack & ;;
+    esac
+    ;;
+
   'ScudCloud Slack_SSB')
     case $SUMMARY in
       '#robothouse') ;;
@@ -16,6 +24,7 @@ case $APP in
         flag-urgent.sh scudcloud &
         ;;
     esac
+  ;;
 esac
 
 case $SUMMARY in
