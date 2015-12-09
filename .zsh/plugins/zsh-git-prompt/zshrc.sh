@@ -48,6 +48,7 @@ function update_current_git_vars() {
 	GIT_CHANGED=$__CURRENT_GIT_STATUS[5]
 	GIT_UNTRACKED=$__CURRENT_GIT_STATUS[6]
 	GIT_CLEAN=$__CURRENT_GIT_STATUS[7]
+	GIT_STASHED=$__CURRENT_GIT_STATUS[8]
 }
 
 
@@ -74,6 +75,11 @@ git_super_status() {
 	  if [ "$GIT_CLEAN" -eq "1" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
 	  fi
+
+    if [ "$GIT_STASHED" -ne "0" ]; then
+      STATUS="$STATUS%{${reset_color}%}{$GIT_STASHED}"
+    fi 
+
 	  STATUS="$STATUS%{${reset_color}%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 	  echo "$STATUS"
 	fi
@@ -90,7 +96,6 @@ ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[blue]%}✚"
 ZSH_THEME_GIT_PROMPT_REMOTE=""
 ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
-
 
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}•"
 ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}x"

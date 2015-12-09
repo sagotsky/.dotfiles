@@ -62,6 +62,8 @@ else:
 		if ahead:
 			remote += '%s%s' % (symbols['ahead of'], ahead)
 
+stashed = str(len(Popen(['git','stash','list'],stdout=PIPE).communicate()[0].split("\n")) - 1)
+
 out = '\n'.join([
 	str(branch),
 	remote,
@@ -69,6 +71,8 @@ out = '\n'.join([
 	conflicts,
 	changed,
 	untracked,
-	clean])
+	clean,
+        stashed
+        ])
 print(out)
 
