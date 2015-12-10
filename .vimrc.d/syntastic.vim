@@ -4,6 +4,7 @@ let g:syntastic_coffee_coffeelint_args = "--file ".$HOME."/.coffeelint.json"
 let g:syntastic_cjsx_checkers=[]
 let g:syntastic_ruby_checkers = ['mri', 'flog'] ", 'rubocop']
 let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
+let g:syntastic_ruby_flog_args = '--details'
 let g:syntastic_disabled_filetypes = ['sql']
 let g:syntastic_always_populate_loc_list=1 " lprev/lnext work without list now
 

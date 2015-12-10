@@ -1,3 +1,5 @@
+-- Config { font = "xft:Verdana:size=10,Font Awesome:size=10" # TODO: use font awesome as fallback.  get rid of icons.
+
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "dimgray"

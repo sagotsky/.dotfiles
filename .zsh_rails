@@ -5,6 +5,7 @@ bindkey -s '\err'   "rake routes | grep "
 bindkey -s '\erdb'   "rails db\n"
 bindkey -s '\erdm'   "time rake db:migrate\n"
 bindkey -s '\erdr'   "time rake db:rollback\n"
+bindkey -s '\erds'   "rake db:migrate:status | grep -v 'NO FILE'\n"
 bindkey -s '\erdtp'   "rake db:test:prepare\n"
 bindkey -s '\erdtb'   "rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm'   "rake db:migrate RAILS_ENV=test\n"
@@ -45,6 +46,15 @@ bind_key_cmd_hint() {
 EOF
  }
 
- eval "`bind_key_cmd_hint 'rgm' 'rails g migration'  'rails g migration AddPartNumberToProducts part_number:string:index'`"
- eval "`bind_key_cmd_hint 'rgc' 'rails g controller'  'rails g controller NAME action action action '`"
- eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task'  'rails g one_off_task NAME'`"
+eval "`bind_key_cmd_hint 'rgm' 'rails g migration'  'rails g migration AddPartNumberToProducts part_number:string:index'`"
+eval "`bind_key_cmd_hint 'rgc' 'rails g controller'  'rails g controller NAME action action action '`"
+eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task'  'rails g one_off_task NAME'`"
+
+function tddium_wait() {
+  [[ $# == 0 ]] && echo "tddium_wait needs a branch name to watch" && return 1
+
+  BRANCH=$1
+  while tddium status --no-json | grep $BRANCH | grep running ; do
+    sleep 1m
+  done
+}
