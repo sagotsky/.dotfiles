@@ -55,6 +55,6 @@ function tddium_wait() {
 
   BRANCH=$1
   while tddium status --no-json | grep $BRANCH | grep running ; do
-    sleep 1m
+    sleep 60
   done
 }
