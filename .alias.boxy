@@ -2,3 +2,15 @@ alias service='sudo service '
 alias data_warehouse=' psql -U postgres -h data1.patientslikeme.com  -d data_warehouse'
 alias rake='noglob bundle exec rake '
 alias pong=" gcalcli --calendar fishbowl agenda $(date +%m/%d) 11:59pm --detail_length"
+alias emacs="echo '|Buffers Files Tools Edit Search Mule Help                             |
+|                                                                      |
+|Welcome to GNU Emacs, one component of a Linux-based GNU system.      |
+|                                                                      |
+|                                                                      |
+|                                                                      |
+| ...                                                                  |
+|                                                                      |
+|---1:---F1  *scratch*         (Lisp Interaction)--L1--All-------------|
+|For information about the GNU Project and its goals, type C-h C-p.' | vipe"
+
+alias subl="vim"
