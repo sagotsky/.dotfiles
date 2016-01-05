@@ -25,6 +25,8 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
+NeoBundle 'mhinz/vim-grepper'         " replaces ag.vim.  uses neovim dispatch.
+NeoBundle 'kien/ctrlp.vim'
 
 if isdirectory($HOME."/.rbenv")
   NeoBundle 'vim-scripts/ruby-matchit'
@@ -42,8 +44,6 @@ NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags. 
 " NeoBundle 'jgdavey/vim-turbux'
 NeoBundle 'sagotsky/vim-turbux'
 NeoBundle 'benmills/vimux'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'mtscout6/vim-cjsx'
 NeoBundle 'wincent/terminus'
 NeoBundle 'scrooloose/vimfiles'
@@ -52,8 +52,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'blueyed/vim-diminactive'
-NeoBundle 'mhinz/vim-grepper'         " replaces ag.vim.  uses neovim dispatch.
+" NeoBundle 'blueyed/vim-diminactive'
 
 
 NeoBundleCheck
