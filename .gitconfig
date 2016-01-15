@@ -20,6 +20,8 @@
   ls-branch = ! ~/scripts/git/git-ls-branch.sh
   what-branch=! ~/scripts/git/git-what-branch.sh
   push-deploy= ! git push && devdash stagedeploy
+  co-recent = ! $(grep '^git co ' ~/.history_zsh | tac | slmenu -i -l 20)
+
 [push]
   default = tracking
 [grep]

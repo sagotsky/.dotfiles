@@ -19,6 +19,7 @@ bindkey -s '\erdtr'   "rake db:rollback RAILS_ENV=test\n"
 bindkey -s '\e?'    "cat ~/.zsh_rails \n"
 
 alias irb='pry'
+alias rails='bundle exec rails'
 
 
 # let's experiment a bit...

@@ -54,6 +54,7 @@ NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'ervandew/supertab'
 " NeoBundle 'blueyed/vim-diminactive'
 NeoBundle 'vim-scripts/sql_iabbr.vim'         " replaces ag.vim.  uses neovim dispatch.
+NeoBundle 'junegunn/gv.vim'         " git log viewer.  :GV
 
 
 NeoBundleCheck
