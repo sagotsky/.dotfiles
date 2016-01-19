@@ -28,6 +28,7 @@ import XMonad.Layout.Circle
 import XMonad.Layout.IM
 import XMonad.Layout.ShowWName
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Spacing
 import XMonad.Actions.SpawnOn
 import XMonad.Util.EZConfig
 import XMonad.Actions.DynamicWorkspaces
@@ -48,8 +49,8 @@ myLayout = avoidStruts
            --( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
            ( named "<icon=tall.xbm/>" tall ||| named "<icon=wide.xbm/>" wide ||| named "<icon=full.xbm/>"  Full ||| named "<icon=circle.xbm/>" circle ))
     where
-      tall = Tall nmaster delta ratio
-      wide = Mirror $ Tall nmaster delta ratio
+      tall = smartSpacing 4 $ Tall nmaster delta ratio
+      wide = smartSpacing 4 $ Mirror $ Tall nmaster delta ratio
       circle = layoutHints Circle
       nmaster = 1
       delta = 3/100
@@ -169,6 +170,8 @@ myKeys = [
     , ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
     , ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
     , ("M-m", spawn "cmus-filter.sh") -- cmus play song
+    , ("M-z", spawn "~/source/node-cli-play/bin/spotifyr.js") -- cmus play song
+
     -- TODO better modifier use.  ie alt=artist, shift=album, ctrl += random
     , ("M-S-m", spawn "cmus-filter.sh --list album") -- cmus play album
     , ("M-C-m", spawn "cmus-filter.sh --randomize --list album") -- cmus random album
