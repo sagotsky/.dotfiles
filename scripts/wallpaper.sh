@@ -8,6 +8,7 @@ DIR="$HOME/.wallpaper"
 LINK="$HOME/.wallpaper.png"
 CURRENT=$(readlink $LINK)
 FEH_ARGS=' --bg-fill '
+# try nitrogen for setting each screen individaully
 
 case "$1" in
   new|old)

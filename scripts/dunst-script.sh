@@ -8,10 +8,11 @@ URGENCY=$5
 
 case $APP in
   'Electron') # slack's official client
+    #flag-urgent.sh Slack & 
     case $SUMMARY in
       '#robothouse') ;;
       '#jira') ;;
-      *) flag-urgent.sh Slack & ;;
+      *) [[ "$BODY" =~ '^github' ]] || flag-urgent.sh Slack & ;;
     esac
     ;;
 
