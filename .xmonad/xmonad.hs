@@ -83,6 +83,7 @@ myManageHook =  composeAll
     , className =? "Thunderbird"                      --> doShift "email-3" 
     , className =? "Pidgin"                           --> doShift "chat-5" 
     , className =? "Scudcloud"                        --> doShift "chat-5" 
+    , className =? "Slack"                            --> doShift "chat-5" 
     , className =? "Skype"                            --> doShift "chat-5" 
     , className =? "Skype.real"                       --> doShift "chat-5" 
     , className =? "xterm-mail"                       --> doShift "email-3"
