@@ -2,7 +2,7 @@
 
 # front end to whatever music player is currently playing
 
-APPS=('rhythmbox' 'nuvolaplayer' 'cmus')
+APPS=('rhythmbox' 'nuvolaplayer' 'cmus' 'spotify')
 CMDS=('volup' 'voldown' 'mute' 'play' 'pause' 'back' 'stop' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
 
 # TODO: implement playing, so we can just run that on each app that's open
@@ -63,6 +63,15 @@ nuvolaplayer() {
     toggle) nuvolaplayer-client toggle ;;
     status) nuvolaplayer-client status ;;
     bandsong) echo $(nuvolaplayer-client status | grep '^Artist' | cut -f2 -d:) - $(nuvolaplayer-client status | grep '^Song' | cut -f2 -d:) ;;
+    *) return 1
+  esac
+}
+
+spotify() {
+  case $1 in
+    next | pause | stop | play) spotifyr $1 ;;
+    back) spotifyr previous ;;
+    toggle) spotifyr play_pause ;;
     *) return 1
   esac
 }
