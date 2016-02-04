@@ -36,7 +36,7 @@ import XMonad.Prompt
 import XMonad.Actions.CycleWS
 
 myTerminal            = "x-terminal-emulator"
-myBorderWidth         = 1
+myBorderWidth         = 3
 myModMask             = mod4Mask 
 myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
 myNormalBorderColor   = "#222233"
@@ -49,8 +49,8 @@ myLayout = avoidStruts
            --( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
            ( named "<icon=tall.xbm/>" tall ||| named "<icon=wide.xbm/>" wide ||| named "<icon=full.xbm/>"  Full ||| named "<icon=circle.xbm/>" circle ))
     where
-      tall = smartSpacing 4 $ Tall nmaster delta ratio
-      wide = smartSpacing 4 $ Mirror $ Tall nmaster delta ratio
+      tall = smartSpacing 10 $ Tall nmaster delta ratio
+      wide = smartSpacing 10 $ Mirror $ Tall nmaster delta ratio
       circle = layoutHints Circle
       nmaster = 1
       delta = 3/100
