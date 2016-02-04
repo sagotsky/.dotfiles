@@ -1,7 +1,6 @@
 """ Settings and init
 
 echo new Date().toString()
-""" colorscheme sagotsky2
 let mapleader=","
 set titlestring=''
 set defsearch=google

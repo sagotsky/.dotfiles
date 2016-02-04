@@ -162,7 +162,7 @@ class Rsync
   # trying a couple strategies for how to run shell command and see output
   def run_system
     sys = system(command)
-    binding.pry  # false when no vpn.  # true when finished.  hurray!
+    #binding.pry  # false when no vpn.  # true when finished.  hurray!
   end
 
   def run2
