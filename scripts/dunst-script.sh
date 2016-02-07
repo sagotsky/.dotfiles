@@ -26,6 +26,9 @@ case $APP in
         ;;
     esac
   ;;
+  'Spotify') 
+    music-client.sh bandsong > ~/.music.out &
+    ;;
 esac
 
 case $SUMMARY in

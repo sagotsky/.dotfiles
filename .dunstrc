@@ -242,6 +242,11 @@
 
 [Electron]
   script = dunst-script.sh
+
+[Spotify]
+  script = dunst-script.sh
+  format = ""
+  timeout = 1
   
 
 # Every section that isn't one of the above is interpreted as a rules to
