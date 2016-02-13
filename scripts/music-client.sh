@@ -72,7 +72,7 @@ spotify() {
     next | pause | stop | play) spotifyr $1 ;;
     back) spotifyr previous ;;
     toggle) spotifyr play_pause ;;
-    bandsong) echo $(spotifyr metadata | grep artist: | cut -f2 -d:) - $(spotifyr metadata | grep title: | cut -f2 -d:) ;;
+    bandsong) echo $(spotifyr status | grep artist: | cut -f2 -d:) - $(spotifyr status | grep title: | cut -f2 -d:) ;;
     *) return 1
   esac
 }
