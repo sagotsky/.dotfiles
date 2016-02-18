@@ -23,7 +23,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
-NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'ap/vim-css-color'
 NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
 NeoBundle 'mhinz/vim-grepper'         " replaces ag.vim.  uses neovim dispatch.
 
