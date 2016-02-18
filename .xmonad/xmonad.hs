@@ -146,7 +146,7 @@ myKeys = [
     , ("S-<XF86Favorites>",  spawn "music-client.sh stop ; ~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Favorites>",  spawn " ~/scripts/gdm3switch.sh jenn") --user switch
     , ("<XF86Mail>",       spawn "active_win_man.sh") -- manpage for active win
-    , ("<XF86Calculator>", spawn "gnome-calculator") --calc
+    , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
     , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  

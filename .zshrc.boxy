@@ -2,7 +2,7 @@ cdpath=(/var/storage/repos)
 
 
 #export PATH="$HOME/.rbenv/bin:$HOME/.gem/ruby/2.1.0/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH:/usr/lib/postgresql/9.3/bin/"
-export PATH="$HOME/.rbenv/bin:$PATH:/usr/lib/postgresql/9.3/bin/"
+export PATH="$HOME/.rbenv/bin:$PATH:/usr/lib/postgresql/9.3/bin/:$HOME/.nvm/versions/node/v4.2.1/bin"
 eval "$(rbenv init -)"
 
 export ARCHFLAGS="-arch x86_64"
