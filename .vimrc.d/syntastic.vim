@@ -2,6 +2,7 @@ let g:syntastic_auto_loc_list=0
 let g:syntastic_check_on_open=1
 let g:syntastic_coffee_coffeelint_args = "--file ".$HOME."/.coffeelint.json"
 let g:syntastic_cjsx_checkers=[]
+let g:syntastic_haml_checkers = ['haml_lint'] ", 'rubocop']
 let g:syntastic_ruby_checkers = ['mri', 'flog'] ", 'rubocop']
 let g:syntastic_ruby_rubocop_exec = $HOME . "/bin/rubocop"
 let g:syntastic_ruby_flog_args = '--details'
