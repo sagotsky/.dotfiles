@@ -30,4 +30,13 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " syntastic
   hi SyntasticErrorSign ctermbg=NONE ctermfg=white
   hi SyntasticWarningSign ctermbg=NONE ctermfg=242
+
+  hi CursorLine ctermbg=236
+  augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+  augroup END
 endif
+
+
