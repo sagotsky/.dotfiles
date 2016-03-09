@@ -51,3 +51,6 @@ filetype plugin indent on
 if has('ruby')
   echo "has ruby"
 endif
+
+" todo: hide the autocmds in a file
+autocmd VimResized * exe "normal \<c-w>=" 
