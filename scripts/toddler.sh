@@ -11,7 +11,7 @@ xinput set-prop $MOUSE "Device Enabled" 0
 xinput set-prop $TRACK "Device Enabled" 0
 
 while [[ "$WORD" != "$LAST" ]] ; do 
-  WORD=$(grep -v "'" /usr/share/dict/words | shuf -n 1)
+  WORD=$(grep '^[a-z]\{0,6\}$' /usr/share/dict/words | shuf -n 1)
   LAST=$(echo '' | dmenu -s 0 -b -p "Type '$WORD' to break toddler lock" -fn 'verdana-30-bold')
 done
 

@@ -171,7 +171,7 @@ myKeys = [
     , ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
     , ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
     , ("M-m", spawn "cmus-filter.sh") -- cmus play song
-    , ("M-z", spawn "~/source/node-cli-play/bin/spotifyr.js") -- cmus play song
+    , ("M-z", spawn "~/source/node-cli-play/bin/spotifyr.js artist") -- cmus play song
 
     -- TODO better modifier use.  ie alt=artist, shift=album, ctrl += random
     , ("M-S-m", spawn "cmus-filter.sh --list album") -- cmus play album
