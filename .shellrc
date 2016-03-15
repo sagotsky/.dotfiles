@@ -6,7 +6,7 @@ eval "$(rbenv init --no-rehash -)"
 (rbenv rehash &) 2> /dev/null
 
 ## Nice defaults
-export EDITOR='vim'
+export EDITOR='nvim'
 export CVS_RSH='ssh'
 export PAGER='less'
 export LESS='-R -j4 -i'  # color for less, search results show on second line, case insensitive
