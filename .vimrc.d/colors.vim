@@ -7,9 +7,12 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   "   autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/0000
   " augroup END
 
+  hi Normal ctermbg=235
+  hi Type ctermfg=121
+  hi CursorLineNr ctermbg=235
   highlight Search 		ctermfg=white ctermbg=237 cterm=none
   highlight VertSplit		ctermfg=234 ctermbg=235
-  hi Visual      ctermbg=236
+  " hi Visual      ctermbg=236
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
   hi TabLineFile  ctermbg=0 cterm=bold term=bold 

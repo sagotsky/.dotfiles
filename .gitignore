@@ -15,6 +15,7 @@ tags
 .vim/autoload/*
 .vim/plugin/*
 .vim/bundle/*
+.vim/plugged/*
 
 .nvim/.netrwhist
 .nvim/autoload/*

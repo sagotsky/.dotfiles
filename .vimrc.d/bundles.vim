@@ -2,61 +2,58 @@ if has('vim_starting')
   set nocompatible    
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
 
-NeoBundle 'Shougo/vimproc.vim', '0f68bcd93399ecbcde3eaa4efd09107314c9bdee', { 'build' : { 'linux' : 'make -f make_unix.mak ; cp -R autoload/* ~/.vim/autoload/; cp -R plugin/* ~/.vim/plugin', }, }
+" curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin('~/.vim/plugged')
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-rsi'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'jpo/vim-railscasts-theme', '9035daff38dbbd30229890f26e54d9a7a71deca3'
-NeoBundle 'Wutzara/vim-materialtheme'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'kshenoy/vim-signature'                         " show marks in gutter
-NeoBundle 'ap/vim-css-color'
-NeoBundle 'joker1007/vim-ruby-heredoc-syntax'
-NeoBundle 'mhinz/vim-grepper'         " replaces ag.vim.  uses neovim dispatch.
+Plug 'Shougo/vimshell.vim'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rsi'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'airblade/vim-gitgutter'
+Plug 'tomasr/molokai'
+Plug 'jgdavey/vim-railscasts' ", '9034daff38dbbd30229890f26e54d9a7a71deca3'
+Plug 'Wutzara/vim-materialtheme'
+Plug 'godlygeek/tabular'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/syntastic'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'kshenoy/vim-signature'                         " show marks in gutter
+Plug 'ap/vim-css-color'
+Plug 'joker1007/vim-ruby-heredoc-syntax'
+Plug 'mhinz/vim-grepper'         " replaces ag.vim.  uses neovim dispatch.
 
 if isdirectory($HOME."/.rbenv")
-  NeoBundle 'vim-scripts/ruby-matchit'
-  NeoBundle 'haml/haml-contrib'
-  NeoBundle 'mustache/vim-mustache-handlebars'
-  NeoBundle 'tpope/vim-rails'
-  NeoBundle 'lucapette/vim-ruby-doc'
+  Plug 'vim-scripts/ruby-matchit'
+  Plug 'haml/haml-contrib'
+  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'tpope/vim-rails'
+  Plug 'lucapette/vim-ruby-doc'
 endif
 
 " experimental
-NeoBundle 'junegunn/vim-peekaboo'                         " preview yank ring
-NeoBundle 'vim-scripts/SQLComplete.vim'
-NeoBundle 'tpope/vim-commentary'                          " gcc -> comment.  #gc -> comment n lines
-NeoBundle 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
-" NeoBundle 'jgdavey/vim-turbux'
-NeoBundle 'sagotsky/vim-turbux'
-NeoBundle 'benmills/vimux'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'mtscout6/vim-cjsx'
-NeoBundle 'wincent/terminus'
-NeoBundle 'scrooloose/vimfiles'
-NeoBundle 'pbrisbin/vim-mkdir'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'ryanoasis/vim-devicons'
-NeoBundle 'ervandew/supertab'
-" NeoBundle 'blueyed/vim-diminactive'
-NeoBundle 'vim-scripts/sql_iabbr.vim'         " replaces ag.vim.  uses neovim dispatch.
-NeoBundle 'junegunn/gv.vim'         " git log viewer.  :GV
+Plug 'junegunn/vim-peekaboo'                         " preview yank ring
+Plug 'vim-scripts/SQLComplete.vim'
+Plug 'tpope/vim-commentary'                          " gcc -> comment.  #gc -> comment n lines
+Plug 'ludovicchabant/vim-gutentags'                  " auto generate tags.  is it doing rtags?
+" Plug 'jgdavey/vim-turbux'
+Plug 'sagotsky/vim-turbux'
+Plug 'benmills/vimux'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mtscout6/vim-cjsx'
+Plug 'wincent/terminus'
+Plug 'scrooloose/vimfiles'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'vim-ruby/vim-ruby'
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/sql_iabbr.vim'         
+Plug 'junegunn/gv.vim'         " git log viewer.  :GV
+Plug 'vimwiki/vimwiki'
 
-
-NeoBundleCheck
-call neobundle#end()
+call plug#end()
