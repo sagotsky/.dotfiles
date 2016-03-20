@@ -1,0 +1,12 @@
+desc        short help text.  index of commands
+long_desc   longer help.  'app help subcommand' shows subcommand's help
+
+option      option to pass to options hash
+  required  t/f
+  default   anything
+  type      string/hash/array/numeric/boolean
+  aliases   short options
+  banner    help text
+class_option option for entire class
+
+subcommand  useful for making a suite of commands, ie git.
