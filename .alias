@@ -25,6 +25,7 @@ alias t='tmux -2'
 alias tx='tmux -2 attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='nv '
+alias vw='nv -c VimwikiIndex'
 alias vnc-server='x11vnc -usepw'
 alias xsel='xsel --logfile ~/.Xsel.log'
 alias :e='nv '

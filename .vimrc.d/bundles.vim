@@ -22,6 +22,7 @@ Plug 'christoomey/vim-tmux-navigator'    " buffer nav bindings
 Plug 'kshenoy/vim-signature'             " show marks in gutter
 Plug 'ap/vim-css-color'                  " shows hex colors in color
 Plug 'mhinz/vim-grepper'                 " replaces ag.vim.  uses neovim dispatch.
+Plug 'ervandew/supertab'                 " tab for autocomplete
 
 if isdirectory($HOME."/.rbenv")
   Plug 'vim-scripts/ruby-matchit'          " % support for do/end
