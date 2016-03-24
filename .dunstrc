@@ -244,6 +244,7 @@
   script = dunst-script.sh
 
 [Spotify]
+  appname = "Spotify"
   script = dunst-script.sh
   format = ""
   timeout = 1

@@ -69,10 +69,11 @@ nuvolaplayer() {
 
 spotify() {
   case $1 in
-    next | pause | stop | play) spotifyr $1 ;;
+    next | pause | stop | play | status) spotifyr $1 ;;
     back) spotifyr previous ;;
     toggle) spotifyr play_pause ;;
-    bandsong) echo $(spotifyr status | grep artist: | cut -f2 -d:) - $(spotifyr status | grep title: | cut -f2 -d:) ;;
+    #bandsong) echo $(spotifyr status | grep artist: | cut -f2 -d:) - $(spotifyr status | grep title: | cut -f2 -d:) ;;
+    bandsong) echo "$(spotifyr status -f artist,title | cut -f 2 -d- | tr '\n' ' ')" ;;
     *) return 1
   esac
 }
