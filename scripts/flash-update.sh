@@ -21,6 +21,11 @@ function install_flash() {
   sudo mv "$TMP/libflashplayer.so" /usr/lib/mozilla/plugins/
 }
 
+echo "Downloading flash..."
 download_and_unpack
+
+echo "Patching fullscreen hack..."
 patch_fullscreen
+
+echo "Moving files (sudo required)..."
 install_flash

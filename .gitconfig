@@ -2,7 +2,7 @@
   email = sagotsky@gmail.com
   name = Jon Sagotsky 
 [core]
-  editor = vim
+  editor = nvim
 [color]
   status = auto
   diff = auto
