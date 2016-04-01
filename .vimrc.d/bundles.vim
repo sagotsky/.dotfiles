@@ -7,7 +7,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-endwise'                 " ruby append end to new blocks
-"Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'                  " binds . for vim-surround
 Plug 'tpope/vim-fugitive'                " git integration
 Plug 'tpope/vim-surround'                " change surrounding characters with cs prefix
 Plug 'tpope/vim-rsi'                     " readline in insert mode
