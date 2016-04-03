@@ -90,6 +90,8 @@ myManageHook =  composeAll
     , className =? "Zend Studio"                      --> doShift "ide-6" 
     , className =? "Sublime_text"                     --> doShift "ide-6" 
     , className =? "Steam"                            --> doShift "0" 
+
+    , isFullscreen --> doFullFloat
     ] 
 
 main = do 
@@ -103,6 +105,8 @@ main = do
              ,normalBorderColor = myNormalBorderColor
              ,focusedBorderColor = "#dddddf" -- myFocusedBorderColor
              ,layoutHook = myShowWName myLayout
+             , handleEventHook = handleEventHook
+               defaultConfig <+> fullscreenEventHook
              ,manageHook = manageDocks <+> myManageHook 
                            <+> manageHook defaultConfig
              ,logHook = dynamicLogWithPP $ xmobarPP 
