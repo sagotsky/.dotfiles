@@ -52,9 +52,13 @@ eval "`bind_key_cmd_hint 'rgc' 'rails g controller new edit create delete show' 
 eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task'  'rails g one_off_task NAME'`"
 
 function tddium_wait() {
-  [[ $# == 0 ]] && echo "tddium_wait needs a branch name to watch" && return 1
+  if [[ $# == 0 ]] ; then 
+    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  else 
+    BRANCH=$1
+  fi
 
-  BRANCH=$1
+  echo "waiting for $BRANCH"
   while tddium status --no-json | grep $BRANCH | grep running ; do
     sleep 60
   done
