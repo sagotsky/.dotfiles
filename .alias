@@ -18,7 +18,7 @@ alias nounity='UBUNTU_MENUPROXY="" '
 alias nv='TERM=xterm-256color nvim'
 alias tf='tail -f'
 alias rb="rhythmbox-client "
-alias slrake='$( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )' 
+alias slrake='bundle exec $( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )' 
 alias su='su -m'
 alias sudo='sudo -E '
 alias t='tmux -2'
