@@ -165,7 +165,9 @@ myKeys = [
     , ("M-<Left>",               spawn "music-client.sh back") --Back
     , ("<XF86AudioPlay>",        spawn "music-client.sh toggle") --vol up
     , ("<XF86Forward>",          spawn "music-client.sh next") --Next
+    , ("<XF86AudioNext>",        spawn "music-client.sh next") --Next
     , ("<XF86Back>",             spawn "music-client.sh back") --Back
+    , ("<XF86AudioPrev>",        spawn "music-client.sh back") --Back
     , ("<XF86AudioRaiseVolume>", spawn "vol-up.sh") --vol up
     , ("<XF86AudioLowerVolume>", spawn "vol-down.sh") --vol down
     , ("<XF86AudioMute>",        spawn "vol-mute.sh") --vol mute
