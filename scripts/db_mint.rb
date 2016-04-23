@@ -47,6 +47,7 @@ class DbMint < Thor
     Sh.restore_db(file, :mint) 
     Sh.db_migrate(:mint)
     Sh.rake_plm_users_create_all(:mint)
+    Sh.import_schooner_questions(:mint)
   end
 
   desc "mint_download_and_rebuild", "Downloads a db and rebuilds your mint db environment from it"
@@ -120,6 +121,10 @@ class Sh
 
     def rake_plm_users_create_all(env = :development)
       `bundle exec rake plm:users:create_all RAILS_ENV=#{env}`
+    end
+
+    def import_schooner_questions(env = :development)
+      `bundle exec ./bin/schooner import interview_definitions --conflict=always_overwrite`
     end
 
     def create_db_from_template(env = :development)

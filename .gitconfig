@@ -1,5 +1,5 @@
 [user]
-  email = sagotsky@gmail.com
+	email = sagotsky@gmail.com
   name = Jon Sagotsky 
 [core]
   editor = nvim
