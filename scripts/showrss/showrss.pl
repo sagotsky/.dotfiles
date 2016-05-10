@@ -58,9 +58,8 @@ sub init {
     usage() if $opt{h};
 
     $output_dir = $opt{o} or $output_dir = "$ENV{PWD}";
-#    $feed = $opt{f} or $feed = "http://showrss.info/rss.php?user_id=2341&hd=0&proper=0&magnets=false";
+    #$feed = $opt{f} or $feed = "http://showrss.info/user/39182.rss?magnets=false&namespaces=true&name=clean&quality=hd&re=null";
     $feed = $opt{f} or $feed = "http://showrss.info/user/39182.rss?magnets=false&namespaces=true&name=clean&quality=sd&re=null";
-    #$feed = $opt{f} or $feed = "http://showrss.karmorra.info/rss.php?user_id=2341\&hd=0\&proper=null\&namespaces=true";
     $log = $opt{l} or $log = "$ENV{HOME}/.showrsspl.log";
 
     my @loggedTorrents = getLog($log); 
