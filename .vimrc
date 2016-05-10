@@ -56,4 +56,4 @@ endif
 autocmd VimResized * exe "normal \<c-w>=" 
 
 " when did ftplugin stop working?
-exe 'source ~/.nvim/ftplugin/ruby.vim' 
+exe 'source ~/.vim/ftplugin/ruby.vim' 
