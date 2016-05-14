@@ -14,3 +14,4 @@ alias emacs="echo '|Buffers Files Tools Edit Search Mule Help                   
 |For information about the GNU Project and its goals, type C-h C-p.' | vipe"
 
 alias subl="vim"
+alias vww='nvim ~/.vimwiki/PLM.wiki'

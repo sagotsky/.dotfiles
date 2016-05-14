@@ -26,6 +26,8 @@ au BufNewFile,BufRead .vimrc         set filetype=vim
 
 au BufRead,BufNewFile *.js           set filetype=javascript
 au BufRead,BufNewFile *.json         set filetype=javascript
+au BufRead,BufNewFile *.coffee       set filetype=javascript
+au BufRead,BufNewFile *.coffee.erb   set filetype=javascript
 
 au BufRead,BufNewFile *.xmobarrc     set filetype=haskell
 au BufRead,BufNewFile *.hs           set filetype=haskell

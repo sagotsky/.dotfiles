@@ -34,6 +34,7 @@ if isdirectory($HOME."/.rbenv")
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   "Plug 'mustache/vim-mustache-handlebars'
   "Plug 'tpope/vim-rails'
+  Plug 'kchmck/vim-coffee-script'
 endif
 
 " experimental
