@@ -45,7 +45,8 @@ Plug 'ludovicchabant/vim-gutentags' " auto generate tags.  is it doing rtags?
 Plug 'ctrlpvim/ctrlp.vim'           " file picker
 Plug 'wincent/terminus'             " more term support.  mouse?
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
-Plug 'scrooloose/nerdtree'          " file selection
+"Plug 'scrooloose/nerdtree'          " file selection
+Plug 'tpope/vim-vinegar'          " file selection
 Plug 'vim-scripts/sql_iabbr.vim'    " sql commands are capitalized
 Plug 'junegunn/gv.vim'              " git log viewer.  :GV
 Plug 'vimwiki/vimwiki'              " internal wiki

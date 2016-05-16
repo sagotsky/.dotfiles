@@ -30,7 +30,7 @@ map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
 map <F9> :NERDTreeToggle<cr>
 map <F9><F9> :NERDTreeFind<cr>
-map <leader><leader> :NERDTreeFind<cr>
+"map <leader><leader> :NERDTreeFind<cr>
 map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
 nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
