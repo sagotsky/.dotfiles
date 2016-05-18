@@ -75,7 +75,7 @@ class DbMint < Thor
 
     begin
       puts "#{File.exists?(destination) ? 'Resuming' : 'Starting'} download: #{destination}"
-      Rsync.new('developer@10.208.0.207:developer_db.pgdump', destination).run
+      Rsync.new('developer@data1.patientslikeme.com:plm_sanitized_db.pgdump', destination).run
     rescue Exception => e
       puts "Exception occurred: #{e}"
       print "Would you like to resume download? (Y/n) "
