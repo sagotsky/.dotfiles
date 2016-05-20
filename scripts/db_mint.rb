@@ -198,7 +198,8 @@ class Rsync
   private
 
   def command
-    "rsync --progress --timeout #{TIMEOUT} --rsh=ssh #{@target} #{@destination}"
+    #"rsync --progress --timeout #{TIMEOUT} --rsh=ssh #{@target} #{@destination}"
+    "rsync --progress --timeout #{TIMEOUT} -e ssh #{@target} #{@destination}"
   end
 end
 

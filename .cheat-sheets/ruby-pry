@@ -1,0 +1,4 @@
+= pry-stack_explorer =
+up
+down
+show-stack -H/-T (otherwise too big)
