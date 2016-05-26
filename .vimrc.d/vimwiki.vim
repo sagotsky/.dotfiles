@@ -1,1 +1,1 @@
-let g:vimwiki_list = [{'path':'~/.vimwiki'}]
+let g:vimwiki_list = [{'path':'~/.vimwiki', 'syntax':'markdown'}]
