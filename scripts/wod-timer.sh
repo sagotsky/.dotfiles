@@ -22,7 +22,14 @@ set_even_fg="${c_set_even:-black}"   #- fg color during even sets
 
 function clecho() {
   clear
-  which banner >/dev/null && banner `echo $@` || echo $@
+
+  if $(hash figlet > /dev/null) ; then
+    echo $@ | figlet -c -f bigmono12
+  elif $(hash banner > /dev/null) ; then
+    banner `echo $@`
+  else
+    echo $@
+  fi
 }
 
 function countdown() {
@@ -65,5 +72,6 @@ for set in $(seq 1 $sets) ; do
   fi
 done
 
+# todo: exit hook?
 color 'complete'
 
