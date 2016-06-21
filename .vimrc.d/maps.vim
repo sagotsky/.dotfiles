@@ -9,6 +9,7 @@ nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 "nnoremap <leader>?          :Ag <cword> <cr>
 nnoremap <leader>/          :Grepper -tool ag -open -switch <cr> 
 nnoremap <leader>?          :Grepper -tool ag -open -switch -query <cword> <cr>
+nnoremap <leader>nt         :tabnew<cr>
 
 nnoremap <leader>wh         :vertical resize -10<cr>
 nnoremap <leader>wl         :vertical resize +10<cr>
