@@ -10,7 +10,7 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , iconRoot = "/home/sagotsky/.xmobar/"
        , commands = [ Run MultiCpu ["-t", "<icon=cpu.xbm/> <total>%", "-L","75","-H","90","--normal","white","--high","red"] 10
                     , Run Memory ["-t","<icon=mem.xbm/> <usedratio>%","-L","75","-H","90","--normal","white","--high","red"] 10
-                    , Run Date "%m.%d %I:%M" "date" 590
+                    , Run Date "%m.%d %I:%M" "date" 10
                     , Run StdinReader
                     , Run PipeReader "/home/sagotsky/.music.out" "music"
                     , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
