@@ -33,7 +33,6 @@ alias rails='bundle exec rails'
 #key, name?, cmd, message
 # man zshzle
 bind_key_cmd_hint() {
-  zle_highlight+=('bg=blue')
   keys=$1
   widget_function=$1
   cmd=$2
@@ -45,7 +44,7 @@ bind_key_cmd_hint() {
       zle -M '${hint}' # message.
     }
 
-    zle -N ${keys} # make it a widget, i think.  maybe the second key isn't needed?
+    zle -N ${widget_function} # make it a widget, i think.  maybe the second key isn't needed?
     bindkey '\e${keys}' '${widget_function}'
 EOF
  }
