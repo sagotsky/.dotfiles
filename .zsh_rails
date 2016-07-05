@@ -44,14 +44,15 @@ bind_key_cmd_hint() {
       zle -M '${hint}' # message.
     }
 
-    zle -N ${widget_function} # make it a widget, i think.  maybe the second key isn't needed?
+    zle -N ${widget_function} # register function as a zle widget
     bindkey '\e${keys}' '${widget_function}'
 EOF
  }
 
-eval "`bind_key_cmd_hint 'rgm' 'rails g migration'  'rails g migration AddPartNumberToProducts field:type:index'`"
-eval "`bind_key_cmd_hint 'rgc' 'rails g controller new edit create delete show'  'rails g controller NAME action action action '`"
-eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task'  'rails g one_off_task NAME'`"
+#                        keys  command                hint text
+eval "`bind_key_cmd_hint 'rgm' 'rails g migration'    'rails g migration AddPartNumberToProducts field:type:index'`"
+eval "`bind_key_cmd_hint 'rgc' 'rails g controller'   'rails g controller NAME action action action '`"
+eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task' 'rails g one_off_task NAME'`"
 
 function tddium_wait() {
   if [[ $# == 0 ]] ; then 
