@@ -23,6 +23,14 @@ Plug 'kshenoy/vim-signature'             " show marks in gutter
 Plug 'ap/vim-css-color'                  " shows hex colors in color
 Plug 'mhinz/vim-grepper'                 " replaces ag.vim.  uses neovim dispatch.
 Plug 'ervandew/supertab'                 " tab for autocomplete
+Plug 'vim-scripts/SQLComplete.vim'  " SQL syntax highlighting
+Plug 'tpope/vim-commentary'         " gcc -> comment.  #gc -> comment n lines
+Plug 'ludovicchabant/vim-gutentags' " auto generate tags.  is it doing rtags?
+Plug 'ctrlpvim/ctrlp.vim'           " file picker
+Plug 'wincent/terminus'             " more term support.  mouse?
+Plug 'vim-scripts/sql_iabbr.vim'    " sql commands are capitalized
+Plug 'junegunn/gv.vim'              " git log viewer.  :GV
+Plug 'vimwiki/vimwiki'              " internal wiki
 
 if isdirectory($HOME."/.rbenv")
   Plug 'vim-scripts/ruby-matchit'          " % support for do/end
@@ -39,16 +47,11 @@ endif
 
 " experimental
 Plug 'junegunn/vim-peekaboo'        " preview yank ring
-Plug 'vim-scripts/SQLComplete.vim'  " SQL syntax highlighting
-Plug 'tpope/vim-commentary'         " gcc -> comment.  #gc -> comment n lines
-Plug 'ludovicchabant/vim-gutentags' " auto generate tags.  is it doing rtags?
-Plug 'ctrlpvim/ctrlp.vim'           " file picker
-Plug 'wincent/terminus'             " more term support.  mouse?
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 "Plug 'scrooloose/nerdtree'          " file selection
 Plug 'tpope/vim-vinegar'          " file selection
-Plug 'vim-scripts/sql_iabbr.vim'    " sql commands are capitalized
-Plug 'junegunn/gv.vim'              " git log viewer.  :GV
-Plug 'vimwiki/vimwiki'              " internal wiki
+Plug 'haya14busa/incsearch.vim'
+
+" Plug 'osyo-manga/vim-over'  " preview search/replace.  doesn't work yet well enough yet 6/16
 
 call plug#end()
