@@ -24,6 +24,7 @@ Plug 'tpope/vim-endwise'               " ruby append end to new blocks
 Plug 'tpope/vim-fugitive'              " git integration
 Plug 'tpope/vim-repeat'                " binds . for vim-surround
 Plug 'tpope/vim-rsi'                   " readline in insert mode
+Plug 'tpope/vim-sensible'              " common defaults
 Plug 'tpope/vim-surround'              " change surrounding characters with cs prefix
 Plug 'tpope/vim-vinegar'               " file selection
 Plug 'vim-airline/vim-airline'         " bar

@@ -1,35 +1,29 @@
 syntax on                         " always use syntax highlighting
-runtime macros/matchit.vim
-set nowrap                        " no word wrap
-set smartcase                     " case affects word boundaries
-set autoindent                    " emacs style indents ==========broken
-set smartindent                   " emacs style indents ==========broken
-set tabstop=2                     " tab width
-set shiftwidth=2                  " tab width
-set softtabstop=2                 " deletes 4 spaces as though they were a tab.
-set showmatch                     " shows matching parens
-set ruler                         " line/position always visible
-set incsearch                     " search as you type
-set cursorline                    " underlines current line
-set number                        " line numbers on
-set ignorecase                    " case insensitive searches with /
-set hlsearch                      " highlights search results
-set scrolloff=4                   " scroll at 4 lines from top/bottom
-set expandtab                     " inserts spaces instead of tabs
-set wildmode=longest,list,full    " tab completion fix.  completes as much as possible, then lists, then full completes.
-set showcmd                       " keybindings show their full name
-set guioptions=aegiLt             " clean gui in gvim
-set guifont=Source\ Code\ Pro\ 12 " gvim only font 
+
 set clipboard+=unnamed            " yank -> X11 buffer
-set laststatus=2                  " 2 lines for status
+set cursorline                    " underlines current line
+set expandtab                     " inserts spaces instead of tabs
+set fillchars+=vert:│
+set guifont=Source\ Code\ Pro\ 12 " gvim only font 
+set guioptions=aegiLt             " clean gui in gvim
+set hlsearch                      " highlights search results
+set ignorecase                    " case insensitive searches with /
 set lazyredraw
-set ttyfast
-set history=1000
+set nofoldenable                  " disable folds
+set nowrap                        " no word wrap
+set number                        " line numbers on
+set scrolloff=4                   " scroll at 4 lines from top/bottom
+set shiftwidth=2                  " tab width
+set showcmd                       " keybindings show their full name
+set showmatch                     " shows matching parens
+set smartcase                     " case affects word boundaries
+set smartindent                   " emacs style indents ==========broken
+set softtabstop=2                 " deletes 4 spaces as though they were a tab.
 set t_ZH=[3m                    " enable italics in some terms
 set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
-set fillchars+=vert:│
-set nofoldenable                  " disable folds
-"let colorcolumn = join(range(121,999), ",")
+set tabstop=2                     " tab width
+set ttyfast
+set wildmode=longest,list,full    " tab completion fix.  completes as much as possible, then lists, then full completes.
 
 if v:version >= 704
   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
