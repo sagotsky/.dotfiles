@@ -1,3 +1,11 @@
+# profiling
+if [[ "$ZSH_PROFILING" != "" ]] ; then
+  function epoch_time_ms() {
+    date +%s%3N
+  }
+  START_MS="$(epoch_time_ms)"
+fi
+
 # Set up the prompt
 setopt NO_HUP   # don't kill running processes when exiting the shell
 
@@ -114,3 +122,22 @@ fi
 export NVM_DIR="/home/sagotsky/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+
+if [[ "$ZSH_PROFILING" != "" ]] ; then
+  END_MS="$(epoch_time_ms)"
+  STARTUP=$(( $END_MS - $START_MS ))
+  echo "startup time: $STARTUP"
+fi
+
+# slow things
+# run "zsh -i -c exit" to profile
+# normal startup: ~190
+#
+# git status 222
+# minus nvm: no real change
+# minus dot loop source: 90!
+## shellrc has most of this.  hey look, it's rbenv!
+## ditching rbenv gets us down to 115
+# update_current_git_vars: 150
+# compinit: 140
+# - all: 14!
