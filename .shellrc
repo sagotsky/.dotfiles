@@ -2,8 +2,10 @@
 export PATH="$HOME/scripts/:$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:$PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH:/usr/lib/postgresql/9.3/bin/"
-eval "$(rbenv init --no-rehash -)"
-(rbenv rehash &) 2> /dev/null
+if ! [[ "$PATH" =~ rbenv/shims ]] ; then
+  eval "$(rbenv init --no-rehash -)"
+  (rbenv rehash &) 2> /dev/null
+fi 
 
 ## Nice defaults
 export EDITOR='nvim'
