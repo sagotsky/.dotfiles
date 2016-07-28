@@ -41,9 +41,11 @@ is_running() {
 }
 
 git_prompt() {
+  # todo: new options?  particularly stash
   git-super-status.sh
 }
 
+# todo
 # this feels unclean to call self with arg to launch daemon
 # maybe run daemon could nohup an eval of some function?
 # if so, how do we detect it in is_running
@@ -54,7 +56,7 @@ else
   mkdir -p $(tempdir)
   echo '…' > $(tempfile)
   while [[ "$?" == '0' ]]  ; do
-    inotifywait -r "$(repo)/.git/" -e MODIFY &> /dev/null
     git_prompt >  $(tempfile)
+    inotifywait -r "$(repo)/.git/" -e MODIFY &> /dev/null
   done
 fi
