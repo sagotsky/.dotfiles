@@ -23,6 +23,7 @@ au BufRead,BufNewFile *.py           set filetype=python
 au BufNewFile,BufRead .pentadactylrc set filetype=vim
 au BufNewFile,BufRead .vimperatorrc  set filetype=vim
 au BufNewFile,BufRead .vimrc         set filetype=vim
+au BufWritePost .vimrc so ~/.vimrc   " autoreload vimrc when it's saved
 
 au BufRead,BufNewFile *.js           set filetype=javascript
 au BufRead,BufNewFile *.json         set filetype=javascript

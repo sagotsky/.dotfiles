@@ -140,4 +140,6 @@ fi
 ## ditching rbenv gets us down to 115
 # update_current_git_vars: 150
 # compinit: 140
+# in plm: 800!!!  probably git status
+### todo: gitstatus daemon.  it outputs every time .git changes (or some other watch condition).  prompt is responsible for reading in output or starting up daemon.
 # - all: 14!

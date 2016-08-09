@@ -8,18 +8,12 @@ $:.uniq!
 
 
 begin
-  Pry.config.prompt = proc { |obj, nest_level, _| "\n#{obj}:#{nest_level}> \a\n$ " }
   Pry.config.print = proc { |output, value| output.puts ((value.respond_to?(:ai) ? value.ai : nil) || value)  }
 rescue LoadError 
 end
 
-Pry.hooks.add_hook :before_session, 'set_title' do
-  Process.setproctitle 'pry'
-end
-
-Pry.hooks.add_hook :after_session, 'set_title' do
-  Process.setproctitle 'ruby'
-end
-
+require 'unicode'
 require 'pry-theme'
+require 'pry-loudmouth'
+require 'pry-inline'
 Pry.config.theme = 'railscasts' # does awesome print use this theme?
