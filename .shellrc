@@ -6,6 +6,7 @@ if ! [[ "$PATH" =~ rbenv/shims ]] ; then
   eval "$(rbenv init --no-rehash -)"
   (rbenv rehash &) 2> /dev/null
 fi 
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 ## Nice defaults
 export EDITOR='nvim'
