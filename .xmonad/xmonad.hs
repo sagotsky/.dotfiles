@@ -36,7 +36,7 @@ import XMonad.Prompt
 import XMonad.Actions.CycleWS
 
 myTerminal            = "x-terminal-emulator"
-myBorderWidth         = 3
+myBorderWidth         = 1
 myModMask             = mod4Mask 
 myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
 myNormalBorderColor   = "#222233"
