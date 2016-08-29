@@ -15,8 +15,9 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " hi Visual      ctermbg=236
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
-  hi TabLineFile  ctermbg=0 cterm=bold term=bold 
-  hi TabLineFill  cterm=none
+  hi TabLine  ctermbg=233 cterm=bold term=bold 
+  hi TabLineSel  ctermbg=235 cterm=bold term=bold 
+  hi TabLineFill  ctermfg=233
 
   " gitgutter
   hi SignColumn guibg=#202020 ctermbg=234
