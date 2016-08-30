@@ -51,6 +51,8 @@ endif
 Plug 'junegunn/vim-peekaboo'        " preview yank ring
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do' : 'vim +UpdateRemotePlugins +qall' }
 
 " Plug 'osyo-manga/vim-over'  " preview search/replace.  doesn't work yet well enough yet 6/16
 

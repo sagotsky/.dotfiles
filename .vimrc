@@ -25,6 +25,9 @@ set tabstop=2                     " tab width
 set ttyfast
 set wildmode=longest,list,full    " tab completion fix.  completes as much as possible, then lists, then full completes.
 
+" set runtimepath+=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
+set runtimepath+=/usr/share/nvim/runtime
+
 if v:version >= 704
   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
 endif
@@ -42,9 +45,12 @@ endfor
 
 filetype plugin indent on		
 
-if has('ruby')
-  echo "has ruby"
-endif
+" if has('ruby')
+"   echo "has ruby"
+" endif
+
+let g:deoplete#enable_at_startup = 1
+" let g:python_host_prog = '/usr/bin/python3' 
 
 " todo: hide the autocmds in a file
 autocmd VimResized * exe "normal \<c-w>=" 
