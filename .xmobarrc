@@ -3,6 +3,7 @@
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "dimgray"
+       -- , alpha = 200
        , position = TopW L 100
        , lowerOnStart = True
        , border = BottomBM 0
