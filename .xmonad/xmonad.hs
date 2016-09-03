@@ -80,6 +80,7 @@ myManageHook =  composeAll
     , className =? "Firefox"                          --> doShift "web-1" 
     , className =? "Rhythmbox"                        --> doShift "music-2" 
     , className =? "spotify"                          --> doShift "music-2" 
+    , className =? "Spotify"                          --> doShift "music-2" 
     , resource =? "cmus"                              --> doShift "music-2" 
     , className =? "Thunderbird"                      --> doShift "email-3" 
     , className =? "Pidgin"                           --> doShift "chat-5" 
