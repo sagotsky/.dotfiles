@@ -271,5 +271,10 @@ function file-write-do {
     $SHELL -c $@
     sleep .1
   done
+}
 
+# pluck nth column.  defaults to first.
+nth() {
+  N=${1:-1}
+  awk "{print \$$N}"
 }
