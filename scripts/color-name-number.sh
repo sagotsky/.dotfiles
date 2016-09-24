@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 while read -a line ; do
   num=${line[0]}
