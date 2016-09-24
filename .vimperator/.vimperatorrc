@@ -5,6 +5,7 @@ let mapleader=","
 set titlestring=''
 set defsearch=google
 set gui=none
+set complete=slbh 
 
 """ Command keys
 
