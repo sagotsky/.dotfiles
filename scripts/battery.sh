@@ -1,9 +1,7 @@
 #!/bin/bash  -x
 
-if [[ $(acpi -a) == 'Adapter 0: on-line' ]] ; then
-  echo
-  exit 
-fi 
+[[ $(acpi -a) == 'Adapter 0: on-line' ]] && echo && exit 
+[[ -d "/sys/class/power_supply/BAT0" ]] || (echo && exit)
 
 PWR="$(acpi -b | cut -f4 -d' ' | tr -d '?' | tr -d ',')"
 [[ "x$PWR" == "x" ]] && exit
