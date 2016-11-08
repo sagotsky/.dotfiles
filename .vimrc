@@ -49,7 +49,6 @@ filetype plugin indent on
 "   echo "has ruby"
 " endif
 
-let g:deoplete#enable_at_startup = 1
 " let g:python_host_prog = '/usr/bin/python3' 
 
 " todo: hide the autocmds in a file
@@ -57,3 +56,12 @@ autocmd VimResized * exe "normal \<c-w>="
 
 " when did ftplugin stop working?
 exe 'source ~/.vim/ftplugin/ruby.vim' 
+"
+" install new bundles after saving bundles file
+if !exists("*BundlesUpdated")
+  function BundlesUpdated()
+    so ~/.dotfiles/.vimrc.d/bundles.vim
+    PlugInstall
+  endfunction
+endif
+autocmd BufWritePost .dotfiles/.vimrc.d/bundles.vim call BundlesUpdated()

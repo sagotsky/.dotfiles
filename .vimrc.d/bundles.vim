@@ -27,6 +27,7 @@ Plug 'tpope/vim-rsi'                   " readline in insert mode
 Plug 'tpope/vim-sensible'              " common defaults
 Plug 'tpope/vim-surround'              " change surrounding characters with cs prefix
 Plug 'tpope/vim-vinegar'               " file selection
+Plug 'tpope/vim-eunuch'                " wraps unix commands in vim.  trying out :Move for renaming file and buffer at once.
 Plug 'vim-airline/vim-airline'         " bar
 Plug 'vim-airline/vim-airline-themes'  " bar themes
 Plug 'vim-scripts/SQLComplete.vim'     " SQL syntax highlighting
@@ -52,8 +53,9 @@ Plug 'junegunn/vim-peekaboo'        " preview yank ring
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete.nvim', { 'do' : 'vim +UpdateRemotePlugins +qall' }
+" Plug 'Shougo/deoplete.nvim', { 'do' : 'vim +UpdateRemotePlugins +qall' }
 
 " Plug 'osyo-manga/vim-over'  " preview search/replace.  doesn't work yet well enough yet 6/16
-
+" Plug 'junegunn/vim-emoji' "  needs a differnt term or font
 call plug#end()
+
