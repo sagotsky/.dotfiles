@@ -13,6 +13,9 @@ case $APP in
     case $SUMMARY in
       '#robothouse') ;;
       '#jira') ;;
+      'research_platform') ;;
+      'sysops') ;;
+      'openresearchexchange') ;;
       *) [[ "$BODY" =~ '^github' ]] || flag-urgent.sh Slack & ;;
     esac
     ;;
