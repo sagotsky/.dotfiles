@@ -57,5 +57,6 @@ Plug 'haya14busa/incsearch.vim'
 
 " Plug 'osyo-manga/vim-over'  " preview search/replace.  doesn't work yet well enough yet 6/16
 " Plug 'junegunn/vim-emoji' "  needs a differnt term or font
+Plug 'alcesleo/vim-uppercase-sql'
 call plug#end()
 
