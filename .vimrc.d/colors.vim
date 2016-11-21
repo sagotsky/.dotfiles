@@ -41,6 +41,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
   augroup END
-endif
 
+  syn match Todo /skip/
+endif
 
