@@ -15,7 +15,7 @@ case $APP in
       '#jira') ;;
       'research_platform') ;;
       'sysops') ;;
-      'openresearchexchange') ;;
+      '#openresearchexchange') ;;
       *) [[ "$BODY" =~ '^github' ]] || flag-urgent.sh Slack & ;;
     esac
     ;;
