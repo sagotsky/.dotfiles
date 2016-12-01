@@ -10,3 +10,4 @@ let g:airline#extensions#branch#enabled=0
 let g:airline_section_x=''
 let g:airline_section_y=''
 "let g:airline_section_z='' # 100% 9: 37
+" TODO: make inactive a little more obvious looking.  remove black bg?
