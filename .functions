@@ -157,6 +157,10 @@ function rep() {
   fi
 }
 
+function rep_til_failure() {
+  true ; while [[ "$?" == "0" ]]  ; do $* ; done
+}
+
 for n in `seq 9` ; do alias $n="rep $n " ; done
 alias ..='cd ..' # stupid, but I like chaining it to the rep numbers.  
 
