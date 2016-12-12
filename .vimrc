@@ -4,7 +4,7 @@ set clipboard+=unnamed            " yank -> X11 buffer
 set cursorline                    " underlines current line
 set expandtab                     " inserts spaces instead of tabs
 set fillchars+=vert:│
-set guifont=Source\ Code\ Pro\ 12 " gvim only font 
+set guifont=Source\ Code\ Pro\ 12 " gvim only font
 set guioptions=aegiLt             " clean gui in gvim
 set hlsearch                      " highlights search results
 set ignorecase                    " case insensitive searches with /
@@ -43,19 +43,19 @@ for file in split(glob('~/.vimrc.d/*.vim'), '\n')
   exe 'source' file
 endfor
 
-filetype plugin indent on		
+filetype plugin indent on
 
 " if has('ruby')
 "   echo "has ruby"
 " endif
 
-" let g:python_host_prog = '/usr/bin/python3' 
+" let g:python_host_prog = '/usr/bin/python3'
 
 " todo: hide the autocmds in a file
-autocmd VimResized * exe "normal \<c-w>=" 
+autocmd VimResized * exe "normal \<c-w>="
 
 " when did ftplugin stop working?
-exe 'source ~/.vim/ftplugin/ruby.vim' 
+exe 'source ~/.vim/ftplugin/ruby.vim'
 "
 " install new bundles after saving bundles file
 if !exists("*BundlesUpdated")
@@ -65,3 +65,4 @@ if !exists("*BundlesUpdated")
   endfunction
 endif
 autocmd BufWritePost .dotfiles/.vimrc.d/bundles.vim call BundlesUpdated()
+autocmd BufWritePre * %s/\s\+$//e

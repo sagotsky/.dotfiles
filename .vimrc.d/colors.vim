@@ -43,5 +43,9 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   augroup END
 
   syn match Todo /skip/
+
+
+  "trailing-whitespace
+  hi ExtraWhitespace ctermbg=black
 endif
 
