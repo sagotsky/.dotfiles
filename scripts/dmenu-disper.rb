@@ -28,5 +28,6 @@ resolutions = selected.split(/\s+/).grep(/\d+x\d+/).join ','
 `xrandr -s 1366x768 ; sleep .5` # setting this first somehow prevents the screen overlap I think
 puts "disper -e #{displays} -r #{resolutions} -t bottom ; xrandr --dpi 96"
 `disper -e #{displays} -r #{resolutions} -t bottom ; xrandr --dpi 96`
+`which nitrogen && nitrogen --restore`
 
 

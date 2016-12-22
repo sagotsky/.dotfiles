@@ -12,7 +12,7 @@ begin
 rescue LoadError 
 end
 
-require 'unicode'
+# require 'unicode'
 require 'pry-theme'
 require 'pry-loudmouth'
 require 'pry-inline'

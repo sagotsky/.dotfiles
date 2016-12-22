@@ -5,6 +5,8 @@ if [[ "$#" == "0" ]] ; then
   exit 1
 fi
 
+which solano || gem install solano
+
 cat $1 |
   cut -f 4 -d\" |
   grep '\.' |
