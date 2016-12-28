@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e
 
-FLASH_URL="https://get.adobe.com/flashplayer/download/?installer=FP_11.2_for_other_Linux_64-bit_(.tar.gz)_-_NPAPI&sType=2726&standalone=1"
+FLASH_URL="https://get.adobe.com/flashplayer/download/?installer=FP_24.0_for_Linux_64-bit_(.tar.gz)_-_NPAPI&stype=3785&standalone=1"
 TMP="$(mktemp -d)"
 
 function tarball_url() {
   curl -s "$FLASH_URL" | 
-    grep https://fpdownload | 
+    grep https://fpdownload  |
     sed -e "s/.*'\(.*\)'.*/\1/"
 }
 
