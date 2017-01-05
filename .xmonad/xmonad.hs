@@ -1,4 +1,4 @@
-import XMonad 
+import XMonad
 import System.Exit
 import System.IO
 import qualified XMonad.StackSet as W
@@ -23,7 +23,7 @@ import XMonad.Layout.Named
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.LayoutHints
-import XMonad.Layout.Grid  
+import XMonad.Layout.Grid
 import XMonad.Layout.Circle
 import XMonad.Layout.IM
 import XMonad.Layout.ShowWName
@@ -37,8 +37,8 @@ import XMonad.Actions.CycleWS
 
 myTerminal            = "x-terminal-emulator"
 myBorderWidth         = 1
-myModMask             = mod4Mask 
-myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"] 
+myModMask             = mod4Mask
+myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"]
 myNormalBorderColor   = "#222233"
 myFocusedBorderColor  = "#cfb000"
 myUrgentBorderColor   = "#ff5500"
@@ -58,7 +58,7 @@ myLayout = avoidStruts
 
 
 myManageHook =  composeAll
-    [ 
+    [
      className =? "MPlayer"                           --> doFloat
     , className =? "Gnome-calculator"                 --> doFloat
     , className =? "doukutsu"                         --> doFloat
@@ -77,26 +77,24 @@ myManageHook =  composeAll
     , className =? "Screenkey"                       --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
-    , className =? "Firefox"                          --> doShift "web-1" 
-    , className =? "Rhythmbox"                        --> doShift "music-2" 
-    , className =? "spotify"                          --> doShift "music-2" 
-    , className =? "Spotify"                          --> doShift "music-2" 
-    , resource =? "cmus"                              --> doShift "music-2" 
-    , className =? "Thunderbird"                      --> doShift "email-3" 
-    , className =? "Pidgin"                           --> doShift "chat-5" 
-    , className =? "Scudcloud"                        --> doShift "chat-5" 
-    , className =? "Slack"                            --> doShift "chat-5" 
-    , className =? "Skype"                            --> doShift "chat-5" 
-    , className =? "Skype.real"                       --> doShift "chat-5" 
+    , className =? "Firefox"                          --> doShift "web-1"
+    , className =? "Rhythmbox"                        --> doShift "music-2"
+    , className =? "spotify"                          --> doShift "music-2"
+    , className =? "Spotify"                          --> doShift "music-2"
+    , resource =? "cmus"                              --> doShift "music-2"
+    , className =? "Thunderbird"                      --> doShift "email-3"
+    , className =? "Pidgin"                           --> doShift "chat-5"
+    , className =? "Scudcloud"                        --> doShift "chat-5"
+    , className =? "Slack"                            --> doShift "chat-5"
     , className =? "xterm-mail"                       --> doShift "email-3"
-    , className =? "Zend Studio"                      --> doShift "ide-6" 
-    , className =? "Sublime_text"                     --> doShift "ide-6" 
-    , className =? "Steam"                            --> doShift "0" 
+    , className =? "Zend Studio"                      --> doShift "ide-6"
+    , className =? "Sublime_text"                     --> doShift "ide-6"
+    , className =? "Steam"                            --> doShift "0"
 
     , isFullscreen --> doFullFloat
-    ] 
+    ]
 
-main = do 
+main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $ withUrgencyHook NoUrgencyHook
        $ ewmh defaultConfig
@@ -109,9 +107,9 @@ main = do
              ,layoutHook = myShowWName myLayout
              , handleEventHook = handleEventHook
                defaultConfig <+> fullscreenEventHook
-             ,manageHook = manageDocks <+> myManageHook 
+             ,manageHook = manageDocks <+> myManageHook
                            <+> manageHook defaultConfig
-             ,logHook = dynamicLogWithPP $ xmobarPP 
+             ,logHook = dynamicLogWithPP $ xmobarPP
              -- http://www.alanwood.net/demos/wgl4.html special chars
                { ppOutput = hPutStrLn xmproc
                  , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
@@ -119,18 +117,18 @@ main = do
                  , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
                  , ppVisible = xmobarColor "#a83300" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
                  , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
-                 , ppLayout  = xmobarColor "#888888" "" . wrap "" ""  
+                 , ppLayout  = xmobarColor "#888888" "" . wrap "" ""
                  , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
-                 , ppSep =  " " 
+                 , ppSep =  " "
                  , ppExtras = [ logTitles ]
                  , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
-                 --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" "" 
+                 --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" ""
                  --Current      workspace with focus
                  --Visible      displayed workspace without focus
                  --Hidden       workspace that isn't displayed
                  --HiddenNoWindows
                  --Urgent
-                 --  
+                 --
                  --Sep string between sections
                  --WsSep    sep between ws types
                  --Title    active window title
@@ -139,14 +137,14 @@ main = do
                  --Sort
                  --Extras   time and date, tertiary loggers
                  --Output   entire string
-               }  
+               }
 
 
 
-             } 
+             }
              `additionalKeysP` myKeys
 
-myKeys = [ 
+myKeys = [
     -- application shortcuts
 	  ("<XF86HomePage>",   spawn "nautilus") --home browser
     , ("<XF86Favorites>",  spawn " ~/scripts/gdm3switch.sh jenn") --user switch
@@ -155,8 +153,8 @@ myKeys = [
     , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
-    , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")  
-    , ("M-S-s",            spawn "xterm -e stage_ssh.sh $(stage_ssh.sh | dmenu -l 10 -i -s 0 -fn terminus-bold-16 )")  
+    , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")
+    , ("M-S-s",            spawn "xterm -e stage_ssh.sh $(stage_ssh.sh | dmenu -l 10 -i -s 0 -fn terminus-bold-16 )")
     , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
 
 
@@ -200,13 +198,13 @@ myKeys = [
     , ("S-<XF86Search>", spawn "xcalib -a -co 95") -- screen contrast decrease
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
-    -- WM Shortcuts  
+    -- WM Shortcuts
     , ("M-x",   spawn "dmenu_run -b -i -s 0 ") -- $path launcher
     , ("M-S-x", spawn "$(xdmenug.py)") -- xdg-menu launch
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
-    , ("M-b",   sendMessage ToggleStruts) -- struts are panels. 
+    , ("M-b",   sendMessage ToggleStruts) -- struts are panels.
     , ("M-S-d",   removeWorkspace ) -- Delete active workspace
     , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
     , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
@@ -227,7 +225,7 @@ myKeys = [
 
     {-
      -- available keys
-     
+
      , ("M-a",  spawn "")
      , ("M-c",  spawn "")
      , ("M-f",  spawn "")
@@ -235,11 +233,11 @@ myKeys = [
      , ("M-v",  spawn "")
      , ("M-z",  spawn "")
     -}
-     
 
 
 
-myXPConfig = defaultXPConfig 
+
+myXPConfig = defaultXPConfig
                 { bgColor = "#101015"
                 , fgColor = "#ffffff"
                 , fgHLight = "#101015"
@@ -248,14 +246,14 @@ myXPConfig = defaultXPConfig
                 , promptBorderWidth = 1
                 , height = 35
                 , font = "xft:Verdana:pixelsize=20:antialias=true"
-                
+
                 }
 
 myShowWName = showWName' defaultSWNConfig
 	{ swn_bgcolor = "#101015"
 	, swn_color = "white"
 	, swn_font = "xft:Verdana:pixelsize=50:antialias=true"
-	, swn_fade = 0.5 
+	, swn_fade = 0.5
 	}
 
 -- if they're all here we could regex them into one char each, showing window count
