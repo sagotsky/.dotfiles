@@ -1,7 +1,7 @@
 #!/bin/bash
 
 lpq_jobs() {
-  lpq -l | grep '\[job'
+  [ -x /usr/bin/lpq ] && lpq -l | grep '\[job'
 }
 
 if [[ `lpq_jobs` ]] ; then
