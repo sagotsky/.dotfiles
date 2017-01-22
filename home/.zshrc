@@ -102,7 +102,7 @@ PROMPT="\$(prompt_color)$PROMPT\$(reset_color) \$(git_super_status)$ \$(reset_co
 
 
 # TODO: add a bunch more of these
-ZSH_THEME_GIT_PROMPT_BRANCH="%F{cyan}%f"
+ZSH_THEME_GIT_PROMPT_BRANCH="%F{cyan}%B"
 # maybe add functions escaped and then sed them up into $()
 
 # Show pretty background jobs list unless empty
