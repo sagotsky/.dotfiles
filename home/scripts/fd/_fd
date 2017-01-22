@@ -1,0 +1,15 @@
+#compdef fd
+# zsh completion file
+
+_comp_fd() {
+  local curcontext="$curcontext" state line                                               
+  typeset -A opt_args
+  _arguments '1: :->match'
+
+  compadd "$@" 
+  find ./ -type d  -name "$line*" -printf "%f\n" | while read dirname ; do
+    compadd "$dirname"
+  done
+}
+compdef _comp_fd fd
+
