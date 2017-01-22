@@ -1,0 +1,72 @@
+bindkey -s '\erc'   "rails console\n"
+bindkey -s '\erb'   "bundle\n"
+bindkey -s '\err'   "rake routes | grep "
+
+bindkey -s '\erdb'   "rails db\n"
+bindkey -s '\erdm'   "time rake db:migrate_and_seed\n"
+bindkey -s '\erdr'   "time rake db:rollback\n"
+bindkey -s '\erds'   "rake db:migrate:status | grep -v 'NO FILE'\n"
+bindkey -s '\erdtp'   "rake db:test:prepare\n"
+bindkey -s '\erdtb'   "rails db RAILS_ENV=test\n"
+bindkey -s '\erdtm'   "rake db:migrate RAILS_ENV=test\n"
+bindkey -s '\erdtr'   "rake db:rollback RAILS_ENV=test\n"
+
+# TODO: hide the echo
+#bindkey -s '\ergm'   " echo 'rails g migration AddPartNumberToProducts part_number:string:index'\n rails g migration"
+#http://stackoverflow.com/questions/171563/whats-in-your-zshrc/171564#171564
+
+
+bindkey -s '\e?'    "cat ~/.zsh_rails \n"
+
+alias irb='pry'
+alias rails='bundle exec rails'
+alias rake='bundle exec rake'
+
+
+# let's experiment a bit...
+# rgm() {
+#   zle -M "rails g migration AddPartNumberToProducts part_number:string:index" # maps key to text
+#   zle -U 'rails g migration '
+# }
+# zle -N rgm rgm
+# bindkey '\ergm' rgm
+
+#key, name?, cmd, message
+# man zshzle
+bind_key_cmd_hint() {
+  keys=$1
+  widget_function=$1
+  cmd=$2
+  hint=$3
+
+  cat <<-EOF
+    ${widget_function}() {
+      zle -U '${cmd} ' # types characters
+      zle -M '${hint}' # message.
+    }
+
+    zle -N ${widget_function} # register function as a zle widget
+    bindkey '\e${keys}' '${widget_function}'
+EOF
+ }
+
+#                        keys  command                hint text
+eval "`bind_key_cmd_hint 'rgm' 'rails g migration'    'rails g migration AddPartNumberToProducts field:type:index'`"
+eval "`bind_key_cmd_hint 'rgc' 'rails g controller'   'rails g controller NAME action action action '`"
+eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task' 'rails g one_off_task NAME'`"
+
+function tddium_wait() {
+  if [[ $# == 0 ]] ; then
+    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  else
+    BRANCH=$1
+  fi
+
+  echo "waiting for $BRANCH"
+  while tddium status --no-json | grep $BRANCH | grep running ; do
+    sleep 60
+  done
+}
+
+# color the hint text?
+# for demoing zle hints, do ^rgm "can anyone remember the syntax for adding columns to a migration?  i can't"  "so the point of this script is to replace $smartalec with a small shell script"

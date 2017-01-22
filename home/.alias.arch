@@ -1,0 +1,6 @@
+alias pmi='yaourt -S'
+alias pmls='yaourt -Qe'
+alias pms='yaourt -Ss'
+alias pmr='yaourt -R'
+alias pmu='yaourt -Syy'
+alias pmug='yaourt -Syu'
