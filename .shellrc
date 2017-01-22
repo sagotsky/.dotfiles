@@ -5,7 +5,7 @@ export PATH="$HOME/.rbenv/bin:$PATH:/usr/lib/postgresql/9.3/bin/"
 if ! [[ "$PATH" =~ rbenv/shims ]] ; then
   eval "$(rbenv init --no-rehash -)"
   (rbenv rehash &) 2> /dev/null
-fi 
+fi
 export PATH="$HOME/.rbenv/shims:$PATH"
 
 ## Nice defaults
@@ -14,7 +14,7 @@ export CVS_RSH='ssh'
 export PAGER='less'
 export LESS='-R -j4 -i'  # color for less, search results show on second line, case insensitive
 export VIMRUNTIME=$(find /usr/share/vim/vim* -maxdepth 0 -type d | sort -r | head -n 1)
-export GREP_OPTIONS='--color=auto'
+# export GREP_OPTIONS='--color=auto'
 
 # color manpages for less
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # gmail-count.sh
-# 
+#
 # Displays mail count or just a dot when you have unread mail in
 # gmail.  This uses a cookie exported from firefox (see cookies exporter)
-# instead of a file with your password.  
+# instead of a file with your password.
 
 # there can be only one
 pidof -x $0 | sed -e "s/$$//" | xargs kill 2>/dev/null
@@ -20,10 +20,10 @@ while [ -f ~/.gmail-cookies.txt ] ; do
   if [[ $ERROR != '' ]] ; then
     MSG='[?]';
     SLEEP='1m';
-  else 
+  else
     COUNT=$(echo $CURL | grep '<entry>' | wc -l)
 
-    if [[ $COUNT != '0' ]] ; then
+    if [[ "$COUNT" != '0' ]] ; then
       MSG=' •' #echo "[$COUNT]"
       SLEEP='1m';
     fi
@@ -32,3 +32,6 @@ while [ -f ~/.gmail-cookies.txt ] ; do
   echo "$MSG"
   sleep $SLEEP
 done
+
+echo "~/.gmail-cookies.txt does not exist.  Please export it from firefox."
+exit 1

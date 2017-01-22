@@ -20,6 +20,7 @@ bindkey -s '\e?'    "cat ~/.zsh_rails \n"
 
 alias irb='pry'
 alias rails='bundle exec rails'
+alias rake='bundle exec rake'
 
 
 # let's experiment a bit...
@@ -55,9 +56,9 @@ eval "`bind_key_cmd_hint 'rgc' 'rails g controller'   'rails g controller NAME a
 eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task' 'rails g one_off_task NAME'`"
 
 function tddium_wait() {
-  if [[ $# == 0 ]] ; then 
+  if [[ $# == 0 ]] ; then
     BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-  else 
+  else
     BRANCH=$1
   fi
 

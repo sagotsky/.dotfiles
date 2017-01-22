@@ -1,5 +1,5 @@
 if has('vim_starting')
-  set nocompatible    
+  set nocompatible
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
@@ -40,6 +40,7 @@ if isdirectory($HOME."/.rbenv")
   Plug 'haml/haml-contrib'                 " haml syntax highlighting
   Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
   Plug 'sagotsky/vim-turbux'               " tmux -> rails testing
+  " Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
   Plug 'benmills/vimux'                    " tmux -> rails testing
   Plug 'mtscout6/vim-cjsx'                 " cjsx highlighting
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts

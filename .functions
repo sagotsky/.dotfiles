@@ -1,16 +1,16 @@
 ###functions
 
-#ls which does ls -lh on result of which.  useful if /usr/bin/$BINARY is a symlink 
-function lw() { 
-	 if [ $# -gt 1 ] ; then 
-	    for bin in $@ ; do lw $bin ; done 
+#ls which does ls -lh on result of which.  useful if /usr/bin/$BINARY is a symlink
+function lw() {
+	 if [ $# -gt 1 ] ; then
+	    for bin in $@ ; do lw $bin ; done
      elif [ $# -gt 0  ] ; then
        bin=$(which $1)
        [[ "$?" == "0" && -e "$bin" ]] && ls -lh "$bin"
        [[ -L "$bin" ]] && lw $(readlink $bin) || true
-	 else 
+	 else
 	    echo "lw (ls which) requires more than 0 arguments"
-	 fi  
+	 fi
 }
 
 #make a dir, cd into it
@@ -22,8 +22,8 @@ function mkcd() {
 
 # extract archives.  should handle multiple files.
 function x() {
-	 case $@ in 
-	     *.tar.bz2)		tar -xvjf "$@"	;;	
+	 case $@ in
+	     *.tar.bz2)		tar -xvjf "$@"	;;
 	     *.tar.gz)		tar -xvzf "$@"	;;
        *.tar.lzma)    tar -xvf "$@" ;;
 	     *.bz2)		bunzip2 "$@"	;;
@@ -48,14 +48,14 @@ function pack() {
 	    echo -e "\npack() usage:"
 	    echo -e "\tpack archive_file_name file1 file2 ... fileN"
 	    echo -e "\tcreates archive of files 1-N\n"
-	 else 
+	 else
 	   DEST=$1
 	   shift
 
-	   case $DEST in 
-		*.tar.bz2)		tar -cvjf $DEST "$@" ;;  
-		*.tar.gz)		tar -cvzf $DEST "$@" ;;  
-		*.tgz)  		tar -cvzf $DEST "$@" ;;  
+	   case $DEST in
+		*.tar.bz2)		tar -cvjf $DEST "$@" ;;
+		*.tar.gz)		tar -cvzf $DEST "$@" ;;
+		*.tgz)  		tar -cvzf $DEST "$@" ;;
 		*.zip)			zip -r $DEST "$@" ;;
 		*.xpi)			zip -r $DEST "$@" ;;
         *.7z)           7z a $DEST "$@" ;;
@@ -111,14 +111,14 @@ function roll() {
         fi
 
         SUM=0
-        for i in `seq $NUM` ; do 
+        for i in `seq $NUM` ; do
             # seq 1 $TYPE | shuf -n 1
             ROLL=$(( $RANDOM%$TYPE + 1 ))
             echo $ROLL
             SUM=$(( $SUM + $ROLL ))
         done
-        
-        echo 
+
+        echo
         echo "=> $SUM"
     fi
 
@@ -135,7 +135,7 @@ function nosleep() {
 function dec2base() {
     if [ $# -ne 2 ] ; then
         echo -e "\nUsage: dec2base number base.\n"
-    else 
+    else
         echo "$1 $2 o p " | dc
     fi
 }
@@ -152,7 +152,7 @@ function rep() {
   if [[ $N =~ ^[0-9]*$ ]] ; then
     shift
     for n in `seq $N` ; do $* ; done
-  else 
+  else
     while true ; do $* ; done
   fi
 }
@@ -162,14 +162,14 @@ function rep_til_failure() {
 }
 
 for n in `seq 9` ; do alias $n="rep $n " ; done
-alias ..='cd ..' # stupid, but I like chaining it to the rep numbers.  
+alias ..='cd ..' # stupid, but I like chaining it to the rep numbers.
 
 #for f in "cd" ; do export $f ; done
 
 # prints color codes for use in tmux and vim
 #function colors() {
-  #for i in {0..255} ; do     
-    #printf "\x1b[38;5;${i}mcolour${i}\n"; 
+  #for i in {0..255} ; do
+    #printf "\x1b[38;5;${i}mcolour${i}\n";
   #done | less
 #}
 
@@ -201,8 +201,8 @@ function hl() {
 
 function assert_ssh_agent() {
   if [ -z "${SSH_AGENT_PID+xxx}" ] ; then
-    false 
-  else 
+    false
+  else
     true
   fi
 }
@@ -281,4 +281,11 @@ function file-write-do {
 nth() {
   N=${1:-1}
   awk "{print \$$N}"
+}
+
+# link a bin without knowing its full path
+function lnbin() {
+  bin=$1
+  shift
+  ln -s $(which $bin) $@
 }

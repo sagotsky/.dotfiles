@@ -5,10 +5,8 @@ nnoremap <leader>b          :CtrlPBuffer <cr>
 nnoremap <leader>r          :CtrlPMRU<cr>
 nnoremap <leader>f          :CtrlPFunky<cr>
 nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
-"nnoremap <leader>/          :Ag 
-"nnoremap <leader>?          :Ag <cword> <cr>
-nnoremap <leader>/          :Grepper -tool ag -open -switch <cr> 
-nnoremap <leader>?          :Grepper -tool ag -open -switch -cword -noprompt<cr> 
+nnoremap <leader>/          :Grepper -tool ag -open -switch <cr>
+nnoremap <leader>?          :Grepper -tool ag -open -switch -cword -noprompt<cr>
 nnoremap <leader>nt         :tabnew<cr>
 nnoremap <leader>NT         :tabnew %<cr>
 
@@ -38,8 +36,10 @@ map <leader>S :so ~/.vimrc<cr>
 nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
 "noremap <ENTER> : this is fucked up in quickfix
 
-:com! Sudow !sudo tee %	
+" neovim's parses ^h as backspace, so bind bakcspace to pane left.
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+:com! Sudow !sudo tee %
 :com! W w
 :com! Q q
-:com! Bd bd 
+:com! Bd bd
 :com! Ebranch args `git ls-branch`

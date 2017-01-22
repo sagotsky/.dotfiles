@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 [[ "$#" == "1" ]] && cd "$1"
 st="$(~/.zsh/plugins/zsh-git-prompt/gitstatus.py)"
@@ -19,4 +19,4 @@ done
   [[ $changed != '0' ]]   && echo "+$changed"
   [[ $untracked != '0' ]] && echo "…"
   [[ $clean == '1' ]]     && echo " " #"✓"
-) | tr -d "\n" 
+) | tr -d "\n"
