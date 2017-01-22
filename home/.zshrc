@@ -70,15 +70,16 @@ function prompt_color {
   STATUS="$?"
   COLOR="%{$reset_color%}"
 
-  [[ "$STATUS" -gt 0 ]] &&  COLOR="%{$fg[red]%}"     # red on error
+  # this is getting echoed...
+  [[ "$STATUS" -gt 0 ]] &&  COLOR="%F{red}"     # red on error
   [[ "$(sudo -n /bin/true 2> /dev/null ; echo $?)" == 0 ]] && COLOR="$COLOR%U" # underline on sudo
-  [[ "${UID}" -eq "0" ]] && COLOR="%{$fg[white]%}%{$bg[red]%}"   # big bold label on root
 
   echo $COLOR
 }
 
 function reset_color {
-  echo "%{$reset_color%}"
+  # echo "%{$reset_color%}"
+  echo "%F{white}"
 }
 
 # commands that take more than 30s to complete get a visual bell
@@ -100,7 +101,8 @@ PROMPT="\$(prompt_color)$PROMPT\$(reset_color) \$(git_super_status)$ " # git inf
 # TODO - bell if this term's owner isn't on current screen.  long running procs will always bell when done.  xprop could get ugly (xterm -> tmux -> vim), but maybe setting a global var on init would be cleaner?
 
 
-ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
+# TODO: add a bunch more of these
+ZSH_THEME_GIT_PROMPT_BRANCH="%F{cyan}"
 # maybe add functions escaped and then sed them up into $()
 
 # Show pretty background jobs list unless empty
