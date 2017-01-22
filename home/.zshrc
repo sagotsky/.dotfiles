@@ -13,6 +13,8 @@ setopt NO_HUP   # don't kill running processes when exiting the shell
 
 setopt histignorealldups sharehistory
 
+setopt PROMPT_SUBST
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
@@ -71,7 +73,7 @@ function prompt_color {
   [[ "$STATUS" -gt 0 ]] &&  COLOR="%{$fg[red]%}"     # red on error
   [[ "$(sudo -n /bin/true 2> /dev/null ; echo $?)" == 0 ]] && COLOR="$COLOR%U" # underline on sudo
   [[ "${UID}" -eq "0" ]] && COLOR="%{$fg[white]%}%{$bg[red]%}"   # big bold label on root
-  
+
   echo $COLOR
 }
 
@@ -89,7 +91,7 @@ function preexec() {
 function precmd() {
   if [ ! -z $_SECONDS_BEFORE ] ; then
     [ $(( $SECONDS - ${_SECONDS_BEFORE} )) -gt 30 ] && echo -e "\a"
-  fi 
+  fi
 }
 
 PROMPT="%n@%m:%~"                       # user@host:~
@@ -108,7 +110,7 @@ function _rprompt_jobs {
 function _rprompt_git_stash {
   git status 2>/dev/null && echo "|$(git stash list | tail -n 1  | cut -f1 -d:)"
 }
-RPROMPT='%(1j.$( _rprompt_jobs ).)' #$( _rprompt_git_stash )' 
+RPROMPT='%(1j.$( _rprompt_jobs ).)' #$( _rprompt_git_stash )'
 #RPROMPT="%F{54}$RPROMPT%f"
 
 ## Source some configs (.local files don't go in git)
@@ -120,7 +122,7 @@ fi
 
 
 export NVM_DIR="/home/sagotsky/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" &>/dev/null 
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" &>/dev/null
 
 
 if [[ "$ZSH_PROFILING" != "" ]] ; then
