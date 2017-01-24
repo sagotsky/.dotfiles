@@ -6,10 +6,11 @@ BODY=$3
 ICON=$4
 URGENCY=$5
 
+echo "$APP\n$SUMMARY\n$BODY\n$ICON\n$URGENCY\n" >> /tmp/dunst.log
 
 case $APP in
   'Electron') # slack's official client
-    #flag-urgent.sh Slack & 
+    #flag-urgent.sh Slack &
     case $SUMMARY in
       '#robothouse') ;;
       '#jira') ;;
@@ -31,14 +32,13 @@ case $APP in
     esac
   ;;
 
-  'Spotify') 
-    music-client.sh bandsong >> /tmp/dunst.log
-    music-client.sh bandsong > ~/.music.out &
+  'Spotify')
+    music-client.sh bandsong >> ~/.music.out &
     ;;
 esac
 
 case $SUMMARY in
-  cmus) 
+  cmus)
     music-client.sh bandsong > ~/.music.out &
     ;;
 

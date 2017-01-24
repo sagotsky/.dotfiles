@@ -5,7 +5,7 @@
 
 [global]
     always_run_script = true
-    font = fixed 8
+    font = fixed 16
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -17,7 +17,7 @@
     # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
     # If markup is not allowed, those tags will be stripped out of the
     # message.
-    allow_markup = yes 
+    allow_markup = yes
 
     # Treat incoming notifications as plain text
     plain_text = yes
@@ -223,7 +223,7 @@
   body = *sagotsky*
   urgency = normal
 
-# will multiple matches all fire?  could scudcloud highlight for text matches ie, $user 
+# will multiple matches all fire?  could scudcloud highlight for text matches ie, $user
 [scudcloud]
   appname = "ScudCloud Slack_SSB"
   script = dunst-script.sh
@@ -248,7 +248,7 @@
   script = dunst-script.sh
   format = ""
   timeout = 1
-  
+
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
