@@ -1,30 +1,29 @@
--- Config { font = "xft:Verdana:size=10,Font Awesome:size=10" # TODO: use font awesome as fallback.  get rid of icons.
+-- Config { template = "%StdinReader%" }
+Config {
+  font = "xft:Verdana:size=10,Font Awesome:size=10" -- TODO: use font awesome as fallback.  get rid of icons.
+    -- font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+    , bgColor = "black"
+    , fgColor = "dimgray"
+    -- , alpha = 200
+    , position = TopW L 100
+    , lowerOnStart = True
+    , border = BottomBM 0
+    , borderColor = "#777"
+    , iconRoot = "/home/sagotsky/.xmobar/"
 
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , bgColor = "black"
-       , fgColor = "dimgray"
-       -- , alpha = 200
-       , position = TopW L 100
-       , lowerOnStart = True
-       , border = BottomBM 0
-       , borderColor = "#777"
-       , iconRoot = "/home/sagotsky/.xmobar/"
-       , commands = [ Run MultiCpu ["-t", "<icon=cpu.xbm/> <total>%", "-L","75","-H","90","--normal","white","--high","red"] 10
-                    , Run Memory ["-t","<icon=mem.xbm/> <usedratio>%","-L","75","-H","90","--normal","white","--high","red"] 10
-                    , Run Date "%m.%d %I:%M" "date" 10
-                    , Run StdinReader
-                    , Run PipeReader "/home/sagotsky/.music.out" "music"
-                    , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
-                    , Run CommandReader "/home/sagotsky/scripts/gmail-count.sh" "mail"
-                    , Run CommandReader "/home/sagotsky/scripts/watch-git.sh" "git"
-                    , Run Com "/home/sagotsky/scripts/wifi-monitor.sh" [] "wifi" 60
-                    , Run Com "/home/sagotsky/scripts/lpq-xmobar.sh" [] "printer" 300
-                    , Run Com "/home/sagotsky/scripts/battery.sh" [] "battery" 300
-                    ]
-       , sepChar = "%"
-       , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>| %printer% %wifi% ♫ %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=yellowgreen>%mail%</fc>"
-       }
-
-       }
-       -- TODO: audio state icons.  speaker, headphone, mute
+    , commands = [ Run MultiCpu ["-t", "<icon=cpu.xbm/> <total>%", "-L","75","-H","90","--normal","white","--high","red"] 10
+    , Run Memory ["-t","<icon=mem.xbm/> <usedratio>%","-L","75","-H","90","--normal","white","--high","red"] 10
+    , Run Date "%m.%d %I:%M" "date" 10
+    , Run StdinReader
+    , Run PipeReader "/home/sagotsky/.music.out" "music"
+    , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
+    , Run CommandReader "/home/sagotsky/scripts/gmail-count.sh" "mail"
+    , Run CommandReader "/home/sagotsky/scripts/watch-git.sh" "git"
+    , Run Com "/home/sagotsky/scripts/wifi-monitor.sh" [] "wifi" 60
+    , Run Com "/home/sagotsky/scripts/lpq-xmobar.sh" [] "printer" 300
+    , Run Com "/home/sagotsky/scripts/battery.sh" [] "battery" 300
+    ]
+    , sepChar = "%"
+    , alignSep = "}{"
+    , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>|  %wifi% %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=yellowgreen>%mail%</fc>"
+}

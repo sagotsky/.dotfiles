@@ -8,7 +8,7 @@ import Data.Traversable (traverse)
 import Data.Maybe (listToMaybe, maybeToList)
 import Data.List ( (\\) )
 
-import Text.Regex.XMLSchema.String
+-- import Text.Regex.XMLSchema.String
 import XMonad.Operations
 import XMonad.Config
 import XMonad.Util.Run
@@ -38,7 +38,7 @@ import XMonad.Actions.CycleWS
 myTerminal            = "x-terminal-emulator"
 myBorderWidth         = 1
 myModMask             = mod4Mask
-myWorkspaces          = ["web-1", "music-2", "email-3", "term-4", "chat-5", "ide-6", "7", "8", "9", "0"]
+myWorkspaces          = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
 myNormalBorderColor   = "#222233"
 myFocusedBorderColor  = "#cfb000"
 myUrgentBorderColor   = "#ff5500"
@@ -77,19 +77,19 @@ myManageHook =  composeAll
     , className =? "Screenkey"                       --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
-    , className =? "Firefox"                          --> doShift "web-1"
-    , className =? "Rhythmbox"                        --> doShift "music-2"
-    , className =? "spotify"                          --> doShift "music-2"
-    , className =? "Spotify"                          --> doShift "music-2"
-    , resource =? "cmus"                              --> doShift "music-2"
-    , className =? "Thunderbird"                      --> doShift "email-3"
-    , className =? "Pidgin"                           --> doShift "chat-5"
-    , className =? "Scudcloud"                        --> doShift "chat-5"
-    , className =? "Slack"                            --> doShift "chat-5"
-    , className =? "xterm-mail"                       --> doShift "email-3"
-    , className =? "Zend Studio"                      --> doShift "ide-6"
-    , className =? "Sublime_text"                     --> doShift "ide-6"
-    , className =? "Steam"                            --> doShift "0"
+    , className =? "Firefox"                          --> doShift "I"
+    , className =? "Rhythmbox"                        --> doShift "II"
+    , className =? "spotify"                          --> doShift "II"
+    , className =? "Spotify"                          --> doShift "II"
+    , resource =? "cmus"                              --> doShift "II"
+    , className =? "Thunderbird"                      --> doShift "III"
+    , className =? "Pidgin"                           --> doShift "V"
+    , className =? "Scudcloud"                        --> doShift "V"
+    , className =? "Slack"                            --> doShift "V"
+    , className =? "xterm-mail"                       --> doShift "III"
+    , className =? "Zend Studio"                      --> doShift "VI"
+    , className =? "Sublime_text"                     --> doShift "VI"
+    , className =? "Steam"                            --> doShift "X"
 
     , isFullscreen --> doFullFloat
     ]
@@ -109,19 +109,26 @@ main = do
                defaultConfig <+> fullscreenEventHook
              ,manageHook = manageDocks <+> myManageHook
                            <+> manageHook defaultConfig
-             ,logHook = dynamicLogWithPP $ xmobarPP
              -- http://www.alanwood.net/demos/wgl4.html special chars
+             ,logHook = dynamicLogWithPP $ xmobarPP
                { ppOutput = hPutStrLn xmproc
                  , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
-                 , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"    --- should urget be semi random?  ie #ddd-fff fluctuating or throbbing?  might be a good haskell excersie
-                 , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
-                 , ppVisible = xmobarColor "#a83300" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
-                 , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
-                 , ppLayout  = xmobarColor "#888888" "" . wrap "" ""
-                 , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
+                 , ppCurrent = xmobarColor "#ec5500" ""
+                 , ppVisible = xmobarColor "#ec5500" ""
+                 , ppUrgent = xmobarColor "#ffffff" ""
+                 , ppHidden =     xmobarColor "#444444" ""
+                 , ppLayout  = xmobarColor "#888888" ""
+                 , ppHiddenNoWindows =     xmobarColor "#222222" ""
                  , ppSep =  " "
-                 , ppExtras = [ logTitles ]
-                 , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
+
+                 -- , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
+                 -- , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"    --- should urget be semi random?  ie #ddd-fff fluctuating or throbbing?  might be a good haskell excersie
+                 -- , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
+                 -- , ppVisible = xmobarColor "#a83300" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
+                 -- , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
+                 -- , ppLayout  = xmobarColor "#888888" "" . wrap "" ""
+                 -- , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
+                 -- , ppExtras = [ logTitles ]
                  --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" ""
                  --Current      workspace with focus
                  --Visible      displayed workspace without focus
@@ -199,7 +206,7 @@ myKeys = [
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
     -- WM Shortcuts
-    , ("M-x",   spawn "dmenu_run -b -i -s 0 ") -- $path launcher
+    , ("M-x",   spawn "dmenu_run -b -i -m 0 ") -- $path launcher
     , ("M-S-x", spawn "$(xdmenug.py)") -- xdg-menu launch
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
@@ -212,8 +219,8 @@ myKeys = [
     , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
     , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
     , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ; dzen-clear.sh") -- show panel
-    , ("M-0",   windows $ W.greedyView "0")  -- workspace 0
-    , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
+    , ("M-0",   windows $ W.greedyView "X")  -- workspace 0
+    , ("M-S-0", (windows $ W.shift "X") >> (windows $W.greedyView "X")) -- shift window to WS 0
     , ("M-;",   spawn "cheese.sh") -- center mouse on active window
     , ("M-S-q", return ()) -- don't you fucking quit.  that's what ctrl-alt-backsp is for.
 
@@ -262,7 +269,5 @@ myShowWName = showWName' defaultSWNConfig
   -- . traverse (fmap show . getName) -- show window names
   -- .  tail . W.index -- all windows except master
 
-logTitles :: X (Maybe String) -- this is a Logger
-logTitles = withWindowSet $ fmap (Just . unwords) -- fuse window names
-  . traverse (fmap show . getName) -- show window names
-  . (\ws -> W.index ws \\ maybeToList (W.peek ws))
+-- logTitles :: X (Maybe String) -- this is a Logger
+-- logTitles = withWindowSet $ fmap (Just . unwords) -- fuse window names
