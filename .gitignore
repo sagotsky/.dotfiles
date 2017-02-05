@@ -1,7 +1,7 @@
 !.cmus/*.theme
 !.ssh/authorized_keys
 !.ssh/config
-!.xmonad/xmonad.hs
+!home/.xmonad/xmonad.hs
 *.pyc
 *.sublime-project
 *.sublime-workspace
@@ -11,18 +11,18 @@
 .ssh/*
 
 tags
-.vim/.netrwhist
-.vim/autoload/*
-.vim/plugin/*
-.vim/bundle/*
-.vim/plugged/*
+home/.vim/.netrwhist
+home/.vim/autoload/*
+home/.vim/plugin/*
+home/.vim/bundle/*
+home/.vim/plugged/*
 
-.nvim/.netrwhist
-.nvim/autoload/*
-.nvim/plugin/*
-.nvim/bundle/*
-.vimperator/info/*
-.xmonad/*
+home/.nvim/.netrwhist
+home/.nvim/autoload/*
+home/.nvim/plugin/*
+home/.nvim/bundle/*
+home/.vimperator/info/*
+home/.xmonad/*
 
 scripts/fmarks/*
 scripts/local/*
