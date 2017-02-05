@@ -79,7 +79,7 @@ function prompt_color {
 
 function reset_color {
   # echo "%{$reset_color%}"
-  echo "%F{white}%u"
+  echo "%F{white}%u%b"
 }
 
 # commands that take more than 30s to complete get a visual bell
