@@ -1,4 +1,4 @@
-!.cmus/*.theme
+home/!.cmus/*.theme
 !.ssh/authorized_keys
 !.ssh/config
 !home/.xmonad/xmonad.hs
@@ -6,7 +6,7 @@
 *.sublime-project
 *.sublime-workspace
 *.swp
-.cmus/*
+home/.cmus/*
 .pentadactyl/info
 .ssh/*
 
