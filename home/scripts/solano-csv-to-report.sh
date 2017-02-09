@@ -5,7 +5,12 @@ if [[ "$#" == "0" ]] ; then
   exit 1
 fi
 
-which solano || gem install solano
+if  ! which solano &>/dev/null  ; then
+  echo "please install solano gem"
+  echo "gem install solano"
+  echo "solano login"
+  exit 1
+fi
 
 cat $1 |
   cut -f 4 -d\" |
