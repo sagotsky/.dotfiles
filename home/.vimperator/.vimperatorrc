@@ -5,24 +5,24 @@ let mapleader=","
 set titlestring=''
 set defsearch=google
 set gui=none
-" set complete=slbh 
-js services.services.autoCompleteSearch.class_="@mozilla.org/autocomplete/search;1?name=unifiedcomplete" 
+" set complete=slbh
+js services.services.autoCompleteSearch.class_="@mozilla.org/autocomplete/search;1?name=unifiedcomplete"
 " fix autocomplete https://github.com/vimperator/vimperator-labs/issues/613
 
 """ Command keys
 
-noremap ZZ  zz 
+noremap ZZ  zz
 noremap j   5j
 noremap k   5k
-noremap s   og 
-noremap <leader>t :b 
+noremap s   og
+noremap <leader>t :b
 
 """ Custom command keys
 
 " rc reading, loading
 noremap <leader>s :rc <cr>
 noremap <leader>S :sorc <cr>
-"noremap <leader>g :togglegui <cr>
+noremap <leader><leader> :togglegui <cr>
 
 " dialog shortcuts
 noremap <Leader>db :dialog bookmarks<cr>
@@ -37,7 +37,7 @@ com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
 com! sorc   so ~/.vimperatorrc
 
 " rename a tab (not sticky though)
-command! tabrename -description "Rename this tab" -nargs=? javascript content.document.title = "<args>"; 
+command! tabrename -description "Rename this tab" -nargs=? javascript content.document.title = "<args>";
 
 " send to other browsers
 command! chrome -description 'Open page in chrome' -nargs=0 execute "!google-chrome '" + content.location + "' &> /dev/null &"
@@ -47,11 +47,11 @@ command! luakit -description 'Open page in luakit' -nargs=0 execute "!luakit '" 
 " send to pocket bookmarklet
 
 " display all or no gui.  (for the wife)
-command! togglegui -nargs=0 javascript togglegui()                
-command! annotate -nargs=+ javascript vimp_annotate("<args>")     
+command! togglegui -nargs=0 javascript togglegui()
+command! annotate -nargs=+ javascript vimp_annotate("<args>")
 command! annotateresolution -nargs=0 javascript vimp_annotate_resolution()
-command! passkeys -nargs=+ javascript vimp_passkeys("<args>")    
-command! formulate -nargs=0 javascript vimp_formulate()         
+command! passkeys -nargs=+ javascript vimp_passkeys("<args>")
+command! formulate -nargs=0 javascript vimp_formulate()
 command! jq -nargs=+ javascript exec_with_jquery("<args>")
 
 javascript <<EOF
@@ -62,18 +62,18 @@ javascript <<EOF
 
   function togglegui() {
     liberator.globalVariables.gui = (liberator.globalVariables.gui == 'none' || typeof(liberator.globalVariables.gui) == 'undefined') ? 'menu,navigation,tabs' : 'none'
-    liberator.execute('set gui=' + liberator.globalVariables.gui) 
+    liberator.execute('set gui=' + liberator.globalVariables.gui)
   }
 
   function vimp_formulate() {
     nl = content.document.querySelectorAll('input[type=radio]')
 
-    radio_groups = Array.prototype.slice.call(nl).reduce( function(ret, val) { 
+    radio_groups = Array.prototype.slice.call(nl).reduce( function(ret, val) {
       if (typeof(ret[val.name]) == 'undefined') {
         ret[val.name] = [];
-      } 
+      }
       ret[val.name].push(val.id);
-      return ret; 
+      return ret;
     }, {})
 
     for (name in radio_groups) {
@@ -114,7 +114,7 @@ javascript <<EOF
       elem.style.top  = e.clientY + content.window.pageYOffset - elem.offsetHeight  + 'px';
     }
 
-    try { 
+    try {
       body.addEventListener('click', keep_annotation);
       body.addEventListener('mousemove', move_annotation);
 
@@ -125,15 +125,15 @@ javascript <<EOF
       body.appendChild(elem);
       //body.removeEventListener('click', annotate)   ;
     } catch (err) { // bail out before altering cursor
-      alert(err.toSource()); 
-      return; 
-    } 
+      alert(err.toSource());
+      return;
+    }
   }
 
   function vimp_annotate_resolution() {
     dims = window.innerWidth + 'x' +  window.innerHeight
-    vimp_annotate(dims) 
-    //,{location: bottom right}, css: 
+    vimp_annotate(dims)
+    //,{location: bottom right}, css:
   }
 
   function vimp_annotate_text_node(text, style) {
@@ -145,7 +145,7 @@ javascript <<EOF
   }
 EOF
 
-"Todo: 
+"Todo:
 "   js - javascript with automatic alert/content.conole.log/echo/overlay
 "   annotation
 "     * add dom node immediately, but transparent.  have it follow mouse.  then
