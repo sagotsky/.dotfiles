@@ -8,7 +8,7 @@ au BufNewFile,BufRead .functions     set filetype=sh
 au BufNewFile,BufRead .alias         set filetype=sh
 au BufNewFile,BufRead *.conf         set filetype=sh
 
-au BufRead,BufNewFile *.md           set filetype=mkd
+au BufRead,BufNewFile *.md           set filetype=markdown
 
 au BufRead,BufNewFile *.install      set filetype=php
 au BufRead,BufNewFile *.drush        set filetype=php
