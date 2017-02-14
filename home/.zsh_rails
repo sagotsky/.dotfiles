@@ -55,7 +55,8 @@ eval "`bind_key_cmd_hint 'rgm' 'rails g migration'    'rails g migration AddPart
 eval "`bind_key_cmd_hint 'rgc' 'rails g controller'   'rails g controller NAME action action action '`"
 eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task' 'rails g one_off_task NAME'`"
 
-function tddium_wait() {
+alias tddium_wait=solano_wait
+function solano_wait() {
   if [[ $# == 0 ]] ; then
     BRANCH="$(git rev-parse --abbrev-ref HEAD)"
   else
@@ -63,7 +64,7 @@ function tddium_wait() {
   fi
 
   echo "waiting for $BRANCH"
-  while tddium status --no-json | grep $BRANCH | grep running ; do
+  while solano status --no-json | grep $BRANCH | grep running ; do
     sleep 60
   done
 }
