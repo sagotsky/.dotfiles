@@ -1,15 +1,33 @@
 #!/bin/bash
 
-# hidpi laptop screen
+EXTERN="DP-3.2"
+EXTERN_SCALE="2x2"
+EXTERN_ON='auto'
+
+INTERN="DP-4"
+INTERN_POS="--left-of $EXTERN"
+INTERN_DPI="160"
+
+MODE=$1
+case $MODE in
+  solo)
+    EXTERN_ON='off'
+    ;;
+  clone)
+    # todo: find a better resolution or disable scaling.
+    INTERN_POS=''
+    ;;
+esac
+
 xrandr \
-  --output DP-4 \
+  --output $INTERN\
     --primary \
-    --dpi 160 \
-    --left-of DP-3.2 \
-  --output DP-3.2 \
-    --scale 2x2     # scale external display
+    --dpi $INTERN_DPI\
+    $INTERN_POS \
+    --auto \
+  --output $EXTERN \
+    --$EXTERN_ON \
+    --scale $EXTERN_SCALE
 
 
-# geography
-# xrandr --output DP-4 --below DP-3.2
 xbacklight -set 75
