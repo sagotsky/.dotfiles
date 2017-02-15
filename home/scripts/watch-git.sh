@@ -6,12 +6,18 @@ DIR=~/repos/plm-website
 
 # kill leftover inotifywaits
 #ps ax | grep "inotifywait.*$DIR" | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill
+there-can-be-only-one.sh
 
-echo $(git-super-status.sh $DIR)
+git_branch() {
+  git -C $DIR branch | grep \* | cut -f2 -d' '
+}
+
+git_branch
 
 while [ $? -eq 0 ] && [ -x /usr/bin/inotifywait ] ; do
   inotifywait -r "$DIR/.git/" -e MODIFY &> /dev/null
   sleep .2
-  echo $(git-super-status.sh $DIR)
+
+  git_branch
   sleep 1
 done
