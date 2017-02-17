@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# WIFI=wlan
+WIFI="wlp4s0"
+
 function signal() {
-  grep wlan /proc/net/wireless | awk '{print $3*100/70}' | cut -f 1 -d'.'
+  grep $WIFI /proc/net/wireless | awk '{print $3*100/70}' | cut -f 1 -d'.'
 }
 
 function essid() {
-  nmcli d | grep connected | grep wlan | awk '{print $4}'
+  iwconfig 2>/dev/null | grep $WIFI | cut -f 2 -d\"
 }
 
 [[ "$(signal)" -lt 60 ]] && echo "<fc=red><icon=wifi.xbm/> $(signal)%</fc>" || echo ''
