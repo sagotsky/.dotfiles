@@ -96,7 +96,7 @@ myManageHook =  composeAll
 
 main = do
   xmproc <- spawnPipe "xmobar"
-  xmonad $ withUrgencyHook NoUrgencyHook
+  xmonad $ docks $ withUrgencyHook NoUrgencyHook
        $ ewmh defaultConfig
              {terminal = myTerminal
              ,borderWidth = myBorderWidth
