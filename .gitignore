@@ -17,6 +17,7 @@ home/.vim/plugin/*
 home/.vim/bundle/*
 home/.vim/plugged/*
 
+config/nvim/.netrwhist
 home/.nvim/.netrwhist
 home/.nvim/autoload/*
 home/.nvim/plugin/*
