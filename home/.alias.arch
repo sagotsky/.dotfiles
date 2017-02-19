@@ -1,3 +1,7 @@
+export NOCONFIRM=0
+export BUILD_NOCONFIRM=1
+export EDITFILES=0
+
 alias pmi='yaourt -S'
 alias pmls='yaourt -Qe'
 alias pms='yaourt -Ss'

@@ -25,12 +25,13 @@ nnoremap <leader>gP         :Git pp<cr>
 nnoremap ]l                 :lnext<cr>
 nnoremap [l                 :lprevious<cr>
 
+" Y copies to x11 clipboard
+vnoremap Y  "+y
+
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
 map <F8> :set invnumber<CR>
-map <F9> :NERDTreeToggle<cr>
-map <F9><F9> :NERDTreeFind<cr>
-"map <leader><leader> :NERDTreeFind<cr>
+
 map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
 nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
@@ -42,4 +43,3 @@ nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 :com! W w
 :com! Q q
 :com! Bd bd
-:com! Ebranch args `git ls-branch`

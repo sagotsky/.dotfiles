@@ -25,5 +25,5 @@ Config {
     ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = "%StdinReader% }{ <fc=dimgray>%git%</fc>|  %wifi% %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=yellowgreen>%mail%</fc>"
+    , template = "%StdinReader% }{ <fc=dimgray>%git%</fc> | %wifi% %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=yellowgreen>%mail%</fc>"
 }

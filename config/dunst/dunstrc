@@ -249,6 +249,11 @@
   format = ""
   timeout = 1
 
+[minitest]
+  appname = "notify-send"
+  summary = "Minitest results"
+  format = ""
+
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
