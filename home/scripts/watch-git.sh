@@ -3,6 +3,7 @@
 # watch a git dir.  echo its branch
 
 DIR=~/repos/plm-website
+[[ -d "$DIR" ]] || (echo && exit)
 
 # kill leftover inotifywaits
 #ps ax | grep "inotifywait.*$DIR" | sed -e 's/^ *//' | cut -f1 -d' ' | xargs kill

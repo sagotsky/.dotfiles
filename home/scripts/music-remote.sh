@@ -10,9 +10,9 @@
 MENU=''
 declare -A KEYS
 
-# read in commands.  hash comments are the message that gets displayed.  comments with a 
-# char in parens will have that char bound to a key.  
-while read line ; do 
+# read in commands.  hash comments are the message that gets displayed.  comments with a
+# char in parens will have that char bound to a key.
+while read line ; do
   MSG=${line##*#}
   CMD=${line%%#*}
   KEY=$(echo $MSG | sed -e 's/.*(\(.\)).*/\1/')
@@ -31,15 +31,17 @@ cmus-filter.sh --randomize --list album    # (z) rand album
 cmus-filter.sh --list album       # (l) choose album
 cmus-filter.sh --list artist      # (a) choose artist
 cmus-filter.sh --list song        # (s) choose song
+
+exit # (q) quit
 EOF
 
-while : ; do 
+while : ; do
   CMD="${KEYS[$key]}"
   [[ "$CMD" != "" ]] && $CMD
 
-  clear 
+  clear
   music-client.sh bandsong
   echo -e $MENU
-  
-  read -s -N1 key 
+
+  read -s -N1 key
 done

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # front end to whatever music player is currently playing
+export DISPLAY=$(cat ~/.display)
 
 APPS=('rhythmbox' 'nuvolaplayer' 'cmus' 'spotify')
 CMDS=('volup' 'voldown' 'mute' 'play' 'pause' 'back' 'stop' 'toggle' 'status' 'bandsong') # rate1-5 (thumbs up or down depending on value?)
