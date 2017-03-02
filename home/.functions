@@ -158,7 +158,12 @@ function rep() {
 }
 
 function rep_til_failure() {
-  while $* ; do : ; done
+  REP_COUNT=0
+  while $* ; do
+    REP_COUNT=$(( REP_COUNT + 1 ))
+    echo -e "\n\e[7m[ rep #${REP_COUNT} at $(date) ]\e[27m\n"
+  done
+  echo -e "\n\e[7m[ rep #${REP_COUNT} at $(date) ]\e[27m\n"
 }
 
 for n in `seq 9` ; do alias $n="rep $n " ; done
