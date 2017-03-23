@@ -25,7 +25,7 @@ margin-bottom = 0
 monitor = ${env:MONITOR:DP-4}
 width = 100%
 ; height = 60
-height = 27
+height = 36
 offset-x = 0
 offset-y = 0
 
@@ -57,13 +57,13 @@ modules-center = xwindow
 ; modules-right = volume memory cpu wlan battery tray date gmail
 modules-right = memory cpu wlan battery tray date gmail
 
-tray-position = right
+; tray-position = right
 ; tray-offset-x = -25%
-tray-padding = 0
+; tray-padding = 0
 ;tray-transparent = true
-tray-background = ${colors.background}
-tray-maxsize = 16
-tray-scale = 1.0
+; tray-background = ${colors.background}
+; tray-maxsize = 16
+; tray-scale = 1.0
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -78,6 +78,7 @@ tray-scale = 1.0
 
 [module/tray]
 
+type = tray
 
 
 
@@ -391,6 +392,7 @@ label-active-font = 4
 # label-active-underline = #ff0000
 # TODO
 label-active-foreground = #eeeeef
+; label-active-background = #eeeeef # flashes this color then dims
 label-occupied-background = #00ff00
 label-empty-foreground = #555566
 label-urgent-background = #0000ff

@@ -249,6 +249,11 @@
   format = ""
   timeout = 1
 
+[strong-params-spam]
+  appname = "notify-send"
+  summary = "Unhandled strong_params"
+  format = ""
+
 [minitest]
   appname = "notify-send"
   summary = "Minitest results"

@@ -1,0 +1,12 @@
+#!/bin/bash -ue
+
+# add this to ~/.local/share/applications
+# [Desktop Entry]
+# Terminal=false
+# Type=Application
+# Exec=ssh-handler %U
+
+dest=${1#ssh://}
+
+ssh_opts="-oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null"
+x-terminal-emulator -bg '#223' -e ssh $ssh_opts ${dest} &

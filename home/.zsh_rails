@@ -64,10 +64,11 @@ function solano_wait() {
   fi
 
   echo "waiting for $BRANCH"
-  while solano status --no-json | grep $BRANCH | grep running ; do
-    sleep 60
-  done
+  while solano status  --json | grep $BRANCH -A 8 | grep running ; do sleep 1m ; done
 }
 
-# color the hint text?
-# for demoing zle hints, do ^rgm "can anyone remember the syntax for adding columns to a migration?  i can't"  "so the point of this script is to replace $smartalec with a small shell script"
+function rails_up {
+  bundle
+  rake db:migrate_and_seed
+  bin/post_push work
+}
