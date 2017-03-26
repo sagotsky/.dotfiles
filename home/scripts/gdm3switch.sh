@@ -2,6 +2,11 @@
 
 # switch to a user or make a new login screen
 
+
+#there can be only one!
+PCMD="$(ps -ocommand= -p $PPID)"
+pidof -x "${PCMD##*/}" -o "$PPID" | xargs kill -9
+
 if [ $# != 1 ] ; then
   echo 'Specify a user'
   exit 1
@@ -23,7 +28,7 @@ TTY="$(get_tty $DISPLAY)"
 echo "display: $DISPLAY tty: $TTY"
 
 if [ "$TTY" == "" ] ; then
-  pidof gdm3    && gdmflexiserver 
+  pidof gdm3    && gdmflexiserver
   pidof lightdm && dm-tool switch-to-user $1
 else
   sudo chvt $TTY

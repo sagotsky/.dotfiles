@@ -20,19 +20,19 @@ while read line ; do
   [[ "${#KEY}" == "1" ]] && KEYS["$KEY"]="$CMD"
   MENU="$MENU\n$MSG"
 done <<EOF
-music-client.sh pause         # (p) play pause
-music-client.sh next          # (n) next
-music-client.sh back          # (b) back
+music-client.sh pause                   # (p) play pause
+music-client.sh next                    # (n) next
+music-client.sh back                    # (b) back
 
-vol-up.sh                     # (+) louder
-vol-down.sh                   # (-) quiet
+vol-up.sh                               # (+) louder
+vol-down.sh                             # (-) quiet
 
-cmus-filter.sh --randomize --list album    # (z) rand album
-cmus-filter.sh --list album       # (l) choose album
-cmus-filter.sh --list artist      # (a) choose artist
-cmus-filter.sh --list song        # (s) choose song
+cmus-filter.sh --randomize --list album # (z) rand album
+cmus-filter.sh --list album             # (l) choose album
+cmus-filter.sh --list artist            # (a) choose artist
+cmus-filter.sh --list song              # (s) choose song
 
-exit # (q) quit
+exit                                    # (q) quit
 EOF
 
 while : ; do
