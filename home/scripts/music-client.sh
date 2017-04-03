@@ -74,7 +74,7 @@ spotify() {
     back) spotifyr previous ;;
     toggle) spotifyr play_pause ;;
     #bandsong) echo $(spotifyr status | grep artist: | cut -f2 -d:) - $(spotifyr status | grep title: | cut -f2 -d:) ;;
-    bandsong) echo "$(spotifyr status -f artist,title | cut -f 2 -d- | tr '\n' ' ')" ;;
+    bandsong) echo "$(spotifyr status -f artist,title | cut -f 2 -d- | tr '\n' ' ' | cut -c 1-64)" ;;
     *) return 1
   esac
 }
