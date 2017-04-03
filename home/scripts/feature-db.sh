@@ -16,10 +16,11 @@ usage() {
 feature_db.sh # Manages databases per feature branch
 
 Usage:
-feature_db.sh # print current branch, creating it if needed.  Put this in your database.yml.erb
+feature_db.sh  # print current branch, creating it if needed.  Put this in your database.yml.erb
 -l --ls --list # Print list of databases
--d --delete # Delete managed databases
--h --help # Prints this help text
+-d --delete    # Delete managed databases
+-h --help      # Prints this help text
+-s --status    # Shows what featuredb will do when run on this branch
 
 See also
 Global vars at the top of this file control db and branch prefs.
@@ -33,6 +34,7 @@ cli() {
     '')               main               ;;
     -l|--ls|--list)   list_managed_dbs   ;;
     -d|--delete)      drop_managed_dbs   ;;
+    -s|--status)      status             ;;
     -h|--help|*)      usage              ;;
   esac
 }
@@ -47,11 +49,35 @@ main() {
   echo $USE_DB
 }
 
+status() {
+  USE_DB="$(db_name)"
+
+  echo "This branch will use $USE_DB"
+  if db_exists $USE_DB ; then
+    echo "The feature branch exists"
+  else
+    echo "The feature branch needs to be created"
+  fi
+
+  if db_exists $(spare_db_name) ; then
+    echo "A spare db is ready ($(spare_db_name))"
+  elif db_exists $(temp_spare_db) ; then
+    echo "A spare db is being set up ($(temp_spare_db))"
+  else
+    echo 'The spare db needs to be created'
+  fi
+}
+
 git_branch_name() {
   git rev-parse --abbrev-ref HEAD
 }
 
 db_exists() {
+  # echo checking for $1
+  # psql -lqt | awk '{print $1}'
+  # echo
+
+
   db_name=$1
   psql -lqt |
     awk '{print $1}' |
@@ -74,8 +100,8 @@ prepare_db() {
   target_db=$1
 
   # use a spare if it's available
-  if db_exists "$SPARE_DB" ; then
-    rename_db "$SPARE_DB" "$target_db"
+  if db_exists "$(spare_db_name)" ; then
+    rename_db "$(spare_db_name)" "$target_db"
   else
     createdb -T $BASE_DB $target_db
   fi
@@ -106,23 +132,38 @@ drop_managed_dbs() {
   list_managed_dbs | xargs -n1 dropdb --echo
 }
 
-drop_old_dbs() {
+# drop_old_dbs() {
+  # todo: is this worthwhile?
   # drop all the dbs starting with prefix
+
   # if their migration column is older that current's
   # select max(version::bigint) from schema_migrations;
 
-  :
-}
+#   :
+# }
 
 make_a_spare() {
-  # always do this in the background
-  createdb -T $BASE_DB "_$SPARE_DB" # how to prevent if already running?
-  rename_db "_$SPARE_DB" "${DB_PREFIX}_${SPARE_DB}"
+  db_exists $(spare_db_name) && return
+  db_exists $(temp_spare_db) && return
+
+  # always do this in the background...
+  createdb -T $BASE_DB "$(temp_spare_db)"
+  rename_db "$(temp_spare_db)" "$(spare_db_name)"
 }
 
+spare_db_name() {
+  echo "${DB_PREFIX}_${SPARE_DB}"
+}
+
+# don't give the spare its real name until its ready to use
+temp_spare_db() {
+  echo "${DB_PREFIX}_${SPARE_DB}_build_in_progress"
+}
 
 cli $@
 
 #### TODO
 # what to do about test db
+## is it another schema or another db or what?
 # robustness.  mainly pg perms.
+# logging/verbose mode?
