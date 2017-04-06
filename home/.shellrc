@@ -1,7 +1,7 @@
 # Some common shell vars
 export PATH="$HOME/scripts/:$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:$PATH"
 
-export PATH="$HOME/.rbenv/bin:$PATH:/usr/lib/postgresql/9.3/bin/"
+export PATH="$HOME/.rbenv/bin:$PATH"
 if ! [[ "$PATH" =~ rbenv/shims ]] ; then
   eval "$(rbenv init --no-rehash -)"
   (rbenv rehash &) 2> /dev/null
