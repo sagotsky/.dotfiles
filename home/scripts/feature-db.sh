@@ -5,7 +5,7 @@
 
 # should this be in ruby for ease of this team's development.
 
-BASE_BRANCH="current"     # this branch uses the base db.  run migrations against it to keep your base db up to date.
+BASE_BRANCH="master"      # this branch uses the base db.  run migrations against it to keep your base db up to date.
 BASE_DB="plm_development" # all DBs will be cloned from this one
 DB_PREFIX="plm_dev"       # dbs created by this script will be in this namespace
 SPARE_DB="spare"          # rename me instead of copying, then spin up new spare.
@@ -16,26 +16,32 @@ usage() {
 feature_db.sh # Manages databases per feature branch
 
 Usage:
-feature_db.sh  # print current branch, creating it if needed.  Put this in your database.yml.erb
--l --ls --list # Print list of databases
--d --delete    # Delete managed databases
--h --help      # Prints this help text
--s --status    # Shows what featuredb will do when run on this branch
+feature_db.sh     # print current branch, creating it if needed.  Put this in your database.yml.erb
+-l --ls --list    # Print list of databases
+-d --delete       # Delete managed databases, keep the spare
+-D --force-delete # Delete all managed dbs
+-h --help         # Prints this help text
+-s --status       # Shows what featuredb will do when run on this branch
+-c --create-spare # Creates a spare now
 
-See also
+See also:
 Global vars at the top of this file control db and branch prefs.
 
-
+Rails:
+To use this for rails development, add this line to your config/database.yml
+  database: <%=  %x{feature-db.sh}.chomp %>
 EOF
 }
 
 cli() {
   case "$1" in
-    '')               main               ;;
-    -l|--ls|--list)   list_managed_dbs   ;;
-    -d|--delete)      drop_managed_dbs   ;;
-    -s|--status)      status             ;;
-    -h|--help|*)      usage              ;;
+    '')                 main                 ;;
+    -l|--ls|--list)     list_managed_dbs     ;;
+    -d|--delete)        drop_managed_dbs     ;;
+    -D|--force-delete)  drop_all_managed_dbs ;;
+    -s|--status)        status               ;;
+    -c|--create-spare)  make_a_spare         ;;
+    -h|--help|*)        usage                ;;
   esac
 }
 
@@ -73,11 +79,6 @@ git_branch_name() {
 }
 
 db_exists() {
-  # echo checking for $1
-  # psql -lqt | awk '{print $1}'
-  # echo
-
-
   db_name=$1
   psql -lqt |
     awk '{print $1}' |
@@ -129,7 +130,13 @@ drop_managed_dbs() {
   echo
   for n in 5 4 3 2 1 ; do echo $n ; sleep 1 ; done
 
-  list_managed_dbs | xargs -n1 dropdb --echo
+  list_managed_dbs | grep -v $(spare_db_name) | xargs -n1 dropdb --echo
+}
+
+drop_all_managed_dbs() {
+  echo "Dropping ALL managed dbs"
+  drop_all_managed_dbs
+  dropdb $(spare_db_name)
 }
 
 # drop_old_dbs() {
