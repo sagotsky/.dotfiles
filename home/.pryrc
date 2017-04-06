@@ -9,11 +9,9 @@ $:.uniq!
 
 begin
   Pry.config.print = proc { |output, value| output.puts ((value.respond_to?(:ai) ? value.ai : nil) || value)  }
-rescue LoadError 
+rescue LoadError
 end
 
-# require 'unicode'
 require 'pry-theme'
 require 'pry-loudmouth'
-require 'pry-inline'
 Pry.config.theme = 'railscasts' # does awesome print use this theme?
