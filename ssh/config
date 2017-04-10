@@ -5,28 +5,12 @@ host rj
 	hostname robotjesus.net
   forwardX11  yes
 
-host cs
-	user sagotsky
-	hostname themis.cs.brandeis.edu
-
 host dh
 	hostname sagotsky.com
-
-host freewifi
-	hostname robotjesus.net
-	port 2222
-	user root
-    forwardX11  no
-    localcommand xtermcontrol --bg '#000' --fg '#fa0'
 
 host backup
     user b290293
     hostname hanjin.dreamhost.com
-
-host thinkmotu
-  user thodei
-  #user jsagotsky
-  hostname buckeye.dreamhost.com
 
 host stage1
   user jsagotsky
