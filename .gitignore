@@ -1,6 +1,8 @@
+!ssh/authorized_keys
+!ssh/config
+ssh/*
+
 home/!.cmus/*.theme
-!.ssh/authorized_keys
-!.ssh/config
 !home/.xmonad/xmonad.hs
 *.pyc
 *.sublime-project
@@ -8,7 +10,6 @@ home/!.cmus/*.theme
 *.swp
 home/.cmus/*
 .pentadactyl/info
-.ssh/*
 
 tags
 home/.vim/.netrwhist
