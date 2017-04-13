@@ -19,11 +19,12 @@ Config {
     , Run CommandReader "/home/sagotsky/scripts/notify-volume.sh" "vol"
     , Run CommandReader "/home/sagotsky/scripts/gmail-count.sh" "mail"
     , Run CommandReader "/home/sagotsky/scripts/watch-git.sh" "git"
+    , Run Com "/home/sagotsky/scripts/arch-upgrades.sh" [] "arch" 60
     , Run Com "/home/sagotsky/scripts/wifi-monitor.sh" [] "wifi" 60
     , Run Com "/home/sagotsky/scripts/lpq-xmobar.sh" [] "printer" 300
-    , Run Com "/home/sagotsky/scripts/battery.sh" [] "battery" 300
+    , Run Com "/home/sagotsky/scripts/battery.sh" [] "battery" 60
     ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = "%StdinReader% }{ <fc=dimgray>%git%</fc> | %wifi% %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=yellowgreen>%mail%</fc>"
+    , template = "%StdinReader% }{ <fc=dimgray>%git%</fc> | %arch% %wifi% %vol%  %multicpu%  %memory% %battery% |<fc=orangered2> %music%</fc> | <fc=white,black>%date%</fc><fc=yellowgreen>%mail%</fc>"
 }

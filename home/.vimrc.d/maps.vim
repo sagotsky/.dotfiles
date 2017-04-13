@@ -27,6 +27,8 @@ nnoremap [l                 :lprevious<cr>
 
 " Y copies to x11 clipboard
 vnoremap Y  "+y
+" P pastes from it
+vnoremap P  "*p
 
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
