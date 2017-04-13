@@ -4,7 +4,7 @@
 
 #home
 find $HOME/.dotfiles/home -mindepth 1 -maxdepth 1  |
-    xargs -n1 ln -vsf -t $HOME/
+    xargs -n1 -I% ln -vsf % $HOME/
 
 # nested dirs
 for dir in config ssh ; do
