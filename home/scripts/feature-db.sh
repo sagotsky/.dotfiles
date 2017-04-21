@@ -5,6 +5,17 @@
 
 # should this be in ruby for ease of this team's development.
 
+# TODO:
+# fail gracefully if createdb bombs
+#   [1574_omics_basic_study_page]: createdb: database creation failed: ERROR:  source database “plm_development” is being accessed by other users
+#   DETAIL:  There are 4 other sessions using the database.
+#   ERROR:  database “plm_dev_spare_build_in_progress” does not exist
+# Make -h default.  Rails should ask for db name explicitly.
+
+# Done
+# Check if we're in a good dir
+# -s verbiage is a bit off.  Not obvious 1st, 2nd lines connect.
+
 BASE_BRANCH="master"      # this branch uses the base db.  run migrations against it to keep your base db up to date.
 BASE_DB="plm_development" # all DBs will be cloned from this one
 DB_PREFIX="plm_dev"       # dbs created by this script will be in this namespace
@@ -33,6 +44,7 @@ To use this for rails development, add this line to your config/database.yml
 EOF
 }
 
+
 cli() {
   case "$1" in
     '')                 main                 ;;
@@ -55,14 +67,21 @@ main() {
   echo $USE_DB
 }
 
+rails_check() {
+  [[ -f './config/database.yml' ]] || (
+    echo 'Could not find database.yml.  Please run this in the top level of your rails app.'
+    exit 1
+  )
+}
+
 status() {
   USE_DB="$(db_name)"
 
-  echo "This branch will use $USE_DB"
+  echo "This branch will use '$USE_DB'"
   if db_exists $USE_DB ; then
-    echo "The feature branch exists"
+    echo "'$USE_DB' already exists"
   else
-    echo "The feature branch needs to be created"
+    echo "'$USE_DB' needs to be created"
   fi
 
   if db_exists $(spare_db_name) ; then
@@ -128,7 +147,7 @@ drop_managed_dbs() {
   echo -e "\n\033[5mDropping databases: (ctrl-c to cancel)\033[0m"
   list_managed_dbs
   echo
-  for n in 5 4 3 2 1 ; do echo $n ; sleep 1 ; done
+  for n in 3 2 1 ; do echo $n ; sleep 1 ; done
 
   list_managed_dbs | grep -v $(spare_db_name) | xargs -n1 dropdb --echo
 }
@@ -167,6 +186,7 @@ temp_spare_db() {
   echo "${DB_PREFIX}_${SPARE_DB}_build_in_progress"
 }
 
+rails_check || exit 1
 cli $@
 
 #### TODO
