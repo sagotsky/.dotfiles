@@ -21,6 +21,8 @@ BASE_DB="plm_development" # all DBs will be cloned from this one
 DB_PREFIX="plm_dev"       # dbs created by this script will be in this namespace
 SPARE_DB="spare"          # rename me instead of copying, then spin up new spare.
 
+export VERBOSE="$VERBOSE" # print logs
+
 usage() {
   cat <<EOF
 
@@ -34,6 +36,8 @@ feature_db.sh     # print current branch, creating it if needed.  Put this in yo
 -h --help         # Prints this help text
 -s --status       # Shows what featuredb will do when run on this branch
 -c --create-spare # Creates a spare now
+
+VERBOSE=1 feature_db.sh # Print logs to stderr
 
 See also:
 Global vars at the top of this file control db and branch prefs.
@@ -64,6 +68,7 @@ main() {
     prepare_db $USE_DB
   fi
 
+  log "using db: $USE_DB"
   echo $USE_DB
 }
 
@@ -121,12 +126,15 @@ prepare_db() {
 
   # use a spare if it's available
   if db_exists "$(spare_db_name)" ; then
+    log 'copying spare db'
     rename_db "$(spare_db_name)" "$target_db"
   else
+    log 'cloning master db'
     createdb -T $BASE_DB $target_db
   fi
 
-  make_a_spare & # always prepare a new spare for next time
+  log 'setting up a spare'
+  make_a_spare & disown # always prepare a new spare for next time
 }
 
 rename_db() {
@@ -154,8 +162,9 @@ drop_managed_dbs() {
 
 drop_all_managed_dbs() {
   echo "Dropping ALL managed dbs"
-  drop_all_managed_dbs
+  drop_managed_dbs
   dropdb $(spare_db_name)
+  dropdb $(temp_spare_db)
 }
 
 # drop_old_dbs() {
@@ -169,12 +178,14 @@ drop_all_managed_dbs() {
 # }
 
 make_a_spare() {
+  log 'building spare'
   db_exists $(spare_db_name) && return
   db_exists $(temp_spare_db) && return
 
   # always do this in the background...
   createdb -T $BASE_DB "$(temp_spare_db)"
   rename_db "$(temp_spare_db)" "$(spare_db_name)"
+  log 'finished spare'
 }
 
 spare_db_name() {
@@ -184,6 +195,12 @@ spare_db_name() {
 # don't give the spare its real name until its ready to use
 temp_spare_db() {
   echo "${DB_PREFIX}_${SPARE_DB}_build_in_progress"
+}
+
+log() {
+  if [[ "$VERBOSE" != "" ]] ; then
+    echo "[FEATURE-DB] $@" 1>&2
+  fi
 }
 
 rails_check || exit 1
