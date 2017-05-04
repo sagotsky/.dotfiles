@@ -134,7 +134,8 @@ prepare_db() {
   fi
 
   log 'setting up a spare'
-  make_a_spare & disown # always prepare a new spare for next time
+  feature-db.sh --create-spare &
+  log 'created spare db'
 }
 
 rename_db() {
@@ -163,8 +164,8 @@ drop_managed_dbs() {
 drop_all_managed_dbs() {
   echo "Dropping ALL managed dbs"
   drop_managed_dbs
-  dropdb $(spare_db_name)
-  dropdb $(temp_spare_db)
+  dropdb --if-exists $(spare_db_name)
+  dropdb --if-exists $(temp_spare_db)
 }
 
 # drop_old_dbs() {
