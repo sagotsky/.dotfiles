@@ -60,5 +60,8 @@ Plug 'haya14busa/incsearch.vim'
 " Plug 'junegunn/vim-emoji' "  needs a differnt term or font
 Plug 'bronson/vim-trailing-whitespace' " highlight trailing whitespace
 Plug 'alcesleo/vim-uppercase-sql'
+
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'kana/vim-textobj-user'
 call plug#end()
 
