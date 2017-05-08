@@ -294,3 +294,8 @@ function lnbin() {
   shift
   ln -s $(which $bin) $@
 }
+
+function ssh_agent_check() {
+  ssh -oBatchMode=yes localhost exit &>/dev/null
+}
+

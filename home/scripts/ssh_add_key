@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source ~/.functions
+ssh_agent_check || xterm -e ssh localhost
