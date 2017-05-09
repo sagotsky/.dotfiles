@@ -10,6 +10,12 @@
 #   [1574_omics_basic_study_page]: createdb: database creation failed: ERROR:  source database “plm_development” is being accessed by other users
 #   DETAIL:  There are 4 other sessions using the database.
 #   ERROR:  database “plm_dev_spare_build_in_progress” does not exist
+
+
+#   can't get around the createdb if in use thing.  killing rails kinda helps.  having a spare ready helps (although master in use could block it)
+#     having a spare that isn't being touched bypasses the problem.  and then once we've switched branches, master is free to copy from.
+#     we *could* do a copy instead of a template.  how much slower is that?
+
 # Make -h default.  Rails should ask for db name explicitly.
 
 # Done
@@ -37,7 +43,7 @@ feature_db.sh     # print current branch, creating it if needed.  Put this in yo
 -s --status       # Shows what featuredb will do when run on this branch
 -c --create-spare # Creates a spare now
 
-VERBOSE=1 feature_db.sh # Print logs to stderr
+VERBOSE=1 feature_db.sh # Print logs to stderr.  Yes this can go in your db.yml.
 
 See also:
 Global vars at the top of this file control db and branch prefs.
