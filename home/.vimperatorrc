@@ -33,7 +33,7 @@ noremap <Leader>dd :dialog downloads<cr>
 
 
 """ Custom commands
-com! rc     !gvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
+com! rc     !x-terminal-emulator -e nvim ~/.vimperatorrc ~/.vimperator/colors/sagotsky2.vimp &
 com! sorc   so ~/.vimperatorrc
 
 " rename a tab (not sticky though)
