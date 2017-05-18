@@ -113,3 +113,5 @@ export HISTSIZE=50000
 shopt -s histappend
 set -o history # if this doesn't come last, other hist commands show up in hist
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

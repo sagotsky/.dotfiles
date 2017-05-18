@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'          " duh
 Plug 'ap/vim-css-color'                " shows hex colors in color
 Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
-Plug 'ctrlpvim/ctrlp.vim'              " file picker
+" Plug 'ctrlpvim/ctrlp.vim'              " file picker
 Plug 'ervandew/supertab'               " tab for autocomplete
 Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
@@ -63,5 +63,8 @@ Plug 'alcesleo/vim-uppercase-sql'
 
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 

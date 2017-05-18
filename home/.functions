@@ -299,3 +299,10 @@ function ssh_agent_check() {
   ssh -oBatchMode=yes localhost exit &>/dev/null
 }
 
+function fcd() {
+  if [[ $# -gt 0 ]] ; then
+    QUERY="-q $1"
+  fi
+
+  DIR="$(find ./ -type d | fzf $QUERY)" && cd "$DIR"
+}

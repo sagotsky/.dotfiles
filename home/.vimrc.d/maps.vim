@@ -1,9 +1,12 @@
 let mapleader=" "
 
-nnoremap <leader>p          :CtrlP <cr>
-nnoremap <leader>b          :CtrlPBuffer <cr>
-nnoremap <leader>r          :CtrlPMRU<cr>
-nnoremap <leader>f          :CtrlPFunky<cr>
+
+nnoremap <leader>p          :Files <cr>
+nnoremap <leader>b          :Buffers <cr>
+nnoremap <leader>r          :History<cr>
+" nnoremap <leader>p          :CtrlP <cr>
+" nnoremap <leader>b          :CtrlPBuffer <cr>
+" nnoremap <leader>r          :CtrlPMRU<cr>
 nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 nnoremap <leader>/          :Grepper -tool ag -open -switch <cr>
 nnoremap <leader>?          :Grepper -tool ag -open -switch -cword -noprompt<cr>
