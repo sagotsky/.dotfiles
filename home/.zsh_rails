@@ -11,7 +11,7 @@ bindkey -s '\erdtb'   "rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm'   "rake db:migrate RAILS_ENV=test\n"
 bindkey -s '\erdtr'   "rake db:rollback RAILS_ENV=test\n"
 
-bindkey -s '\er'   "rails_up\n"
+bindkey -s '\eru'   "rails_up\n"
 
 # TODO: hide the echo
 #bindkey -s '\ergm'   " echo 'rails g migration AddPartNumberToProducts part_number:string:index'\n rails g migration"
