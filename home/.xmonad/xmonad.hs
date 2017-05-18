@@ -83,6 +83,7 @@ myManageHook =  composeAll
     , className =? "Spotify"                          --> doShift "II"
     , resource =? "cmus"                              --> doShift "II"
     , className =? "Thunderbird"                      --> doShift "III"
+    , className =? "Gnome-terminal"                   --> doShift "IV"
     , className =? "Pidgin"                           --> doShift "V"
     , className =? "Scudcloud"                        --> doShift "V"
     , className =? "Slack"                            --> doShift "V"
@@ -229,6 +230,8 @@ myKeys = [
     , ("M-/",   spawn "killall -9 zeal ; zeal -f") -- rails docs menu
     , ("M-y",   spawn "cli-board.sh") -- copies text into clip board
     , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
+    , ("M-<Escape>", spawn "bender-dock.sh") -- reset screen, xmodmap, etc
+
 	]
 
     {-
