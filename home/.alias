@@ -11,7 +11,11 @@ alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
 alias gg='git grep -i -I -n --color --break --heading --line-number -e '
 alias lag='ag --pager less '
-alias ls='ls -G'
+if [[ "$(uname)" == "Linux" ]] ; then
+  alias ls='ls --color=auto'
+else
+  alias ls='ls -G'
+fi
 alias mkpasswd='pwgen -ysCn 16'
 alias myip='curl http://icanhazip.com ; echo'
 alias nounity='UBUNTU_MENUPROXY="" '
