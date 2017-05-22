@@ -140,7 +140,7 @@ prepare_db() {
   fi
 
   log 'setting up a spare'
-  feature-db.sh --create-spare &
+  feature-db.sh --create-spare &>/dev/null &
   log 'created spare db'
 }
 
