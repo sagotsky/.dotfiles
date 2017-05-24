@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source ~/.functions
-ssh_agent_check || ssh-add
+ssh_agent_check || xterm -e ssh-add
