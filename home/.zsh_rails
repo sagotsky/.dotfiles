@@ -74,3 +74,6 @@ function rails_up {
   rake db:migrate_and_seed
   bin/post_push work
 }
+
+
+# vim: filetype=sh
