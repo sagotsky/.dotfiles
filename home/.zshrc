@@ -151,4 +151,5 @@ fi
 ### todo: gitstatus daemon.  it outputs every time .git changes (or some other watch condition).  prompt is responsible for reading in output or starting up daemon.
 # - all: 14!
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# ctrl-kj don't work in tmux
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
