@@ -8,6 +8,7 @@ set fillchars+=vert:│
 set guifont=Source\ Code\ Pro\ 12 " gvim only font
 set guioptions=aegiLt             " clean gui in gvim
 set hlsearch                      " highlights search results
+set inccommand=nosplit            " live preview of substitutions
 set ignorecase                    " case insensitive searches with /
 set lazyredraw
 set nofoldenable                  " disable folds
