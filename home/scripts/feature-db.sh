@@ -148,7 +148,7 @@ rename_db() {
   src=$1
   dst=$2
 
-  echo "ALTER DATABASE $src RENAME TO $dst" | psql $BASE_DB
+  echo "ALTER DATABASE $src RENAME TO $dst" | psql $BASE_DB &>/dev/null
 }
 
 list_managed_dbs() {
