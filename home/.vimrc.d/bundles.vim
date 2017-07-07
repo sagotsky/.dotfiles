@@ -15,7 +15,7 @@ Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
 Plug 'junegunn/gv.vim'                 " git log viewer.  :GV
 Plug 'kshenoy/vim-signature'           " show marks in gutter
-Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
+" Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
 Plug 'mhinz/vim-grepper'               " replaces ag.vim.  uses neovim dispatch.
 Plug 'nathanaelkane/vim-indent-guides' " stripes indentation
 Plug 'scrooloose/syntastic'            " syntax/linter
