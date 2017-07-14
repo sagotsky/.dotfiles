@@ -56,6 +56,8 @@ EOF
 eval "`bind_key_cmd_hint 'rgm' 'rails g migration'    'rails g migration AddPartNumberToProducts field:type:index'`"
 eval "`bind_key_cmd_hint 'rgc' 'rails g controller'   'rails g controller NAME action action action '`"
 eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task' 'rails g one_off_task NAME'`"
+eval "`bind_key_cmd_hint 'rgp' 'rails g post_push_task' 'rails g post_push_task NAME'`"
+eval "`bind_key_cmd_hint 'rgq' 'rails g question'       'rails g question IDENTITY'`"
 
 alias tddium_wait=solano_wait
 function solano_wait() {
@@ -71,7 +73,7 @@ function solano_wait() {
 
 function rails_up {
   bundle
-  rake db:migrate_and_seed
+  rake db:migrate #_and_seed #
   bin/post_push work
 }
 
