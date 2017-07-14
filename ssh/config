@@ -36,3 +36,10 @@ host prod
 # plm staging
 Host 10.52.*
   user jsagotsky
+
+host *.plminternal.com
+  user jsagotsky
+
+host towl
+  user jsagotsky
+  hostname db-towel01.plminternal.com
