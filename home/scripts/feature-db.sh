@@ -51,6 +51,10 @@ Global vars at the top of this file control db and branch prefs.
 Rails:
 To use this for rails development, add this line to your config/database.yml
   database: <%=  %x{feature-db.sh}.chomp %>
+
+Or if you're on dotenv, put this in your .env.development.local:
+  PLM_DB_NAME=$(VERBOSE=1 feature-db.sh)
+
 EOF
 }
 
