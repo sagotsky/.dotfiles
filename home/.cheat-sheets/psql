@@ -1,0 +1,2 @@
+\x on|off|auto  # expanded display
+PAGER='/usr/bin/less -S' # allow horizontal scrolling
