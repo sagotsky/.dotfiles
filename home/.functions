@@ -166,7 +166,7 @@ function rep_til_failure() {
   echo -e "\n\e[7m[ rep #${REP_COUNT} at $(date) ]\e[27m\n"
 }
 
-for n in `seq 9` ; do alias $n="rep $n " ; done
+for n in `seq 100` ; do alias $n="rep $n " ; done
 alias ..='cd ..' # stupid, but I like chaining it to the rep numbers.
 
 #for f in "cd" ; do export $f ; done
@@ -305,4 +305,8 @@ function fcd() {
   fi
 
   DIR="$(find ./ -type d | fzf $QUERY)" && cd "$DIR"
+}
+
+function yank() {
+  echo "$@" | xsel --clipboard
 }
