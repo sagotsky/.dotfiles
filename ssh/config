@@ -24,10 +24,6 @@ Host bendertunnel
   HostName localhost
   port 23456
 
-Host boxytunnel
-  HostName localhost
-  port 12345
-
 host prod
   hostname 10.241.0.15
   user www
@@ -43,3 +39,4 @@ host *.plminternal.com
 host towl
   user jsagotsky
   hostname db-towel01.plminternal.com
+  localcommand klist | grep PLMINTERNAL || kinit jsagotsky@PLMINTERNAL.COM
