@@ -79,7 +79,7 @@ main() {
   fi
 
   log "using db: $USE_DB"
-  echo $USE_DB
+  echo -n $USE_DB
 }
 
 rails_check() {
@@ -140,7 +140,7 @@ prepare_db() {
     rename_db "$(spare_db_name)" "$target_db"
   else
     log 'cloning master db'
-    createdb -T $BASE_DB $target_db
+    createdb -U postgres -T $BASE_DB $target_db
   fi
 
   log 'setting up a spare'
@@ -168,7 +168,7 @@ drop_managed_dbs() {
   echo
   for n in 3 2 1 ; do echo $n ; sleep 1 ; done
 
-  list_managed_dbs | grep -v $(spare_db_name) | xargs -n1 dropdb --echo
+  list_managed_dbs | grep -v $(spare_db_name) | xargs -n1 dropdb -Upostgres --echo
 }
 
 drop_all_managed_dbs() {
