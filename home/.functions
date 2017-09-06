@@ -309,4 +309,5 @@ function fcd() {
 
 function yank() {
   echo "$@" | xsel --clipboard
+  xsel
 }
