@@ -27,7 +27,13 @@ BASE_DB="plm_development" # all DBs will be cloned from this one
 DB_PREFIX="plm_dev"       # dbs created by this script will be in this namespace
 SPARE_DB="spare"          # rename me instead of copying, then spin up new spare.
 
+PG_OPTS="-Upostgres --host postgres.service.docker" # psql options
+
 export VERBOSE="$VERBOSE" # print logs
+
+# [[ -f '.env.development' ]] && $(grep PLM_DB_HOST .env.development)
+# [[ -f '.env.development.local' ]] && $(grep PLM_DB_HOST .env.development.local)
+
 
 usage() {
   cat <<EOF
@@ -96,7 +102,7 @@ status() {
   if db_exists $USE_DB ; then
     echo "'$USE_DB' already exists"
   else
-    echo "'$USE_DB' needs to be created"
+    echo "'$USE_DB' needs to be prepared"
   fi
 
   if db_exists $(spare_db_name) ; then
@@ -114,7 +120,7 @@ git_branch_name() {
 
 db_exists() {
   db_name=$1
-  psql -lqt |
+  psql $PG_OPTS -lqt |
     awk '{print $1}' |
     grep "^${db_name}$" &>/dev/null
 }
@@ -140,7 +146,7 @@ prepare_db() {
     rename_db "$(spare_db_name)" "$target_db"
   else
     log 'cloning master db'
-    createdb -U postgres -T $BASE_DB $target_db
+    createdb $PG_OPTS -T $BASE_DB $target_db
   fi
 
   log 'setting up a spare'
@@ -152,13 +158,13 @@ rename_db() {
   src=$1
   dst=$2
 
-  echo "ALTER DATABASE $src RENAME TO $dst" | psql $BASE_DB &>/dev/null
+  echo "ALTER DATABASE $src RENAME TO $dst" | psql $PG_OPTS $BASE_DB &>/dev/null
 }
 
 list_managed_dbs() {
-  psql -lqt |
+  psql $PG_OPTS -lqt |
     awk '{print $1}' |
-    grep "^${DB_PREFIX}_" |
+    grep "^${DB_PREFIX}" |
     grep -v "^$BASE_DB"
 }
 
@@ -168,14 +174,14 @@ drop_managed_dbs() {
   echo
   for n in 3 2 1 ; do echo $n ; sleep 1 ; done
 
-  list_managed_dbs | grep -v $(spare_db_name) | xargs -n1 dropdb -Upostgres --echo
+  list_managed_dbs | grep -v $(spare_db_name) | xargs -n1 dropdb $PG_OPTS --echo
 }
 
 drop_all_managed_dbs() {
   echo "Dropping ALL managed dbs"
   drop_managed_dbs
-  dropdb --if-exists $(spare_db_name)
-  dropdb --if-exists $(temp_spare_db)
+  dropdb $PG_OPTS --if-exists $(spare_db_name)
+  dropdb $PG_OPTS --if-exists $(temp_spare_db)
 }
 
 # drop_old_dbs() {
@@ -190,12 +196,12 @@ drop_all_managed_dbs() {
 
 make_a_spare() {
   log 'building spare'
-  db_exists $(spare_db_name) && return
-  db_exists $(temp_spare_db) && return
+  db_exists $PG_OPTS $(spare_db_name) && return
+  db_exists $PG_OPTS $(temp_spare_db) && return
 
   # always do this in the background...
-  createdb -T $BASE_DB "$(temp_spare_db)"
-  rename_db "$(temp_spare_db)" "$(spare_db_name)"
+  createdb $PG_OPTS -T $BASE_DB "$(temp_spare_db)"
+  rename_db  "$(temp_spare_db)" "$(spare_db_name)"
   log 'finished spare'
 }
 
