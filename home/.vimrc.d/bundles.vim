@@ -45,7 +45,7 @@ if isdirectory($HOME."/.rbenv")
   Plug 'mtscout6/vim-cjsx'                 " cjsx highlighting
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   "Plug 'mustache/vim-mustache-handlebars'
-  "Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rails'
   Plug 'kchmck/vim-coffee-script'
 endif
 
@@ -66,5 +66,8 @@ Plug 'kana/vim-textobj-user'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Plug 'w0rp/ale'
+
 call plug#end()
 

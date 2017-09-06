@@ -10,7 +10,7 @@ set guioptions=aegiLt             " clean gui in gvim
 set hlsearch                      " highlights search results
 set inccommand=nosplit            " live preview of substitutions
 set ignorecase                    " case insensitive searches with /
-set lazyredraw
+" set lazyredraw # with this on, resizes blanked screen
 set nofoldenable                  " disable folds
 set nowrap                        " no word wrap
 set number                        " line numbers on
@@ -65,5 +65,5 @@ if !exists("*BundlesUpdated")
     PlugInstall
   endfunction
 endif
-autocmd BufWritePost .dotfiles/.vimrc.d/bundles.vim call BundlesUpdated()
+autocmd BufWritePost ~/.dotfiles/home/.vimrc.d/bundles.vim call BundlesUpdated()
 autocmd BufWritePre * %s/\s\+$//e
