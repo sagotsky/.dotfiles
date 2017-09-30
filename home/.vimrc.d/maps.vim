@@ -1,9 +1,9 @@
 let mapleader=" "
 
 
-nnoremap <leader>p          :Files <cr>
-nnoremap <leader>b          :Buffers <cr>
-nnoremap <leader>r          :History<cr>
+nnoremap <leader>p          0:Files <cr>
+nnoremap <leader>b          0:Buffers <cr>
+nnoremap <leader>r          0:History<cr>
 " nnoremap <leader>p          :CtrlP <cr>
 " nnoremap <leader>b          :CtrlPBuffer <cr>
 " nnoremap <leader>r          :CtrlPMRU<cr>

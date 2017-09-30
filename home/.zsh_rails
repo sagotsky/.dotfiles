@@ -2,7 +2,7 @@ bindkey -s '\erc'   "rails console\n"
 bindkey -s '\erb'   "bundle\n"
 bindkey -s '\err'   "rake routes | grep "
 
-bindkey -s '\erdb'   "rails db\n"
+bindkey -s '\erdb'   "PAGER='/usr/bin/less -S' rails db\n"
 bindkey -s '\erdm'   "time rake db:migrate_and_seed\n"
 bindkey -s '\erdr'   "time rake db:rollback\n"
 bindkey -s '\erds'   "rake db:migrate:status | grep -v 'NO FILE'\n"
@@ -11,7 +11,8 @@ bindkey -s '\erdtb'   "rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm'   "rake db:migrate RAILS_ENV=test\n"
 bindkey -s '\erdtr'   "rake db:rollback RAILS_ENV=test\n"
 
-bindkey -s '\eru'   "rails_up\n"
+bindkey -s '\eru'     "rails_up\n"
+bindkey -s '\ertf'    "^Arep_til_failure " # prepend with rep_til_failure
 
 # TODO: hide the echo
 #bindkey -s '\ergm'   " echo 'rails g migration AddPartNumberToProducts part_number:string:index'\n rails g migration"
@@ -77,5 +78,14 @@ function rails_up {
   bin/post_push work
 }
 
+function towl_exec {
+  sql="$(cat -)"
+  ssh towl psql -Upostgres tower_of_weblogs \
+    -c "\"$sql\""\
+    --tuples-only\
+    --no-align\
+    -F","
+
+}
 
 # vim: filetype=sh

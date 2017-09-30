@@ -98,8 +98,9 @@ $endif
 
 # ruby - pry
 $if Ruby
-  "\ej": "\C-lnext\n"
-  "\ek": "\C-lstep\n"
+  "\ej": "\C-l next \n"
+  "\ei": "\C-l step \n"
+  "\eo": "\C-l finish \n"
   "\ew": "whereami\n"
   "\ee": "edit\n"
   "\eivg": "instance_variable_get(:@"

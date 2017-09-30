@@ -20,3 +20,10 @@ let g:syntastic_error_symbol = "✖"
 let g:syntastic_warning_symbol = "▶"
 let g:syntastic_style_error_symbol = "•"
 let g:syntastic_style_warning_symbol = "•"
+
+" stashing ale config here so these can stay consistent
+let g:ale_sign_error = "▶"
+let g:ale_sign_warning = "•"
+hi ALEWarningSign ctermfg=240
+hi ALEErrorSign ctermfg=215
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'

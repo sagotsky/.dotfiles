@@ -22,7 +22,7 @@ case $MODE in
     ;;
   startx)
     # initialize with this scaling, then scale back to default
-    EXTERN_SCALE='2x2'
+    # EXTERN_SCALE='2x2'
     ;;
 esac
 
