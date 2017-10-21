@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'          " duh
 Plug 'ap/vim-css-color'                " shows hex colors in color
 Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
-" Plug 'ctrlpvim/ctrlp.vim'              " file picker
 Plug 'ervandew/supertab'               " tab for autocomplete
 Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
@@ -37,26 +36,19 @@ Plug 'wincent/terminus'                " more term support.  mouse?
 
 if isdirectory($HOME."/.rbenv")
   Plug 'vim-scripts/ruby-matchit'          " % support for do/end
-  Plug 'haml/haml-contrib'                 " haml syntax highlighting
   Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
   Plug 'sagotsky/vim-turbux'               " tmux -> rails testing
   " Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
   Plug 'benmills/vimux'                    " tmux -> rails testing
-  Plug 'mtscout6/vim-cjsx'                 " cjsx highlighting
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
-  "Plug 'mustache/vim-mustache-handlebars'
   Plug 'tpope/vim-rails'
-  Plug 'kchmck/vim-coffee-script'
 endif
 
 " experimental
 Plug 'junegunn/vim-peekaboo'        " preview yank ring
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'Shougo/deoplete.nvim', { 'do' : 'vim +UpdateRemotePlugins +qall' }
 
-" Plug 'osyo-manga/vim-over'  " preview search/replace.  doesn't work yet well enough yet 6/16
 " Plug 'junegunn/vim-emoji' "  needs a differnt term or font
 Plug 'bronson/vim-trailing-whitespace' " highlight trailing whitespace
 Plug 'alcesleo/vim-uppercase-sql'
@@ -68,6 +60,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Plug 'w0rp/ale'
+
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
