@@ -24,10 +24,12 @@ Plug 'tpope/vim-endwise'               " ruby append end to new blocks
 Plug 'tpope/vim-fugitive'              " git integration
 Plug 'tpope/vim-repeat'                " binds . for vim-surround
 Plug 'tpope/vim-rsi'                   " readline in insert mode
+Plug 'tpope/vim-rhubarb'               " readline in insert mode
 Plug 'tpope/vim-sensible'              " common defaults
 Plug 'tpope/vim-surround'              " change surrounding characters with cs prefix
 Plug 'tpope/vim-vinegar'               " file selection
 Plug 'tpope/vim-eunuch'                " wraps unix commands in vim.  trying out :Move for renaming file and buffer at once.
+Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion to handle weird replacements like case or tense
 Plug 'vim-airline/vim-airline'         " bar
 Plug 'vim-airline/vim-airline-themes'  " bar themes
 Plug 'vim-scripts/SQLComplete.vim'     " SQL syntax highlighting
