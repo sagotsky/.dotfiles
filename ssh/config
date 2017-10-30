@@ -1,8 +1,11 @@
 host *
   Compression   yes
+  forwardX11 yes
+  forwardAgent yes
 
 host rj
-	hostname robotjesus.net
+	# hostname robotjesus.net
+  hostname 71.184.115.228
   forwardX11  yes
 
 host dh
