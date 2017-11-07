@@ -8,8 +8,8 @@ nnoremap <leader>r          0:History<cr>
 " nnoremap <leader>b          :CtrlPBuffer <cr>
 " nnoremap <leader>r          :CtrlPMRU<cr>
 nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
-nnoremap <leader>/          :Grepper -tool ag -open -switch <cr>
-nnoremap <leader>?          :Grepper -tool ag -open -switch -cword -noprompt<cr>
+nnoremap <leader>/          :Grepper -tool rg -open -switch <cr>
+nnoremap <leader>?          :Grepper -tool rg -open -switch -cword -noprompt<cr>
 nnoremap <leader>nt         :tabnew<cr>
 nnoremap <leader>NT         :tabnew %<cr>
 

@@ -26,6 +26,8 @@ set t_ZR=[23m                   " http://askubuntu.com/questions/492592/can-i-g
 set tabstop=2                     " tab width
 set ttyfast
 set wildmode=longest,list,full    " tab completion fix.  completes as much as possible, then lists, then full completes.
+set grepprg=rg\ --vimgrep         " use ripgrep for search
+
 
 " set runtimepath+=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
