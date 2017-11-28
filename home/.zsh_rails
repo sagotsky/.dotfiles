@@ -3,7 +3,7 @@ bindkey -s '\erb'   "bundle\n"
 bindkey -s '\err'   "rake routes | grep "
 
 bindkey -s '\erdb'   "PAGER='/usr/bin/less -S' rails db\n"
-bindkey -s '\erdm'   "time rake db:migrate_and_seed\n"
+bindkey -s '\erdm'   "time rake db:migrate\n"
 bindkey -s '\erdr'   "time rake db:rollback\n"
 bindkey -s '\erds'   "rake db:migrate:status | grep -v 'NO FILE'\n"
 bindkey -s '\erdtp'   "rake db:test:prepare\n"
@@ -87,5 +87,11 @@ function towl_exec {
     -F","
 
 }
+
+function fz_rake {
+  `$(rake -T | fzf)`
+}
+
+export DISABLE_SPRING=1
 
 # vim: filetype=sh
