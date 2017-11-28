@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -xe
 
 # gets mail counts from tbird
 # https://github.com/teleshoes/thunderbird-unread-count/blob/master/unread_count-0.0.1-tb-linux.xpi
@@ -27,20 +27,8 @@ while FILE=$(inotifywait -q $FILES -e ACCESS -e CLOSE_WRITE) ; do
       if [ $num -gt 0 ] ; then
         #echo " [$num]"
         echo ' •'
-      else 
+      else
         echo ''
       fi
     done
 done
-
-
-#| xargs cat | while read line ; do
-  ##N=$(echo $line | cut -d: -f1)
-  ##COUNT=$(( $COUNT + $N ))
-  #COUNT=$(( $COUNT + $(echo $line | cut -d: -f1) ))
-#done
-
-#if [ $COUNT -gt -1 ] ; then
-  #echo "[$COUNT]" 
-#fi
-
