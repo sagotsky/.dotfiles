@@ -1,10 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+source ~/.functions # delay()
 
 VPN="openvpn-client@plm"
 if [[ $(systemctl is-active $VPN &>/dev/null) ]] ; then
-  :
+  echo 'got vpn!'
 else
   echo 'Gimme vpn!'
   sudo systemctl start $VPN
-  sleep 5
+  delay 5
 fi
