@@ -63,6 +63,7 @@ myManageHook =  composeAll
     , className =? "Gnome-calculator"                 --> doFloat
     , className =? "doukutsu"                         --> doFloat
     , className =? "Zenity"                           --> doFloat
+    , className =? "Peek"                             --> doFloat
     , className =? "xine"                             --> doFullFloat
     , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
     , className =? "Exe"                              --> doFullFloat -- chrome flash
