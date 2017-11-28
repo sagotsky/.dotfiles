@@ -23,6 +23,7 @@ home/.nvim/.netrwhist
 home/.nvim/autoload/*
 home/.nvim/plugin/*
 home/.nvim/bundle/*
+home/.tmux/plugins
 home/.vimperator/info/*
 home/.xmonad/*
 
