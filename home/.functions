@@ -242,16 +242,6 @@ function dmenu_has() {
   [ "$(dmenu -h 2>&1 > /dev/null | grep -- $match)" != '' ]
 }
 
-function byzanz-dimensions() {
-  info="$(xwininfo)"
-  x=$(echo "$info" | grep 'Absolute upper-left X' | cut -f 7 -d' ')
-  y=$(echo "$info" | grep 'Absolute upper-left Y' | cut -f 7 -d' ')
-  w=$(echo "$info" | grep Width | cut -f 4 -d' ')
-  h=$(echo "$info" | grep Height | cut -f 4 -d' ')
-
-  echo "-x $x -w $w -y $y -h $h"
-}
-
 # color print
 function black()   { echo -en "\e[0;30m$@\e[0m"; }
 function red()     { echo -en "\e[0;31m$@\e[0m"; }
@@ -310,4 +300,11 @@ function fcd() {
 function yank() {
   echo "$@" | xsel --clipboard
   xsel
+}
+
+function delay() {
+  for n in `seq $1` ; do
+    sleep 1
+    echo -n '.'
+  done
 }
