@@ -27,3 +27,4 @@ let g:ale_sign_warning = "•"
 hi ALEWarningSign ctermfg=240
 hi ALEErrorSign ctermfg=215
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {'ruby': ['ruby', 'brakeman', 'rails_best_practices']} " rubucop, reek

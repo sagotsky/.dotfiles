@@ -14,10 +14,10 @@ Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
 Plug 'junegunn/gv.vim'                 " git log viewer.  :GV
 Plug 'kshenoy/vim-signature'           " show marks in gutter
-" Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
+Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
 Plug 'mhinz/vim-grepper'               " replaces ag.vim.  uses neovim dispatch.
 Plug 'nathanaelkane/vim-indent-guides' " stripes indentation
-Plug 'scrooloose/syntastic'            " syntax/linter
+" Plug 'scrooloose/syntastic'            " syntax/linter
 Plug 'tpope/vim-commentary'            " gcc -> comment.  #gc -> comment n lines
 Plug 'tpope/vim-endwise'               " ruby append end to new blocks
 Plug 'tpope/vim-fugitive'              " git integration
@@ -61,9 +61,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Plug 'w0rp/ale'
-
+Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'gokcehan/vim-opex'   " ge/gz execs or appends execution
 
 call plug#end()
 
