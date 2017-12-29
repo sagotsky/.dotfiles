@@ -6,6 +6,8 @@
 # Type=Application
 # Exec=ssh-handler %U
 
+# in firefox's about:config set network.protocol-handler.expose.ssh to false
+
 dest=${1#ssh://}
 
 ssh_opts="-oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null"
