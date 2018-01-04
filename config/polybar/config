@@ -8,62 +8,56 @@
 ;=====================================================
 
 [colors]
+;background = ${xrdb:color0:#222}
 background = #222
 background-alt = #444
+;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
-foreground-alt = #55
+foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[global/wm]
-margin-top = 0
-margin-bottom = 0
-
-[bar/bender]
+[bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 monitor = ${env:MONITOR:DP-4}
-width = 100%
-; height = 60
-height = 36
-offset-x = 0
-offset-y = 0
+; width = 100%
+width = 3840
+height = 36 ; twice font?
+;offset-x = 1%
+;offset-y = 1%
+; radius = 6.0
+radius = 0
+;fixed-center = false
+fixed-center = true
 
-;background = ${xrdb:color9}
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-overline-size = 2
-overline-color = #f00
-underline-size = 2
-underline-color = #00f
+line-size = 3
+line-color = #f00
 
-border-bottom = 2
-border-bottom-color = #333
+border-size = 4
+border-color = #00000000
 
-spacing = 1
 padding-left = 0
 padding-right = 2
+
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=20;0
-font-1 = unifont:size=12:heavy:fontformat=truetype;-2
-font-2 = WunconSiji:size=20:pixelsize=20;0
-font-3 = FontAwesome:size=10;0
+font-0 = fixed:pixelsize=18;1
+font-1 = unifont:fontformat=truetype:size=14:antialias=false;0
+font-2 = siji:pixelsize=18;1
 
-modules-left = ewmh
-modules-center = xwindow
-; modules-right = volume memory cpu wlan battery tray date gmail
-modules-right = memory cpu wlan battery tray date gmail
+modules-left = xwindow
+modules-center = ewmh
+modules-right =  volume  memory cpu wlan eth battery temperature date powermenu
 
-; tray-position = right
-; tray-offset-x = -25%
-; tray-padding = 0
+tray-position = right
+tray-padding = 2
 ;tray-transparent = true
-; tray-background = ${colors.background}
-; tray-maxsize = 16
-; tray-scale = 1.0
+;tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -76,144 +70,140 @@ modules-right = memory cpu wlan battery tray date gmail
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
 
-[module/tray]
-
-type = tray
-
-
-
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:60:...%
+label = %title:0:120:...%
+format-padding = 1
 
-; [module/xkeyboard]
-; type = internal/xkeyboard
-; blacklist-0 = num lock
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
 
-; format-underline = ${colors.secondary}
-; format-prefix = " "
-; format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
 
-; label-layout = %layout%
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
 
-; label-indicator-padding = 2
-; label-indicator-background = ${colors.secondary}
-; label-indicator-underline = ${colors.secondary}
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
 
-; [module/filesystem]
-; type = internal/fs
-; interval = 25
+[module/filesystem]
+type = internal/fs
+interval = 25
 
-; mount-0 = /
-; mount-1 = /home
-; mount-2 = /invalid/mountpoint
+mount-0 = /
 
-; label-mounted = %mountpoint%: %percentage_free%
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
 
-; label-unmounted = %mountpoint%: not mounted
-; label-unmounted-foreground = ${colors.foreground-alt}
+[module/bspwm]
+type = internal/bspwm
 
-; [module/bspwm]
-; type = internal/bspwm
-; ws-icon-default = x
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
 
-; label-focused = %index%
-; label-focused-background = ${colors.background-alt}
-; label-focused-underline= ${colors.primary}
-; label-focused-padding = 2
+label-occupied = %index%
+label-occupied-padding = 2
 
-; label-occupied = %index%
-; label-occupied-padding = 2
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
-; label-urgent = %index%!
-; label-urgent-background = ${colors.alert}
-; label-urgent-padding = 2
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
 
-; label-empty = %index%
-; label-empty-foreground = ${colors.foreground-alt}
-; label-empty-padding = 2
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
 
-; [module/i3]
-; type = internal/i3
-; format = <label-state> <label-mode>
-; index-sort = true
-; wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
 
-; label-mode-padding = 2
-; label-mode-foreground = #000
-; label-mode-background = ${colors.primary}
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
 
-; label-focused = %index%
-; label-focused-background = ${module/bspwm.label-focused-background}
-; label-focused-underline = ${module/bspwm.label-focused-underline}
-; label-focused-padding = ${module/bspwm.label-focused-padding}
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-padding = ${module/bspwm.label-focused-padding}
 
-; label-unfocused = %index%
-; label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
-; label-urgent = %index%!
-; label-urgent-background = ${module/bspwm.label-urgent-background}
-; label-urgent-padding = ${module/bspwm.label-urgent-padding}
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
 
-; label-visible = %index%
-; label-visible-background = ${self.label-focused-background}
-; label-visible-underline = ${self.label-focused-underline}
-; label-visible-padding = ${self.label-focused-padding}
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-
-format-online = <label-song>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
-
-label-song-maxlen = 25
-label-song-ellipsis = true
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
 icon-prev = 
-icon-seekb = 
 icon-stop = 
 icon-play = 
 icon-pause = 
 icon-next = 
-icon-seekf = 
 
-icon-random = 
-icon-repeat = 
+label-song-maxlen = 25
+label-song-ellipsis = true
 
-toggle-on-foreground = ${colors.primary}
-toggle-off-foreground = #66
+[module/xbacklight]
+type = internal/xbacklight
 
-; [module/backlight]
-; type = internal/xbacklight
+format = <label> <bar>
+label = BL
 
-; format = <label> <bar>
-; label = BL
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
 
-; bar-width = 10
-; bar-indicator = │
-; bar-indicator-foreground = #ff
-; bar-indicator-font = 2
-; bar-fill = ─
-; bar-fill-font = 2
-; bar-fill-foreground = #9f78e1
-; bar-empty = ─
-; bar-empty-font = 2
-; bar-empty-foreground = ${colors.foreground-alt}
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #f90000
-label = CPU %percentage%
+format-underline = #f90000
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #4bffdc
-label = MEM %percentage_used%
+format-underline = #4bffdc
+label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
@@ -221,12 +211,14 @@ interface = wlp4s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-; format-connected-underline = #9f78e1
-; format-disconnected-underline = ${self.format-connected-underline}
-
+format-connected-underline = #9f78e1
 label-connected = %essid%
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -242,12 +234,14 @@ interval = 3.0
 
 format-connected-underline = #55aa55
 format-connected-prefix = " "
-format-connected-foreground-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -256,12 +250,12 @@ interval = 5
 date =
 date-alt = " %Y-%m-%d"
 
-time = %I:%M
-time-alt = %I:%M:%S
+time = %H:%M
+time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #0a6cf5
+format-underline = #0a6cf5
 
 label = %date% %time%
 
@@ -285,10 +279,8 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-; bar-volume-indicator = │
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
-bar-volume-indicator-foreground = #ff
 bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
@@ -322,87 +314,85 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-; [module/temperature]
-; type = internal/temperature
-; thermal-zone = 0
-; warn-temperature = 60
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
 
-; format = <ramp> <label>
-; format-underline = #f50a4d
-; format-warn = <ramp> <label-warn>
-; format-warn-underline = ${self.format-underline}
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
 
-; label = %temperature%
-; label-warn = %temperature%
-; label-warn-foreground = ${colors.secondary}
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
 
-; ramp-0 = 
-; ramp-1 = 
-; ramp-2 = 
-; ramp-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
 
-; [module/powermenu]
-; type = custom/menu
-; label-open =  power
-; label-open-foreground = ${colors.secondary}
-; label-close =  cancel
-; label-close-foreground = ${colors.secondary}
-; label-separator = |
-; label-separator-foreground = ${colors.foreground-alt}
+[module/powermenu]
+type = custom/menu
 
-; menu-0-0 = reboot
-; menu-0-0-exec = menu-open-1
-; menu-0-1 = power off
-; menu-0-1-exec = menu-open-2
+format-spacing = 1
 
-; menu-1-0 = cancel
-; menu-1-0-exec = menu-open-0
-; menu-1-1 = reboot
-; menu-1-1-exec = sudo reboot
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
 
-; menu-2-0 = power off
-; menu-2-0-exec = sudo poweroff
-; menu-2-1 = cancel
-; menu-2-1-exec = menu-open-0
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
 
 [module/ewmh]
 type = internal/xworkspaces
-pin-workspaces = false
-enable-click = true
-enable-scroll = false
-# why dont font awesome icons work?
-icon-1 = I
-icon-2 = II
-icon-3 = III
-icon-4 = IV
-icon-5 = V
-icon-6 = VI
-icon-7 = VII
-icon-8 = VIII
-icon-9 = IX
-icon-0 = X
 
-# strip xmonad name, just show our icon
-label-active-font = 4
-# try %icon% once font awesome stuff works
-; label-active = %icon%
-; label-occupied = %icon%
-; label-empty = %icon%
-; label-urgent = %icon%
-# label-active-underline = #ff0000
-# TODO
-label-active-foreground = #eeeeef
-; label-active-background = #eeeeef # flashes this color then dims
-label-occupied-background = #00ff00
-label-empty-foreground = #555566
-label-urgent-background = #0000ff
+label-active-foreground = #aaaaaa
+; occupied doesn't do anything?
+label-occupied-foreground = #8888ff
+label-empty-foreground = #444444
+; label-active-background = #666666
+;
+label-occupied-underline = #ff5555
+; does urgent work?
+label-urgent-background = #bd2c40
+label-urgent-underline = #bd2cff
 
 
-[module/gmail]
-type = custom/script
-exec = gmail-count.sh
-tail = true
-format-prefix-foreground = ${colors.alert}
-format-prefix-background = ${colors.background-alt}
+;icon-1 = one
+;icon-i = one
+; icon-default = •
+label-active =  " •"
+;label-occupied =  •
+label-empty =  " •"
+;label-urgent =  •
+;label-active = %icon% %name%
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
 
 ; vim:ft=dosini
