@@ -12,6 +12,8 @@ home/.cmus/*
 .pentadactyl/info
 
 tags
+tags.lock
+tags.temp
 home/.vim/.netrwhist
 home/.vim/autoload/*
 home/.vim/plugin/*
