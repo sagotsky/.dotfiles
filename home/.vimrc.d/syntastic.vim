@@ -30,3 +30,7 @@ hi ALEErrorSign ctermfg=215
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'ruby': ['ruby', 'brakeman', 'rails_best_practices', 'rubocop']} " rubucop, reek
 let g:ale_ruby_rubocop_options = '--config ~/.rubocop.yml'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_set_highlights = 0

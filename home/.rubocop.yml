@@ -2,7 +2,14 @@ Metrics/LineLength:
   Enabled: true
   Max: 160
 
+Metrics/MethodLength:
+  Enabled: true
+  Max: 20
+
 Metrics/ClassLength:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/StringLiterals:
@@ -21,4 +28,37 @@ Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Lint/RescueWithoutErrorClass:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+Layout/AlignHash:
+  Enabled: false
+
+Layout/AlignParameters:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
   Enabled: false

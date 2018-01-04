@@ -32,6 +32,8 @@ nnoremap [l                 :lprevious<cr>
 vnoremap Y  "+y
 " P pastes from it
 vnoremap P  "*p
+vnoremap < <gv
+vnoremap > >gv
 
 map <F7> :set invspell<CR>
 map <F6> :set invwrap<CR>
