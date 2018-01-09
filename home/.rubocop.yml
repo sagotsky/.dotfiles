@@ -62,3 +62,6 @@ Layout/AlignParameters:
 
 Style/TrailingCommaInLiteral:
   Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
