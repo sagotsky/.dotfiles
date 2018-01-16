@@ -65,3 +65,6 @@ Style/TrailingCommaInLiteral:
 
 Naming/AccessorMethodName:
   Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
