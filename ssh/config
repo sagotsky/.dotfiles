@@ -4,12 +4,16 @@ host *
   forwardAgent yes
 
 host rj
-	# hostname robotjesus.net
+	# hostname home.sagotsky.com
   hostname 71.184.115.228
   forwardX11  yes
 
 host dh
 	hostname sagotsky.com
+
+host sinatra
+  hostname sagotsky.com
+  user dh_rus2wy
 
 host backup
     user b290293
