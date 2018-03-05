@@ -1,9 +1,9 @@
-#!/bin/bash  -x
+#!/bin/bash
 
-[[ $(acpi -a) == 'Adapter 0: on-line' ]] && echo && exit 
+[[ $(acpi -a) == 'Adapter 0: on-line' ]] && echo && exit
 [[ -d "/sys/class/power_supply/BAT0" ]] || (echo && exit)
 
-PWR="$(acpi -b | cut -f4 -d' ' | tr -d '?' | tr -d ',')"
+PWR="$(acpi -b | cut -f4 -d' ' | tr -d '?' | tr -d ',' | head -n 1)"
 [[ "x$PWR" == "x" ]] && exit
 #https://github.com/zoresvit/dotfiles/tree/master/xmonad/.xmonad/images
 
