@@ -4,12 +4,12 @@ let mapleader=" "
 nnoremap <leader>p          0:Files <cr>
 nnoremap <leader>b          0:Buffers <cr>
 nnoremap <leader>r          0:History<cr>
-" nnoremap <leader>p          :CtrlP <cr>
-" nnoremap <leader>b          :CtrlPBuffer <cr>
-" nnoremap <leader>r          :CtrlPMRU<cr>
-nnoremap <leader>F          :execute 'CtrlPFunky ' . expand('<cword>')<cr>
-nnoremap <leader>/          :Grepper -tool rg -open -switch <cr>
-nnoremap <leader>?          :Grepper -tool rg -open -switch -cword -noprompt<cr>
+nnoremap <leader>l          0:Lines!<cr>
+nnoremap <leader>L          0:BLines!<cr>
+nnoremap <silent><leader>/          :Ag <cr>
+nnoremap <silent><leader>?          :Ag <C-R><C-W> <cr>
+" nnoremap <leader>/          :Grepper -tool rg -open -switch <cr>
+" nnoremap <leader>?          :Grepper -tool rg -open -switch -cword -noprompt<cr>
 nnoremap <leader>nt         :tabnew<cr>
 nnoremap <leader>NT         :tabnew %<cr>
 
@@ -31,7 +31,8 @@ nnoremap [l                 :lprevious<cr>
 " Y copies to x11 clipboard
 vnoremap Y  "+y
 " P pastes from it
-vnoremap P  "*p
+" vnoremap P  "*p
+vnoremap P :Paste<cr>
 vnoremap < <gv
 vnoremap > >gv
 
