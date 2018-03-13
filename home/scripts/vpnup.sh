@@ -3,7 +3,7 @@
 source ~/.functions # delay()
 
 VPN="openvpn-client@plm"
-if [[ $(systemctl is-active $VPN &>/dev/null) ]] ; then
+if [[ "$(systemctl is-active $VPN)" == 'active' ]] ; then
   echo 'got vpn!'
 else
   echo 'Gimme vpn!'

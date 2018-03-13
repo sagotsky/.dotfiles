@@ -2,6 +2,8 @@ au BufRead,BufNewFile *.txt          set filetype=text
 
 au BufRead,BufNewFile *.4e.txt       set filetype=4e
 
+au BufNewFile,BufRead Jenkinsfile    setf groovy
+
 au BufNewFile,BufRead *.rc           set filetype=sh
 au BufNewFile,BufRead .xsession      set filetype=sh
 au BufNewFile,BufRead .functions     set filetype=sh

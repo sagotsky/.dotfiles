@@ -3,7 +3,7 @@
 [[ $(acpi -a) == 'Adapter 0: on-line' ]] && echo && exit
 [[ -d "/sys/class/power_supply/BAT0" ]] || (echo && exit)
 
-PWR="$(acpi -b | cut -f4 -d' ' | tr -d '?' | tr -d ',' | head -n 1)"
+PWR="$(acpi -b | grep Discharging | cut -f4 -d' ' | tr -d '?' | tr -d ',' )"
 [[ "x$PWR" == "x" ]] && exit
 #https://github.com/zoresvit/dotfiles/tree/master/xmonad/.xmonad/images
 

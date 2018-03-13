@@ -64,5 +64,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'gokcehan/vim-opex'   " ge/gz execs or appends execution
+Plug 'enricobacis/paste.vim' " fast paste
 call plug#end()
 

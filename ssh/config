@@ -39,6 +39,7 @@ host prod
 # plm staging
 Host 10.52.*
   user jsagotsky
+  localcommand vpnup.sh
 
 host *.plminternal.com
   user jsagotsky
