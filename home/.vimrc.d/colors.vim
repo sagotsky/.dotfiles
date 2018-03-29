@@ -1,6 +1,6 @@
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
-  colorscheme railscasts 
+  colorscheme railscasts
   "execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
   " augroup autocom
   "   autocmd!
@@ -15,18 +15,11 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " hi Visual      ctermbg=236
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
-  hi TabLine  ctermbg=233 cterm=bold term=bold 
-  hi TabLineSel  ctermbg=235 cterm=bold term=bold 
+  hi TabLine  ctermbg=233 cterm=bold term=bold
+  hi TabLineSel  ctermbg=235 cterm=bold term=bold
   hi TabLineFill  ctermfg=233
 
-  " gitgutter
-  hi SignColumn guibg=#202020 ctermbg=234
-  hi GitGutterAddDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeLineDefault guibg=#202020 ctermbg=234
-  hi GitGutterChangeDeleteDefault guibg=#202020 ctermbg=234
-  hi GitGutterDeleteDefault guibg=#202020 ctermbg=234
+  hi SignColumn guibg=#202020 ctermbg=235
 
   hi IndentGuidesOdd  guibg=#202020   ctermbg=235
   hi IndentGuidesEven guibg=#2a2a2a ctermbg=234

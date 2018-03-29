@@ -6,7 +6,8 @@ endif
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter'          " duh
+Plug 'mhinz/vim-signify' " faster than gitgutter?
+" Plug 'airblade/vim-gitgutter'          " duh
 Plug 'ap/vim-css-color'                " shows hex colors in color
 Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
 Plug 'ervandew/supertab'               " tab for autocomplete
