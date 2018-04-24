@@ -15,3 +15,7 @@ end
 require 'pry-theme'
 require 'pry-loudmouth'
 Pry.config.theme = 'railscasts' # does awesome print use this theme?
+
+Pry::Commands.block_command '!!!!', 'Die hard' do
+  `kill -9 #{$PROCESS_ID}`
+end
