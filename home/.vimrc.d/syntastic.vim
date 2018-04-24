@@ -30,7 +30,8 @@ hi ALEErrorSign ctermfg=202
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
  " rubucop, reek, rails_best_practices
 let g:ale_linters = {
-\ 'ruby': ['ruby', 'rubocop']
+\ 'ruby': ['ruby', 'rubocop'],
+\ 'haml': ['haml-lint']
 \}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],

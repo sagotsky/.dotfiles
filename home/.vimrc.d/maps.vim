@@ -7,9 +7,7 @@ nnoremap <leader>r          0:History<cr>
 nnoremap <leader>l          0:Lines!<cr>
 nnoremap <leader>L          0:BLines!<cr>
 nnoremap <silent><leader>/          :Ag <cr>
-nnoremap <silent><leader>?          :Ag <C-R><C-W> <cr>
-" nnoremap <leader>/          :Grepper -tool rg -open -switch <cr>
-" nnoremap <leader>?          :Grepper -tool rg -open -switch -cword -noprompt<cr>
+nnoremap <leader>?          :Grepper -tool rg -open -switch -cword -noprompt<cr>
 nnoremap <leader>nt         :tabnew<cr>
 nnoremap <leader>NT         :tabnew %<cr>
 
@@ -43,7 +41,8 @@ map <F8> :set invnumber<CR>
 map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
 nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
-"noremap <ENTER> : this is fucked up in quickfix
+
+nnoremap <leader>af       :ALEFix<cr>
 
 " neovim's parses ^h as backspace, so bind bakcspace to pane left.
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
