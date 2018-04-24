@@ -94,7 +94,7 @@ function preexec() {
 
 function precmd() {
   if [ ! -z $_SECONDS_BEFORE ] ; then
-    [ $(( $SECONDS - ${_SECONDS_BEFORE} )) -gt 30 ] && echo -e "\a"
+    [ $(( $SECONDS - ${_SECONDS_BEFORE} )) -gt 15 ] && echo -e "\a"
   fi
 }
 
