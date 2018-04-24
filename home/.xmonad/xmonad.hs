@@ -163,8 +163,6 @@ myKeys = [
     , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
     , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
-    , ("M-s",              spawn "HOST=$(grep '^host ' .ssh/config | cut -f 2 -d' ' | ~/scripts/dmenu_hist.sh ssh -l 10 -i -s 0 -sb '#cfb000' -sf '#000' -nf '#fff' -nb '#4a525a' -fn -*-terminus-bold-r-*-*-16) && xterm -e 'ssh $HOST' ")
-    , ("M-S-s",            spawn "xterm -e stage_ssh.sh $(stage_ssh.sh | dmenu -l 10 -i -s 0 -fn terminus-bold-16 )")
     , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
 
 
@@ -209,8 +207,7 @@ myKeys = [
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
     -- WM Shortcuts
-    , ("M-x",   spawn "dmenu_run -b -i -m 0 ") -- $path launcher
-    , ("M-S-x", spawn "$(xdmenug.py)") -- xdg-menu launch
+    , ("M-x",   spawn "dmenu_run -i -m 0 ") -- $path launcher
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
