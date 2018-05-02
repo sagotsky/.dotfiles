@@ -207,7 +207,7 @@ myKeys = [
     , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
     -- WM Shortcuts
-    , ("M-x",   spawn "dmenu_run -i -m 0 ") -- $path launcher
+    , ("M-x",   spawn "dmenu_run -i ") -- $path launcher
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
