@@ -156,15 +156,9 @@ main = do
 myKeys = [
     -- application shortcuts
 	  ("<XF86HomePage>",   spawn "nautilus") --home browser
-    , ("<XF86Favorites>",  spawn " ~/scripts/gdm3switch.sh jenn") --user switch
-    , ("<XF86AudioMedia>",  spawn " ~/scripts/gdm3switch.sh jenn") --user switch
-    , ("S-<XF86AudioMedia>",spawn "xlock") --lock screen
-    , ("<XF86Mail>",       spawn "active_win_man.sh") -- manpage for active win
     , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
     , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
-    , ("M-C-<Return>",     spawn "urxvt") -- urxvt alternate term is transparent
     , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
-
 
     -- music
     , ("M-<Up>"  ,               spawn "xterm -e music-remote.sh") --vol up
@@ -179,21 +173,6 @@ myKeys = [
     , ("<XF86AudioRaiseVolume>", spawn "vol-up.sh") --vol up
     , ("<XF86AudioLowerVolume>", spawn "vol-down.sh") --vol down
     , ("<XF86AudioMute>",        spawn "vol-mute.sh") --vol mute
-    , ("<XF86LaunchA>",          spawn "music-client.sh rate1") -- rate 1-5
-    , ("<XF86LaunchB>",          spawn "music-client.sh rate2") -- rate 1-5
-    , ("<XF86LaunchC>",          spawn "music-client.sh rate3") -- rate 1-5
-    , ("<XF86LaunchD>",          spawn "music-client.sh rate4") -- rate 1-5
-    , ("<XF86LaunchE>",          spawn "music-client.sh rate5") -- rate 1-5
-    , ("M-m", spawn "cmus-filter.sh") -- cmus play song
-    , ("M-z", spawn "~/source/node-cli-play/bin/spotifyr.js artist") -- cmus play song
-
-    -- TODO better modifier use.  ie alt=artist, shift=album, ctrl += random
-    , ("M-S-m", spawn "cmus-filter.sh --list album") -- cmus play album
-    , ("M-C-m", spawn "cmus-filter.sh --randomize --list album") -- cmus random album
-    , ("M-M1-m", spawn "cmus-filter.sh --list artist") -- cmus artist (M1 = alt)
-    , ("M-M1-C-m", spawn "cmus-filter.sh --list artist --randomize ") -- cmus artist
-    , ("M-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | dmenu -i -s 0 -l 20 -b)\"") -- cmus bookmarked albums
-    , ("M-S-a", spawn "cmus-filter.sh --list album --query \"$(cat ~/.album-bookmarks | shuf -n 1)\"") -- cmus random bookmarked albums
 
     -- transparency
     , ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
@@ -225,23 +204,12 @@ myKeys = [
     , ("M-S-q", return ()) -- don't you fucking quit.  that's what ctrl-alt-backsp is for.
 
     -- misc scripts
-    , ("M-/",   spawn "killall -9 zeal ; zeal -f") -- rails docs menu
     , ("M-y",   spawn "cli-board.sh") -- copies text into clip board
     , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
     , ("M-<Escape>", spawn "bender-dock.sh") -- reset screen, xmodmap, etc
-
+    , ("M-d", spawn "notify-send Date \"`date`\" ") -- show date on current screen.
 	]
 
-    {-
-     -- available keys
-
-     , ("M-a",  spawn "")
-     , ("M-c",  spawn "")
-     , ("M-f",  spawn "")
-     , ("M-i",  spawn "")
-     , ("M-v",  spawn "")
-     , ("M-z",  spawn "")
-    -}
 
 
 
