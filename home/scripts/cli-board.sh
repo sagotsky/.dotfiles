@@ -7,7 +7,7 @@
 
 CLIBOARDHOME="$HOME/.cli-board/"
 FONT=' -fn -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-* '
-DMENU_OPTS="-i -b -m 0 -nb #3b653d -nf #fff -sb #3b653d -sf #fe4 $FONT"
+DMENU_OPTS="-i -nb #3b653d -nf #fff -sb #3b653d -sf #fe4 $FONT"
 
 if [ -f "$HOME/.display" ] ; then
   export DISPLAY=$(cat "$HOME/.display")

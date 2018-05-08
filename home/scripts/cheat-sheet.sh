@@ -4,7 +4,7 @@
 
 CHEATSHEETS="$HOME/.cheat-sheets/"
 FONT=' -fn -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-* '
-DMENU_OPTS="-i -b -nb #3b3d45 -nf #fff -sb #3b3d45 -sf #fe4 $FONT"
+DMENU_OPTS="-i -nb #3b3d45 -nf #fff -sb #3b3d45 -sf #fe4 $FONT"
 
 if [ -f "$HOME/.display" ] ; then
   export DISPLAY=$(cat "$HOME/.display")
@@ -24,9 +24,9 @@ getfile() {
     exit 1
   fi
 
-  if [ -d "$DIR/$FILE" ] ; then 
-    getfile "$DIR/$FILE"  
-  else 
+  if [ -d "$DIR/$FILE" ] ; then
+    getfile "$DIR/$FILE"
+  else
     sed -e 's/^$/ /' "$DIR/$FILE" | dmenu $DMENU_OPTS -l 25 | xsel -i
   fi
 }
