@@ -4,8 +4,7 @@ host *
   forwardAgent yes
 
 host rj
-	# hostname home.sagotsky.com
-  hostname 71.184.115.228
+  hostname sagotsky.dynamic-dns.net
   forwardX11  yes
 
 host dh
