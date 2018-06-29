@@ -25,6 +25,7 @@ alias rb="rhythmbox-client "
 alias slrake='bundle exec $( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )'
 alias sudo='sudo ' # preserve aliases in a sudo
 alias t='tmux -2'
+alias tmux='systemd-run --scope --user tmux'
 alias tx='TERM=xterm tmux -2 attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='nv '

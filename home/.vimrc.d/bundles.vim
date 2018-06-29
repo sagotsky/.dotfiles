@@ -33,7 +33,6 @@ Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion
 Plug 'vim-airline/vim-airline'         " bar
 Plug 'vim-airline/vim-airline-themes'  " bar themes
 Plug 'vim-scripts/SQLComplete.vim'     " SQL syntax highlighting
-Plug 'vim-scripts/sql_iabbr.vim'       " sql commands are capitalized
 Plug 'vimwiki/vimwiki'                 " internal wiki
 Plug 'wincent/terminus'                " more term support.  mouse?
 
@@ -52,7 +51,6 @@ Plug 'junegunn/vim-peekaboo'        " preview yank ring
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
 
-" Plug 'junegunn/vim-emoji' "  needs a differnt term or font
 Plug 'bronson/vim-trailing-whitespace' " highlight trailing whitespace
 Plug 'alcesleo/vim-uppercase-sql'
 
@@ -64,7 +62,10 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
-Plug 'gokcehan/vim-opex'   " ge/gz execs or appends execution
 Plug 'enricobacis/paste.vim' " fast paste
+Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
+
+let g:comfortable_motion_friction = 80.0
+let g:comfortable_motion_air_drag = 2.0
 call plug#end()
 
