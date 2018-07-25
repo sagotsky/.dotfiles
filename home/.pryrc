@@ -7,15 +7,15 @@ end if defined?(Bundler)
 $:.uniq!
 
 
-begin
-  Pry.config.print = proc { |output, value| output.puts ((value.respond_to?(:ai) ? value.ai : nil) || value)  }
-rescue LoadError
-end
-
+require 'awesome_print'
 require 'pry-theme'
 require 'pry-loudmouth'
-Pry.config.theme = 'railscasts' # does awesome print use this theme?
 
+AwesomePrint.pry!
+Pry.config.theme = 'railscasts'
+Pry.config.pager = false # fix bug in which less eats cursor
+
+# define !!!! to kill process
 Pry::Commands.block_command '!!!!', 'Die hard' do
   `kill -9 #{$PROCESS_ID}`
 end
