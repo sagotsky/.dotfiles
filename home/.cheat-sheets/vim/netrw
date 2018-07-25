@@ -1,0 +1,17 @@
+moving files
+------------
+
+mt - mark target
+mf - mark file
+mc - copy marked tiems
+D - delete marked
+
+basic ops
+-----
+% - create and open file
+d - mkdir
+R - rename
+
+vinegar
+-----
+. - opens command mode with filename pasted
