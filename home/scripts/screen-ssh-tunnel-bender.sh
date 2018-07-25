@@ -18,7 +18,7 @@ while [[ true ]] ; do
   # 8080 is NATed to rj.  if it curls, we're up.  hopefully this will bypass the spam detector.
   #curl -s robotjesus.net:8080 && autossh $TUNNELS $OPTIONS rj
   autossh -M 55555 $TUNNELS $OPTIONS rj
-  sleep 5m
+  sleep 1m
 done
 
 # or do some signal trapping to die
