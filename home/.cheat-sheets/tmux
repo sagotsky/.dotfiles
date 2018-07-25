@@ -9,17 +9,17 @@ shift-mouse # clipboard selectoin
 
 ^\ %|"  # split vertical|horizontal
 ^\ o    # swap panes
-^\ <sp> # change layout 
+^\ <sp> # change layout
 ^\ q    # show pane number
 ^\ {|}  # move pane left/right
 ^\ z    # pane zoom
-^\ 
+^\
 ^\ [    # copy mode
   ENTER # exit copy mode, copying selection
   SPACE
 ^\ ]    # and paste it
 
-^\ :resize-pane -U/L/R
+^\ :resize-pane -U/L/R/D (optional arg: number of cells)
 ^\ :detach -a # detach all other sessions
 ^\ ?    # shortcut help
 ^\ t    # clock
