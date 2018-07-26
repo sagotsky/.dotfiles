@@ -15,7 +15,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " hi Visual      ctermbg=236
   hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
-  hi TabLine  ctermbg=233 cterm=bold term=bold
+  hi TabLine  ctermbg=233 cterm=bold term=bold ctermfg=236
   hi TabLineSel  ctermbg=235 cterm=bold term=bold
   hi TabLineFill  ctermfg=233
 
