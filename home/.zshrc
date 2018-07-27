@@ -126,9 +126,12 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
 fi
 
 
+# nvm.sh adds ~400ms to shell startup.  lazy load it instead.
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" #&>/dev/null
 export NVM_DIR="/home/sagotsky/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" &>/dev/null
-
+alias init_nvm="[ -s '$NVM_DIR/nvm.sh' ] && . '$NVM_DIR/nvm.sh'"
+alias node='unalias node ; unalias npm ; init_nvm ; node $@'
+alias npm='unalias node ; unalias npm ; init_nvm ; npm $@'
 
 if [[ "$ZSH_PROFILING" != "" ]] ; then
   END_MS="$(epoch_time_ms)"
