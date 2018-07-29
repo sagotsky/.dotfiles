@@ -6,8 +6,16 @@ if [[ "$ZSH_PROFILING" != "" ]] ; then
   START_MS="$(epoch_time_ms)"
 fi
 
+function stop_profiling {
+  if [[ "$ZSH_PROFILING" != "" ]] ; then
+    END_MS="$(epoch_time_ms)"
+    STARTUP=$(( $END_MS - $START_MS ))
+    echo "startup time: $STARTUP"
+  fi
+}
+
 # Set up the prompt
-setopt NO_HUP   # don't kill running processes when exiting the shell
+setopt NO_HUP   # don\'t kill running processes when exiting the shell
 
 # autoload -Uz promptinit
 
@@ -27,7 +35,8 @@ fpath=(~/.zsh/completion $fpath)
 
 # Use modern completion system
 autoload -Uz compinit
-compinit
+compinit -C # 30ms
+# removing the -C slows this down but recalculates some stuff.  not obvious why i ever need to do that
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -56,7 +65,7 @@ stty stop undef     # reclaim ctrl-s as forward search
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
-update_current_git_vars
+#update_current_git_vars # this is the slow 30ms
 
 # ctrl-x-e
 autoload -U edit-command-line
@@ -120,24 +129,16 @@ RPROMPT='%(1j.$( _rprompt_jobs ).)' #$( _rprompt_git_stash )'
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
-   for FILE in .{alias,functions,zshrc,shellrc}{,.local,.$HOST} ; do
-    [[ -e "$HOME/$FILE" && "$FILE" != ".zshrc" ]] && source "$HOME/$FILE"
+  for FILE in .{alias,functions}{,.$HOST} .shellrc .zshrc.$HOST; do
+    [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
   done
 fi
 
-
 # nvm.sh adds ~400ms to shell startup.  lazy load it instead.
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" #&>/dev/null
 export NVM_DIR="/home/sagotsky/.nvm"
 alias init_nvm="[ -s '$NVM_DIR/nvm.sh' ] && . '$NVM_DIR/nvm.sh'"
 alias node='unalias node ; unalias npm ; init_nvm ; node $@'
 alias npm='unalias node ; unalias npm ; init_nvm ; npm $@'
-
-if [[ "$ZSH_PROFILING" != "" ]] ; then
-  END_MS="$(epoch_time_ms)"
-  STARTUP=$(( $END_MS - $START_MS ))
-  echo "startup time: $STARTUP"
-fi
 
 # slow things
 # run "zsh -i -c exit" to profile
@@ -156,3 +157,4 @@ fi
 
 # ctrl-kj don't work in tmux
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+stop_profiling
