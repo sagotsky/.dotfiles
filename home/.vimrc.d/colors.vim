@@ -24,6 +24,9 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi IndentGuidesOdd  guibg=#202020   ctermbg=235
   hi IndentGuidesEven guibg=#2a2a2a ctermbg=234
 
+  " hide tilde on blank lines
+  hi EndOfBuffer ctermfg=bg
+
   " syntastic
   hi SyntasticErrorSign ctermbg=NONE ctermfg=white
   hi SyntasticWarningSign ctermbg=NONE ctermfg=242
