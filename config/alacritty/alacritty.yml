@@ -1,5 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
+# alacritty heats this laptop up hard
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -71,10 +72,15 @@ render_timer: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
+# custom_cursor_colors: false
+custom_cursor_colors: true
 
 # Colors (Gruvbox dark)
 colors:
+  cursor:
+    text: '0x000000'
+    cursor: '0xff4400'
+
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
@@ -101,7 +107,7 @@ colors:
     red:     '0xff3333'
     green:   '0x33ff33'
     yellow:  '0xffff33'
-    blue:    '0x3333ff'
+    blue:    '0x3355ff'
     magenta: '0xff33ff'
     cyan:    '0x33ffff'
     white:   '0xffffff'
