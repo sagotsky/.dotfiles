@@ -18,32 +18,14 @@ host backup
     user b290293
     hostname hanjin.dreamhost.com
 
-host stage1
-  user jsagotsky
-  HostName 192.168.10.3
-
-
-Host stage1
-  HostName 192.168.10.3
-
 Host bendertunnel
   HostName localhost
   port 23456
 
-host prod
-  hostname 10.241.0.15
-  user www
-  localcommand TERM=xterm xtermcontrol --bg '#a00'
-
 # plm staging
-Host 10.52.*
+Host 10.130.*
   user jsagotsky
   localcommand vpnup.sh
 
 host *.plminternal.com
   user jsagotsky
-
-host towl
-  user jsagotsky
-  hostname db-towel01.plminternal.com
-  localcommand klist | grep PLMINTERNAL || kinit jsagotsky@PLMINTERNAL.COM
