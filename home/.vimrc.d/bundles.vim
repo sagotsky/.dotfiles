@@ -13,7 +13,6 @@ Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
 Plug 'ervandew/supertab'               " tab for autocomplete
 Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
-Plug 'junegunn/gv.vim'                 " git log viewer.  :GV
 Plug 'kshenoy/vim-signature'           " show marks in gutter
 Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
 Plug 'mhinz/vim-grepper'               " replaces ag.vim.  uses neovim dispatch.

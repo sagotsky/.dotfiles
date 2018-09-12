@@ -1,0 +1,5 @@
+# open-pro
+instrumentation_frontend/node_modules
+instrumentation_frontend/tmp
+instrumentation_frontend/bower_components
+instrumentation_frontend/dist
