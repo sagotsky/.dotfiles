@@ -18,13 +18,10 @@ bindkey -s '\ertf'    "^Arep_til_failure " # prepend with rep_til_failure
 #bindkey -s '\ergm'   " echo 'rails g migration AddPartNumberToProducts part_number:string:index'\n rails g migration"
 #http://stackoverflow.com/questions/171563/whats-in-your-zshrc/171564#171564
 
-
-bindkey -s '\e?'    "cat ~/.zsh_rails \n"
-
 alias irb='pry'
 alias rails='bundle exec rails'
 alias rake='bundle exec rake'
-
+alias foreperson='foreman start -m all=1,rails=0' # start everything but rails
 
 # let's experiment a bit...
 # rgm() {
@@ -60,36 +57,11 @@ eval "`bind_key_cmd_hint 'rgt' 'rails g one_off_task' 'rails g one_off_task NAME
 eval "`bind_key_cmd_hint 'rgp' 'rails g post_push_task' 'rails g post_push_task NAME'`"
 eval "`bind_key_cmd_hint 'rgq' 'rails g question'       'rails g question IDENTITY --type --choice-set --required-context --do-not-track --text --subtext --profile-data'`"
 
-alias tddium_wait=solano_wait
-function solano_wait() {
-  if [[ $# == 0 ]] ; then
-    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-  else
-    BRANCH=$1
-  fi
-
-  echo "waiting for $BRANCH"
-  while solano status  --json | grep $BRANCH -A 8 | grep running ; do sleep 1m ; done
-}
 
 function rails_up {
   bundle
   rake db:migrate #_and_seed #
   bin/post_push work
-}
-
-function towl_exec {
-  sql="$(cat -)"
-  ssh towl psql -Upostgres tower_of_weblogs \
-    -c "\"$sql\""\
-    --tuples-only\
-    --no-align\
-    -F","
-
-}
-
-function fz_rake {
-  `$(rake -T | fzf)`
 }
 
 export DISABLE_SPRING=1
