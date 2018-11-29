@@ -7,7 +7,8 @@ there-can-be-only-one.sh
 echo ''
 
 while : ; do
-  COUNT="$(cat ~/.thunderbird/**/unread-counts |
+  COUNT="$(cat ~/.thunderbird/*/unread-counts |
+    grep '[0-9]'
     grep -v 'Local Folders' |
     cut -f1 -d: |
     head -n 1

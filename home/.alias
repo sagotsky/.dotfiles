@@ -2,6 +2,7 @@
 
 alias .='source '
 alias ack='ack-grep '
+alias add='paste -s -d+ | bc' # sums input
 alias appleterm='/usr/lib/xscreensaver/apple2 -text -program bash -fast'
 alias bd='popd'
 alias bell="echo -e '\a'"
@@ -25,9 +26,12 @@ alias rb="rhythmbox-client "
 alias slrake='bundle exec $( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )'
 alias sudo='sudo ' # preserve aliases in a sudo
 alias t='tmux -2'
-alias tmux='systemd-run --scope --user tmux'
+# alias tmux='systemd-run --scope --user tmux'
 alias tx='TERM=xterm tmux -2 attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
+alias wifi-connect="wpa_cli interface wlp4s0 select_network"
+alias wifi-dangerzone="wifi-connect dangerzone2.4"
+alias wifi-select='wifi-connect $(wpa_cli list_networks | fzf | cut -f 1)'
 alias v='nv '
 alias vim='nv '
 alias vw='nv -c VimwikiIndex'

@@ -3,6 +3,7 @@
   name = Jon Sagotsky
 [core]
   editor = nvim
+	excludesfile = /home/sagotsky/.gitignore_global
 [color]
   status = auto
   diff = auto

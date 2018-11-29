@@ -6,7 +6,7 @@ BODY=$3
 ICON=$4
 URGENCY=$5
 
-echo "$APP\n$SUMMARY\n$BODY\n$ICON\n$URGENCY\n" >> /tmp/dunst.log
+echo -e "$APP\n$SUMMARY\n$BODY\n$ICON\n$URGENCY\n" >> /tmp/dunst.log
 
 case $APP in
   'Electron') # slack's official client
@@ -21,19 +21,13 @@ case $APP in
     esac
     ;;
 
-  'ScudCloud Slack_SSB')
-    case $SUMMARY in
-      '#robothouse') ;;
-      '#jira') ;;
-      *)
-        #printf '%14s| %s\n' "$SUMMARY" "$BODY" >> ~/.scudcloud.log
-        flag-urgent.sh scudcloud &
-        ;;
-    esac
-  ;;
 
   'Spotify')
     music-client.sh bandsong >> ~/.music.out &
+    ;;
+
+  'Thunderbird')
+    flag-urgent.sh 'Thunderbird' &
     ;;
 esac
 
@@ -41,7 +35,5 @@ case $SUMMARY in
   cmus)
     music-client.sh bandsong > ~/.music.out &
     ;;
-
-# is scudcloud app or summary?  notify send has me so confused.
 esac
 

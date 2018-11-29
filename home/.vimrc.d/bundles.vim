@@ -46,7 +46,6 @@ if isdirectory($HOME."/.rbenv")
 endif
 
 " experimental
-Plug 'junegunn/vim-peekaboo'        " preview yank ring
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
 
@@ -63,7 +62,7 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'enricobacis/paste.vim' " fast paste
 Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
-
+Plug 'powerman/vim-plugin-AnsiEsc' " parse ansi colors for logs
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 call plug#end()

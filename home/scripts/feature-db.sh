@@ -134,7 +134,7 @@ db_name() {
 }
 
 feature_db_name() {
-  echo "${DB_PREFIX}_$(git_branch_name)"
+  echo "${DB_PREFIX}_$(git_branch_name)" | tr - _
 }
 
 prepare_db() {

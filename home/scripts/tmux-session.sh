@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias tmux='systemd-run --scope --user tmux'
+
 if [[ "$1" == '-h' || "$1" == '--help' ]] ; then
   echo tmux-session.sh session_name prog1 prog2 ... progN
   exit 1
