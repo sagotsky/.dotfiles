@@ -43,5 +43,13 @@ if ( $TERM != 'linux')          "don't break vim in vterms
 
   "trailing-whitespace
   hi ExtraWhitespace ctermbg=black
+
+  " somehow, setting these is clearing them.  weird.
+  hi ALEWarningSign ctermfg=240
+  hi ALEErrorSign ctermfg=196
+
+  " error position should underline, but not change color
+  hi clear SpellCap
+  hi SpellCap gui=underline cterm=underline
 endif
 

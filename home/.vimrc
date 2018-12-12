@@ -41,9 +41,12 @@ try                             "persistent undo files
 catch
 endtry
 
-" Source all the .vim files in ~/.vimrc.d
+" Source all the .vim files in ~/.vimrc.d, starting with bundles
+source $HOME/.vimrc.d/bundles.vim
 for file in split(glob('~/.vimrc.d/*.vim'), '\n')
-  exe 'source' file
+  if split(file, '/')[-1] != 'bundles.vim'
+    exe 'source' file
+  endif
 endfor
 
 filetype plugin indent on
