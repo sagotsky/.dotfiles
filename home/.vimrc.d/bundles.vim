@@ -62,8 +62,14 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'enricobacis/paste.vim' " fast paste
 Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
-Plug 'powerman/vim-plugin-AnsiEsc' " parse ansi colors for logs
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
+
+Plug 'powerman/vim-plugin-AnsiEsc' " parse ansi colors for logs
+Plug 'inside/vim-search-pulse' " flashy search results
+let g:vim_search_pulse_duration = 150
+let g:vim_search_pulse_mode = 'pattern'
+
 call plug#end()
 
+"let g:gutentags_ctags_exclude = ['build/']
