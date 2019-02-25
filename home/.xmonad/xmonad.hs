@@ -61,20 +61,20 @@ myManageHook =  composeAll
     [
      className =? "MPlayer"                           --> doFloat
     , className =? "Gnome-calculator"                 --> doFloat
-    , className =? "doukutsu"                         --> doFloat
+    -- , className =? "doukutsu"                         --> doFloat
     , className =? "Zenity"                           --> doFloat
     , className =? "Peek"                             --> doFloat
-    , className =? "xine"                             --> doFullFloat
-    , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
+    -- , className =? "xine"                             --> doFullFloat
+    -- , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
     , className =? "Exe"                              --> doFullFloat -- chrome flash
     , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
-    , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
+    -- , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
     , className =? "Gimp"                             --> (ask >>= doF . W.sink)
     , resource  =? "Do"                               --> doIgnore
     , resource  =? "feh"                              --> doIgnore
     , className =? "Unity-2d-panel"                  --> doIgnore
     , className =? "Unity-2d-launcher"               --> doIgnore
-    , className =? "Zenity"                          --> doIgnore
+    -- , className =? "Zenity"                          --> doIgnore
     , className =? "Screenkey"                       --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
@@ -157,11 +157,11 @@ myKeys = [
     -- application shortcuts
 	  ("<XF86HomePage>",   spawn "nautilus") --home browser
     , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
-    , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
-    , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
+    -- , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
+    -- , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
 
     -- music
-    , ("M-<Up>"  ,               spawn "xterm -e music-remote.sh") --vol up
+    -- , ("M-<Up>"  ,               spawn "xterm -e music-remote.sh") --vol up
     , ("M-<Down>",               spawn "music-client.sh toggle") --vol up
     , ("M-<Right>",              spawn "music-client.sh next") --Next
     , ("M-<Left>",               spawn "music-client.sh back") --Back
@@ -180,10 +180,10 @@ myKeys = [
     , ("M-S-o", spawn "transset-df -a --inc 1") -- reset transparent
 
     --xcalib screen options
-    , ("<XF86Search>",   spawn "xcalib -a -i") -- screen color invert
-    , ("C-<XF86Search>", spawn "xcalib -c") -- screen color reset
-    , ("S-<XF86Search>", spawn "xcalib -a -co 95") -- screen contrast decrease
-    , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
+    -- , ("<XF86Search>",   spawn "xcalib -a -i") -- screen color invert
+    -- , ("C-<XF86Search>", spawn "xcalib -c") -- screen color reset
+    -- , ("S-<XF86Search>", spawn "xcalib -a -co 95") -- screen contrast decrease
+    -- , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
 
     -- WM Shortcuts
     , ("M-x",   spawn "dmenu_run -i ") -- $path launcher
@@ -191,9 +191,9 @@ myKeys = [
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels.
-    , ("M-S-d",   removeWorkspace ) -- Delete active workspace
-    , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
-    , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
+    -- , ("M-S-d",   removeWorkspace ) -- Delete active workspace
+    -- , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
+    -- , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
     , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
     , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
     , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
@@ -209,10 +209,6 @@ myKeys = [
     , ("M-<Escape>", spawn "bender-dock.sh") -- reset screen, xmodmap, etc
     , ("M-d", spawn "notify-send Date \"`date`\" ") -- show date on current screen.
 	]
-
-
-
-
 
 myXPConfig = defaultXPConfig
                 { bgColor = "#101015"
