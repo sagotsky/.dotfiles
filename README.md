@@ -41,6 +41,6 @@ text files.
 
 * Key bindings: https://github.com/sagotsky/.dotfiles/blob/master/home/.xmonad/xmonad.hs#L207-L208
 * Cheat sheet: https://github.com/sagotsky/.dotfiles/blob/master/home/scripts/cheat-sheet.sh
-** cheat sheets: https://github.com/sagotsky/.dotfiles/tree/master/home/.cheat-sheets
+  * cheat sheets: https://github.com/sagotsky/.dotfiles/tree/master/home/.cheat-sheets
 * cli-board: https://github.com/sagotsky/.dotfiles/blob/master/home/scripts/cli-board.sh
-** scripts: https://github.com/sagotsky/.dotfiles/tree/master/home/.cli-board
+  * scripts: https://github.com/sagotsky/.dotfiles/tree/master/home/.cli-board
