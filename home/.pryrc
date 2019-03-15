@@ -34,3 +34,12 @@ Pry.config.pager = false # fix bug in which less eats cursor
 Pry::Commands.block_command '!!!!', 'Die hard' do
   `kill -9 #{$PROCESS_ID}`
 end
+# still no byebug
+# Pry::Commands.block_command 'bb', 'byebug' do
+#   require 'pry-byebug'
+#   Pry::Commands.rename_command("bb-next", "next")
+#   Pry::Commands.rename_command("bb-break", "break")
+#   Pry::Commands.rename_command("bb-step", "step")
+# end
+
+# vi:syntax=ruby
