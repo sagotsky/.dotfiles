@@ -1,61 +1,46 @@
-# Sagotsky's dotfiles and scripts.  
+# Sagotsky's dotfiles and scripts.
 
-I link to these things often enough that they might as well be on github.  Also,
-I'm hopeful that publicizing my scripts will force me to write them properly, 
-even if nobody actively uses or reviews them.
+I link to these things often enough that they might as well be on github.
 
-# Scripts 
+## App specific
+
+### zsh
+* aliases https://github.com/sagotsky/.dotfiles/blob/master/home/.alias
+* functions https://github.com/sagotsky/.dotfiles/blob/master/home/.functions
+* rc https://github.com/sagotsky/.dotfiles/blob/master/home/.zshrc
+
+### Vim
+* vimrc https://github.com/sagotsky/.dotfiles/blob/master/home/.vimrc
+* vimrc.d - split up by plugin https://github.com/sagotsky/.dotfiles/tree/master/home/.vimrc.d
+
+### Rails (for dev machiens)
+* shell aliases, readline shortcuts https://github.com/sagotsky/.dotfiles/blob/master/home/.zsh_rails
+* pry https://github.com/sagotsky/.dotfiles/blob/master/home/.pryrc
+
+### xmonad
+* xmonad.hs https://github.com/sagotsky/.dotfiles/blob/master/home/.xmonad/xmonad.hs
+
+## Scripts
 
 Whole lot of scripts in here.  Some will eventually be extracted into their own
-repos.  For now, here's an explanation of the interesting ones.  No point
-listing the one-offs.
+repos.  Here are some of the most interesting ones.
 
-# 4E2latex.pl
+### feature-db.sh
 
-Generates latex documents from text files with Dungeons & Dragons 4th ed NPC
-stat blocks.  See: ddi-mooch.  Highlighting is based on my vim syntax 
-highlighter for this, but meant for a white background.
+Clones a rails db on demand from a hot spare.  I put this in my
+.env.development.local as the DB name so I always get a new database per
+feature branch
 
-## active_win_man.sh 
+*  https://github.com/sagotsky/.dotfiles/blob/master/home/scripts/feature-db.sh
 
-Calls up a manpage for currently focused window.  Meant for a keyboard shortcut.
-Digs into terminal windows to find their shell and active program.  I mostly use
-this as an example for getting info about a window.
+### cli-board (script snippets) and cheat sheet
 
-## cli-board.sh
+Dmenu/rofi for traversing a fey key directories.  They contain scripts that output
+directly to the clipboard (ie, screenshot -> imgur -> copy url ) or copy snippets from
+text files.
 
-Clipboard copier.  Uses dmenu to read through ~/.cli-board directory.  Text 
-files are read into the clipboard.  Shell scripts are executed and their results
-dumped into the clipboard.  
-
-## ddi-mooch.sh 
-
-Downloads plain text copies of all content in D&D 4e's compendium.  Needs a 
-cookies.txt file with authorization to connect to DDI comepndium.  Good example 
-of using xargs for forking parallel processes.
-
-## gitget
-
-Frontend for browsing and downloading from github.  Lets you search repository 
-descriptions or list all of a users watched or owned repositories.  Results
-can be cloned en mass.
-
-## gdmSwitch.sh 
-
-Switches to another user's X session or to GDM's login screen if user isn't 
-logged in.  This exists because my wife couldn't handle ctrl-alt-f8.  It would 
-be a good example of esoteric GDM commands that are poorly documented, except 
-that gdm3 deprected all those options.  
-
-## notify-volume.sh 
-
-Watches mixer device for changes.  Spits out volume after each change.  Used by 
-xmobar instead of polling 1/sec for current volume.
-
-## plbroadcatch 
-
-Todo: make separate repo, rewrite.  This script connects to showrss and 
-downloads my new TV torrents.  It's in perl so I could run it on my dd-wrt 
-router.  (It had been in python, but I didn't have the disk space to install 
-python there.)  It's also my first perl project, so don't use it as an example.
-
+* Key bindings: https://github.com/sagotsky/.dotfiles/blob/master/home/.xmonad/xmonad.hs#L207-L208
+* Cheat sheet: https://github.com/sagotsky/.dotfiles/blob/master/home/scripts/cheat-sheet.sh
+  * cheat sheets: https://github.com/sagotsky/.dotfiles/tree/master/home/.cheat-sheets
+* cli-board: https://github.com/sagotsky/.dotfiles/blob/master/home/scripts/cli-board.sh
+  * scripts: https://github.com/sagotsky/.dotfiles/tree/master/home/.cli-board
