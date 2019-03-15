@@ -2,7 +2,7 @@
 
 source ~/.functions # delay()
 
-for vpn in plm aws-preprod ; do
+for vpn in aws-preprod ; do
   service="openvpn-client@$vpn"
   if [[ "$(systemctl is-active $service)" == 'active' ]] ; then
     echo 'got vpn!'
