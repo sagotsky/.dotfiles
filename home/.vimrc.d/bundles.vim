@@ -14,7 +14,10 @@ Plug 'ervandew/supertab'               " tab for autocomplete
 Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
 Plug 'kshenoy/vim-signature'           " show marks in gutter
+
 Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
+let g:gutentags_ctags_exclude = ['*/node_modules/*']
+
 Plug 'mhinz/vim-grepper'               " replaces ag.vim.  uses neovim dispatch.
 Plug 'nathanaelkane/vim-indent-guides' " stripes indentation
 " Plug 'scrooloose/syntastic'            " syntax/linter
@@ -59,6 +62,27 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'w0rp/ale'
+let g:ale_fix_on_save = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_highlights = 1
+let g:ale_sign_error = "⇨"
+let g:ale_sign_warning = "•"
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+\ 'ruby': ['ruby', 'rubocop'],
+\ 'shell': ['ruby', 'rubocop'],
+\ 'haml': ['haml-lint']
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
+
+
+
 Plug 'sheerun/vim-polyglot'
 Plug 'enricobacis/paste.vim' " fast paste
 Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
