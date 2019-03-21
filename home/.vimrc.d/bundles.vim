@@ -16,7 +16,7 @@ Plug 'jgdavey/vim-railscasts'          " theme
 Plug 'kshenoy/vim-signature'           " show marks in gutter
 
 Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
-let g:gutentags_ctags_exclude = ['*/node_modules/*']
+let g:gutentags_ctags_exclude = ['*/node_modules/*', 'tmp', 'logs']
 
 Plug 'mhinz/vim-grepper'               " replaces ag.vim.  uses neovim dispatch.
 Plug 'nathanaelkane/vim-indent-guides' " stripes indentation
