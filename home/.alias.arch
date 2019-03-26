@@ -2,10 +2,10 @@ export NOCONFIRM=0
 export BUILD_NOCONFIRM=1
 export EDITFILES=0
 
-alias pmi='yaourt -S'
-alias pmls='yaourt -Qe'
-alias pms='yaourt -Ss'
-alias pmr='yaourt -R'
-alias pmu='yaourt -Syy'
-alias pmug='yaourt -Syu'
+alias pmi='yay -S'
+alias pmls='yay -Qe'
+alias pms='yay -Ss'
+alias pmr='yay -R'
+alias pmu='yay -Syy'
+alias pmug='yay -Syu'
 alias pmcount='pacman -Qu | wc -l'
