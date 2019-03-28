@@ -51,5 +51,9 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " error position should underline, but not change color
   hi clear SpellCap
   hi SpellCap gui=underline cterm=underline
+
+  hi DiffAdd    guibg=#202020 ctermbg=235 ctermfg=green
+  hi DiffChange guibg=#202020 ctermbg=235 ctermfg=yellow
+  hi DiffDelete guibg=#202020 ctermbg=235 ctermfg=red
 endif
 
