@@ -88,8 +88,6 @@ endif
 " experimental
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
 
 Plug 'bronson/vim-trailing-whitespace' " highlight trailing whitespace
 Plug 'alcesleo/vim-uppercase-sql'
