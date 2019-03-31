@@ -8,7 +8,8 @@ Config {
     , position = TopW L 100
     , lowerOnStart = True
     , border = BottomBM 0
-    , borderColor = "#777"
+    -- , borderColor = "#777"
+    , borderColor = "#000"
     , iconRoot = "/home/sagotsky/.xmobar/"
 
     , commands = [ Run MultiCpu ["-t", "<icon=cpu.xbm/> <total>%", "-L","75","-H","90","--normal","white","--high","red"] 10
