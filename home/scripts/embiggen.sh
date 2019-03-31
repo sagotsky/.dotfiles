@@ -3,7 +3,7 @@
 # This shim runs an executable with GDK_DPI_SCALE set to enlarge an interface.
 # To use it, creating a symlink pointing to this file.  It will run an executable whose name matches.
 
-export GDK_DPI_SCALE=2.5
+export GDK_DPI_SCALE=1.5
 
 APP="$(basename $0)"
 THIS_SHIM_PATH="$(dirname  ${BASH_SOURCE[0]})" # remove this script from path so we don't recurse
