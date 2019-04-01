@@ -1,0 +1,31 @@
+args => stuff // function.  binds this.  implicit return
+`hello ${name}` // literals for string interpolation
+
+# destructing
+let [a, b, c, d] = [1, 2, 3, 4] // parallel assignment
+
+Math.max(...[3,2,1]); // spreads array into args
+
+let foo = {a: 1, b: 2, c: 3}
+let {a, b} = foo
+console.log(a); // 1
+
+# parameters
+function x(a=0, b=1) {} // default params
+function y(...args)     // rest parameters
+function z({h=640, w=480}) // destructuing default params
+
+# maps
+let map = new Map();
+> map.set('name', 'david');
+> map.get('name'); // david
+> map.has('name'); // true
+for (let [key, value] of map.entries()) {
+    console.log(key, value);
+}
+
+# async await
+async function main() {
+  var data = await getJSON();
+  console.log(data); // NOT undefined!
+}
