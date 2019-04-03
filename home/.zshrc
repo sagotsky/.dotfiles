@@ -106,6 +106,10 @@ function precmd() {
     [ $(( $SECONDS - ${_SECONDS_BEFORE} )) -gt 15 ] && echo -e "\a"
   fi
 }
+function shell_title() {
+  print -Pn "\e]0;$1\a"
+}
+shell_title $ZSH_NAME
 
 PROMPT="%n@%m:%~"                       # user@host:~
 PROMPT="<%*> $PROMPT"                   # <hh:mm:ss>
