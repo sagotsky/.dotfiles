@@ -138,4 +138,3 @@ let g:vim_search_pulse_mode = 'pattern'
 
 call plug#end()
 
-"let g:gutentags_ctags_exclude = ['build/']

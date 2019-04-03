@@ -1,8 +1,8 @@
 [options]
 #allow_bold = true
 #audible_bell = false
-#clickable_url = true
-#dynamic_title = true
+clickable_url = true
+dynamic_title = true
 # font = Monospace 9
 font = Source Code Pro Semibold 10
 # font = Sauce Code Pro Font Complete Mono 10
