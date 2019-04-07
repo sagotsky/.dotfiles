@@ -28,9 +28,9 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:DP-4}
 width = 100%
-height = 27
+height = 40
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
@@ -42,7 +42,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 1
 border-color = #00000000
 
 padding-left = 0
@@ -51,13 +51,14 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = misc fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = wuncon siji:pixelsize=10;1
+font-0 = misc fixed:pixelsize=20;1
+font-1 = unifont:fontformat=truetype:size=18:antialias=false;0
+font-2 = wuncon siji:pixelsize=20;1
 
-; modules-left = bspwm i3
+; modules-left = stdin
 modules-left = xwindow
-modules-center = ewmh
+; modules-center = ewmh
+modules-center = stdin
 modules-right = alsa memory cpu wlan battery temperature date powermenu
 
 tray-position = right
@@ -81,7 +82,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 frmat = <label>
-label = %title:...%
+label = " %title:...%"
 ; label = %title:0:30:...%
 
 [module/bspwm]
@@ -395,17 +396,27 @@ enable-click = false
 ; Default: true
 enable-scroll = false
 
-label-active = "%name% "
-label-active-underline = "#aaaaaa"
-label-occupied = "%name% "
-label-urgent = "!!%name%!! "
-label-urgent-underline = "#ffaa00"
+label-active = " •"
+label-occupied = " •"
+label-urgent = " •"
+label-empty = " •"
+; label-active-underline = "#aaaaaa"
+; label-urgent-underline = "#ffaa00"
 label-urgent-foreground = "#ffaa00"
 label-urgent-background = "#ffaa00"
-label-empty = "%name% "
 
+label-active-foreground = "#aaaaaa"
+label-occupied-foreground = "#00ffaa"
+label-empty-foreground = "#666666"
 ; label-focused = %ff index%
 ; label-unfocused = %uu index%
 ; label-visible = %vv index%
 ;
+
+[module/stdin]
+type = custom/script
+exec = tail -F /tmp/.polybar.fifo
+exec-if = [ -p /tmp/.polybar.fifo ]
+tail = true
+
 ; vim:ft=dosini

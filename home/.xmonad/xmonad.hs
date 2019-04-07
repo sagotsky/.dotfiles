@@ -24,7 +24,6 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.Grid
-import XMonad.Layout.Circle
 import XMonad.Layout.IM
 import XMonad.Layout.ShowWName
 import XMonad.Layout.PerWorkspace
@@ -45,13 +44,10 @@ myUrgentBorderColor   = "#ff5500"
 
 myLayout = avoidStruts
            ( smartBorders
-           -- ## |- [] ()
-           --( named "║" tall ||| named "═" wide ||| named "□"  Full ||| named "Ο" circle ))
-           ( named "<icon=tall.xbm/>" tall ||| named "<icon=wide.xbm/>" wide ||| named "<icon=full.xbm/>"  Full ||| named "<icon=circle.xbm/>" circle ))
+           ( named "├" tall ||| named "┬" wide ||| named "□"  Full ))
     where
       tall = smartSpacing 10 $ Tall nmaster delta ratio
       wide = smartSpacing 10 $ Mirror $ Tall nmaster delta ratio
-      circle = layoutHints Circle
       nmaster = 1
       delta = 3/100
       ratio = 1/2
@@ -97,7 +93,8 @@ myManageHook =  composeAll
     ]
 
 main = do
-  xmproc <- spawnPipe "xmobar"
+  -- xmproc <- spawnPipe "xmobar"
+  xmproc <- spawnPipe "init-polybar.sh"
   xmonad $ docks $ withUrgencyHook NoUrgencyHook
        $ ewmh defaultConfig
              {terminal = myTerminal
@@ -114,15 +111,15 @@ main = do
              -- http://www.alanwood.net/demos/wgl4.html special chars
              ,logHook = dynamicLogWithPP $ xmobarPP
                { ppOutput = hPutStrLn xmproc
-                 , ppTitle = xmobarColor  "white" "" . shorten 140 . wrap " " " "
-                 , ppCurrent = xmobarColor "#ec5500" ""
-                 , ppVisible = xmobarColor "#ec5500" ""
-                 , ppUrgent = xmobarColor "#ffffff" ""
-                 , ppHidden =     xmobarColor "#444444" ""
-                 , ppLayout  = xmobarColor "#888888" ""
-                 , ppHiddenNoWindows =     xmobarColor "#222222" ""
-                 , ppSep =  " "
+                 , ppTitle           = polybarColor  "#dddddd" "" . shorten 140 . wrap " " " " . const "" -- let polybar do title
+                 , ppCurrent         = polybarColor "#dddddd" ""  . const " ⚫"
+                 , ppVisible         = polybarColor "#ec5500" ""  . const " ⚫"
+                 , ppUrgent          = polybarColor "#ec5500" ""  . const " ⚫"
+                 , ppHidden          = polybarColor "#666666" ""  . const " ⚫"
+                 , ppHiddenNoWindows = polybarColor "#333333" ""  . const " ⚫"
 
+                 , ppLayout  = polybarColor "#888888" "" . const "" -- hide this.  it's just noise
+                 , ppSep =  " "
                  -- , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
                  -- , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"    --- should urget be semi random?  ie #ddd-fff fluctuating or throbbing?  might be a good haskell excersie
                  -- , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
@@ -147,21 +144,15 @@ main = do
                  --Extras   time and date, tertiary loggers
                  --Output   entire string
                }
-
-
-
              }
              `additionalKeysP` myKeys
 
 myKeys = [
     -- application shortcuts
-	  ("<XF86HomePage>",   spawn "nautilus") --home browser
+    ("<XF86HomePage>",   spawn "nautilus") --home browser
     , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
-    -- , ("M-g",              spawn "fmarks.sh") -- open FF bookmarks in current browser
-    -- , ("M-v",              spawn "sleep .5 ; xdotool click 2") -- sleep so I can release Meta
 
     -- music
-    -- , ("M-<Up>"  ,               spawn "xterm -e music-remote.sh") --vol up
     , ("M-<Down>",               spawn "music-client.sh toggle") --vol up
     , ("M-<Right>",              spawn "music-client.sh next") --Next
     , ("M-<Left>",               spawn "music-client.sh back") --Back
@@ -179,21 +170,12 @@ myKeys = [
     , ("M-C-o", spawn "transset-df -a --inc 0.03") -- remove transparent
     , ("M-S-o", spawn "transset-df -a --inc 1") -- reset transparent
 
-    --xcalib screen options
-    -- , ("<XF86Search>",   spawn "xcalib -a -i") -- screen color invert
-    -- , ("C-<XF86Search>", spawn "xcalib -c") -- screen color reset
-    -- , ("S-<XF86Search>", spawn "xcalib -a -co 95") -- screen contrast decrease
-    -- , ("M-<XF86Search>", spawn "xcalib -a -b   5") -- screen brightness increase
-
     -- WM Shortcuts
     , ("M-x",   spawn "dmenu_run -i ") -- $path launcher
     , ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
     , ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
     , ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels.
-    -- , ("M-S-d",   removeWorkspace ) -- Delete active workspace
-    -- , ("M-'",   selectWorkspace myXPConfig ) -- Create workspace
-    -- , ("M-S-'", withWorkspace myXPConfig (windows . W.shift) ) -- Shift win to named workspace
     , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
     , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
     , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
@@ -208,7 +190,7 @@ myKeys = [
     , ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
     , ("M-<Escape>", spawn "bender-dock.sh") -- reset screen, xmodmap, etc
     , ("M-d", spawn "notify-send Date \"`date`\" ") -- show date on current screen.
-	]
+  ]
 
 myXPConfig = defaultXPConfig
                 { bgColor = "#101015"
@@ -223,17 +205,21 @@ myXPConfig = defaultXPConfig
                 }
 
 myShowWName = showWName' defaultSWNConfig
-	{ swn_bgcolor = "#101015"
-	, swn_color = "white"
-	, swn_font = "xft:Verdana:pixelsize=50:antialias=true"
-	, swn_fade = 0.5
-	}
+  { swn_bgcolor = "#101015"
+  , swn_color = "white"
+  , swn_font = "xft:Verdana:pixelsize=50:antialias=true"
+  , swn_fade = 0.5
+  }
 
--- if they're all here we could regex them into one char each, showing window count
---logTitles :: X (Maybe String) -- this is a Logger
---logTitles = withWindowSet $ fmap (Just . unwords) -- fuse the window names
-  -- . traverse (fmap show . getName) -- show window names
-  -- .  tail . W.index -- all windows except master
-
--- logTitles :: X (Maybe String) -- this is a Logger
--- logTitles = withWindowSet $ fmap (Just . unwords) -- fuse window names
+-- | Use xmobar escape codes to output a string with given foreground
+--   and background colors.
+polybarColor :: String  -- ^ foreground color: a color name, or #rrggbb format
+            -> String  -- ^ background color
+            -> String  -- ^ output string
+            -> String
+-- default xmobarColor:
+-- polybarColor fg bg = wrap t "</fc>"
+--     where t = concat ["<fc=", fg, if null bg then "" else "," ++ bg, ">"]
+polybarColor fg bg = wrap t "%{F-}"
+    where t = concat ["%{F", fg, "}"]
+    -- where t = concat ["%{F", fg, if null bg then "" else "," ++ bg, "}"]
