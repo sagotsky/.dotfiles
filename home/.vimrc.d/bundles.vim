@@ -40,8 +40,13 @@ Plug 'tpope/vim-vinegar'               " file selection
 Plug 'tpope/vim-eunuch'                " wraps unix commands in vim.  trying out :Move for renaming file and buffer at once.
 Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion to handle weird replacements like case or tense
 
-Plug 'vim-airline/vim-airline'         " bar
-Plug 'vim-airline/vim-airline-themes'  " bar themes
+
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+  \ 'colorscheme': 'jellybeans',
+\}
+" Plug 'vim-airline/vim-airline'         " bar
+" Plug 'vim-airline/vim-airline-themes'  " bar themes
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='jellybeans'
@@ -52,7 +57,6 @@ let g:airline#extensions#branch#enabled=0
 "let g:airline_section_c=''
 let g:airline_section_x=''
 let g:airline_section_y=''
-
 "let g:airline_section_z='' # 100% 9: 37
 " TODO: make inactive a little more obvious looking.  remove black bg?
 
