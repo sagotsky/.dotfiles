@@ -18,7 +18,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+; background = #222
+background = #262626
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -35,7 +36,7 @@ height = 40
 ;offset-y = 1%
 radius = 0.0
 fixed-center = true
-bottom = true
+bottom = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -43,8 +44,9 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 1
-border-color = #00000000
+border-size = 0
+; border-color = #00000000
+border-color = #ff0000
 
 padding-left = 0
 padding-right = 2
