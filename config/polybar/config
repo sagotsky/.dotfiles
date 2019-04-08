@@ -63,8 +63,7 @@ font-4 = Font Awesome 5 Free:size=20;0
 modules-left = xwindow
 ; modules-center = ewmh
 modules-center = stdin
-modules-right = gmail music-player alsa memory cpu powermenu battery date
-
+modules-right = gmail music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
 
@@ -317,6 +316,7 @@ label-discharging =   %percentage%%
 format-discharging = <label-discharging>
 format-discharging-foreground = ${self.format-charging-underline}
 
+format-full =
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 ; format-full-underline = ${self.format-charging-underline}
@@ -364,10 +364,10 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-open = ""
+label-open-foreground = ${colors.foreground-alt}
+label-close = ""
+label-close-foreground = ${colors.foreground}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
@@ -461,9 +461,23 @@ interval = 90
 label-foreground = #5484ed
 ; format = %{F#5484ed}<label>%{F-}
 
+[module/arch-packages]
+type = custom/script
+exec-if = arch-upgrades.sh | grep '[0-9]'
+exec = "echo "
+interval = 61
+label-foreground = #1793d0
+click-left =x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sleep 5" '
+
+[module/arch-kernel-change]
+type = custom/script
+exec-if = detect-kernel-change.sh | grep 'CHANGED'
+exec = "echo "
+interval = 62
+label-foreground = #ff0000
+click-left = termite
+
 ; watch-git
-; arch-upgrades
-; detect-kernel-change
 ; lpq?
 ;
 ; vim:ft=dosini
