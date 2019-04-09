@@ -1,30 +1,39 @@
-# https://github.com/pry/pry/wiki/FAQ#wiki-awesome_print
 require 'rubygems'
 
-Gem.path.each do |gemset|
-  $:.concat(Dir.glob("#{gemset}/gems/pry-*/lib"))
-end if defined?(Bundler)
-$:.uniq!
+class GemLoaderInstaller
+  LOAD_ERROR = :load_error
+  def initialize
+    @gems_path = Gem.path.find { |path| path =~ /rbenv/ } + "/gems"
+    @gems = Dir.entries(@gems_path)
+  end
 
-require_gems = %w[
-  awesome_print
-  byebug
-  pry-byebug
+  def require_gems(dependencies)
+    $g = dependencies.map do |gem_name|
+      latest = @gems.grep(/#{gem_name}/).max
+      $LOAD_PATH << [@gems_path, latest, 'lib'].join('/') if latest
+
+      begin
+        require gem_name
+      rescue LoadError
+        `bundle exec gem install #{gem_name}`
+        LOAD_ERROR
+      end
+    end
+  end
+
+  def require_gems!(dependencies)
+    if require_gems(dependencies).index(LOAD_ERROR)
+      puts 'Missing dependencies in pryrc.  Try again'
+      exit!
+    end
+  end
+end
+
+GemLoaderInstaller.new.require_gems! %w[
   pry-theme
   pry-loudmouth
+  awesome_print
 ]
-
-if Object.const_defined?(:Bundler)
-  gems_path = "#{Bundler.bundle_path}/gems"
-  gems = Dir.entries("#{Bundler.bundle_path}/gems")
-  require_gems.each do |gem_name|
-    latest = gems.grep(/#{gem_name}/).max
-    $LOAD_PATH << [gems_path, latest, 'lib'].join('/') if latest
-    require gem_name # try require_without_bootsnap if this fails
-  end
-else
-  require_gems.each { |gem_name| require gem_name }
-end
 
 AwesomePrint.pry!
 Pry.config.theme = 'railscasts'
@@ -34,6 +43,8 @@ Pry.config.pager = false # fix bug in which less eats cursor
 Pry::Commands.block_command '!!!!', 'Die hard' do
   `kill -9 #{$PROCESS_ID}`
 end
+
+__END__
 # still no byebug
 # Pry::Commands.block_command 'bb', 'byebug' do
 #   require 'pry-byebug'
