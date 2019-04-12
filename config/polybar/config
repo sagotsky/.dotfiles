@@ -28,6 +28,10 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+icon-fg-normal = #777
+icon-fg-yellow-alert = #ffaa00
+icon-fg-red-alert = #ff2200
+
 [bar/example]
 monitor = ${env:MONITOR:DP-4}
 width = 100%
@@ -169,21 +173,57 @@ label-song-ellipsis = true
 type = internal/cpu
 interval = 2
 format-prefix-font = 1
-format-prefix = ""
-format-prefix-foreground = ${colors.foreground-alt}
-format--foreground = ${colors.foreground-alt}
+; format-prefix = ""
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-foreground = ${colors.foreground}
+format = <ramp-load><label>
 ; format-underline = #f90000
 label = %percentage:2%%
+
+ramp-load-0 = ""
+ramp-load-1 = ""
+ramp-load-2 = ""
+ramp-load-3 = ""
+ramp-load-4 = ""
+ramp-load-5 = ""
+ramp-load-6 = ""
+ramp-load-7 = ""
+ramp-load-8 = ""
+ramp-load-9 = ""
+
+ramp-load-foreground = ${colors.icon-fg-normal}
+ramp-load-6-foreground = ${colors.icon-fg-yellow-alert}
+ramp-load-7-foreground = ${colors.icon-fg-yellow-alert}
+ramp-load-8-foreground = ${colors.icon-fg-red-alert}
+ramp-load-9-foreground = ${colors.icon-fg-red-alert}
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-font = 1
-format-prefix-foreground = ${colors.foreground-alt}
+; format-prefix = " "
+; format-prefix-font = 1
+; format-prefix-foreground = ${colors.foreground-alt}
 ; format-prefix-foreground = "#ff0000"
 ; format-underline = #4bffdc
 label = %percentage_used%%
+format = <ramp-used> <label>
+
+ramp-used-0 = ""
+ramp-used-1 = ""
+ramp-used-2 = ""
+ramp-used-3 = ""
+ramp-used-4 = ""
+ramp-used-5 = ""
+ramp-used-6 = ""
+ramp-used-7 = ""
+ramp-used-8 = ""
+ramp-used-9 = ""
+
+ramp-used-foreground = ${colors.icon-fg-normal}
+ramp-used-6-foreground = ${colors.icon-fg-yellow-alert}
+ramp-used-7-foreground = ${colors.icon-fg-yellow-alert}
+ramp-used-8-foreground = ${colors.icon-fg-red-alert}
+ramp-used-9-foreground = ${colors.icon-fg-red-alert}
 
 [module/wlan]
 type = internal/network
@@ -234,7 +274,7 @@ time = %I:%M
 time-alt = %I:%M:%S
 
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.icon-fg-normal}
 ; format-padding = 5
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-underline = #0a6cf5
@@ -320,9 +360,9 @@ ramp-capacity-3 = " "
 ramp-capacity-2 = " "
 ramp-capacity-1 = " "
 ramp-capacity-0 = " "
-ramp-capacity-foreground = ${colors.foreground-alt}
-ramp-capacity-1-foreground = #ffff00
-ramp-capacity-0-foreground = #ff0000
+ramp-capacity-foreground = ${colors.icon-fg-normal}
+ramp-capacity-1-foreground = ${colors.icon-fg-yellow-alert}
+ramp-capacity-0-foreground = ${colors.icon-fg-red-alert}
 
 ; just hide it when it's full
 format-full =
