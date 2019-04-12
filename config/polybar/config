@@ -54,12 +54,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-; font-0 = misc fixed:pixelsize=20;1
+; text
 font-0 = unifont:fontformat=truetype:size=18:antialias=false;4
-font-1 = unifont:fontformat=truetype:size=18:antialias=false;0
-font-2 = wuncon siji:pixelsize=40:size=40;1
-font-3 = FontAwesome:size=20;4
-font-4 = Font Awesome 5 Free:size=20;0
+; icons
+font-1 = FontAwesome:size=20;4
+; bold
+font-2 = "Source Code Pro:size=18:semibold:antialias=true;4"
+
 modules-left = xwindow
 ; modules-center = ewmh
 modules-center = stdin
@@ -85,8 +86,10 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-frmat = <label>
+format = <label>
 label = " %title:...%"
+format-font = 3
+label-font = 3
 ; label = %title:0:30:...%
 
 [module/bspwm]
@@ -165,7 +168,7 @@ label-song-ellipsis = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix-font = 3
+format-prefix-font = 1
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format--foreground = ${colors.foreground-alt}
@@ -176,7 +179,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-font = 3
+format-prefix-font = 1
 format-prefix-foreground = ${colors.foreground-alt}
 ; format-prefix-foreground = "#ff0000"
 ; format-underline = #4bffdc
@@ -241,7 +244,7 @@ label = "%date% %time%"
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-font = 3
+format-font = 1
 format-volume = <label-volume> <bar-volume>
 label-volume =  VOL %percentage%
 label-volume-foreground = ${root.foreground}
@@ -259,17 +262,17 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 1
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 1
 bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
 
-format-font = 3
+format-font = 1
 format-volume = <label-volume> <bar-volume>
 label-volume = ""
 label-volume-foreground = ${colors.foreground-alt}
@@ -288,11 +291,11 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 1
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 1
 bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
@@ -301,7 +304,7 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-font = 3
+format-font = 1
 label-charging-foreground = ${colors.foreground}
 
 format-charging-prefix = " "
