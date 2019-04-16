@@ -9,7 +9,7 @@ URGENCY=$5
 echo -e "$APP\n$SUMMARY\n$BODY\n$ICON\n$URGENCY\n" >> /tmp/dunst.log
 
 case $APP in
-  'Electron') # slack's official client
+  'Electron'|'Slack') # slack's official client
     #flag-urgent.sh Slack &
     case $SUMMARY in
       '#robothouse') ;;
