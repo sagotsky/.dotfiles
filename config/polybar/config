@@ -29,7 +29,7 @@ secondary = #e60053
 alert = #bd2c40
 
 icon-fg-normal = #777
-icon-fg-yellow-alert = #ffaa00
+icon-fg-yellow-alert = #cc5
 icon-fg-red-alert = #ff2200
 
 [bar/example]
@@ -91,7 +91,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 format = <label>
-label = " %title:...%"
+label = "%title:...%"
 format-font = 3
 label-font = 3
 ; label = %title:0:30:...%
@@ -361,7 +361,9 @@ ramp-capacity-2 = " "
 ramp-capacity-1 = " "
 ramp-capacity-0 = " "
 ramp-capacity-foreground = ${colors.icon-fg-normal}
-ramp-capacity-1-foreground = ${colors.icon-fg-yellow-alert}
+ramp-capacity-3-foreground = ${colors.icon-fg-yellow-alert}
+ramp-capacity-2-foreground = ${colors.icon-fg-yellow-alert}
+ramp-capacity-1-foreground = ${colors.icon-fg-red-alert}
 ramp-capacity-0-foreground = ${colors.icon-fg-red-alert}
 
 ; just hide it when it's full
