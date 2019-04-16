@@ -127,7 +127,11 @@ let g:ale_fixers = {
 \   'ruby': ['rubocop'],
 \}
 
-
+" requires nodejs, yarn
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'enricobacis/paste.vim' " fast paste
