@@ -2,7 +2,7 @@
 
 # Runs polybar, redirecting stdin into named pipe polybar will read from later
 
-killall polybar
+killall polybar &>/dev/null
 there-can-be-only-one.sh
 
 FIFO='/tmp/.polybar.fifo'
