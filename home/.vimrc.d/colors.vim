@@ -8,10 +8,10 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   highlight Search 		ctermfg=white ctermbg=237 cterm=none
   highlight VertSplit		ctermfg=234 ctermbg=235
   " hi Visual      ctermbg=236
+ 
   hi Pmenu                     ctermfg=gray ctermbg=236 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
-  hi PmenuSbar ctermbg=red ctermfg=yellow
-  hi PmenuThumb ctermbg=yellow ctermfg=red
+  hi PmenuThumb ctermbg=236 ctermfg=235
 
   hi TabLine  ctermbg=233 cterm=bold term=bold ctermfg=236
   hi TabLineSel  ctermbg=235 cterm=bold term=bold
