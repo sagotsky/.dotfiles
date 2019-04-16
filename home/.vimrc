@@ -70,5 +70,4 @@ if !exists("*BundlesUpdated")
     PlugInstall
   endfunction
 endif
-autocmd BufWritePost ~/.dotfiles/home/.vimrc.d/bundles.vim call BundlesUpdated()
-autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\s\+$//e

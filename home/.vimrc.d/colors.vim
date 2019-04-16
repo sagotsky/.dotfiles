@@ -1,11 +1,6 @@
 if ( $TERM != 'linux')          "don't break vim in vterms
   set t_Co=256                "ensures 256 color
   colorscheme railscasts
-  "execute "silent !TERM=xterm xtermcontrol --bg 'rgb:20/20/20'"
-  " augroup autocom
-  "   autocmd!
-  "   autocmd VimLeave * !TERM=xterm xtermcontrol --bg rgb:0000/0000/0000
-  " augroup END
 
   hi Normal ctermbg=235
   hi Type ctermfg=121
@@ -13,8 +8,11 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   highlight Search 		ctermfg=white ctermbg=237 cterm=none
   highlight VertSplit		ctermfg=234 ctermbg=235
   " hi Visual      ctermbg=236
-  hi Pmenu                     ctermfg=gray ctermbg=235 gui=NONE
+  hi Pmenu                     ctermfg=gray ctermbg=236 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
+  hi PmenuSbar ctermbg=red ctermfg=yellow
+  hi PmenuThumb ctermbg=yellow ctermfg=red
+
   hi TabLine  ctermbg=233 cterm=bold term=bold ctermfg=236
   hi TabLineSel  ctermbg=235 cterm=bold term=bold
   hi TabLineFill  ctermfg=233
@@ -26,10 +24,6 @@ if ( $TERM != 'linux')          "don't break vim in vterms
 
   " hide tilde on blank lines
   hi EndOfBuffer ctermfg=bg
-
-  " syntastic
-  hi SyntasticErrorSign ctermbg=NONE ctermfg=white
-  hi SyntasticWarningSign ctermbg=NONE ctermfg=242
 
   hi CursorLine ctermbg=236
   augroup CursorLine
@@ -55,5 +49,10 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi DiffAdd    guibg=#202020 ctermbg=235 ctermfg=green
   hi DiffChange guibg=#202020 ctermbg=235 ctermfg=yellow
   hi DiffDelete guibg=#202020 ctermbg=235 ctermfg=red
+
+  hi LightlineLeft_inactive_0  ctermbg=234
+  hi LightlineMiddle_inactive  ctermbg=234
+  hi LightlineRight_inactive_0 ctermbg=234 ctermfg=239
+  hi LightlineRight_inactive_1 ctermbg=234 ctermfg=239
 endif
 
