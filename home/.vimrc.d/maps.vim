@@ -56,3 +56,10 @@ tnoremap <C-w>l <C-\><C-n><C-w>l
 " incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
+
+" coc.nvim
+nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gt <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gR <Plug>(coc-rename)
