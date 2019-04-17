@@ -37,7 +37,7 @@ import XMonad.Actions.CycleWS
 myTerminal            = "x-terminal-emulator"
 myBorderWidth         = 1
 myModMask             = mod4Mask
-myWorkspaces          = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+myWorkspaces          = ["1", "2","3","4","5","6","7","8","9","0"]
 myNormalBorderColor   = "#222233"
 myFocusedBorderColor  = "#cfb000"
 myUrgentBorderColor   = "#ff5500"
@@ -74,20 +74,20 @@ myManageHook =  composeAll
     , className =? "Screenkey"                       --> doIgnore
 
     -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
-    , className =? "Firefox"                          --> doShift "I"
-    , className =? "Rhythmbox"                        --> doShift "II"
-    , className =? "spotify"                          --> doShift "II"
-    , className =? "Spotify"                          --> doShift "II"
-    , resource =? "cmus"                              --> doShift "II"
-    , className =? "Thunderbird"                      --> doShift "III"
-    , className =? "Gnome-terminal"                   --> doShift "IV"
-    , className =? "Pidgin"                           --> doShift "V"
-    , className =? "Scudcloud"                        --> doShift "V"
-    , className =? "Slack"                            --> doShift "V"
-    , className =? "xterm-mail"                       --> doShift "III"
-    , className =? "Zend Studio"                      --> doShift "VI"
-    , className =? "Sublime_text"                     --> doShift "VI"
-    , className =? "Steam"                            --> doShift "X"
+    , className =? "Firefox"                          --> doShift "1"
+    , className =? "Rhythmbox"                        --> doShift "2"
+    , className =? "spotify"                          --> doShift "2"
+    , className =? "Spotify"                          --> doShift "2"
+    , resource =? "cmus"                              --> doShift "2"
+    , className =? "Thunderbird"                      --> doShift "3"
+    , className =? "xterm-mail"                       --> doShift "3"
+    , className =? "Gnome-terminal"                   --> doShift "4"
+    , className =? "Pidgin"                           --> doShift "5"
+    , className =? "Scudcloud"                        --> doShift "5"
+    , className =? "Slack"                            --> doShift "5"
+    , className =? "Zend Studio"                      --> doShift "6"
+    , className =? "Sublime_text"                     --> doShift "6"
+    , className =? "Steam"                            --> doShift "0"
 
     , isFullscreen --> doFullFloat
     ]
@@ -112,11 +112,11 @@ main = do
              ,logHook = dynamicLogWithPP $ xmobarPP
                { ppOutput = hPutStrLn xmproc
                  , ppTitle           = polybarColor  "#dddddd" "" . shorten 140 . wrap " " " " . const "" -- let polybar do title
-                 , ppCurrent         = polybarColor "#dddddd" ""  . const " ⚫"
-                 , ppVisible         = polybarColor "#aaaaaa" ""  . const " ⚫"
-                 , ppUrgent          = polybarColor "#ec5500" ""  . const " ⚫"
-                 , ppHidden          = polybarColor "#666666" ""  . const " ⚫"
-                 , ppHiddenNoWindows = polybarColor "#333333" ""  . const " ⚫"
+                 , ppCurrent         = polybarColor "#dddddd" ""  . wrap "<" ">" -- . const " ⚫"
+                 , ppVisible         = polybarColor "#aaaaaa" ""  . wrap "<" ">" -- . const " ⚫"
+                 , ppUrgent          = polybarColor "#ec5500" ""  . wrap "<" ">" -- . const " ⚫"
+                 , ppHidden          = polybarColor "#666666" ""  . wrap "<" ">" -- . const " ⚫"
+                 , ppHiddenNoWindows = polybarColor "#333333" ""  . wrap "<" ">" -- . const " ⚫"
 
                  , ppLayout  = polybarColor "#888888" "" . const "" -- hide this.  it's just noise
                  , ppSep =  " "
@@ -180,8 +180,8 @@ myKeys = [
     , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
     , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
     , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ; dzen-clear.sh") -- show panel
-    , ("M-0",   windows $ W.greedyView "X")  -- workspace 0
-    , ("M-S-0", (windows $ W.shift "X") >> (windows $W.greedyView "X")) -- shift window to WS 0
+    , ("M-0",   windows $ W.greedyView "0")  -- workspace 0
+    , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
     , ("M-;",   spawn "cheese.sh") -- center mouse on active window
     , ("M-S-q", return ()) -- don't you fucking quit.  that's what ctrl-alt-backsp is for.
 

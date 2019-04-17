@@ -504,7 +504,7 @@ label-empty-foreground = "#666666"
 [module/stdin]
 ; see: scripts/init-polybar.sh
 type = custom/script
-exec = tail -F /tmp/.polybar.fifo
+exec = xmonad-pipe-reader.sh
 exec-if = [ -p /tmp/.polybar.fifo ]
 tail = true
 
