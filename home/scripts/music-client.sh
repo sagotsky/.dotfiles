@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # front end to whatever music player is currently playing
 export DISPLAY=$(cat ~/.display)
 
