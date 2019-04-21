@@ -46,8 +46,8 @@ myLayout = avoidStruts
            ( smartBorders
            ( named "├" tall ||| named "┬" wide ||| named "□"  Full ))
     where
-      tall = smartSpacing 10 $ Tall nmaster delta ratio
-      wide = smartSpacing 10 $ Mirror $ Tall nmaster delta ratio
+      tall = smartSpacing 4 $ Tall nmaster delta ratio
+      wide = smartSpacing 4 $ Mirror $ Tall nmaster delta ratio
       nmaster = 1
       delta = 3/100
       ratio = 1/2
