@@ -1,0 +1,159 @@
+! hi dpi scaling
+!Xft.dpi: 170 # good for 4k, not for normal.
+
+! XTerm
+XTerm*background:	#000000
+XTerm*foreground:	#eeeeee
+!XTerm*faceName:		Envy Code R
+XTerm*faceName:		Source Code Pro:semibold:antialias=true:autohint=true
+XTerm*faceSize:		8
+Xterm*boldMode:   true
+XTerm*boldFont:   fixed
+!Source Code Powerline Black
+XTerm*altismeta:	true
+XTerm*metaSendsEscape:  TRUE
+XTerm*borderWidth:	0
+XTerm*bellIsUrgent:     true
+XTerm*scrollBar:	false
+XTerm*visualBell:       true
+XTerm*faceSize1:		5
+XTerm*faceSize2:		6
+XTerm*faceSize3:	  8
+XTerm*faceSize4:		10
+XTerm*faceSize5:		12
+XTerm*faceSize6:		14
+Xterm*metaSendsEscape: true
+Xterm*selectToClipboard: true
+
+!rxvt-unicode
+/* URxvt*font:		xft:Source Code Pro:semibold:antialias=true:style=semibold:size=10 */
+/* URxvt*letterSpace: 		-1 */
+
+URxvt*font:		xft:LiberationMono:antialias=true:size=10:style=semibold
+URxvt*letterSpace: 		0
+
+!nerd-fonts-source-code-pro
+/* URxvt*font:		xft:Sauce Code Pro Nerd Font Complete Mono:size=12:style=semibold */
+/* URxvt*letterSpace: 		-9 */
+
+URxvt*depth: 		32
+URxvt*scrollBar:	false
+URxvt*background: 	rgba:0000/0000/0000/cccc
+URxvt*foreground:	#eeeeee
+URxvt*urgentOnBell:	true
+URxvt*cursorBlink:      false
+URxvt*visualBell: 	true
+!URxvt*transparent:      true
+!colors and their defaults
+
+URxvt.perl-ext-common: selection-to-clipboard,font-size,resize-font
+URxvt.font-step:    2
+URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd: xclip -in -selection clipboard
+URxvt.keysym.C-Up:     resize-font:bigger
+URxvt.keysym.C-Down:    resize-font:smaller
+/* URxvt.keysym.C-Up:     font-size:increase */
+/* URxvt.keysym.C-Down:   font-size:decrease */
+URxvt.keysym.C-slash:   font-size:show
+/* URxvt.keysym.C-0:      perl:font-size:reset */
+
+/* URxvt.keysym.C-0:      perl:fonter:foo */
+/* URxvt.resize-font.smaller: C-Down */
+/* URxvt.resize-font.bigger: C-Up */
+
+mrxvt*textShadow:black
+mrxvt*textShadowMode:botright
+
+
+! dmenu
+dmenu.opacity:    0.9
+dmenu.font:       -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-*
+dmenu.foreground: #bbb
+dmenu.background: #101015
+dmenu.selforeground: white
+dmenu.selbackground: #000000
+
+!dzen2
+dzen2.font: termsyn-8
+
+Xft.lcdfilter:              lcddefault
+Xft.autohint:               0
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+
+!vim-athena - terminal wont use this and vim-{gtk,gnome} set guifont
+Vim*font:             -*-terminus-*-*-*-*-14-*-*-*-*-*-*-*
+Vim.background:       black
+
+!black
+XTerm*color0: black
+URxvt*color0: black
+!red3
+XTerm*color1: #dd3333
+URxvt*color1: #dd3333
+!green3
+XTerm*color2: #33dd33
+URxvt*color2: #33dd33
+!yellow3
+XTerm*color3: #dddd33
+URxvt*color3: #dddd33
+!blue3
+XTerm*color4: royalblue
+URxvt*color4: royalblue
+!magenta3
+XTerm*color5: #dd33dd
+URxvt*color5: #dd33dd
+!cyan3
+XTerm*color6: #33ddcc
+URxvt*color6: #33ddcc
+!gray90
+XTerm*color7: gray90
+URxvt*color7: gray90
+!gray30
+XTerm*color8: gray30
+URxvt*color8: gray30
+!red
+XTerm*color9: red
+URxvt*color9: red
+!green
+XTerm*color10: green
+URxvt*color10: green
+!yellow
+XTerm*color11: yellow
+URxvt*color11: yellow
+!blue
+XTerm*color12: steelblue
+URxvt*color12: steelblue
+!magenta
+XTerm*color13: magenta
+URxvt*color13: magenta
+!cyan
+XTerm*color14: #33dddd
+URxvt*color14: #33dddd
+!white
+XTerm*color15: white
+URxvt*color15: white
+
+XLock.mode:     random
+xscreensaver.splash:    false
+
+rofi.color-enabled: true
+/* rofi.color-window: #4d32302f, #4d32302f, #0032302f */
+/* rofi.color-normal: #0032302f, #d8dee9, #0032302f, #cc458588, #32302f */
+/* rofi.color-active: #4d1b2b34, #6699cc, #4d343d46, #4d6699cc, #d8dee9 */
+/* rofi.color-urgent: #4d1b2b34, #ec5f67, #4d343d46, #4dec5f67, #d8dee9 */
+
+rofi.modi: run,ssh,window
+rofi.separator-style: solid
+rofi.show-icons: true
+rofi.drun-icon-theme: Paper
+rofi.sidebar-mode:    true
+rofi.padding:         10
+rofi.bw:              0
+rofi.scrollbar-width: 0
+rofi.line-margin:     0
+rofi.lines: 10
+rofi.terminal: urxvt
+rofi.case-sensitive: false
