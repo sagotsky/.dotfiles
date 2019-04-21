@@ -6,10 +6,16 @@ killall polybar &>/dev/null
 there-can-be-only-one.sh
 
 FIFO='/tmp/.polybar.fifo'
-rm $FIFO
+rm $FIFO &>/dev/null
 mkfifo $FIFO
 
-polybar example &
+if grep $(hostname) ~/.config/polybar/config &> /dev/null ; then
+  BAR="$(hostname)"
+else
+  BAR="example"
+fi
+
+polybar $BAR &
 
 while read -r line ; do
   echo "$line" > $FIFO
