@@ -184,6 +184,7 @@ myKeys = [
     , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
     , ("M-;",   spawn "cheese.sh") -- center mouse on active window
     , ("M-S-q", return ()) -- don't you fucking quit.  that's what ctrl-alt-backsp is for.
+    , ("M-S-l", spawn "xscreensaver-command -lock") -- don't you fucking quit.  that's what ctrl-alt-backsp is for.
 
     -- misc scripts
     , ("M-y",   spawn "cli-board.sh") -- copies text into clip board

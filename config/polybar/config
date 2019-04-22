@@ -54,7 +54,7 @@ module-margin-right = 2
 modules-left = xwindow
 ; modules-center = ewmh
 modules-center = stdin
-modules-right = gmail music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
+modules-right = gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
 
@@ -525,12 +525,20 @@ exec-if = [ -p ~/.music.out ]
 tail = true
 format = %{F#1DB954}%{F-}<label>
 
-[module/gmail]
+[module/gmail0]
 type = custom/script
 exec = "echo "
-exec-if = "got-mail.sh"
+exec-if = "got-mail.sh 0"
 interval = 90
 label-foreground = #5484ed
+; format = %{F#5484ed}<label>%{F-}
+
+[module/gmail1]
+type = custom/script
+exec = "echo "
+exec-if = "got-mail.sh 1"
+interval = 90
+label-foreground = #88bb40
 ; format = %{F#5484ed}<label>%{F-}
 
 [module/arch-packages]

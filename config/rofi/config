@@ -1,6 +1,6 @@
 rofi.combi-mode:  run
 rofi.m:  -5
-rofi.font: Source\ Code\ Pro\ 30
+rofi.font: Source\ Code\ Pro\ 20
 rofi.theme: /usr/share/rofi/themes/Pop-Darker
 
 rofi.sort: true
