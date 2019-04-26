@@ -24,7 +24,7 @@ class GemLoaderInstaller
   def require_gems!(dependencies)
     if require_gems(dependencies).index(LOAD_ERROR)
       puts 'Missing dependencies in pryrc.  Try again'
-      exit!
+      # exit!
     end
   end
 end
