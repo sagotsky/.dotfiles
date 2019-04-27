@@ -77,7 +77,8 @@ cursor-scroll = ns-resize
 ; bender
 [bar/bender]
 inherit = bar/base
-monitor = ${env:MONITOR:DP-4}
+; monitor = ${env:MONITOR:DP-4}
+monitor = ${env:PRIMARY_MONITOR}
 height = 40
 ; text
 font-0 = unifont:fontformat=truetype:size=18:antialias=false;4
