@@ -3,7 +3,7 @@
 #alt name: tmux-compose?
 function tmux-up {
   DIR=$1
-  NAME="$(basename $DIR)" # or $2?
+  NAME="${2:-$(basename $DIR)}" # or $2?
 
   if tmux has-session -t name &>/dev/null ; then
     echo "$NAME already running"
@@ -103,6 +103,11 @@ EOF
 tmux-up ~/repos/ez-rails <<EOF
   bin/rails s
   foreman start
+EOF
+
+# override default name with second arg
+tmux-up ~ autossh <<EOF
+  ~/scripts/screen-ssh-tunnel-omelette.sh
 EOF
 
 # tmux-up ~/repos/ez-rails <<EOF
