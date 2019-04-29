@@ -9,6 +9,8 @@ FIFO='/tmp/.polybar.fifo'
 rm $FIFO &>/dev/null
 mkfifo $FIFO
 
+export PRIMARY_MONITOR="$(xrandr -q | grep primary | cut -f1 -d' ')" 
+
 if grep $(hostname) ~/.config/polybar/config &> /dev/null ; then
   BAR="$(hostname)"
 else
