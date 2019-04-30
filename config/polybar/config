@@ -533,6 +533,7 @@ exec = "echo "
 exec-if = "got-mail.sh 0"
 interval = 90
 label-foreground = #5484ed
+click-left = firefox https://mail.google.com/mail/u/0/#inbox
 ; format = %{F#5484ed}<label>%{F-}
 
 [module/gmail1]
@@ -541,6 +542,7 @@ exec = "echo "
 exec-if = "got-mail.sh 1"
 interval = 90
 label-foreground = #88bb40
+click-left = firefox https://mail.google.com/mail/u/1/#inbox
 ; format = %{F#5484ed}<label>%{F-}
 
 [module/arch-packages]
