@@ -22,12 +22,14 @@
 # Check if we're in a good dir
 # -s verbiage is a bit off.  Not obvious 1st, 2nd lines connect.
 
-BASE_BRANCH="master"      # this branch uses the base db.  run migrations against it to keep your base db up to date.
-BASE_DB="plm_development" # all DBs will be cloned from this one
-DB_PREFIX="plm_dev"       # dbs created by this script will be in this namespace
-SPARE_DB="spare"          # rename me instead of copying, then spin up new spare.
 
-PG_OPTS="-Upostgres --host postgres.service.docker" # psql options
+BASE_DB="${BASE_DB:?please set BASE_DB}" # name of DB to use as master
+
+DB_PREFIX="${DB_PREFIX:-$BASE_DB}" # change the prefix.  defaults to base name.  ie, my_db is master, mb_db_my_feature_branch is branched db
+BASE_BRANCH="${BASE_BRANCH:-master}"      # which branch uses the base db.  should default to master most of the time.
+SPARE_DB="${SPARE_DB:-spare}"          # name for the hot spare clone of master
+
+PG_OPTS="-Upostgres --host localhost" # psql options
 
 export VERBOSE="$VERBOSE" # print logs
 
@@ -56,10 +58,10 @@ Global vars at the top of this file control db and branch prefs.
 
 Rails:
 To use this for rails development, add this line to your config/database.yml
-  database: <%=  %x{feature-db.sh}.chomp %>
+  database: <%=  %x{BASE_DB=my_db_name feature-db.sh}%>
 
 Or if you're on dotenv, put this in your .env.development.local:
-  PLM_DB_NAME=$(VERBOSE=1 feature-db.sh)
+  POSTGRES_DB=$(BASE_DB=my_db_name feature-db.sh)
 
 EOF
 }
@@ -165,7 +167,7 @@ list_managed_dbs() {
   psql $PG_OPTS -lqt |
     awk '{print $1}' |
     grep "^${DB_PREFIX}" |
-    grep -v "^$BASE_DB"
+    sed -e "s/^$BASE_DB$/* $BASE_DB/"
 }
 
 drop_managed_dbs() {
@@ -183,16 +185,6 @@ drop_all_managed_dbs() {
   dropdb $PG_OPTS --if-exists $(spare_db_name)
   dropdb $PG_OPTS --if-exists $(temp_spare_db)
 }
-
-# drop_old_dbs() {
-  # todo: is this worthwhile?
-  # drop all the dbs starting with prefix
-
-  # if their migration column is older that current's
-  # select max(version::bigint) from schema_migrations;
-
-#   :
-# }
 
 make_a_spare() {
   log 'building spare'
