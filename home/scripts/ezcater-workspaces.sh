@@ -5,9 +5,9 @@ function tmux-up {
   DIR=$1
   NAME="${2:-$(basename $DIR)}" # or $2?
 
-  if tmux has-session -t name &>/dev/null ; then
+  if tmux has-session -t $NAME &>/dev/null ; then
     echo "$NAME already running"
-  else 
+  else
     cd $DIR
 
     # this lets us kill the first window, then replace it
@@ -15,8 +15,7 @@ function tmux-up {
     tmux -2 new-session -d -s "$NAME" #exit
     tmux set -g remain-on-exit off
 
-    tmux ls
-    while read line ; do 
+    while read line ; do
       _handle_line $line
     done
 
@@ -42,47 +41,52 @@ function _handle_line {
       shift
       ;;
     *)
-      TMUX_CMD='window' 
+      TMUX_CMD='window'
       # don't shift
   esac
 
-  $TMUX_CMD $@
+  $TMUX_CMD "$@"
+
   # always leave next window ready for next command
-  tmux new-window -t $NAME 
+  tmux new-window -t $NAME
 }
 
-# always respawn on last pane and prep the next pane. 
+# always respawn on last pane and prep the next pane.
 function window {
   tmux respawn-pane -t $NAME -k $@
 }
 
 
 
+
+
+
 # bug: still can't use args in splits
 function vsplit {
   for app in $@ ; do
-    tmux split-window -d -h $app 
+    tmux split-window -d -h $app
   done
   # tmux kill-pane # -d left it on original pane
 }
 
 function hsplit {
   for app in $@ ; do
-    tmux split-window -d -v $app 
+    echo "-- $app"
+    tmux split-window -d -v "$app"
   done
   # tmux kill-pane # -d left it on original pane
 }
 
 
 # example to test drive splits
-# todo: 
+# todo:
 ## make splits work
 ## make splits work with args.  don't care if they're quoted
 # tmux-up /tmp <<EOF
-#   htop
-#   hsplit 'watch date' htop
-#   watch date
+#   hsplit "watch\ date" htop
 # EOF
+
+# exit
 
 tmux-up ~/repos/avro-schema-registry <<EOF
   docker/start
@@ -102,6 +106,7 @@ EOF
 
 tmux-up ~/repos/ez-rails <<EOF
   bin/rails s
+  docker-compose up ezrails-db
   foreman start
 EOF
 
