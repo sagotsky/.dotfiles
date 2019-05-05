@@ -144,5 +144,8 @@ Plug 'inside/vim-search-pulse' " flashy search results
 let g:vim_search_pulse_duration = 150
 let g:vim_search_pulse_mode = 'pattern'
 
+Plug 'rhysd/git-messenger.vim'
+let g:git_messenger_include_diff = 1
+
 call plug#end()
 
