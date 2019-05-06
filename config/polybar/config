@@ -29,7 +29,7 @@ secondary = #e60053
 alert = #bd2c40
 
 icon-fg-normal = #777
-icon-fg-yellow-alert = #cc5
+icon-fg-yellow-alert = #bbb
 icon-fg-red-alert = #ff2200
 
 
@@ -238,12 +238,14 @@ ramp-used-6 = ""
 ramp-used-7 = ""
 ramp-used-8 = ""
 ramp-used-9 = ""
+ramp-used-10 = ""
+ramp-used-11 = ""
 
 ramp-used-foreground = ${colors.icon-fg-normal}
-ramp-used-6-foreground = ${colors.icon-fg-yellow-alert}
-ramp-used-7-foreground = ${colors.icon-fg-yellow-alert}
-ramp-used-8-foreground = ${colors.icon-fg-red-alert}
-ramp-used-9-foreground = ${colors.icon-fg-red-alert}
+; ramp-used-8-foreground = ${colors.icon-fg-yellow-alert}
+ramp-used-9-foreground = ${colors.icon-fg-yellow-alert}
+ramp-used-10-foreground = ${colors.icon-fg-red-alert}
+ramp-used-11-foreground = ${colors.icon-fg-red-alert}
 
 [module/wlan]
 type = internal/network
