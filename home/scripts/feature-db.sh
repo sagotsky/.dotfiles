@@ -50,6 +50,8 @@ feature_db.sh     # print current branch, creating it if needed.  Put this in yo
 -h --help         # Prints this help text
 -s --status       # Shows what featuredb will do when run on this branch
 -c --create-spare # Creates a spare now
+-p --pin          # Pin database to whatever is current.  Useful for situations where you land on an intermediate commit but still need a db
+-u --unpin        # Reset a pin
 
 VERBOSE=1 feature_db.sh # Print logs to stderr.  Yes this can go in your db.yml.
 
@@ -61,7 +63,7 @@ To use this for rails development, add this line to your config/database.yml
   database: <%=  %x{BASE_DB=my_db_name feature-db.sh}%>
 
 Or if you're on dotenv, put this in your .env.development.local:
-  POSTGRES_DB=$(BASE_DB=my_db_name feature-db.sh)
+  POSTGRES_DB=\$(BASE_DB=my_db_name feature-db.sh)
 
 EOF
 }
@@ -75,12 +77,26 @@ cli() {
     -D|--force-delete)  drop_all_managed_dbs ;;
     -s|--status)        status               ;;
     -c|--create-spare)  make_a_spare         ;;
+    -p|--pin)           pin_db               ;;
+    -u|--unpin)         unpin_db             ;;
     -h|--help|*)        usage                ;;
   esac
 }
 
+pin_db() {
+  echo "export FEATURE_DB_PINNED=$(db_name)"
+}
+
+unpin_db() {
+  echo "export FEATURE_DB_PINNED="
+}
+
+
 main() {
   USE_DB="$(db_name)"
+  if [[ "$FEATURE_DB_PINNED" != '' ]] ; then
+    USE_DB="$FEATURE_DB_PINNED"
+  fi
 
   if ! db_exists $USE_DB ; then
     prepare_db $USE_DB
