@@ -183,7 +183,7 @@ list_managed_dbs() {
   psql $PG_OPTS -lqt |
     awk '{print $1}' |
     grep "^${DB_PREFIX}" |
-    sed -e "s/^$BASE_DB$/* $BASE_DB/"
+    grep -v "^${BASE_DB}$"
 }
 
 drop_managed_dbs() {
