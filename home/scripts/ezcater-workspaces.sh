@@ -53,28 +53,27 @@ function _handle_line {
 
 # always respawn on last pane and prep the next pane.
 function window {
-  tmux respawn-pane -t $NAME -k $@
+  tmux respawn-pane -t $NAME -k "$@ ; zsh"
 }
 
-
-
-
-
-
-# bug: still can't use args in splits
 function vsplit {
-  for app in $@ ; do
-    tmux split-window -d -h $app
+  # use different strategy than windows.  append panes, then kill first one.  i don't care if they lose the 0 index.
+  echo $@ | while IFS= read -r line ; do
+    xargs printf '%s\n' <<<"$line" | while read cmd ; do
+      tmux split-window -d -h "$cmd ; zsh"
+    done
   done
-  # tmux kill-pane # -d left it on original pane
+  tmux kill-pane -t 0 # -d left it on original pane
 }
 
 function hsplit {
-  for app in $@ ; do
-    echo "-- $app"
-    tmux split-window -d -v "$app"
+  # use different strategy than windows.  append panes, then kill first one.  i don't care if they lose the 0 index.
+  echo $@ | while IFS= read -r line ; do
+    xargs printf '%s\n' <<<"$line" | while read cmd ; do
+      tmux split-window -d -v "$cmd ; zsh"
+    done
   done
-  # tmux kill-pane # -d left it on original pane
+  tmux kill-pane -t 0 # -d left it on original pane
 }
 
 
@@ -83,7 +82,7 @@ function hsplit {
 ## make splits work
 ## make splits work with args.  don't care if they're quoted
 # tmux-up /tmp <<EOF
-#   hsplit "watch\ date" htop
+#   vsplit "watch\ date" htop
 # EOF
 
 # exit
@@ -115,26 +114,3 @@ tmux-up ~ autossh <<EOF
   ~/scripts/screen-ssh-tunnel-omelette.sh
 EOF
 
-# tmux-up ~/repos/ez-rails <<EOF
-#   vsplit foreman "bin/rails s"
-#   window zsh
-# EOF
-
-
-# workspaces="$(cat <<EOF
-#   ez-rails 'bin/rails s'
-#   kafka-docker
-# EOF
-# )"
-
-# echo "$workspaces"
-
-# avro first?
-# authentication-rails
-# for workspace in ez-rails kafka-docker pos-rails ; do
-# for workspace in ez-rails kafka-docker pos-rails ; do
-#   tmux ls | grep -q "$workspace" || (
-#     cd ~/repos/workspace
-#     tmux -2 new-session -d -s "$workspace"
-#   )
-# done
