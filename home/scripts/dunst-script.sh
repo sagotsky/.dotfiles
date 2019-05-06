@@ -6,7 +6,7 @@ BODY=$3
 ICON=$4
 URGENCY=$5
 
-echo -e "$APP\n$SUMMARY\n$BODY\n$ICON\n$URGENCY\n" >> /tmp/dunst.log
+echo -e "app: $APP\nsum: $SUMMARY\nbody: $BODY\nicon: $ICON\nurgency: $URGENCY\n" >> /tmp/dunst.log
 
 case $APP in
   'Electron'|'Slack') # slack's official client
