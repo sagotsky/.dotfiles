@@ -10,7 +10,7 @@ if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-## screen session name labels for prompt.  shows name if specified with -S, otherwise pid. 
+## screen session name labels for prompt.  shows name if specified with -S, otherwise pid.
 if [ $STY ] ; then
   if [[ $STY =~ "${HOSTNAME}" ]] ; then
     # chop host
@@ -41,8 +41,8 @@ ps1color() {
   if [ -f "$HOME/.color" ] ; then color=$(cat $HOME/.color) ; fi
 
   # error message - recolor to red
-  if [ $1 -ne 0 ] && [ $1 -ne 130 ] ; then 
-    color="0;31m" ; 
+  if [ $1 -ne 0 ] && [ $1 -ne 130 ] ; then
+    color="0;31m" ;
   fi
 
   # sudo active (assuming -n (ver 1.7+) supported) underline
@@ -54,7 +54,7 @@ ps1color() {
   if [ ${UID} -eq 0 ]; then
     color='37;41m'
   fi
-  echo $color;	
+  echo $color;
 }
 
 function gitprompt() {
@@ -65,7 +65,7 @@ function gitprompt() {
     color='0;33m' # changed yellow
     git diff --quiet && [ $(git ls-files --others --exclude-standard | wc -l) -eq 0 ] && \
       color="0;36m" # clean blue
-  
+
     white='0;39m'
     echo "\n$url<\[\033[$color\]$branch\[\e[$white\]>"
   fi
@@ -102,7 +102,7 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
   for FILE in $FILES ; do
     if [ -f "$HOME/$FILE" ] ; then
       source "$HOME/$FILE"
-    fi ; 
+    fi ;
   done
 fi
 
