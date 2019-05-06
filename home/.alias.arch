@@ -10,3 +10,6 @@ alias pmr='yay -R'
 alias pmu='yay -Syy'
 alias pmug='yay -Syu'
 alias pmcount='pacman -Qu | wc -l'
+pmdf() {
+  pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}
