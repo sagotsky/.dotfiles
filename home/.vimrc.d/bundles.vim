@@ -43,6 +43,13 @@ Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
   \ 'colorscheme': 'jellybeans',
+  \ 'active': {
+  \ 'right': [ ['lineinfo'],
+  \            ['percent'] ]
+  \ },
+  \ 'inactive': {
+  \   'right': []
+  \ },
   \ 'component_function': {
   \   'filename': 'LightLineFilename'
   \ }
