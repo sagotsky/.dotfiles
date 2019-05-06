@@ -60,8 +60,7 @@ eval "`bind_key_cmd_hint 'rgq' 'rails g question'       'rails g question IDENTI
 
 function rails_up {
   bundle
-  rake db:migrate #_and_seed #
-  bin/post_push work
+  rake db:migrate
 }
 
 export DISABLE_SPRING=1
