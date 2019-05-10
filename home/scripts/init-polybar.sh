@@ -16,7 +16,7 @@ else
   BAR="example"
 fi
 
-PRIMARY_MONITOR="$(xrandr -q | grep primary | cut -f1 -d' ')" 
+PRIMARY_MONITOR="$(xrandr -q | grep primary | cut -f1 -d' ')"
 export PRIMARY_MONITOR
 
 # scale up for the 4k laptop
@@ -24,7 +24,7 @@ if [[ "$BAR" == "bender" ]] ; then
   if [[ "$PRIMARY_MONITOR" == "DP-4" ]] ; then
     export BAR="$BAR-4k"
   else
-    export BAR="$BAR-4k"
+    export BAR="$BAR-1k"
   fi
 fi
 

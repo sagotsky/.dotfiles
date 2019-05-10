@@ -78,7 +78,7 @@ cursor-scroll = ns-resize
 [bar/bender-1k]
 inherit = bar/base
 monitor = ${env:PRIMARY_MONITOR}
-height = 40
+height = 20
 ; text
 font-0 = unifont:fontformat=truetype:size=10:antialias=false;4
 ; icons
