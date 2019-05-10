@@ -26,5 +26,7 @@
 [diff]
   #external = git-meld
   #external = vimdiff
-[branch]
-	autosetuprebase = always
+; [branch]
+; 	autosetuprebase = always
+[pull]
+  rebase = true
