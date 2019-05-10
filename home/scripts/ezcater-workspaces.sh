@@ -95,6 +95,10 @@ tmux-up ~/repos/kafka-docker <<EOF
   docker/start
 EOF
 
+tmux-up ~/repos/ezcater-identity identity <<EOF
+  docker/start
+EOF
+
 tmux-up ~/repos/authentication-rails <<EOF
   docker/start
 EOF
