@@ -25,9 +25,10 @@
 
 BASE_DB="${BASE_DB:?please set BASE_DB}" # name of DB to use as master
 
-DB_PREFIX="${DB_PREFIX:-$BASE_DB}" # change the prefix.  defaults to base name.  ie, my_db is master, mb_db_my_feature_branch is branched db
-BASE_BRANCH="${BASE_BRANCH:-master}"      # which branch uses the base db.  should default to master most of the time.
-SPARE_DB="${SPARE_DB:-spare}"          # name for the hot spare clone of master
+DB_PREFIX="${DB_PREFIX:-$BASE_DB}"    # change the prefix.  defaults to base name.  ie, my_db is master, mb_db_my_feature_branch is branched db
+BASE_BRANCH="${BASE_BRANCH:-master}"  # which branch uses the base db.  should default to master most of the time.
+SPARE_DB="${SPARE_DB:-spare}"         # name for the hot spare clone of master
+TEST_DB="${TEST_DB:-${BASE_DB}_test}" # masters test db is also considered unmanaged
 
 PG_OPTS="-Upostgres --host localhost" # psql options
 
@@ -183,7 +184,8 @@ list_managed_dbs() {
   psql $PG_OPTS -lqt |
     awk '{print $1}' |
     grep "^${DB_PREFIX}" |
-    grep -v "^${BASE_DB}$"
+    grep -v "^${BASE_DB}$" |
+    grep -v "^${TEST_DB}$"
 }
 
 drop_managed_dbs() {
