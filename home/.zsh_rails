@@ -1,7 +1,6 @@
 bindkey -s '\erc'   "rails console\n"
 bindkey -s '\erb'   "bundle\n"
 bindkey -s '\err'   "rake routes | grep "
-
 bindkey -s '\erdb'   "PAGER='/usr/bin/less -S' rails db\n"
 bindkey -s '\erdm'   "time rake db:migrate\n"
 bindkey -s '\erdr'   "time rake db:rollback\n"
@@ -10,6 +9,19 @@ bindkey -s '\erdtp'   "rake db:test:prepare\n"
 bindkey -s '\erdtb'   "rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm'   "rake db:migrate RAILS_ENV=test\n"
 bindkey -s '\erdtr'   "rake db:rollback RAILS_ENV=test\n"
+
+bindkey -s '\edd'   "docker/start\n"
+bindkey -s '\edrc'   "docker/run rails console\n"
+bindkey -s '\edrb'   "docker/run bundle\n"
+bindkey -s '\edrr'   "docker/run rake routes | grep "
+bindkey -s '\edrdb'   "docker/run PAGER='/usr/bin/less -S' rails db\n"
+bindkey -s '\edrdm'   "docker/run time rake db:migrate\n"
+bindkey -s '\edrdr'   "docker/run time rake db:rollback\n"
+bindkey -s '\edrds'   "docker/run rake db:migrate:status | grep -v 'NO FILE'\n"
+bindkey -s '\edrdtp'   "docker/run rake db:test:prepare\n"
+bindkey -s '\edrdtb'   "docker/run rails db RAILS_ENV=test\n"
+bindkey -s '\edrdtm'   "docker/run rake db:migrate RAILS_ENV=test\n"
+bindkey -s '\edrdtr'   "docker/run rake db:rollback RAILS_ENV=test\n"
 
 bindkey -s '\eru'     "rails_up\n"
 bindkey -s '\ertf'    "^Arep_til_failure " # prepend with rep_til_failure
