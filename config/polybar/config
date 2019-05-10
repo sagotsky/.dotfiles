@@ -54,7 +54,7 @@ module-margin-right = 2
 modules-left = xwindow
 ; modules-center = ewmh
 modules-center = stdin
-modules-right = gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
+modules-right = gcal gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
 
@@ -99,7 +99,8 @@ font-2 = "Source Code Pro:size=18:semibold:antialias=true;4"
 
 [bar/omelette]
 inherit = bar/base
-monitor = ${env:MONITOR:eDP1}
+; monitor = ${env:MONITOR:eDP1}
+monitor = ${env:PRIMARY_MONITOR}
 height = 24
 ; text
 font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
@@ -285,6 +286,7 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+; could this read next cal apt?
 [module/date]
 type = internal/date
 interval = 5
@@ -563,6 +565,17 @@ exec = "echo "
 interval = 61
 label-foreground = #1793d0
 click-left = x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sleep 5" '
+
+[module/gcal]
+type = custom/script
+interval = 60
+; todo: filter remind better
+; todo: write into fifo, clear on click
+exec = "gcalcli remind 1 'echo %s' | head -n 1"
+label-font = 3
+click-left = gcalcli --nocolor agenda --details location `date +%H:00` 23:00 | dmenu
+label-background = ${colors.alert}
+label-foreground = #ffffff
 
 [module/arch-kernel-change]
 type = custom/script
