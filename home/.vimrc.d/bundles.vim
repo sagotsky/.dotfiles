@@ -73,7 +73,7 @@ if isdirectory($HOME."/.rbenv")
   let g:turbux_test_type = 'rspec' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
   " let g:turbux_command_test_unit = 'bin/rails test'     " default: ruby -Itest
   let g:turbux_command_test_unit = 'bundle exec ruby -Itest '     " default: ruby -Itest
-   let g:turbux_command_rspec = 'bundle exec rspec'
+  let g:turbux_command_rspec = 'bundle-or-docker rspec'
 
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   Plug 'tpope/vim-rails'
@@ -81,6 +81,9 @@ if isdirectory($HOME."/.rbenv")
   Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
   " Add syntax rule
   let g:ruby_heredoc_syntax_filetypes = {
+          \ "graphql" : {
+          \   "start" : "GRAPHQL",
+          \},
           \ "haml" : {
           \   "start" : "HAML",
           \},
@@ -133,6 +136,7 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'sheerun/vim-polyglot'
+Plug 'jparise/vim-graphql'
 Plug 'enricobacis/paste.vim' " fast paste
 Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
 let g:comfortable_motion_friction = 80.0
@@ -147,4 +151,3 @@ Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_include_diff = 1
 
 call plug#end()
-
