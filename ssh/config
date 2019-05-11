@@ -22,6 +22,10 @@ Host bendertunnel
   HostName localhost
   port 23456
 
+Host omelettetunnel
+  HostName localhost
+  port 34567
+
 # plm staging
 Host 10.130.*
   user jsagotsky
