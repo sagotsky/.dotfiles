@@ -70,4 +70,5 @@ if !exists("*BundlesUpdated")
     PlugInstall
   endfunction
 endif
-" autocmd BufWritePre * %s/\s\+$//e
+
+autocmd BufWritePre * %s/\s\+$//e

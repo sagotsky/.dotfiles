@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# some envs want `bundle exec`.  others want `docker/run`.  tell vim to use
+# this script and let the env decide how to run tests for us.
+
+if [[ "$DOCKER_SPECS" == '' ]] ; then
+  bundle exec $@
+else
+  docker/run $@
+fi
+

@@ -40,25 +40,23 @@ Plug 'tpope/vim-vinegar'               " file selection
 Plug 'tpope/vim-eunuch'                " wraps unix commands in vim.  trying out :Move for renaming file and buffer at once.
 Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion to handle weird replacements like case or tense
 
-
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
   \ 'colorscheme': 'jellybeans',
+  \ 'active': {
+  \ 'right': [ ['lineinfo'],
+  \            ['percent'] ]
+  \ },
+  \ 'inactive': {
+  \   'right': []
+  \ },
+  \ 'component_function': {
+  \   'filename': 'LightLineFilename'
+  \ }
 \}
-" Plug 'vim-airline/vim-airline'         " bar
-" Plug 'vim-airline/vim-airline-themes'  " bar themes
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_theme='jellybeans'
-let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#branch#enabled=0
-"let g:airline_section_a=''
-"let g:airline_section_b=''
-"let g:airline_section_c=''
-let g:airline_section_x=''
-let g:airline_section_y=''
-"let g:airline_section_z='' # 100% 9: 37
-" TODO: make inactive a little more obvious looking.  remove black bg?
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 Plug 'vim-scripts/SQLComplete.vim'     " SQL syntax highlighting
 Plug 'vimwiki/vimwiki'                 " internal wiki
@@ -72,9 +70,10 @@ if isdirectory($HOME."/.rbenv")
   " Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
   Plug 'benmills/vimux'                    " tmux -> rails testing
   let g:VimuxHeight = "30"
-  let g:turbux_test_type = 'minitest' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
+  let g:turbux_test_type = 'rspec' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
   " let g:turbux_command_test_unit = 'bin/rails test'     " default: ruby -Itest
   let g:turbux_command_test_unit = 'bundle exec ruby -Itest '     " default: ruby -Itest
+  let g:turbux_command_rspec = 'bundle-or-docker rspec'
 
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   Plug 'tpope/vim-rails'
@@ -82,6 +81,9 @@ if isdirectory($HOME."/.rbenv")
   Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
   " Add syntax rule
   let g:ruby_heredoc_syntax_filetypes = {
+          \ "graphql" : {
+          \   "start" : "GRAPHQL",
+          \},
           \ "haml" : {
           \   "start" : "HAML",
           \},
@@ -134,6 +136,7 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'sheerun/vim-polyglot'
+Plug 'jparise/vim-graphql'
 Plug 'enricobacis/paste.vim' " fast paste
 Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
 let g:comfortable_motion_friction = 80.0
@@ -144,5 +147,7 @@ Plug 'inside/vim-search-pulse' " flashy search results
 let g:vim_search_pulse_duration = 150
 let g:vim_search_pulse_mode = 'pattern'
 
-call plug#end()
+Plug 'rhysd/git-messenger.vim'
+let g:git_messenger_include_diff = 1
 
+call plug#end()

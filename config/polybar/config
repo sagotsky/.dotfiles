@@ -29,7 +29,7 @@ secondary = #e60053
 alert = #bd2c40
 
 icon-fg-normal = #777
-icon-fg-yellow-alert = #cc5
+icon-fg-yellow-alert = #bbb
 icon-fg-red-alert = #ff2200
 
 
@@ -54,7 +54,7 @@ module-margin-right = 2
 modules-left = xwindow
 ; modules-center = ewmh
 modules-center = stdin
-modules-right = gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
+modules-right = gcal gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
 
@@ -75,9 +75,19 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 ; bender
-[bar/bender]
+[bar/bender-1k]
 inherit = bar/base
-; monitor = ${env:MONITOR:DP-4}
+monitor = ${env:PRIMARY_MONITOR}
+height = 20
+; text
+font-0 = unifont:fontformat=truetype:size=10:antialias=false;4
+; icons
+font-1 = FontAwesome:size=12;4
+; bold
+font-2 = "Source Code Pro:size=10:semibold:antialias=true;4"
+
+[bar/bender-4k]
+inherit = bar/base
 monitor = ${env:PRIMARY_MONITOR}
 height = 40
 ; text
@@ -87,10 +97,10 @@ font-1 = FontAwesome:size=20;4
 ; bold
 font-2 = "Source Code Pro:size=18:semibold:antialias=true;4"
 
-
 [bar/omelette]
 inherit = bar/base
-monitor = ${env:MONITOR:eDP1}
+; monitor = ${env:MONITOR:eDP1}
+monitor = ${env:PRIMARY_MONITOR}
 height = 24
 ; text
 font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
@@ -229,12 +239,14 @@ ramp-used-6 = ""
 ramp-used-7 = ""
 ramp-used-8 = ""
 ramp-used-9 = ""
+ramp-used-10 = ""
+ramp-used-11 = ""
 
 ramp-used-foreground = ${colors.icon-fg-normal}
-ramp-used-6-foreground = ${colors.icon-fg-yellow-alert}
-ramp-used-7-foreground = ${colors.icon-fg-yellow-alert}
-ramp-used-8-foreground = ${colors.icon-fg-red-alert}
-ramp-used-9-foreground = ${colors.icon-fg-red-alert}
+; ramp-used-8-foreground = ${colors.icon-fg-yellow-alert}
+ramp-used-9-foreground = ${colors.icon-fg-yellow-alert}
+ramp-used-10-foreground = ${colors.icon-fg-red-alert}
+ramp-used-11-foreground = ${colors.icon-fg-red-alert}
 
 [module/wlan]
 type = internal/network
@@ -274,6 +286,7 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+; could this read next cal apt?
 [module/date]
 type = internal/date
 interval = 5
@@ -533,6 +546,7 @@ exec = "echo "
 exec-if = "got-mail.sh 0"
 interval = 90
 label-foreground = #5484ed
+click-left = firefox https://mail.google.com/mail/u/0/#inbox
 ; format = %{F#5484ed}<label>%{F-}
 
 [module/gmail1]
@@ -541,6 +555,7 @@ exec = "echo "
 exec-if = "got-mail.sh 1"
 interval = 90
 label-foreground = #88bb40
+click-left = firefox https://mail.google.com/mail/u/1/#inbox
 ; format = %{F#5484ed}<label>%{F-}
 
 [module/arch-packages]
@@ -550,6 +565,17 @@ exec = "echo "
 interval = 61
 label-foreground = #1793d0
 click-left = x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sleep 5" '
+
+[module/gcal]
+type = custom/script
+interval = 60
+; todo: filter remind better
+; todo: write into fifo, clear on click
+exec = "gcalcli remind 1 'echo %s' | head -n 1"
+label-font = 3
+click-left = gcalcli --nocolor agenda --details location `date +%H:00` 23:00 | dmenu
+label-background = ${colors.alert}
+label-foreground = #ffffff
 
 [module/arch-kernel-change]
 type = custom/script

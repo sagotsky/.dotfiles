@@ -4,8 +4,12 @@ export EDITFILES=0
 
 alias pmi='yay -S'
 alias pmls='yay -Qe'
-alias pms='yay -Ss'
+alias pmq='yay -Ss'
+alias pms='echo try pmq instead'
 alias pmr='yay -R'
 alias pmu='yay -Syy'
 alias pmug='yay -Syu'
 alias pmcount='pacman -Qu | wc -l'
+pmdf() {
+  pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}

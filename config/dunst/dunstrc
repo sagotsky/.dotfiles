@@ -207,7 +207,6 @@
     background = "#ffffff"
     timeout = 0
 
-
 [cmus]
   appname = "notify-send"
   summary = "cmus"
@@ -259,6 +258,23 @@
   appname = "notify-send"
   summary = "Minitest results"
   format = ""
+
+[firefox-gcal]
+  appname = "Firefox"
+  body = "*[0-9]:[0-9]*" # next: try .*
+  # summary = "*Boston Office*"
+  # urgency = critical does nothing
+  timeout = 0
+  format = "<b><span font_weight="heavy" bgcolor="#ffffff" color="#1e1e1e"> %s </span></b> <b>%b</b>"
+  transparency = 0.5
+
+
+#app: Firefox
+#sum: test alert 1
+#body:
+#icon:
+#urgency: NORMAL
+
 
 
 # Every section that isn't one of the above is interpreted as a rules to
