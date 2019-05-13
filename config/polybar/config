@@ -535,10 +535,11 @@ tail = true
 format-font = 3
 label-font = 3
 type = custom/script
-exec = tail -f ~/.music.out
-exec-if = [ -p ~/.music.out ]
+exec = playerctl metadata -f '{{ artist }} - {{ title }}' --follow
+; exec = tail -f ~/.music.out
+; exec-if = [ -p ~/.music.out ]
 tail = true
-format = %{F#1DB954}%{F-}<label>
+format = %{F#1DB954} %{F-}<label>
 
 [module/gmail0]
 type = custom/script

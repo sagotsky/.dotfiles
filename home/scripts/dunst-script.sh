@@ -21,19 +21,8 @@ case $APP in
     esac
     ;;
 
-
-  'Spotify')
-    music-client.sh bandsong >> ~/.music.out &
-    ;;
-
   'Thunderbird')
     flag-urgent.sh 'Thunderbird' &
-    ;;
-esac
-
-case $SUMMARY in
-  cmus)
-    music-client.sh bandsong > ~/.music.out &
     ;;
 esac
 

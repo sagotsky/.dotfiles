@@ -153,14 +153,14 @@ myKeys = [
     , ("<XF86Calculator>", spawn "toggle.sh gnome-calculator") --calc
 
     -- music
-    , ("M-<Down>",               spawn "music-client.sh toggle") --vol up
-    , ("M-<Right>",              spawn "music-client.sh next") --Next
-    , ("M-<Left>",               spawn "music-client.sh back") --Back
-    , ("<XF86AudioPlay>",        spawn "music-client.sh toggle") --vol up
-    , ("<XF86Forward>",          spawn "music-client.sh next") --Next
-    , ("<XF86AudioNext>",        spawn "music-client.sh next") --Next
-    , ("<XF86Back>",             spawn "music-client.sh back") --Back
-    , ("<XF86AudioPrev>",        spawn "music-client.sh back") --Back
+    , ("M-<Down>",               spawn "playerctl play-pause") --vol up
+    , ("M-<Right>",              spawn "playerctl next") --Next
+    , ("M-<Left>",               spawn "playerctl previous") --previous
+    , ("<XF86AudioPlay>",        spawn "playerctl play-pause") --vol up
+    , ("<XF86Forward>",          spawn "playerctl next") --Next
+    , ("<XF86AudioNext>",        spawn "playerctl next") --Next
+    , ("<XF86Back>",             spawn "playerctl previous") --previous
+    , ("<XF86AudioPrev>",        spawn "playerctl previous") --previous
     , ("<XF86AudioRaiseVolume>", spawn "vol-up.sh") --vol up
     , ("<XF86AudioLowerVolume>", spawn "vol-down.sh") --vol down
     , ("<XF86AudioMute>",        spawn "vol-mute.sh") --vol mute
