@@ -1,0 +1,2 @@
+assert_equal val, ex
+expect(val).to be(ex)
