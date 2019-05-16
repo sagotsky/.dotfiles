@@ -570,11 +570,10 @@ click-left = x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sle
 [module/gcal]
 type = custom/script
 interval = 60
-; todo: filter remind better
-; todo: write into fifo, clear on click
-exec = "gcalcli remind 1 'echo %s' | head -n 1"
+exec = gcalcli-remind.sh daemon
+click-left = gcalcli-remind.sh snooze
+tail = true
 label-font = 3
-click-left = gcalcli --nocolor agenda --details location `date +%H:00` 23:00 | dmenu
 label-background = ${colors.alert}
 label-foreground = #ffffff
 
@@ -586,6 +585,7 @@ interval = 62
 label-foreground = #ff0000
 click-left = x-terminal-emulator -e "sudo -p 'sudo reboot > ' echo reboot"
 
+; todo:
 ; watch-git
 ; lpq?
 ;
