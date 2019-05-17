@@ -16,6 +16,11 @@
 ;
 ;==========================================================
 
+[fonts]
+mono = 1
+icon = 2
+regular = 3
+bold = 4
 [colors]
 ;background = ${xrdb:color0:#222}
 ; background = #222
@@ -51,9 +56,9 @@ padding-left = 1
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
-modules-left = xwindow
+modules-left = stdin xwindow
 ; modules-center = ewmh
-modules-center = stdin
+; modules-center = stdin
 modules-right = gcal gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
@@ -83,8 +88,10 @@ height = 20
 font-0 = unifont:fontformat=truetype:size=10:antialias=false;4
 ; icons
 font-1 = FontAwesome:size=12;4
-; bold
+; regular
 font-2 = "Source Code Pro:size=10:semibold:antialias=true;4"
+; bold
+font-3 = "Source Code Pro:size=10:bold:antialias=true;4"
 
 [bar/bender-4k]
 inherit = bar/base
@@ -94,8 +101,10 @@ height = 40
 font-0 = unifont:fontformat=truetype:size=18:antialias=false;4
 ; icons
 font-1 = FontAwesome:size=20;4
-; bold
+; regular
 font-2 = "Source Code Pro:size=18:semibold:antialias=true;4"
+; bold
+font-3 = "Source Code Pro:size=18:bold:antialias=true;4"
 
 [bar/omelette]
 inherit = bar/base
@@ -106,16 +115,17 @@ height = 24
 font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
 ; icons
 font-1 = FontAwesome:size=11;4
+; normal
+font-2 = "Source Code Pro:size=9:regular:antialias=true;4"
 ; bold
-font-2 = "Source Code Pro:size=9:semibold:antialias=true;4"
+font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
 
 
 [module/xwindow]
 type = internal/xwindow
 format = <label>
 label = "%title:0:110:...%"
-format-font = 3
-label-font = 3
+label-font = ${fonts.bold}
 ; label = %title:0:30:...%
 
 [module/bspwm]
@@ -194,7 +204,6 @@ label-song-ellipsis = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix-font = 1
 ; format-prefix = ""
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-foreground = ${colors.foreground}
@@ -222,7 +231,6 @@ ramp-load-9-foreground = ${colors.icon-fg-red-alert}
 type = internal/memory
 interval = 2
 ; format-prefix = " "
-; format-prefix-font = 1
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-prefix-foreground = "#ff0000"
 ; format-underline = #4bffdc
@@ -308,7 +316,6 @@ label = "%date% %time%"
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-font = 1
 format-volume = <label-volume> <bar-volume>
 label-volume =  VOL %percentage%
 label-volume-foreground = ${root.foreground}
@@ -326,17 +333,13 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 1
 bar-volume-fill = ─
-bar-volume-fill-font = 1
 bar-volume-empty = ─
-bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
 
-format-font = 1
 format-volume = <label-volume> <bar-volume>
 label-volume = ""
 label-volume-foreground = ${colors.foreground-alt}
@@ -355,11 +358,8 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 1
 bar-volume-fill = ─
-bar-volume-fill-font = 1
 bar-volume-empty = ─
-bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
@@ -368,7 +368,6 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-font = 1
 label-charging-foreground = ${colors.foreground}
 
 format-charging-prefix = " "
@@ -532,14 +531,14 @@ exec-if = [ -p /tmp/.polybar.fifo ]
 tail = true
 
 [module/music-player]
-format-font = 3
-label-font = 3
+label-font = ${fonts.regular}
 type = custom/script
 exec = playerctl metadata -f '{{ artist }} - {{ title }}' --follow
 ; exec = tail -f ~/.music.out
 ; exec-if = [ -p ~/.music.out ]
 tail = true
 format = %{F#1DB954} %{F-}<label>
+label-foreground = #aaa
 
 [module/gmail0]
 type = custom/script
@@ -573,7 +572,7 @@ interval = 60
 exec = gcalcli-remind.sh daemon
 click-left = gcalcli-remind.sh snooze
 tail = true
-label-font = 3
+label-font = ${fonts.bold}
 label-background = ${colors.alert}
 label-foreground = #ffffff
 
