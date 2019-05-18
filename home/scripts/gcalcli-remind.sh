@@ -6,6 +6,7 @@
 # the solution is that this script has a daemon loop.  when you run the daemon, it also sets up a trap, which clears output and sleeps, then resumes output.
 # the second option is a snooze button.  it finds the daemon's pid and send it the USR1 signal to hit the trap.
 
+POLL_FREQUENCY=60s
 SNOOZE_DURATION=300s
 
 reminders() {
@@ -18,19 +19,19 @@ show-reminders() {
 }
 
 snoozing() {
-  echo ''
+  echo
   sleep $SNOOZE_DURATION
 }
 
 snooze-cmd() {
   PID=$(ps ax | grep "`basename $0` [d]aemon" | awk -e '{print $1}')
-  [[ "$PID" != "" ]] && kill -s USR1 $PID
+  [[ "$PID" != "" ]] && kill -s USR1 "$PID"
 }
 
 daemon() {
   while : ; do
     show-reminders && reminders
-    sleep 60
+    sleep $POLL_FREQUENCY & wait $!
   done
 }
 
@@ -45,5 +46,11 @@ case $1 in
     ;;
 
   *)
-    echo -e "Usage: \n  `basename $0` daemon - inits daemon.  \n  `basename $0` snooze - clears notifications and snoozes daemon"
+    /usr/bin/cat <<EOF
+
+Usage:
+  $(basename $0) daemon - inits daemon.
+  $(basename $0) snooze - clears notifications and snoozes daemon
+
+EOF
 esac
