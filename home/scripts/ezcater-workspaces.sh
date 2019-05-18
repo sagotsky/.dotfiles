@@ -53,7 +53,7 @@ function _handle_line {
 
 # always respawn on last pane and prep the next pane.
 function window {
-  tmux respawn-pane -t $NAME -k "$@ ; zsh"
+  tmux respawn-pane -t $NAME -k $@
 }
 
 function vsplit {
@@ -108,9 +108,13 @@ tmux-up ~/repos/pos-rails <<EOF
 EOF
 
 tmux-up ~/repos/ez-rails <<EOF
-  bin/rails s
   docker-compose up ezrails-db
   foreman start
+  bin/rails s -b 0.0.0.0
+EOF
+
+tmux-up ~/repos/spare-ez-rails <<EOF
+  zsh
 EOF
 
 # override default name with second arg
