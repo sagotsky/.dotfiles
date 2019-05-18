@@ -12,31 +12,38 @@ reminders() {
   gcalcli remind 1 'echo %s' 2>/dev/null | head -n 1
 }
 
-snooze-mode() {
+# only emit reminders at end of half hour block
+show-reminders() {
+  [[ $(date +%M) =~ ([25][789]|00|30) ]]
+}
+
+snoozing() {
   echo ''
   sleep $SNOOZE_DURATION
 }
 
-snooze() {
-  PID=$(ps ax | grep "`basename $0` [d]aemon" | cut -f 1 -d' ')
+snooze-cmd() {
+  PID=$(ps ax | grep "`basename $0` [d]aemon" | awk -e '{print $1}')
   [[ "$PID" != "" ]] && kill -s USR1 $PID
 }
 
 daemon() {
-  while [[ "$SNOOZE" != '1' ]] ; do
-    reminders
-    sleep 1
+  while : ; do
+    show-reminders && reminders
+    sleep 60
   done
 }
 
 case $1 in
   'daemon')
-    trap snooze-mode USR1
+    trap snoozing USR1
     daemon
     ;;
+
   'snooze')
-    snooze $2
+    snooze-cmd
     ;;
+
   *)
     echo -e "Usage: \n  `basename $0` daemon - inits daemon.  \n  `basename $0` snooze - clears notifications and snoozes daemon"
 esac
