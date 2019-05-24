@@ -59,7 +59,7 @@ module-margin-right = 2
 modules-left = stdin xwindow
 ; modules-center = ewmh
 ; modules-center = stdin
-modules-right = gcal gmail0 gmail1 music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
+modules-right = gcal gmail music-player alsa memory cpu battery date arch-kernel-change arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
 
@@ -366,7 +366,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 98
+full-at = 95
 
 label-charging-foreground = ${colors.foreground}
 
@@ -540,21 +540,29 @@ tail = true
 format = %{F#1DB954} %{F-}<label>
 label-foreground = #aaa
 
-[module/gmail0]
-type = custom/script
-exec = "echo "
-exec-if = "got-mail.sh 0"
-interval = 90
-label-foreground = #5484ed
-click-left = firefox https://mail.google.com/mail/u/0/#inbox
-; format = %{F#5484ed}<label>%{F-}
+; [module/gmail0]
+; type = custom/script
+; exec = "echo "
+; exec-if = "got-mail.sh 0"
+; interval = 90
+; label-foreground = #5484ed
+; click-left = firefox https://mail.google.com/mail/u/0/#inbox
+; ; format = %{F#5484ed}<label>%{F-}
 
-[module/gmail1]
+; [module/gmail1]
+; type = custom/script
+; exec = "echo "
+; exec-if = "got-mail.sh 1"
+; interval = 90
+; label-foreground = #88bb40
+; click-left = firefox https://mail.google.com/mail/u/1/#inbox
+; ; format = %{F#5484ed}<label>%{F-}
+
+[module/gmail]
 type = custom/script
-exec = "echo "
-exec-if = "got-mail.sh 1"
+exec = "gmail-check.sh"
 interval = 90
-label-foreground = #88bb40
+; label-foreground = #88bb40
 click-left = firefox https://mail.google.com/mail/u/1/#inbox
 ; format = %{F#5484ed}<label>%{F-}
 
