@@ -108,10 +108,14 @@ tmux-up ~/repos/pos-rails <<EOF
 EOF
 
 tmux-up ~/repos/ez-rails <<EOF
-  docker-compose up ezrails-db
-  foreman start
-  bin/rails s -b 0.0.0.0
+  docker/start
 EOF
+
+# tmux-up ~/repos/ez-rails <<EOF
+#   docker-compose up ezrails-db
+#   foreman start
+#   bin/rails s -b 0.0.0.0
+# EOF
 
 tmux-up ~/repos/spare-ez-rails <<EOF
   zsh
