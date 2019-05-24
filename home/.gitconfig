@@ -13,9 +13,11 @@
   st = status
   cp = cherry-pick
   logs = log -p -S
-  ls-branch = ! ~/scripts/git/git-ls-branch.sh
-  what-branch=! ~/scripts/git/git-what-branch.sh
-  wip = !git commit -m 'wip' && git rebase -i HEAD^^
+
+  ls-branch =   ! ~/scripts/git/git-ls-branch.sh
+  remaster =    ! git fetch && git rebase -i origin/master
+  what-branch = ! ~/scripts/git/git-what-branch.sh
+  wip =         ! git commit -m 'wip' && git rebase -i HEAD^^
 
 [push]
   default = tracking
