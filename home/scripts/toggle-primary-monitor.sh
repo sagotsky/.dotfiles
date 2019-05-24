@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+autorandr --load horizontal
+
 # works for getting off secondary.  how about reconnecting?
 NEXT_PRIMARY=$(xrandr -q | grep ' connected' | grep -v 'primary' | cut -f 1 -d' ')
 if [[ "$NEXT_PRIMARY" == "" ]] ; then
@@ -11,3 +13,4 @@ fi
 xrandr --output $NEXT_PRIMARY --primary
 xmonad --restart
 
+nitrogen --restore
