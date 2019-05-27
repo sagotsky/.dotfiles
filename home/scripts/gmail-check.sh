@@ -1,22 +1,17 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
+
+set -euf -o pipefail
+
+
+DEBUG=${DEBUG:-''}
 
 # checks all gmail accounts using firefox cookies
 
-TEMP_SQLITE=`mktemp`
-TEMP_COOKIE_JAR=`mktemp`
-
-function cookie-jar() {
-  # backup isn't locked probably.  does it have everything we need?  or do we need a temp file?
-  FILE="$(find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name cookies.sqlite)" #.bak
-  cp $FILE $TEMP_SQLITE
-}
-
 function dump-cookies() {
-  cookie-jar
   # copy pastad these.  do we need them?
-  echo "# Netscape HTTP Cookie File" > $TEMP_COOKIE_JAR
+  echo "# Netscape HTTP Cookie File"
 
-  sqlite3 -separator $'\t' $TEMP_SQLITE >>$TEMP_COOKIE_JAR <<- EOF
+  sqlite3 -separator $'\t' "$@" <<- EOF
 .mode
 .header off
     select
@@ -32,11 +27,45 @@ function dump-cookies() {
     where host like '%google.com'
     ;
 EOF
-  rm $TEMP_SQLITE
+  rm
 }
 
+# find all cookie jars
+# delete adjacent dumps if old
+# copy jar
+# make dump
+# delete spare
+
+function firefox-cookie-jars() {
+  FILENAME='cookies-gmail.txt'
+
+  # delete after a week
+  find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name $FILENAME -mtime +7 -delete
+
+  for orig_sql in "$(find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name cookies.sqlite)" ; do
+    profile_dir="${orig_sql%/*}"
+    cookies_txt="$profile_dir/$FILENAME"
+    tmp_sql="$profile_dir/cookies-tmp.sqlite"
+
+    if [ ! -f "$cookies_txt" ] ; then
+      cp $orig_sql $tmp_sql
+      dump-cookies $tmp_sql > $cookies_txt
+      rm "$tmp_sql"
+    fi
+
+    echo $cookies_txt
+  done
+}
+
+
 function accounts() {
-  grep '/mail/u/[0-9]' $TEMP_COOKIE_JAR | awk -e '{print $3}' | sort | uniq
+  for file in $(firefox-cookie-jars) ; do
+    grep '/mail/u/[0-9]' $file | awk -e '{print $3}' | sort | uniq
+  done
+}
+
+function debug() {
+  [[ "$DEBUG" != '' ]] && echo "$@" 1>&2 || true
 }
 
 function icon() {
@@ -55,22 +84,26 @@ function icon() {
   [[ "$COLOR" != "" ]] && echo "%{F$COLOR}$ICON%{F-}"
 }
 
-function debug() {
-  [[ "$DEBUG" != '' ]] && echo "$@" 1>&2
+function curl-cookie-opt() {
+  firefox-cookie-jars | while read file ; do
+    echo -n "-b $file "
+  done
 }
 
-dump-cookies
+function check-mail() {
+  for segment in `accounts` ; do
+    URL="https://mail.google.com/$segment/feed/atom"
 
-for segment in `accounts` ; do
-  URL="https://mail.google.com/$segment/feed/atom"
 
-  ATOM="$(curl -s -b $TEMP_COOKIE_JAR $URL)"
+    ATOM="$(curl -s $(curl-cookie-opt) $URL)"
 
-  debug $ATOM
+    debug $ATOM
 
-  # echo $ATOM | grep Unauth && exit 1
-  icon `echo "$ATOM" | grep '<entry>'`
+    # echo $ATOM | grep Unauth && exit 1 # todo - unauthed path
+    icon `echo "$ATOM" | grep '<entry>'` || true
 
-  debug ----
-done | paste -s -d\  -
+    debug ----
+  done | paste -s -d\  -
+}
 
+check-mail
