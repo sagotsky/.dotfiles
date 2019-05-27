@@ -18,7 +18,7 @@ show-reminders() {
   [[ $(date +%M) =~ ([25][789]|00|30) ]]
 }
 
-snoozing() {
+snooze-hook() {
   echo
   sleep $SNOOZE_DURATION
 }
@@ -37,7 +37,7 @@ daemon() {
 
 case $1 in
   'daemon')
-    trap snoozing USR1
+    trap snooze-hook USR1
     daemon
     ;;
 

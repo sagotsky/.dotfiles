@@ -534,29 +534,11 @@ tail = true
 label-font = ${fonts.regular}
 type = custom/script
 exec = playerctl metadata -f '{{ artist }} - {{ title }}' --follow
-; exec = tail -f ~/.music.out
-; exec-if = [ -p ~/.music.out ]
 tail = true
 format = %{F#1DB954} %{F-}<label>
 label-foreground = #aaa
+label = "%output:0:32:…%"
 
-; [module/gmail0]
-; type = custom/script
-; exec = "echo "
-; exec-if = "got-mail.sh 0"
-; interval = 90
-; label-foreground = #5484ed
-; click-left = firefox https://mail.google.com/mail/u/0/#inbox
-; ; format = %{F#5484ed}<label>%{F-}
-
-; [module/gmail1]
-; type = custom/script
-; exec = "echo "
-; exec-if = "got-mail.sh 1"
-; interval = 90
-; label-foreground = #88bb40
-; click-left = firefox https://mail.google.com/mail/u/1/#inbox
-; ; format = %{F#5484ed}<label>%{F-}
 
 [module/gmail]
 type = custom/script
@@ -578,7 +560,7 @@ click-left = x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sle
 type = custom/script
 interval = 60
 exec = gcalcli-remind.sh daemon
-click-left = gcalcli-remind.sh snooze
+click-left = gcalcli-remind.sh snooze ; yank notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
 tail = true
 label-font = ${fonts.bold}
 label-background = ${colors.alert}
