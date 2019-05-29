@@ -1,0 +1,17 @@
+export POSTGRES_USER=postgres
+
+cdpath=(~/repos)
+. ~/.alias.arch
+. ~/.zsh_rails
+
+_direnv_hook() {
+  eval "$("/usr/bin/direnv" export zsh 2>/dev/null)"
+}
+typeset -ag precmd_functions;
+if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+  precmd_functions+=_direnv_hook;
+fi
+
+alias kube-prod="CONTEXT=jon.sagotsky-kubernetes-useast1-production ezkube.sh "
+alias kube-staging="CONTEXT=jon.sagotsky-kubernetes-useast1-staging ezkube.sh "
+alias kube-dev1="CONTEXT=jon.sagotsky-kubernetes-useast1-staging NAMESPACE='--namespace dev1' ezkube.sh "

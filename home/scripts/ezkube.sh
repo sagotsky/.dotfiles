@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
+CONTEXT="${CONTEXT}"
+NAMESPACE="${NAMESPACE:-}"
+
 APPLICATION=$1
 ROLE=$2
 shift
 shift
-CMD=${@:-/bin/bash}
-
-kubectl config current-context
-echo
+CMD="${@:-/bin/bash}"
 
 LIST=""
 if [[ "$APPLICATION" != "" ]] ; then
@@ -18,7 +20,7 @@ if [[ "$ROLE" != "" ]] ; then
   LIST="$LIST,role=$ROLE"
 fi
 
-PODS="$(kubectl get pods $LIST | grep -v STATUS)"
+PODS="$(kubectl $NAMESPACE get pods $LIST | grep -v STATUS | grep Running)"
 
 if [[ $(echo "$PODS" | wc -l) == "1" ]] ; then
   POD="$PODS"
@@ -27,4 +29,4 @@ else
 fi
 
 PODNAME=$(echo $POD | cut -f1 -d' ')
-kubectl exec -it $PODNAME -- $CMD
+kubectl $NAMESPACE exec -it $PODNAME -- $CMD
