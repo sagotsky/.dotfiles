@@ -1,0 +1,40 @@
+#!/bin/bash
+
+. ~/.shellrc
+export BROWSER=firefox
+# export GDK_SCALE=2 # gtk3.0 scaling
+export GDK_DPI_SCALE=1.5
+export GTK_THEME='Arc-Dark'
+export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
+echo $DISPLAY > ~/.display
+
+
+# (
+#   # doing this step manually works.  todo: fix
+#   scripts/bender-monitors.sh startx # setting up screen with scaling, then turning scaling off sets it to a decent size with no blur.  still suboptimal.
+#   sleep 5
+#   scripts/bender-monitors.sh
+# ) &
+
+xsetroot -cursor_name left_ptr
+setxkbmap -option terminate:ctrl_alt_bksp
+xrdb -merge ~/.Xresources
+eval $(keychain --eval)
+eval `dbus-launch --sh-syntax` # somehow fixes gnome term
+rm ~/.music.out ; mkfifo ~/.music.out
+
+loginctl enable-linger $USER # don't kill tmux after I log out
+# tmux-session.sh autossh screen-ssh-tunnel-bender.sh
+# (cd ~/repos/plm-website ; tmux-session.sh plm "$SHELL")
+# (cd ~/repos/spare-plm ; tmux-session.sh spare "$SHELL")
+# (cd ~/repos/open-pro ; tmux-session.sh ore "$SHELL")
+
+# docked screen wasn't coming back.  use xscreensaver instead.
+# xset s 300 # 5m screensaver
+
+find "$HOME/.xsession.d/" | xargs -n 1 -P0 sh -c & &>/dev/null &
+
+xmonad || xterm
+# herbstluftwm # polybar works well enough.  bash config seems untrustworthy.  it's too easy to change how it works, not just settings.
+# spectrwm  # poor polybar support.  needs a fork.
+# i3 # another brittle config
