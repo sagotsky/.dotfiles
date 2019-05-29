@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# env settings
+. ~/.shellrc
+echo $DISPLAY > ~/.display
+export BROWSER=firefox
+eval $(keychain --eval)
+export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
+
+# x settings
+setxkbmap -option terminate:ctrl_alt_bksp
+xrdb -merge ~/.Xresources
+xmodmap ~/.xmodmap
+
+# apps
+find ~/.xsession.d/ | xargs -n 1 -P0 sh -c & &> /dev/null &
+
+nitrogen --restore
+
+# WM
+xmonad || xterm
