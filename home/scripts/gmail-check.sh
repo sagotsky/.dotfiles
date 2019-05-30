@@ -106,4 +106,26 @@ function check-mail() {
   done | paste -s -d\  -
 }
 
-check-mail
+function new-mail-urls() {
+  for segment in `accounts` ; do
+    URL="https://mail.google.com/$segment/feed/atom"
+
+
+    ATOM="$(curl -s $(curl-cookie-opt) $URL)"
+
+    debug $ATOM
+
+    if [[ "$ATOM" =~ '<entry>' ]] ; then
+      echo "${URL%feed/atom}"
+    fi
+
+    debug ----
+  done | paste -s -d\  -
+}
+
+# todo: firefox || icons
+if [[ "${1-}" == 'url' ]] ; then
+  new-mail-urls
+else
+  check-mail
+fi
