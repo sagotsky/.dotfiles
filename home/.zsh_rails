@@ -1,8 +1,8 @@
 bindkey -s '\erc'   "bundle-or-docker rails console\n"
 bindkey -s '\err'   "bundle-or-docker rake routes | grep "
 bindkey -s '\erdb'  "bundle-or-docker rails db\n"
-bindkey -s '\erdm'  "bundle-or-docker time rake db:migrate\n"
-bindkey -s '\erdr'  "bundle-or-docker time rake db:rollback\n"
+bindkey -s '\erdm'  "bundle-or-docker rake db:migrate\n"
+bindkey -s '\erdr'  "bundle-or-docker rake db:rollback\n"
 bindkey -s '\erds'  "bundle-or-docker rake db:migrate:status | grep -v 'NO FILE'\n"
 bindkey -s '\erdtp' "bundle-or-docker rake db:test:prepare\n"
 bindkey -s '\erdtb' "bundle-or-docker rails db RAILS_ENV=test\n"
@@ -57,7 +57,7 @@ eval "`bind_key_cmd_hint 'rgq' 'rails g question'       'rails g question IDENTI
 
 
 function rails_up {
-  bundle-or-docker bundle
+  docker/setup
   bundle-or-docker rake db:migrate
 }
 

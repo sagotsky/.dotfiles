@@ -73,7 +73,16 @@ if isdirectory($HOME."/.rbenv")
   let g:turbux_test_type = 'rspec' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
   " let g:turbux_command_test_unit = 'bin/rails test'     " default: ruby -Itest
   let g:turbux_command_test_unit = 'bundle exec ruby -Itest '     " default: ruby -Itest
-  let g:turbux_command_rspec = 'bundle-or-docker rspec'
+  let g:turbux_command_rspec = 'bundle-or-docker bundle exec rspec'
+
+  " todo: run tests inline in vim.  quickfix on busted lines.
+  " problem: docker doesn't like non interactive shells
+  " Plug 'janko/vim-test'
+  " Plug 'tpope/vim-dispatch'
+  " Plug 'radenling/vim-dispatch-neovim'
+  " Plug 'neomake/neomake'
+  " same problem with docker
+  " Plug 'thoughtbot/vim-rspec'
 
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   Plug 'tpope/vim-rails'

@@ -6,6 +6,6 @@
 if [[ "$DOCKER_SPECS" == '' ]] ; then
   bundle exec $@
 else
-  docker/run $@
+  docker/run bundle exec $@
 fi
 
