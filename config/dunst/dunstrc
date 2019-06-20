@@ -1,11 +1,7 @@
-# ~/.config/dunst/dunstrc
-
-
-# todo: check if scudcloud works as intended
 
 [global]
     always_run_script = true
-    font = fixed 16
+    font = source code pro 16
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -205,7 +201,7 @@
     format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
 
 [urgency_critical]
-    foreground = "#900000"
+    foreground = "#000000"
     background = "#ffffff"
     timeout = 0
 
@@ -244,6 +240,10 @@
   summary = "Minitest results"
   format = ""
 
+[calendar]
+  appname = "*calendar*"
+  urgency = critical
+  timeout = 0
 
 #app: Firefox
 #sum: test alert 1

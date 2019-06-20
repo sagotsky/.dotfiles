@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# todo:
+# dockerize this!  .env.local gets put into docker.   can it ping another container requesting a db?  has curl (or failing that, all of ruby)
+
 # returns the name of the database to use for the current branch
 # if it's a brand new one, create it!
 

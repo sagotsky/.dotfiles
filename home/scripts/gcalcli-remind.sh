@@ -10,6 +10,7 @@ POLL_FREQUENCY=60s
 SNOOZE_DURATION=300s
 
 reminders() {
+  echo
   gcalcli remind 1 'echo %s' 2>/dev/null | head -n 1
 }
 

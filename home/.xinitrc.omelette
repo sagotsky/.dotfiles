@@ -2,7 +2,10 @@
 
 # env settings
 . ~/.shellrc
+
 echo $DISPLAY > ~/.display
+echo $DBUS_SESSION_BUS_ADDRESS > .dbus_session
+
 export BROWSER=firefox
 eval $(keychain --eval)
 export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
@@ -18,4 +21,5 @@ find ~/.xsession.d/ | xargs -n 1 -P0 sh -c & &> /dev/null &
 nitrogen --restore
 
 # WM
-xmonad || xterm
+dbus-launch --exit-with-session xmonad
+# dbus-launch --exit-with-session i3

@@ -40,7 +40,7 @@ function firefox-cookie-jars() {
   FILENAME='cookies-gmail.txt'
 
   # delete after a week
-  find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name $FILENAME -mtime +7 -delete
+  find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name $FILENAME -mtime +1 -delete
 
   for orig_sql in "$(find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name cookies.sqlite)" ; do
     profile_dir="${orig_sql%/*}"
@@ -129,3 +129,13 @@ if [[ "${1-}" == 'url' ]] ; then
 else
   check-mail
 fi
+
+
+
+# unauthed content.  delete cache and retry?
+# <HTML> <HEAD> <TITLE>Unauthorized</TITLE> </HEAD> <BODY BGCOLOR="#FFFFFF" TEXT="#000000"> <H1>Unauthorized</H1> <H2>Error 401</H2> </BODY> </HTML>
+# ----
+# <?xml version="1.0" encoding="UTF-8"?><feed version="0.3" xmlns="http://purl.org/atom/ns#"><title>Gmail - Inbox for sagotsky@gmail.com</title><tagline>New messages in your Gmail Inbox</tagline><fullcount>0</fullcount><link rel="alternate" href="https://mail.google.com/mail/u/1" type="text/html"/><modified>2019-06-06T14:48:33Z</modified></feed>
+# ----
+
+

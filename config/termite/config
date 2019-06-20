@@ -4,8 +4,9 @@
 clickable_url = true
 dynamic_title = true
 # font = Monospace 9
-font = Source Code Pro Semibold 10
-# font = Sauce Code Pro Font Complete Mono 10
+# font = Source Code Pro Semibold 10
+# font = Hack 12
+font = Input Mono Regular 12
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal

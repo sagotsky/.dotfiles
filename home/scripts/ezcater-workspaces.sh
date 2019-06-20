@@ -104,7 +104,8 @@ tmux-up ~/repos/authentication-rails <<EOF
 EOF
 
 tmux-up ~/repos/pos-rails <<EOF
-  docker/setup && docker/start
+  docker/start
+  docker/setup
 EOF
 
 tmux-up ~/repos/ez-rails <<EOF
