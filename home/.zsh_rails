@@ -8,6 +8,7 @@ bindkey -s '\erdtp' "bundle-or-docker rake db:test:prepare\n"
 bindkey -s '\erdtb' "bundle-or-docker rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm' "bundle-or-docker rake db:migrate RAILS_ENV=test\n"
 bindkey -s '\erdtr' "bundle-or-docker rake db:rollback RAILS_ENV=test\n"
+bindkey -s '\ers'   "bundle-or-docker rspec\n"
 
 bindkey -s '\eru'     "rails_up\n"
 bindkey -s '\ertf'    "^Arep_til_failure " # prepend with rep_til_failure

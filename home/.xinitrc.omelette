@@ -3,6 +3,7 @@
 # env settings
 . ~/.shellrc
 
+export $(dbus-launch) # necessary for playerctl + spotify
 echo $DISPLAY > ~/.display
 echo $DBUS_SESSION_BUS_ADDRESS > .dbus_session
 
@@ -21,5 +22,6 @@ find ~/.xsession.d/ | xargs -n 1 -P0 sh -c & &> /dev/null &
 nitrogen --restore
 
 # WM
-dbus-launch --exit-with-session xmonad
+xmonad
+# dbus-launch --exit-with-session xmonad # shouldn't be needed
 # dbus-launch --exit-with-session i3
