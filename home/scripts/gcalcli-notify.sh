@@ -2,11 +2,11 @@
 
 TITLE=' '
 reminders() {
-  gcalcli remind 10 "notify-send -u critical $TITLE '$(reminder_info)'"
+  gcalcli remind 10 "notify-desktop -u critical $TITLE '$(reminder_info)'"
 }
 
 date_range() {
-  echo "$( date +%H:%M ) $( date -d "+ 15 minutes" +%H:%M )"
+  echo "$( date -d '- 5 minutes' +%H:%M ) $( date -d '+ 10 minutes' +%H:%M )"
 }
 
 reminder_info() {
@@ -23,5 +23,5 @@ reminder_info() {
 
 # min      hour day_of_month month week_day
 #  14,29,44,59  *  *  *  *  DISPLAY=`cat $HOME/.display` DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus" notify-send gcalcli-notify.sh foo */
-# *  *  *  *  *  DISPLAY=`cat $HOME/.display` DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(grep sagotsky /etc/passwd | cut -f 3 -d:)/bus" /home/sagotsky/scripts/gcalcli-notify.sh
 reminders
+# date_range ; reminder_info # debug
