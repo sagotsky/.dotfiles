@@ -13,4 +13,4 @@ fi
 xrandr --output $NEXT_PRIMARY --primary
 xmonad --restart
 
-nitrogen --restore
+sleep 1 ; nitrogen --restore
