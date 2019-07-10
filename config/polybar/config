@@ -542,8 +542,8 @@ label = "%output:0:32:…%"
 
 [module/gmail]
 type = custom/script
-exec = "gmail-check.sh"
-interval = 600
+exec = "EMPTY_SNOOZE=600 gmail-check.sh"
+interval = 60
 click-left = firefox `gmail-check.sh url`
 
 [module/arch-packages]

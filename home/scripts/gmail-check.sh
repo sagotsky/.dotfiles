@@ -2,8 +2,8 @@
 
 set -euf -o pipefail
 
-
 DEBUG=${DEBUG:-''}
+EMPTY_SNOOZE=${EMPTY_SNOOZE:-0}  # if mail is empty, sleep for some seconds.  no snooze if its full so it can check when its empty sooner.
 
 # checks all gmail accounts using firefox cookies
 
@@ -127,7 +127,9 @@ function new-mail-urls() {
 if [[ "${1-}" == 'url' ]] ; then
   new-mail-urls
 else
-  check-mail
+  mail=$(check-mail)
+  [ "$(echo $mail | wc -c)" == "1" ] && sleep ${EMPTY_SNOOZE:-0}
+  echo $mail
 fi
 
 
