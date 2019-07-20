@@ -128,7 +128,7 @@ if [[ "${1-}" == 'url' ]] ; then
   new-mail-urls
 else
   mail=$(check-mail)
-  [ "$(echo $mail | wc -c)" == "1" ] && sleep ${EMPTY_SNOOZE:-0}
+  [ "$(echo $mail | grep [a-Z] | wc -c)" == "1" ] && sleep ${EMPTY_SNOOZE:-0}
   echo $mail
 fi
 

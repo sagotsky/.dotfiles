@@ -58,7 +58,7 @@ eval "`bind_key_cmd_hint 'rgq' 'bundle-or-docker rails g question'       'rails 
 
 
 function rails_up {
-  docker/setup
+  bundle-or-docker bundle install
   bundle-or-docker rake db:migrate
 }
 

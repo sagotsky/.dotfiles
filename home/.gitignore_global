@@ -6,3 +6,5 @@ REVISION
 docker-compose.override.yml
 .docker-pryrc-local
 .docker-pryrc
+
+vendor/cache

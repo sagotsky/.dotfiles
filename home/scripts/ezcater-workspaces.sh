@@ -105,7 +105,6 @@ EOF
 
 tmux-up ~/repos/pos-rails <<EOF
   docker/start
-  docker/setup
 EOF
 
 tmux-up ~/repos/ez-rails <<EOF
@@ -126,4 +125,3 @@ EOF
 tmux-up ~ autossh <<EOF
   ~/scripts/screen-ssh-tunnel-omelette.sh
 EOF
-

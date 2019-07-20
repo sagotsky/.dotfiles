@@ -18,6 +18,7 @@ Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
 Plug 'ervandew/supertab'               " tab for autocomplete
 Plug 'godlygeek/tabular'               " Aligns by regex
 Plug 'jgdavey/vim-railscasts'          " theme
+Plug 'NLKNguyen/papercolor-theme'      " light mode theme
 Plug 'kshenoy/vim-signature'           " show marks in gutter
 
 Plug 'ludovicchabant/vim-gutentags'    " auto generate tags.  is it doing rtags?
@@ -128,7 +129,7 @@ command! -bang -nargs=* Ag
   \                 <bang>0)
 
 Plug 'w0rp/ale'
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -136,7 +137,8 @@ let g:ale_set_highlights = 1
 let g:ale_sign_error = "⇨"
 let g:ale_sign_warning = "•"
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_ruby_rubocop_executable = 'bin/rubocop'
+let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
+" let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 let g:ale_linters = {
 \ 'ruby': ['ruby', 'rubocop'],
 \ 'shell': ['ruby', 'rubocop'],
