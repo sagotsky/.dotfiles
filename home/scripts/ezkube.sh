@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-CONTEXT="${CONTEXT}"
+CONTEXT="--context ${CONTEXT}"
 NAMESPACE="${NAMESPACE:-}"
 
 APPLICATION=$1
@@ -20,7 +20,7 @@ if [[ "$ROLE" != "" ]] ; then
   LIST="$LIST,role=$ROLE"
 fi
 
-PODS="$(kubectl $NAMESPACE get pods $LIST | grep -v STATUS | grep Running)"
+PODS="$(kubectl $CONTEXT $NAMESPACE get pods $LIST | grep -v STATUS | grep Running)"
 
 if [[ $(echo "$PODS" | wc -l) == "1" ]] ; then
   POD="$PODS"
@@ -29,4 +29,4 @@ else
 fi
 
 PODNAME=$(echo $POD | cut -f1 -d' ')
-kubectl $NAMESPACE exec -it $PODNAME -- $CMD
+kubectl $CONTEXT $NAMESPACE exec -it $PODNAME -- $CMD
