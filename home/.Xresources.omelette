@@ -1,6 +1,9 @@
+# include "/home/sagotsky/.xcolors/blaquemagick"
+! https://www.reddit.com/r/unixporn/comments/8giij5/guide_defining_program_colors_through_xresources/
+!
 ! XTerm
-XTerm*background:	#000000
-XTerm*foreground:	#eeeeee
+XTerm*background:	FOREGROUND
+XTerm*foreground:	BACKGROUND
 XTerm*faceName:		Source Code Pro:semibold:antialias=true:autohint=true
 XTerm*faceSize:		8
 Xterm*boldMode:   true
