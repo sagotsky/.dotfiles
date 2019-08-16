@@ -27,7 +27,6 @@ function dump-cookies() {
     where host like '%google.com'
     ;
 EOF
-  rm
 }
 
 # find all cookie jars
@@ -90,17 +89,28 @@ function curl-cookie-opt() {
   done
 }
 
+function auth-check() {
+  echo "$@" | grep Unauthorized && echo 'AUTH GMAIL' && exit 1
+}
+
+function get-atom() {
+  URL="https://mail.google.com/$1/feed/atom"
+  ATOM="$(curl -s $(curl-cookie-opt) $URL)"
+  auth-check $ATOM
+  echo $ATOM
+}
+
 function check-mail() {
   for segment in `accounts` ; do
-    URL="https://mail.google.com/$segment/feed/atom"
+    ATOM=$(get-atom $segment)
+    if [[ "$?" != "1" ]] ; then
+      icon `echo "$ATOM" | grep '<entry>'` || true
+    else
 
-
-    ATOM="$(curl -s $(curl-cookie-opt) $URL)"
-
+      find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name 'cookies-gmail.txt' -delete # they're expired
+      echo 'AUTH'
+    fi
     debug $ATOM
-
-    # echo $ATOM | grep Unauth && exit 1 # todo - unauthed path
-    icon `echo "$ATOM" | grep '<entry>'` || true
 
     debug ----
   done | paste -s -d\  -
@@ -108,12 +118,8 @@ function check-mail() {
 
 function new-mail-urls() {
   for segment in `accounts` ; do
-    URL="https://mail.google.com/$segment/feed/atom"
-
-
-    ATOM="$(curl -s $(curl-cookie-opt) $URL)"
-
-    debug $ATOM
+    ATOM=$(get-atom $segment)
+    debug atom
 
     if [[ "$ATOM" =~ '<entry>' ]] ; then
       echo "${URL%feed/atom}"
@@ -139,5 +145,3 @@ fi
 # ----
 # <?xml version="1.0" encoding="UTF-8"?><feed version="0.3" xmlns="http://purl.org/atom/ns#"><title>Gmail - Inbox for sagotsky@gmail.com</title><tagline>New messages in your Gmail Inbox</tagline><fullcount>0</fullcount><link rel="alternate" href="https://mail.google.com/mail/u/1" type="text/html"/><modified>2019-06-06T14:48:33Z</modified></feed>
 # ----
-
-
