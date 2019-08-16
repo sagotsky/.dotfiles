@@ -103,6 +103,9 @@ if isdirectory($HOME."/.rbenv")
           \ "graphql" : {
           \   "start" : "GRAPHQL",
           \},
+          \ "yaml" : {
+          \   "start" : "YML",
+          \},
           \ "haml" : {
           \   "start" : "HAML",
           \},
