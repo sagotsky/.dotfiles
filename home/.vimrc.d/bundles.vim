@@ -174,4 +174,21 @@ let g:vim_search_pulse_mode = 'pattern'
 Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_include_diff = 1
 
+Plug 'andrewradev/splitjoin.vim' " gS and gJ for spliting and joining lines
+Plug 'andrewradev/switch.vim' " gs switches syntax.  good for hash.  disagree with some of the options...
+
+Plug 'junegunn/goyo.vim' " writing mode.  :Goyo
+function! s:goyo_enter()
+  set wrap linebreak
+  set spell
+endfunction
+
+function! s:goyo_leave()
+  set nowrap
+  set nospell
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 call plug#end()

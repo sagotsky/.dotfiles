@@ -11,7 +11,7 @@
 
 if [[ -f "bin/rubocop" ]] ; then
   bin/rubocop $@
-  [[ "$?" == "2" ]] && bundle exec gem install && bin/rubocop $@
+  [[ "$?" != "0" ]] && bundle exec gem install && bin/rubocop $@
 else
   rubocop $@
 fi

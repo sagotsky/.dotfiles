@@ -8,7 +8,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   highlight Search 		ctermfg=white ctermbg=237 cterm=none
   highlight VertSplit		ctermfg=234 ctermbg=235
   " hi Visual      ctermbg=236
- 
+
   hi Pmenu                     ctermfg=gray ctermbg=236 gui=NONE
   hi PmenuSel                  ctermfg=white ctermbg=236 gui=NONE
   hi PmenuThumb ctermbg=236 ctermfg=235
@@ -45,6 +45,7 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   " error position should underline, but not change color
   hi clear SpellCap
   hi SpellCap gui=underline cterm=underline
+  hi SpellBad ctermfg=229
 
   hi DiffAdd    guibg=#202020 ctermbg=235 ctermfg=green
   hi DiffChange guibg=#202020 ctermbg=235 ctermfg=yellow
@@ -55,4 +56,3 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi LightlineRight_inactive_0 ctermbg=234 ctermfg=239
   hi LightlineRight_inactive_1 ctermbg=234 ctermfg=239
 endif
-

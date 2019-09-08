@@ -12,6 +12,7 @@ bindkey -s '\ers'   "bundle-or-docker rspec\n"
 
 bindkey -s '\eru'     "rails_up\n"
 bindkey -s '\ertf'    "^Arep_til_failure " # prepend with rep_til_failure
+bindkey -s '\edr'     "^Adocker/run ^E" # prepend current line with docker/run
 
 # TODO: hide the echo
 #bindkey -s '\ergm'   " echo 'rails g migration AddPartNumberToProducts part_number:string:index'\n rails g migration"
@@ -21,6 +22,8 @@ alias irb='pry'
 alias rails='bundle exec rails'
 alias rake='bundle exec rake'
 alias foreperson='foreman start -m all=1,rails=0' # start everything but rails
+
+unsetopt nomatch # make zsh play nicely with rake args
 
 # let's experiment a bit...
 # rgm() {

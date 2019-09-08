@@ -577,4 +577,3 @@ click-left = x-terminal-emulator -e "sudo -p 'sudo reboot > ' echo reboot"
 ; lpq?
 ;
 ; vim:ft=dosini
-

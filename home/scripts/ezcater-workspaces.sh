@@ -117,10 +117,6 @@ EOF
 #   bin/rails s -b 0.0.0.0
 # EOF
 
-tmux-up ~/repos/spare-ez-rails <<EOF
-  zsh
-EOF
-
 # override default name with second arg
 tmux-up ~ autossh <<EOF
   ~/scripts/screen-ssh-tunnel-omelette.sh

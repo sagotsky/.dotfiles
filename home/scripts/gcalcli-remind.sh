@@ -16,7 +16,7 @@ reminders() {
 
 # only emit reminders at end of half hour block
 show-reminders() {
-  [[ $(date +%M) =~ ([25][789]|00|30) ]]
+  [[ $(date +%M) =~ (00|30) ]]
 }
 
 snooze-hook() {
