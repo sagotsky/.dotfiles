@@ -1,7 +1,6 @@
 let mapleader=" "
 
-nnoremap <leader>p          0:GFiles <cr>
-nnoremap <leader>P          0:Files <cr>
+nnoremap <leader>p          0:Files <cr>
 nnoremap <leader>b          0:Buffers <cr>
 nnoremap <leader>r          0:History<cr>
 nnoremap <leader>l          0:Lines!<cr>
