@@ -245,6 +245,10 @@
   urgency = critical
   timeout = 0
 
+[firefox]
+  appname = "Firefox"
+  urgency = low
+
 #app: Firefox
 #sum: test alert 1
 #body:

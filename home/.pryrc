@@ -1,16 +1,20 @@
+# frozen_string_literal: true
+
 require 'rubygems'
 
 class GemLoaderInstaller
   LOAD_ERROR = :load_error
   def initialize
-    @gems_path = Gem.path.find { |path| path =~ /rbenv/ } + "/gems"
-    @gems = Dir.entries(@gems_path)
+    @gems_path = Gem.path.find { |path| path =~ /rbenv/ }
+    @gems = Dir.entries("#{@gems_path}/gems") if @gems_path
   end
 
   def require_gems(dependencies)
     $g = dependencies.map do |gem_name|
-      latest = @gems.grep(/#{gem_name}/).max
-      $LOAD_PATH << [@gems_path, latest, 'lib'].join('/') if latest
+      if @gems
+        latest = @gems.grep(/#{gem_name}/).max
+        $LOAD_PATH << [@gems_path, latest, 'lib'].join('/') if latest
+      end
 
       begin
         require gem_name
@@ -29,11 +33,11 @@ class GemLoaderInstaller
   end
 end
 
-GemLoaderInstaller.new.require_gems! %w[
-  pry-theme
-  pry-loudmouth
-  awesome_print
-]
+# GemLoaderInstaller.new.require_gems! %w[
+#   pry-theme
+#   pry-loudmouth
+#   awesome_print
+# ]
 
 AwesomePrint.pry!
 Pry.config.theme = 'railscasts'

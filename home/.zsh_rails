@@ -1,3 +1,5 @@
+export PRYOPT="-rpry-doc -rawesome_print -rpry-theme -rpry-loudmouth"
+
 bindkey -s '\erc'   "bundle-or-docker rails console\n"
 bindkey -s '\err'   "bundle-or-docker rake routes | grep "
 bindkey -s '\erdb'  "bundle-or-docker rails db\n"
@@ -9,6 +11,7 @@ bindkey -s '\erdtb' "bundle-or-docker rails db RAILS_ENV=test\n"
 bindkey -s '\erdtm' "bundle-or-docker rake db:migrate RAILS_ENV=test\n"
 bindkey -s '\erdtr' "bundle-or-docker rake db:rollback RAILS_ENV=test\n"
 bindkey -s '\ers'   "bundle-or-docker rspec\n"
+bindkey -s '\erfs'   "bundle-or-docker rspec --fail-fast\n"
 
 bindkey -s '\eru'     "rails_up\n"
 bindkey -s '\ertf'    "^Arep_til_failure " # prepend with rep_til_failure
@@ -61,10 +64,20 @@ eval "`bind_key_cmd_hint 'rgq' 'bundle-or-docker rails g question'       'rails 
 
 
 function rails_up {
-  bundle-or-docker bundle install
+  docker/run bundle install
   bundle-or-docker rake db:migrate
 }
 
+function codeclimate() {
+  # docker pull codeclimate/codeclimate
+  docker run \
+    --interactive --tty --rm \
+    --env CODECLIMATE_CODE="$PWD" \
+    --volume "$PWD":/code \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    --volume /tmp/cc:/tmp/cc \
+    codeclimate/codeclimate $@
+  }
 export DISABLE_SPRING=1
 
 # vim: filetype=sh
