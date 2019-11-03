@@ -2,4 +2,8 @@
 
 # I3LOCK="i3lock -f -o -s 15 -r 30 -e"
 I3LOCK="i3lock  -e"
-xautolock -time 10 -locker "$I3LOCK" -notifier "xset dpms force off" -notify 20
+xautolock -time 10 \
+  -locker "$I3LOCK" \
+  -notifier "xset dpms force off" \
+  -notify 20 \
+  -detectsleep

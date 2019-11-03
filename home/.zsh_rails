@@ -1,4 +1,4 @@
-export PRYOPT="-rpry-doc -rawesome_print -rpry-theme -rpry-loudmouth"
+# export PRYOPT="-rpry-doc -rawesome_print -rpry-theme -rpry-loudmouth"
 
 bindkey -s '\erc'   "bundle-or-docker rails console\n"
 bindkey -s '\err'   "bundle-or-docker rake routes | grep "

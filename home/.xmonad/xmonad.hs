@@ -178,8 +178,6 @@ myKeys = [
     , ("M-b",   sendMessage ToggleStruts) -- struts are panels.
     , ("M-S--", swapNextScreen) -- Swap screens - CycleWS
     , ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
-    , ("M-S-u", spawn "toggle.sh trayer --align left --width 50% --height 32") -- show tray
-    , ("M-u",   spawn "toggle.sh `cat ~/.panel || echo gnome-panel` ; dzen-clear.sh") -- show panel
     , ("M-0",   windows $ W.greedyView "0")  -- workspace 0
     , ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
     , ("M-;",   spawn "cheese.sh") -- center mouse on active window

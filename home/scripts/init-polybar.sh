@@ -5,6 +5,8 @@
 killall polybar &>/dev/null
 there-can-be-only-one.sh
 
+refresh-monitors.sh # does this belong elsewhere?  it needs to hit before this script, but during seems wrong
+
 FIFO='/tmp/.polybar.fifo'
 rm $FIFO &>/dev/null
 mkfifo $FIFO
