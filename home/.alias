@@ -1,6 +1,6 @@
 ###aliases
 
-alias 531="w3m -T text/html -dump -cols 1000 https://docs.google.com/spreadsheets/d/1oCnlmbPeIc_gqGlkB86fHtiVhPEnRAHdlRXcTL7vpzo/edit#gid=1288604367 | grep '/' | sed -e 's/.*week [0-9] *//g' | head -n 10"
+alias 531="w3m -T text/html -dump -cols 1000 https://docs.google.com/spreadsheets/d/1oCnlmbPeIc_gqGlkB86fHtiVhPEnRAHdlRXcTL7vpzo/edit#gid=1288604367 | grep '/' | sed -e 's/.*week [0-9] *//g' | sed -e 's/\s\{2,\}/,/g' | head -n 10 | column -t -s','"
 alias .='source '
 alias ack='ack-grep '
 alias add='paste -s -d+ | bc' # sums input
