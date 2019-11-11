@@ -1,0 +1,10 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
+
+  "solargraph.useBundler": true,
+  "solargraph.bundlerPath": "/home/sagotsky/.rbenv/shims/bundle",
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "solargraph.diagnostics": true
+}

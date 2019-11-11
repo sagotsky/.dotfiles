@@ -8,5 +8,6 @@ export RUBYOPT="$PRYOPT"
 if [[ "$DOCKER_SPECS" == '' ]] ; then
   bundle exec $@
 else
-  docker/run RUBYOPT="'$RUBYOPT'" bundle exec $@
+  # docker/run RUBYOPT="'$RUBYOPT'" bundle exec $@
+  docker/run BUNDLE_GEMFILE="'$BUNDLE_GEMFILE'" bundle exec $@
 fi

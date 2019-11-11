@@ -64,7 +64,7 @@ eval "`bind_key_cmd_hint 'rgq' 'bundle-or-docker rails g question'       'rails 
 
 
 function rails_up {
-  docker/run bundle install
+  docker/run BUNDLE_GEMFILE='' bundle install
   bundle-or-docker rake db:migrate
 }
 
