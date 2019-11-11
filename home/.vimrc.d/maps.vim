@@ -1,12 +1,10 @@
 let mapleader=" "
 
+nnoremap <silent><leader>/          :Ag <cr>
+nnoremap <leader>?          :Ag <C-R><C-W><cr>
 nnoremap <leader>p          0:Files <cr>
 nnoremap <leader>b          0:Buffers <cr>
 nnoremap <leader>r          0:History<cr>
-nnoremap <leader>l          0:Lines!<cr>
-nnoremap <leader>L          0:BLines!<cr>
-nnoremap <silent><leader>/          :Ag <cr>
-nnoremap <leader>?          :Grepper -tool rg -open -switch -cword -noprompt<cr>
 nnoremap <leader>nt         :tabnew<cr>
 nnoremap <leader>NT         :tabnew %<cr>
 
@@ -21,7 +19,7 @@ nnoremap <leader>gB         :Gblame<cr>
 nnoremap <leader>gh         :Gbrowse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
-nnoremap <leader>gl         :GitMessenger<cr>
+nnoremap <leader>gl         :BCommits!<cr>
 
 nnoremap ]l                 :lnext<cr>
 nnoremap [l                 :lprevious<cr>
