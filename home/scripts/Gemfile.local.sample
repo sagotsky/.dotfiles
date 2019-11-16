@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+# Read in adjacent Gemfile and add some stuff.
+# Set BUNDLE_GEMFILE=this.file
+# Don't forget to add this to global gitignore so nobody else gets it.
+
+instance_eval File.read("./Gemfile")
+
+group :development, :test do
+  gem "awesome_print"
+  gem "get_process_mem"
+  gem "pry-doc"
+  gem "solargraph"
+end
+
+# vi: filetype=ruby
