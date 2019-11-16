@@ -1,5 +1,10 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["ruby"],
+  "coc.preferences.hoverTarget": "echo",
+
+  "diagnostic.messageTarget": "echo",
+  "suggest.floatEnable": true,
+  "suggest.target": "echo",
 
   "solargraph.useBundler": true,
   "solargraph.bundlerPath": "/home/sagotsky/.rbenv/shims/bundle",

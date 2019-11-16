@@ -62,3 +62,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gR <Plug>(coc-rename)
 nmap <silent> <leader>F <Plug>(coc-fix-current)
+
+" ctrl-c doesn't clear floating window.  esc does.
+imap <C-c> <Esc>

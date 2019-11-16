@@ -161,10 +161,7 @@ let g:ale_fixers = {
 \}
 
 " requires nodejs, yarn
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
