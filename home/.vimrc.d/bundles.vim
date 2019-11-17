@@ -182,11 +182,15 @@ Plug 'junegunn/goyo.vim' " writing mode.  :Goyo
 function! s:goyo_enter()
   set wrap linebreak
   set spell
+  nnoremap j gj
+  nnoremap k gk
 endfunction
 
 function! s:goyo_leave()
   set nowrap
   set nospell
+  unmap j
+  unmap k
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
