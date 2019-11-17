@@ -175,9 +175,6 @@ Plug 'inside/vim-search-pulse' " flashy search results
 let g:vim_search_pulse_duration = 150
 let g:vim_search_pulse_mode = 'pattern'
 
-Plug 'rhysd/git-messenger.vim'
-let g:git_messenger_include_diff = 1
-
 Plug 'andrewradev/splitjoin.vim' " gS and gJ for spliting and joining lines
 Plug 'andrewradev/switch.vim' " gs switches syntax.  good for hash.  disagree with some of the options...
 

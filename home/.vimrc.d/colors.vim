@@ -17,6 +17,14 @@ if ( $TERM != 'linux')          "don't break vim in vterms
   hi TabLineSel  ctermbg=235 cterm=bold term=bold
   hi TabLineFill  ctermfg=233
 
+  " lightline hijacks the tabline.  override its color scheme
+  let s:palette = g:lightline#colorscheme#jellybeans#palette
+  let s:palette.tabline.left = [ [ 'none', 'none', 239, 'none' ] ]
+  let s:palette.tabline.tabsel = [ [ 'none', 'none', 250, 'none', 'bold' ] ]
+  let s:palette.tabline.middle = [ [ 'none', 'none', 'blue', 'none' ] ]
+  let s:palette.tabline.right = [ [ 'none', 'none', 239, 'none' ] ]
+  unlet s:palette
+
   hi SignColumn guibg=#202020 ctermbg=235
 
   hi IndentGuidesOdd  guibg=#202020   ctermbg=235
