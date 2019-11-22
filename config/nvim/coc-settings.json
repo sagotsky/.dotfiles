@@ -1,6 +1,11 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
+  "coc.preferences.formatOnSaveFiletypes": [],
   "coc.preferences.hoverTarget": "echo",
+
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "~",
+  "diagnostic.hintSign": "~",
 
   "diagnostic.messageTarget": "echo",
   "suggest.floatEnable": true,

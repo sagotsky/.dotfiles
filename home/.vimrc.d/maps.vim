@@ -24,6 +24,8 @@ nnoremap <leader>gl         :BCommits!<cr>
 nnoremap ]l                 :lnext<cr>
 nnoremap [l                 :lprevious<cr>
 
+nnoremap ]q                 :colder<cr>
+nnoremap [q                 :cnewer<cr>
 " Y copies to x11 clipboard
 vnoremap Y  "+y
 " P pastes from it
@@ -50,6 +52,10 @@ tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
+
+" dispatch for test running
+nnoremap <leader>t :Dispatch rspec %<CR>
+nnoremap <leader>T :Dispatch rspec %:<C-r>=line('.')<CR><CR>
 
 " incsearch
 map /  <Plug>(incsearch-forward)

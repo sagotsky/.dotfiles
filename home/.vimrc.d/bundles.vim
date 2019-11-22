@@ -67,15 +67,18 @@ Plug 'wincent/terminus'                " more term support.  mouse?
 
 if isdirectory($HOME."/.rbenv")
   Plug 'vim-scripts/ruby-matchit'          " % support for do/end
-  Plug 'sagotsky/vim-turbux'               " tmux -> rails testing
+  " Plug 'sagotsky/vim-turbux'               " tmux -> rails testing
   " Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
-  Plug 'benmills/vimux'                    " tmux -> rails testing
-  let g:VimuxHeight = "30"
-  let g:turbux_test_type = 'rspec' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
+  " Plug 'benmills/vimux'                    " tmux -> rails testing
+  " let g:VimuxHeight = "30"
+  " let g:turbux_test_type = 'rspec' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
   " let g:turbux_command_test_unit = 'bin/rails test'     " default: ruby -Itest
-  let g:turbux_command_test_unit = 'bundle exec ruby -Itest '     " default: ruby -Itest
-  let g:turbux_command_rspec = 'bundle-or-docker bundle exec rspec'
+  " let g:turbux_command_test_unit = 'bundle exec ruby -Itest '     " default: ruby -Itest
+  " let g:turbux_command_rspec = 'bundle-or-docker bundle exec rspec'
 
+  Plug 'tpope/vim-dispatch'
+  " Plug 'radenling/vim-dispatch-neovim'
+  let g:dispatch_quickfix_height = 20 " radenling doens't support this
   " TODO: play with runner that puts file links in quickfix
   "
   " NO_CLI fixes docker.  still no quickfix.  wrong compiler?
@@ -138,6 +141,8 @@ command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview('right:50%', '?'),
   \                 <bang>0)
 
+" trying vim-coc instead
+" ale does better auto fix by far
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 0
@@ -150,8 +155,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
 " let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 let g:ale_linters = {
-\ 'ruby': ['ruby', 'rubocop'],
-\ 'shell': ['ruby', 'rubocop'],
+\ 'ruby': ['ruby', 'rubocop', 'solargraph'],
 \ 'haml': ['haml-lint']
 \}
 let g:ale_fixers = {
@@ -195,5 +199,7 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" Plug 'vim-scripts/ZoomWin'  " <c-w> o toggles zoom
 
 call plug#end()
