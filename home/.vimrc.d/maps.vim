@@ -57,11 +57,21 @@ map ?  <Plug>(incsearch-backward)
 
 " coc.nvim
 nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gt <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gR <Plug>(coc-rename)
 nmap <silent> <leader>F <Plug>(coc-fix-current)
 
+" Use `lp` and `ln` for navigate diagnostics
+nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 " ctrl-c doesn't clear floating window.  esc does.
 imap <C-c> <Esc>
