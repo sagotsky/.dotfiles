@@ -176,6 +176,6 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-" Plug 'vim-scripts/ZoomWin'  " <c-w> o toggles zoom
+Plug 'troydm/zoomwintab.vim' " <C-w>o zoom a pane
 
 call plug#end()
