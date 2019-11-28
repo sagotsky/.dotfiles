@@ -53,10 +53,6 @@ tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
 
-" dispatch for test running
-nnoremap <leader>t :Dispatch rspec %<CR>
-nnoremap <leader>T :Dispatch rspec %:<C-r>=line('.')<CR><CR>
-
 " incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)

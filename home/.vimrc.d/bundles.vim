@@ -67,35 +67,11 @@ Plug 'wincent/terminus'                " more term support.  mouse?
 
 if isdirectory($HOME."/.rbenv")
   Plug 'vim-scripts/ruby-matchit'          " % support for do/end
-  " Plug 'sagotsky/vim-turbux'               " tmux -> rails testing
-  " Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
-  " Plug 'benmills/vimux'                    " tmux -> rails testing
-  " let g:VimuxHeight = "30"
-  " let g:turbux_test_type = 'rspec' " https://github.com/jgdavey/vim-turbux/blob/master/plugin/turbux.vim
-  " let g:turbux_command_test_unit = 'bin/rails test'     " default: ruby -Itest
-  " let g:turbux_command_test_unit = 'bundle exec ruby -Itest '     " default: ruby -Itest
-  " let g:turbux_command_rspec = 'bundle-or-docker bundle exec rspec'
 
-  Plug 'tpope/vim-dispatch'
-  " Plug 'radenling/vim-dispatch-neovim'
-  let g:dispatch_quickfix_height = 20 " radenling doens't support this
-  " TODO: play with runner that puts file links in quickfix
-  "
-  " NO_CLI fixes docker.  still no quickfix.  wrong compiler?
-  " Plug 'tpope/vim-dispatch'
-  " Plug 'janko/vim-test'
-  " https://github.com/docker/compose/issues/5696 workaround for the not a TTY problem
-  " let test#ruby#rspec#executable = 'COMPOSE_INTERACTIVE_NO_CLI=1 docker/run bundle exec rspec'
-  " map <Leader>j TestNearest<CR>
-
-  " Plug 'radenling/vim-dispatch-neovim'
-  " Plug 'neomake/neomake'
-  " same problem with docker
-  " Plug 'thoughtbot/vim-rspec'
-  " let g:rspec_command = "!COMPOSE_INTERACTIVE_NO_CLI=1 docker/run bundle exec rspec %"
-  " map <Leader>t :call RunCurrentSpecFile()<CR>
-  " temporary key for playing with this plugin.
-  " map <Leader>j :call RunCurrentSpecFile()<CR>
+  Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
+  Plug 'benmills/vimux'                    " tmux -> rails testing
+  let g:VimuxHeight = "30"
+  let g:turbux_command_rspec = 'docker/run-p rspec'
 
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   Plug 'tpope/vim-rails'
