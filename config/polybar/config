@@ -111,12 +111,12 @@ inherit = bar/base
 ; monitor = ${env:MONITOR:eDP1}
 monitor = ${env:PRIMARY_MONITOR}
 height = 24
-; text (including WM pips)
+; mono (including WM pips)
 font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
-; icons
+; icon
 font-1 = FontAwesome:size=11;4
-; normal
-font-2 = "Source Code Pro:size=9:regular:antialias=true;4"
+; regular
+font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
 
@@ -202,6 +202,7 @@ label-song-maxlen = 25
 label-song-ellipsis = true
 
 [module/cpu]
+label-font = ${fonts.regular}
 type = internal/cpu
 interval = 2
 ; format-prefix = ""
@@ -229,6 +230,7 @@ ramp-load-9-foreground = ${colors.icon-fg-red-alert}
 
 [module/memory]
 type = internal/memory
+
 interval = 2
 ; format-prefix = " "
 ; format-prefix-foreground = ${colors.foreground-alt}
@@ -236,6 +238,7 @@ interval = 2
 ; format-underline = #4bffdc
 label = %percentage_used%%
 format = <ramp-used> <label>
+label-font = ${fonts.regular}
 
 ramp-used-0 = ""
 ramp-used-1 = ""
@@ -300,10 +303,10 @@ type = internal/date
 interval = 5
 
 date = " %m/%d"
-date-alt = " %m/%d"
+date-alt = "%A %m/%d/%Y"
 
-time = %I:%M
-time-alt = %I:%M:%S
+time = %I:%M %p
+time-alt = %I:%M:%S %p
 
 format-prefix = " "
 format-prefix-foreground = ${colors.icon-fg-normal}
@@ -312,6 +315,7 @@ format-prefix-foreground = ${colors.icon-fg-normal}
 ; format-underline = #0a6cf5
 
 label = "%date% %time%"
+label-font = ${fonts.regular}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -364,6 +368,8 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
+label-charging-font = ${fonts.regular}
+label-discharging-font = ${fonts.regular}
 battery = BAT0
 adapter = AC
 full-at = 95
