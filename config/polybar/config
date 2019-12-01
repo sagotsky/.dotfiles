@@ -22,20 +22,17 @@ icon = 2
 regular = 3
 bold = 4
 [colors]
-;background = ${xrdb:color0:#222}
-; background = #222
-background = #262626
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #777
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+background = ${xrdb:color8}
+background-alt =  ${xrdb:color10}
+foreground = ${xrdb:color15}
+foreground-alt = ${xrdb:color4}
+; primary = #ffb52a
+; secondary = #e60053
+; alert = #bd2c40
 
-icon-fg-normal = #777
-icon-fg-yellow-alert = #cc3
-icon-fg-red-alert = #ff2200
+icon-fg-normal = ${xrdb:color4}
+icon-fg-yellow-alert = ${xrdb:alert_low}
+icon-fg-red-alert = ${xrdb:alert_medium}
 
 
 [bar/base]
@@ -48,10 +45,10 @@ bottom = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 line-size = 3
-line-color = #f00
+; line-color = #f00
 border-size = 0
 ; border-color = #00000000
-border-color = #ff0000
+; border-color = #ff0000
 padding-left = 1
 padding-right = 2
 module-margin-left = 1
@@ -281,17 +278,17 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
-[module/eth]
-type = internal/network
-interface = veth9d09847
-interval = 3.0
+; [module/eth]
+; type = internal/network
+; interface = veth9d09847
+; interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+; format-connected-underline = #55aa55
+; format-connected-prefix = " "
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected = %local_ip%
 
-format-disconnected =
+; format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected

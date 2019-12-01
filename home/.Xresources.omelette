@@ -20,6 +20,8 @@
 *.color15:      COLOR15
 
 *.urgent: "#ffb52a"
+*.alert_low: "#cccc33"
+*.alert_medium: "ff2200"
 
 ! https://www.reddit.com/r/unixporn/comments/8giij5/guide_defining_program_colors_through_xresources/
 !
