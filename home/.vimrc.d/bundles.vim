@@ -11,8 +11,9 @@ Plug 'mhinz/vim-signify' " faster than gitgutter?
 let g:signify_sign_change = '~' "not really a color...
 let g:signify_sign_show_count = 'false'
 
-" Plug 'ap/vim-css-color'                " shows hex colors in color
-" Plug 'RRethy/vim-hexokinase'           " hex color displayer.   looks nice but doesn't hit all the color patterns yet.
+" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" let g:Hexokinase_highlighters = ["foregroundfull", "virtual", "sign_column", "backgroundfull"]
+Plug 'https://github.com/gko/vim-coloresque' " override FT to make it work
 
 Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
 Plug 'ervandew/supertab'               " tab for autocomplete
