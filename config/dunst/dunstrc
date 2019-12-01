@@ -1,7 +1,7 @@
 
 [global]
     always_run_script = true
-    font = source code pro 16
+    font = source code pro 12
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -161,7 +161,7 @@
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
 [frame]
-    width = 10
+    width = 0
     color = "#000000"
 
 [shortcuts]
@@ -194,7 +194,6 @@
     format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
 
 [urgency_normal]
-    #background = "#285577"
     background = "#111111"
     foreground = "#ffffff"
     timeout = 3
@@ -242,7 +241,7 @@
 
 [calendar]
   appname = "*calendar*"
-  urgency = critical
+  urgency = normal
   timeout = 0
 
 [firefox]
