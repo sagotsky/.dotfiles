@@ -13,7 +13,7 @@
     # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
     # If markup is not allowed, those tags will be stripped out of the
     # message.
-    allow_markup = yes
+    allow_markup = no
 
     # Treat incoming notifications as plain text
     plain_text = yes
@@ -188,20 +188,20 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#111111"
-    foreground = "#aaaaaa"
+    # background = "#111111"
+    # foreground = "#aaaaaa"
     timeout = 3
-    format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
+    # format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
 
 [urgency_normal]
-    background = "#111111"
-    foreground = "#ffffff"
+    # background = "#111111"
+    # foreground = "#ffffff"
     timeout = 3
-    format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
+    # format = "<b><span font_weight="heavy" bgcolor="#444444" color="#ee4400"> %s </span></b> <b>%b</b>"
 
 [urgency_critical]
-    foreground = "#000000"
-    background = "#ffffff"
+    # foreground = "#000000"
+    # background = "#ffffff"
     timeout = 0
 
 [cmus]
