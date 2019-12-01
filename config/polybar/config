@@ -59,7 +59,7 @@ module-margin-right = 2
 modules-left = stdin xwindow
 ; modules-center = i3
 ; modules-center = stdin
-modules-right = gcal gmail music-player alsa memory cpu battery date arch-packages powermenu
+modules-right = gmail music-player alsa memory cpu battery date arch-packages powermenu
 tray-position = right
 ; tray-padding = 2
 
@@ -559,15 +559,16 @@ interval = 61
 label-foreground = #1793d0
 click-left = x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sleep 5" '
 
-[module/gcal]
-type = custom/script
-interval = 60
-exec = gcalcli-remind.sh daemon
-click-left = gcalcli-remind.sh snooze ; yank notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
-tail = true
-label-font = ${fonts.bold}
-label-background = ${colors.alert}
-label-foreground = #ffffff
+; this works great for putting the next even in polybar, but i like the slackbot better
+; [module/gcal]
+; type = custom/script
+; interval = 60
+; exec = gcalcli-remind.sh daemon
+; click-left = gcalcli-remind.sh snooze ; yank notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
+; tail = true
+; label-font = ${fonts.bold}
+; label-background = ${colors.alert}
+; label-foreground = #ffffff
 
 [module/arch-kernel-change]
 type = custom/script
