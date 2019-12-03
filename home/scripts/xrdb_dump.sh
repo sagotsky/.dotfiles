@@ -8,7 +8,7 @@ export_cmd() {
 }
 
 xrdb_vars() {
-  xrdb -query |
+  DISPLAY=$(cat ~/.display) xrdb -query |
     grep '^*' |
     sed -e 's/\*\./xrdb_/' |
     tr -d \:

@@ -13,7 +13,7 @@ let g:signify_sign_show_count = 'false'
 
 " Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " let g:Hexokinase_highlighters = ["foregroundfull", "virtual", "sign_column", "backgroundfull"]
-Plug 'https://github.com/gko/vim-coloresque' " override FT to make it work
+" Plug 'https://github.com/gko/vim-coloresque' " override FT to make it work
 
 Plug 'christoomey/vim-tmux-navigator'  " buffer nav bindings
 Plug 'ervandew/supertab'               " tab for autocomplete
