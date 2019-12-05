@@ -18,7 +18,7 @@
   what-branch = ! ~/scripts/git/git-what-branch.sh
   wip =         ! git commit -m 'wip' && git stash -u -k && git rebase -i HEAD^^ && git stash pop
   prune-branches = ! git branch -d $(git branch --merged=master | grep -v ' master')
-
+  ls-branch = ! git --no-pager diff origin/master --name-only && git ls-files --others --exclude-standard
 
 [push]
 	default = current
