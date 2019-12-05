@@ -55,39 +55,24 @@ myLayout = avoidStruts
 
 myManageHook =  composeAll
     [
-     className =? "MPlayer"                           --> doFloat
-    , className =? "Gnome-calculator"                 --> doFloat
-    -- , className =? "doukutsu"                         --> doFloat
-    , className =? "Zenity"                           --> doFloat
-    , className =? "Peek"                             --> doFloat
-    -- , className =? "xine"                             --> doFullFloat
-    -- , className =? "Operapluginwrapper-ia32-linux"    --> doFullFloat
-    , className =? "Exe"                              --> doFullFloat -- chrome flash
-    , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
-    -- , className =? "The Binding of Isaac + Wrath of the Lamb"                              --> doFullFloat
-    , className =? "Gimp"                             --> (ask >>= doF . W.sink)
-    , resource  =? "Do"                               --> doIgnore
-    , resource  =? "feh"                              --> doIgnore
-    , className =? "Unity-2d-panel"                  --> doIgnore
-    , className =? "Unity-2d-launcher"               --> doIgnore
-    -- , className =? "Zenity"                          --> doIgnore
-    , className =? "Screenkey"                       --> doIgnore
-
-    -- , stringProperty "WM_WINDOW_ROLE" =? "browser"    --> doShift "web-1"
+      className =? "Exe"                              --> doFullFloat -- chrome flash
     , className =? "Firefox"                          --> doShift "1"
-    , className =? "Rhythmbox"                        --> doShift "2"
-    , className =? "spotify"                          --> doShift "2"
-    , className =? "Spotify"                          --> doShift "2"
-    , resource =? "cmus"                              --> doShift "2"
-    , className =? "Thunderbird"                      --> doShift "3"
-    , className =? "xterm-mail"                       --> doShift "3"
-    , className =? "Gnome-terminal"                   --> doShift "4"
-    , className =? "Pidgin"                           --> doShift "5"
-    , className =? "Scudcloud"                        --> doShift "5"
+    , className =? "Gimp"                             --> (ask >>= doF . W.sink)
+    , className =? "Gnome-calculator"                 --> doFloat
+    , className =? "MPlayer"                           --> doFloat
+    , className =? "Peek"                             --> doFloat
+    , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
+    , className =? "Screenkey"                       --> doIgnore
     , className =? "Slack"                            --> doShift "5"
-    , className =? "Zend Studio"                      --> doShift "6"
-    , className =? "Sublime_text"                     --> doShift "6"
+    , className =? "Spotify"                          --> doShift "2"
     , className =? "Steam"                            --> doShift "0"
+    , className =? "Thunderbird"                      --> doShift "3"
+    , className =? "Zenity"                           --> doFloat
+    , className =? "firefox"                          --> doShift "1"
+    , className =? "spotify"                          --> doShift "2"
+    , className =? "xterm-mail"                       --> doShift "3"
+    , resource  =? "feh"                              --> doIgnore
+    , resource =? "cmus"                              --> doShift "2"
 
     , isFullscreen --> doFullFloat
     ]
