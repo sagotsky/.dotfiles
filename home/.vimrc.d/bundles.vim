@@ -118,8 +118,14 @@ command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview('right:50%', '?'),
   \                 <bang>0)
 
-" trying vim-coc instead
-" ale does better auto fix by far
+command! -nargs=0 -bang GitLsBranch call fzf#run(fzf#wrap(
+  \ {'source': 'git ls-branch'}, <bang>0))
+
+command! -nargs=0 -bang GitLsBranchP call fzf#run(fzf#wrap(
+  \ {'source': 'git ls-branch',
+  \  'options': "--preview='DIFF=$(git diff --color=always origin/master {}) ; if [[ $DIFF =~ {} ]] ; then echo $DIFF ; else bat {} --color=always --style=numbers | sed -e 's/^/+/' ; fi'"
+  \ }, <bang>0))
+
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 0
@@ -142,7 +148,7 @@ let g:ale_fixers = {
 \}
 
 " requires nodejs, yarn
-Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'

@@ -14,6 +14,7 @@ nnoremap <leader>wj         :resize +10<cr>
 nnoremap <leader>wk         :resize -10<cr>
 
 nnoremap <leader>gs         :Gstatus<cr>
+nnoremap <leader>gS         :GitLsBranchP<cr>
 nnoremap <leader>gc         :Gcommit<cr>
 nnoremap <leader>gB         :Gblame<cr>
 nnoremap <leader>gh         :Gbrowse<cr>
