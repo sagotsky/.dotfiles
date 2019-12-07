@@ -13,8 +13,8 @@
 
   "solargraph.useBundler": true,
   "solargraph.bundlerPath": "/home/sagotsky/.rbenv/shims/bundle",
-  "solargraph.autoformat": true,
-  "solargraph.formatting": true,
+  "solargraph.autoformat": false,
+  "solargraph.formatting": false,
   "solargraph.hover": true,
-  "solargraph.diagnostics": true
+  "solargraph.diagnostics": false
 }

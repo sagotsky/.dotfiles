@@ -126,6 +126,8 @@ command! -nargs=0 -bang GitLsBranchP call fzf#run(fzf#wrap(
   \  'options': "--preview='DIFF=$(git diff --color=always origin/master {}) ; if [[ $DIFF =~ {} ]] ; then echo $DIFF ; else bat {} --color=always --style=numbers | sed -e 's/^/+/' ; fi'"
   \ }, <bang>0))
 
+" 12/07/19 ale > coc for diagnostics.  on par for formatting, but both
+" formatting at once is terrible
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 0
@@ -148,7 +150,7 @@ let g:ale_fixers = {
 \}
 
 " requires nodejs, yarn
-" Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
