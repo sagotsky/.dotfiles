@@ -4,6 +4,8 @@
 
 pkill -x dunst
 
+eval `xrdb_dump.sh`
+
 dunst \
   -lf "$xrdb_color5" \
   -lb "$xrdb_background" \
