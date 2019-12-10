@@ -14,4 +14,6 @@ xrdb_vars() {
     tr -d \:
 }
 
+uname | grep "Darwin" &>/dev/null && exit
+
 xrdb_vars | while read line ; do export_cmd $line ; done
