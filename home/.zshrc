@@ -1,3 +1,5 @@
+# TODO: try zsh-async
+
 # profiling
 if [[ "$ZSH_PROFILING" != "" ]] ; then
   function epoch_time_ms() {

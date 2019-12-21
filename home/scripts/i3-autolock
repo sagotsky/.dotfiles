@@ -6,4 +6,5 @@ xautolock -time 10 \
   -locker "$I3LOCK" \
   -notifier "xset dpms force off" \
   -notify 20 \
-  -detectsleep
+  -detectsleep \
+  -corners -000 # don't sleep if mouse is in top left corner
