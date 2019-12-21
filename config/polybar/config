@@ -26,13 +26,13 @@ background = ${xrdb:color8}
 background-alt =  ${xrdb:color10}
 foreground = ${xrdb:color15}
 foreground-alt = ${xrdb:color4}
+icon-fg-normal = ${xrdb:color4}
+icon-fg-yellow-alert = ${xrdb:alert_low}
+icon-fg-red-alert = ${xrdb:alert_medium}
 ; primary = #ffb52a
 ; secondary = #e60053
 ; alert = #bd2c40
 
-icon-fg-normal = ${xrdb:color4}
-icon-fg-yellow-alert = ${xrdb:alert_low}
-icon-fg-red-alert = ${xrdb:alert_medium}
 
 
 [bar/base]
@@ -348,6 +348,7 @@ label-volume-foreground = ${colors.foreground-alt}
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
+label-font = ${fonts.regular}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
