@@ -56,7 +56,7 @@ module-margin-right = 2
 modules-left = stdin xwindow
 ; modules-center = i3
 ; modules-center = stdin
-modules-right = gmail music-player alsa memory cpu battery date arch-packages powermenu
+modules-right = gmail music-player alsa memory cpu battery date arch-packages powermenu ipc-dunst
 tray-position = right
 ; tray-padding = 2
 
@@ -75,6 +75,7 @@ tray-position = right
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+enable-ipc = true
 
 ; bender
 [bar/bender-1k]
@@ -545,6 +546,9 @@ label = "%output:0:32:…%"
 
 [module/gmail]
 type = custom/script
+; only run if dunst is active.  see: snooze-notifications.sh
+; exec-if = ps aux | grep $(pidof dunst) | head -n 1 | awk '{print $8}' | grep Sl
+exec-if = snoozing-notifications.sh ; [[ "$?" == "0" ]]
 exec = "EMPTY_SNOOZE=600 gmail-check.sh"
 interval = 60
 click-left = firefox `gmail-check.sh url`
@@ -557,7 +561,23 @@ interval = 61
 label-foreground = #1793d0
 click-left = x-terminal-emulator -e 'zsh -i -c "echo Upgrading arch ; pmug ; sleep 5" '
 
-; this works great for putting the next even in polybar, but i like the slackbot better
+[module/ipc-dunst]
+; suspend/resume dunst process to mute notifications
+type = custom/ipc
+initial = 1
+format = <output>
+format-font = ${fonts.icon}
+format-foreground = ${colors.foreground-alt}
+
+; # read state
+hook-0 = snoozing-notifications.sh && echo "%{F#ff5522} %{F-}" || echo ""
+; change state, trigger re-read
+hook-1 = snooze-notifications.sh && polybar-msg -p %pid% hook ipc-dunst 1 ; echo
+
+; ; off by one :point-down:
+click-left = polybar-msg -p %pid% hook ipc-dunst 2
+
+; ; this works great for putting the next event in polybar, but i like the slackbot better
 ; [module/gcal]
 ; type = custom/script
 ; interval = 60

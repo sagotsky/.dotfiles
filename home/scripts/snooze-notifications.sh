@@ -7,7 +7,6 @@ snooze() {
 }
 
 unsnooze() {
-  echo trapped
   killall -s CONT dunst
   exit
 }
@@ -16,7 +15,8 @@ DURATION=$1
 
 trap unsnooze HUP INT QUIT TERM
 
-snooze
-  sleep $DURATION &
-  wait $!
-unsnooze
+if snoozing-notifications.sh ; then
+  unsnooze
+else
+  snooze
+fi
