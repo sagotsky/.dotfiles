@@ -547,8 +547,7 @@ label = "%output:0:32:…%"
 [module/gmail]
 type = custom/script
 ; only run if dunst is active.  see: snooze-notifications.sh
-; exec-if = ps aux | grep $(pidof dunst) | head -n 1 | awk '{print $8}' | grep Sl
-exec-if = snoozing-notifications.sh ; [[ "$?" == "0" ]]
+exec-if = ps aux | grep $(pidof dunst) | awk '{print $8}' | grep Sl
 exec = "EMPTY_SNOOZE=600 gmail-check.sh"
 interval = 60
 click-left = firefox `gmail-check.sh url`
@@ -570,10 +569,9 @@ format-font = ${fonts.icon}
 format-foreground = ${colors.foreground-alt}
 
 ; # read state
-hook-0 = snoozing-notifications.sh && echo "%{F#ff5522} %{F-}" || echo ""
+hook-0 = snoozing-notifications.sh && echo "%{F#ff5522} %{F-}" || echo " "
 ; change state, trigger re-read
-hook-1 = snooze-notifications.sh && polybar-msg -p %pid% hook ipc-dunst 1 ; echo
-
+hook-1 = snooze-notifications.sh && polybar-msg -p %pid% hook ipc-dunst 1 ; echo " "
 ; ; off by one :point-down:
 click-left = polybar-msg -p %pid% hook ipc-dunst 2
 
