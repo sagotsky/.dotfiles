@@ -72,7 +72,7 @@ if isdirectory($HOME."/.rbenv")
   Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
   Plug 'benmills/vimux'                    " tmux -> rails testing
   let g:VimuxHeight = "30"
-  let g:turbux_command_rspec = 'docker/run-p rspec'
+  let g:turbux_command_rspec = 'docker/run-p bundle exec rspec'
 
   Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
   Plug 'tpope/vim-rails'

@@ -1,20 +1,6 @@
 # TODO: try zsh-async
 
-# profiling
-if [[ "$ZSH_PROFILING" != "" ]] ; then
-  function epoch_time_ms() {
-    date +%s%3N
-  }
-  START_MS="$(epoch_time_ms)"
-fi
-
-function stop_profiling {
-  if [[ "$ZSH_PROFILING" != "" ]] ; then
-    END_MS="$(epoch_time_ms)"
-    STARTUP=$(( $END_MS - $START_MS ))
-    echo "startup time: $STARTUP"
-  fi
-}
+# zmodload zsh/zprof
 
 # Set up the prompt
 setopt NO_HUP   # don\'t kill running processes when exiting the shell
@@ -33,10 +19,12 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE=~/.history_zsh
 
-fpath=(~/.zsh/completion $fpath)
+fpath=(~/.zsh/completion ~/.zsh/functions $fpath)
+autoload $(ls ~/.zsh/functions)
 
 # Use modern completion system
 autoload -Uz compinit
+find ~/.zcompdump -mtime +2 -delete # delete old zcopmdump
 compinit -C # 30ms
 # removing the -C slows this down but recalculates some stuff.  not obvious why i ever need to do that
 
@@ -140,11 +128,25 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
   done
 fi
 
+# source /opt/asdf-vm/asdf.sh
+
+# async_init
+
+# ~/etc/zsh/lib% cat k8s.zsh
+# function load_kubectl_comp() {
+#   if [ $commands[kubectl] ]; then
+#     source <(kubectl completion zsh)
+#   fi
+# }
+# async_start_worker kubectl_comp_worker -n
+# async_register_callback kubectl_comp_worker load_kubectl_comp
+# async_job kubectl_comp_worker sleep 0.1
+#
 # nvm.sh adds ~400ms to shell startup.  lazy load it instead.
-export NVM_DIR="/home/sagotsky/.nvm"
-alias init_nvm="[ -s '$NVM_DIR/nvm.sh' ] && . '$NVM_DIR/nvm.sh'"
-alias node='unalias node ; unalias npm ; init_nvm ; node $@'
-alias npm='unalias node ; unalias npm ; init_nvm ; npm $@'
+# export NVM_DIR="/home/sagotsky/.nvm"
+# alias init_nvm="[ -s '$NVM_DIR/nvm.sh' ] && . '$NVM_DIR/nvm.sh'"
+# alias node='unalias node ; unalias npm ; init_nvm ; node $@'
+# alias npm='unalias node ; unalias npm ; init_nvm ; npm $@'
 
 # slow things
 # run "zsh -i -c exit" to profile
@@ -163,4 +165,5 @@ alias npm='unalias node ; unalias npm ; init_nvm ; npm $@'
 
 # ctrl-kj don't work in tmux
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-stop_profiling
+#stop_profiling
+# zprof

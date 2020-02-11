@@ -1,6 +1,8 @@
 # Some common shell vars
 export PATH="$HOME/scripts/:$HOME/bin/:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:$PATH"
 
+# source /opt/asdf-vm/asdf.sh
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 if ! [[ "$PATH" =~ rbenv/shims ]] ; then
   eval "$(rbenv init --no-rehash -)"

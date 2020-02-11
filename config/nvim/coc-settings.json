@@ -16,5 +16,6 @@
   "solargraph.autoformat": false,
   "solargraph.formatting": false,
   "solargraph.hover": true,
-  "solargraph.diagnostics": false
+  "solargraph.diagnostics": false,
+  "solargraph.promptDownload": false
 }
