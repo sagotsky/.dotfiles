@@ -56,7 +56,7 @@ module-margin-right = 2
 modules-left = stdin xwindow
 ; modules-center = i3
 ; modules-center = stdin
-modules-right = gmail music-player alsa memory cpu battery date arch-packages powermenu ipc-dunst
+modules-right = gcal gmail music-player alsa memory cpu battery date arch-packages powermenu ipc-dunst
 tray-position = right
 ; tray-padding = 2
 
@@ -547,7 +547,7 @@ label = "%output:0:32:…%"
 [module/gmail]
 type = custom/script
 ; only run if dunst is active.  see: snooze-notifications.sh
-exec-if = ps aux | grep $(pidof dunst) | awk '{print $8}' | grep Sl
+exec-if = ps aux | grep "/usr/bin/[d]unst" | awk '{print $8}' | grep Sl
 exec = "EMPTY_SNOOZE=600 gmail-check.sh"
 interval = 60
 click-left = firefox `gmail-check.sh url`
@@ -576,15 +576,15 @@ hook-1 = snooze-notifications.sh && polybar-msg -p %pid% hook ipc-dunst 1 ; echo
 click-left = polybar-msg -p %pid% hook ipc-dunst 2
 
 ; ; this works great for putting the next event in polybar, but i like the slackbot better
-; [module/gcal]
-; type = custom/script
-; interval = 60
-; exec = gcalcli-remind.sh daemon
-; click-left = gcalcli-remind.sh snooze ; yank notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
-; tail = true
-; label-font = ${fonts.bold}
-; label-background = ${colors.alert}
-; label-foreground = #ffffff
+[module/gcal]
+type = custom/script
+interval = 60
+exec = gcalcli-remind.sh daemon
+click-left = gcalcli-remind.sh snooze ; yank notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
+tail = true
+label-font = ${fonts.bold}
+label-background = ${colors.alert}
+label-foreground = #ffffff
 
 [module/arch-kernel-change]
 type = custom/script
