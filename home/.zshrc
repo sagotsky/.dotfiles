@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # TODO: try zsh-async
 
 # zmodload zsh/zprof
@@ -24,9 +31,10 @@ autoload $(ls ~/.zsh/functions)
 
 # Use modern completion system
 autoload -Uz compinit
-find ~/.zcompdump -mtime +2 -delete # delete old zcopmdump
+find ~/.zcompdump -mtime +2 -delete &>/dev/null # delete old zcopmdump
 compinit -C # 30ms
 # removing the -C slows this down but recalculates some stuff.  not obvious why i ever need to do that
+
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -50,11 +58,12 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 autoload -U select-word-style
 select-word-style bash
 
-stty stop undef     # reclaim ctrl-s as forward search
+stty stop undef &>/dev/null     # reclaim ctrl-s as forward search
 
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
+for FILE ($ZSH/themes/**/*.zsh-theme) ; do source $FILE ; done
 #update_current_git_vars # this is the slow 30ms
 
 # ctrl-x-e
@@ -99,7 +108,7 @@ function precmd() {
 function shell_title() {
   print -Pn "\e]0;$1\a"
 }
-shell_title $ZSH_NAME
+# shell_title $ZSH_NAME
 
 PROMPT="%n@%m:%~"                       # user@host:~
 PROMPT="<%*> $PROMPT"                   # <hh:mm:ss>
@@ -167,3 +176,6 @@ fi
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #stop_profiling
 # zprof
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
