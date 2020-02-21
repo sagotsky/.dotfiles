@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gcalcli --nocolor agenda 09:32 | dmenu -p $(basename $0)
