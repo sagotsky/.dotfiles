@@ -75,7 +75,7 @@ bindkey '^x^e' edit-command-line
 bindkey '^[[3~' delete-char
 
 # change cursor for tmux's paned environment
-[[ "$TERM" == 'screen-256color' && -x /usr/bin/xtermcontrol ]] && TERM=xterm xtermcontrol --cursor red
+# [[ "$TERM" == 'screen-256color' && -x /usr/bin/xtermcontrol ]] && TERM=xterm xtermcontrol --cursor red
 
 function prompt_color {
   STATUS="$?"
