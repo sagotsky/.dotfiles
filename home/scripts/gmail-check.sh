@@ -76,7 +76,7 @@ function icon() {
   fi
 
   if [[ "$@" == *"Inbox for jon.sagotsky@ezcater.com"* ]] ; then
-    COLOR="#88bb40"
+    COLOR="#00B373"
   fi
 
   debug $COLOR
