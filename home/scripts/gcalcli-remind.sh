@@ -11,12 +11,14 @@ SNOOZE_DURATION=300s
 
 reminders() {
   echo
-  gcalcli remind 1 'echo %s' 2>/dev/null | head -n 1
+  next_reminder="$(gcalcli remind 10 'echo %s' 2>/dev/null | head -n 1)"
+  [[ "$next_reminder" != "" ]] && echo " $next_reminder "
 }
 
 # only emit reminders at end of half hour block
 show-reminders() {
-  [[ $(date +%M) =~ (00|30) ]]
+  [[ $(date +%M) =~ (00|29|30|59) ]]
+  # true
 }
 
 snooze-hook() {

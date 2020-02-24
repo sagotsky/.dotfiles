@@ -63,9 +63,8 @@ tray-position = right
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
+wm-restack = i3
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -578,12 +577,11 @@ click-left = polybar-msg -p %pid% hook ipc-dunst 2
 ; ; this works great for putting the next event in polybar, but i like the slackbot better
 [module/gcal]
 type = custom/script
-interval = 60
 exec = gcalcli-remind.sh daemon
-click-left = gcalcli-remind.sh snooze ; yank notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
+click-left = gcalcli-remind.sh snooze ; notify-send ' '  "`gcalcli --nocolor agenda --detail location | head -n 3 | paste -s`"
 tail = true
 label-font = ${fonts.bold}
-label-background = ${colors.alert}
+label-background = ${colors.icon-fg-yellow-alert}
 label-foreground = #ffffff
 
 [module/arch-kernel-change]
