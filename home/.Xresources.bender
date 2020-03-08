@@ -1,69 +1,29 @@
 ! hi dpi scaling
 !Xft.dpi: 170 # good for 4k, not for normal.
 
-! XTerm
-XTerm*background:	#000000
-XTerm*foreground:	#eeeeee
-!XTerm*faceName:		Envy Code R
-XTerm*faceName:		Source Code Pro:semibold:antialias=true:autohint=true
-XTerm*faceSize:		8
-Xterm*boldMode:   true
-XTerm*boldFont:   fixed
-!Source Code Powerline Black
-XTerm*altismeta:	true
-XTerm*metaSendsEscape:  TRUE
-XTerm*borderWidth:	0
-XTerm*bellIsUrgent:     true
-XTerm*scrollBar:	false
-XTerm*visualBell:       true
-XTerm*faceSize1:		5
-XTerm*faceSize2:		6
-XTerm*faceSize3:	  8
-XTerm*faceSize4:		10
-XTerm*faceSize5:		12
-XTerm*faceSize6:		14
-Xterm*metaSendsEscape: true
-Xterm*selectToClipboard: true
+*.foreground: #eeeeeee
+*.background: #101015
 
-!rxvt-unicode
-/* URxvt*font:		xft:Source Code Pro:semibold:antialias=true:style=semibold:size=10 */
-/* URxvt*letterSpace: 		-1 */
+*.color0:      COLOR0
+*.color1:      COLOR1
+*.color2:      COLOR2
+*.color3:      COLOR3
+*.color4:      COLOR4
+*.color5:      COLOR5
+*.color6:      COLOR6
+*.color7:      COLOR7
+*.color8:      COLOR8
+*.color9:      COLOR9
+*.color10:      COLOR10
+*.color11:      COLOR11
+*.color12:      COLOR12
+*.color13:      COLOR13
+*.color14:      COLOR14
+*.color15:      COLOR15
 
-URxvt*font:		xft:LiberationMono:antialias=true:size=10:style=semibold
-URxvt*letterSpace: 		0
-
-!nerd-fonts-source-code-pro
-/* URxvt*font:		xft:Sauce Code Pro Nerd Font Complete Mono:size=12:style=semibold */
-/* URxvt*letterSpace: 		-9 */
-
-URxvt*depth: 		32
-URxvt*scrollBar:	false
-URxvt*background: 	rgba:0000/0000/0000/cccc
-URxvt*foreground:	#eeeeee
-URxvt*urgentOnBell:	true
-URxvt*cursorBlink:      false
-URxvt*visualBell: 	true
-!URxvt*transparent:      true
-!colors and their defaults
-
-URxvt.perl-ext-common: selection-to-clipboard,font-size,resize-font
-URxvt.font-step:    2
-URxvt.clipboard.autocopy: true
-URxvt.clipboard.copycmd: xclip -in -selection clipboard
-URxvt.keysym.C-Up:     resize-font:bigger
-URxvt.keysym.C-Down:    resize-font:smaller
-/* URxvt.keysym.C-Up:     font-size:increase */
-/* URxvt.keysym.C-Down:   font-size:decrease */
-URxvt.keysym.C-slash:   font-size:show
-/* URxvt.keysym.C-0:      perl:font-size:reset */
-
-/* URxvt.keysym.C-0:      perl:fonter:foo */
-/* URxvt.resize-font.smaller: C-Down */
-/* URxvt.resize-font.bigger: C-Up */
-
-mrxvt*textShadow:black
-mrxvt*textShadowMode:botright
-
+*.urgent: "#ffb52a"
+*.alert_low: "#cccc33"
+*.alert_medium: "ff2200"
 
 ! dmenu
 dmenu.opacity:    0.9

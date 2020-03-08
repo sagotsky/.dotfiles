@@ -33,8 +33,6 @@ icon-fg-red-alert = ${xrdb:alert_medium}
 ; secondary = #e60053
 ; alert = #bd2c40
 
-
-
 [bar/base]
 width = 100%
 ;offset-x = 1%
