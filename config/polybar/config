@@ -60,9 +60,9 @@ tray-position = right
 
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-wm-restack = i3
-override-redirect = true
+; wm-restack = bspwm
+; wm-restack = i3
+override-redirect = false
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -534,7 +534,7 @@ tail = true
 [module/music-player]
 label-font = ${fonts.regular}
 type = custom/script
-exec = playerctl metadata -f '{{ artist }} - {{ title }}' --follow
+exec = playerctl metadata -f '{{ artist }} - {{ title }}' --follow 2>/dev/null
 tail = true
 format = %{F#1DB954} %{F-}<label>
 label-foreground = #aaa
@@ -544,7 +544,7 @@ label = "%output:0:32:…%"
 [module/gmail]
 type = custom/script
 ; only run if dunst is active.  see: snooze-notifications.sh
-exec-if = ps aux | grep "/usr/bin/[d]unst" | awk '{print $8}' | grep Sl
+exec-if = ps aux | grep "[d]unst" | awk '{print $8}' | grep Sl
 exec = "EMPTY_SNOOZE=600 gmail-check.sh"
 interval = 60
 click-left = firefox `gmail-check.sh url`
