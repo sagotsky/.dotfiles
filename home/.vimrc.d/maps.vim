@@ -78,3 +78,6 @@ function! s:show_documentation()
 endfunction
 " ctrl-c doesn't clear floating window.  esc does.
 imap <C-c> <Esc>
+
+" Edits current file's spec.  Unlike vim-rails, this will create a new file
+command! -nargs=0 Spec execute 'edit' substitute(expand('%'), 'app/\(.*\).rb', 'spec/\1_spec.rb', '')
