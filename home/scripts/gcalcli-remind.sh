@@ -11,7 +11,7 @@ SNOOZE_DURATION=300s
 
 reminders() {
   echo
-  next_reminder="$(gcalcli remind 10 'echo %s' 2>/dev/null | head -n 1)"
+  next_reminder="$(gcalcli remind 3 'echo %s' 2>/dev/null | head -n 1)"
   [[ "$next_reminder" != "" ]] && echo " $next_reminder "
 }
 
