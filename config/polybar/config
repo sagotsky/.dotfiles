@@ -22,13 +22,15 @@ icon = 2
 regular = 3
 bold = 4
 [colors]
-background = ${xrdb:color8}
-background-alt =  ${xrdb:color10}
-foreground = ${xrdb:color15}
-foreground-alt = ${xrdb:color4}
-icon-fg-normal = ${xrdb:color4}
+
+background = ${xrdb:bg_dark}
+background-alt =  ${xrdb:bg_dark_alt}
+foreground = ${xrdb:fg_dark}
+foreground-alt = ${xrdb:fg_dark_alt}
 icon-fg-yellow-alert = ${xrdb:alert_low}
 icon-fg-red-alert = ${xrdb:alert_medium}
+icon-fg-normal = ${xrdb:fg_dark}
+
 ; primary = #ffb52a
 ; secondary = #e60053
 ; alert = #bd2c40
@@ -97,7 +99,7 @@ font-0 = unifont:fontformat=truetype:size=18:antialias=false;4
 ; icons
 font-1 = FontAwesome:size=20;4
 ; regular
-font-2 = "Source Code Pro:size=18:semibold:antialias=true;4"
+font-2 = "Sauce Code Pro Nerd Font:size=18:semibold:antialias=true;4"
 ; bold
 font-3 = "Source Code Pro:size=18:bold:antialias=true;4"
 
@@ -200,10 +202,10 @@ label-song-ellipsis = true
 label-font = ${fonts.regular}
 type = internal/cpu
 interval = 2
-; format-prefix = ""
+; format-prefix = "  "
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-foreground = ${colors.foreground}
-format = <ramp-load><label>
+format = <ramp-load> <label>
 ; format-underline = #f90000
 label = %percentage:2%%
 
@@ -377,7 +379,7 @@ format-charging-prefix-foreground = ${colors.foreground-alt}
 format-charging-foreground = ${colors.foreground}
 format-charging-underline = ${colors.background}
 
-label-discharging = %percentage%%
+label-discharging = " %percentage%%"
 format-discharging = <ramp-capacity><label-discharging>
 format-discharging-foreground = ${self.format-charging-underline}
 ramp-capacity-4 = " "
