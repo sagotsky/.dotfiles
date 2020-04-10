@@ -77,58 +77,15 @@ bindkey '^[[3~' delete-char
 # change cursor for tmux's paned environment
 # [[ "$TERM" == 'screen-256color' && -x /usr/bin/xtermcontrol ]] && TERM=xterm xtermcontrol --cursor red
 
-function prompt_color {
-  STATUS="$?"
-  COLOR="%{$reset_color%}"
 
-  # this is getting echoed...
-  [[ "$STATUS" -gt 0 ]] &&  COLOR="%F{red}"     # red on error
-  [[ "$(sudo -n /bin/true 2> /dev/null ; echo $?)" == 0 ]] && COLOR="$COLOR%U" # underline on sudo
-
-  echo $COLOR
-}
-
-function reset_color {
-  # echo "%{$reset_color%}"
-  echo "%F{white}%u%b"
-}
-
-# commands that take more than 30s to complete get a visual bell
-# might get obnoxious with long running apps (vim)
-# might get weird with background jobs
-function preexec() {
-  _SECONDS_BEFORE=$SECONDS
-}
-
-function precmd() {
-  if [ ! -z $_SECONDS_BEFORE ] ; then
-    [ $(( $SECONDS - ${_SECONDS_BEFORE} )) -gt 15 ] && echo -e "\a"
-  fi
-}
 function shell_title() {
   print -Pn "\e]0;$1\a"
 }
-# shell_title $ZSH_NAME
 
-PROMPT="%n@%m:%~"                       # user@host:~
-PROMPT="<%*> $PROMPT"                   # <hh:mm:ss>
-PROMPT="\$(prompt_color)$PROMPT\$(reset_color) \$(git_super_status)$ \$(reset_color)" # git info
-# TODO - bell if this term's owner isn't on current screen.  long running procs will always bell when done.  xprop could get ugly (xterm -> tmux -> vim), but maybe setting a global var on init would be cleaner?
-
-
-# TODO: add a bunch more of these
-ZSH_THEME_GIT_PROMPT_BRANCH="%F{cyan}%B"
-# maybe add functions escaped and then sed them up into $()
-
-# Show pretty background jobs list unless empty
-function _rprompt_jobs {
-  jobs | sed -e "s/ .*  //" | tr -d "\n" | tr "]" ":" | tr "[" " "
+function preexec() {
+  shell_title $*
 }
-function _rprompt_git_stash {
-  git status 2>/dev/null && echo "|$(git stash list | tail -n 1  | cut -f1 -d:)"
-}
-RPROMPT='%(1j.$( _rprompt_jobs ).)' #$( _rprompt_git_stash )'
-#RPROMPT="%F{54}$RPROMPT%f"
+
 
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
