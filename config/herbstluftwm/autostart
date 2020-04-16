@@ -25,20 +25,12 @@ hc keybind $Mod-Return spawn ${TERMINAL:-x-terminal-emulator} # use your $TERMIN
 
 # basic movement
 # focusing clients
-hc keybind $Mod-Left  focus left
-hc keybind $Mod-Down  focus down
-hc keybind $Mod-Up    focus up
-hc keybind $Mod-Right focus right
 hc keybind $Mod-h     focus left
 hc keybind $Mod-j     focus down
 hc keybind $Mod-k     focus up
 hc keybind $Mod-l     focus right
 
 # moving clients
-hc keybind $Mod-Shift-Left  shift left
-hc keybind $Mod-Shift-Down  shift down
-hc keybind $Mod-Shift-Up    shift up
-hc keybind $Mod-Shift-Right shift right
 hc keybind $Mod-Shift-h     shift left
 hc keybind $Mod-Shift-j     shift down
 hc keybind $Mod-Shift-k     shift up
