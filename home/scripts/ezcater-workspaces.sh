@@ -103,10 +103,6 @@ tmux-up ~/repos/authentication-rails <<EOF
   docker/start
 EOF
 
-tmux-up ~/repos/pos-rails <<EOF
-  docker/start
-EOF
-
 tmux-up ~/repos/ez-rails <<EOF
   vsplit docker/start "sleep 15 ; docker attach `docker ps | grep ez-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
 EOF

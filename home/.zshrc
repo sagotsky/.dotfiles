@@ -86,7 +86,6 @@ function preexec() {
   shell_title $*
 }
 
-
 ## Source some configs (.local files don't go in git)
 if [[ "$-" == *i* ]] ; then  # only for interactive shells
   for FILE in .{alias,functions}{,.$HOST} .shellrc .zshrc.$HOST; do

@@ -10,8 +10,8 @@
 # fi
 
 if [[ -f "bin/rubocop" ]] ; then
-  bin/rubocop $@
-  [[ "$?" != "0" ]] && bundle exec gem install && bin/rubocop $@
+  bin/rubocop -a $@
+  [[ "$?" != "0" ]] && bundle exec gem install rubocop rubocop  && bin/rubocop -a $@
 else
-  rubocop $@
+  rubocop -a $@
 fi

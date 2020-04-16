@@ -59,10 +59,10 @@ myManageHook =  composeAll
     , className =? "Firefox"                          --> doShift "1"
     , className =? "Gimp"                             --> (ask >>= doF . W.sink)
     , className =? "Gnome-calculator"                 --> doFloat
-    , className =? "MPlayer"                           --> doFloat
+    , className =? "MPlayer"                          --> doFloat
     , className =? "Peek"                             --> doFloat
     , className =? "Plugin-container"                 --> doFullFloat -- firefox chrome flash
-    , className =? "Screenkey"                       --> doIgnore
+    , className =? "Screenkey"                        --> doIgnore
     , className =? "Slack"                            --> doShift "5"
     , className =? "Spotify"                          --> doShift "2"
     , className =? "Steam"                            --> doShift "0"
@@ -71,6 +71,7 @@ myManageHook =  composeAll
     , className =? "firefox"                          --> doShift "1"
     , className =? "spotify"                          --> doShift "2"
     , className =? "xterm-mail"                       --> doShift "3"
+    , className =? "zoom"                             --> doShift "0"
     , resource  =? "feh"                              --> doIgnore
     , resource =? "cmus"                              --> doShift "2"
 
