@@ -51,10 +51,10 @@ hc keybind $Mod-Control-k       resize up +$resizestep
 hc keybind $Mod-Control-l       resize right +$resizestep
 
 # tags
-tag_names=( {1..9} )
+tag_names=( {1..9} 0 )
 tag_keys=( {1..9} 0 )
 
-hc rename default "${tag_names[0]}" || true
+# hc rename default "${tag_names[0]}" || true
 for i in ${!tag_names[@]} ; do
     hc add "${tag_names[$i]}"
     key="${tag_keys[$i]}"
@@ -62,6 +62,7 @@ for i in ${!tag_names[@]} ; do
         hc keybind "$Mod-$key" use_index "$i"
         hc keybind "$Mod-Shift-$key" move_index "$i"
     fi
+    [[ "`hc dump $key`" =~ "0x" ]] || hc load $key "(clients horizontal:0)" # tags devoid of windows get set to horizontal
 done
 
 # cycle through tags
@@ -78,7 +79,7 @@ hc keybind $Mod-p pseudotile toggle
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
+                     . cycle_layout +1 horizontal vertical max grid    \
                , cycle_layout +1
 
 # mouse
