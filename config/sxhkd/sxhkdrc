@@ -1,0 +1,68 @@
+# CORE
+super + x
+  dmenu_run -i
+
+super + semicolon
+  cheese.sh # move mouse to focused window
+
+super + alt + l
+  xautolock -locknow
+
+super + y
+  cli-board.sh # copies text into clip board
+
+super + shift + y
+  cheat-sheet.sh # views files in .cheat-sheets
+
+# MUSIC
+super + {Left,Right,Down}
+  playerctl {previous,next,play-pause}
+
+XF86AudioPlay
+  playerctl play-pause
+
+{XF86AudioNext, XF86Forward}
+  playerctl next
+
+{XF86AudioPrev, XF86Back}
+  playerctl previous
+
+{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
+  vol-{up,down,mute}.sh
+
+# APPS
+
+XF86HomePage
+  pcmanfm
+
+XF86Calculator
+  toggle.sh gnome-calculator
+
+
+# old xmonad keys
+   #-- transparency
+   # ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
+   # ("M-C-o", spawn "transset-df -a --inc 0.03") -- remove transparent
+   # ("M-S-o", spawn "transset-df -a --inc 1") -- reset transparent
+
+   #-- WM Shortcuts
+   # ("M-S-b", spawn "wallpaper.sh") -- swap wallpaper
+   # ("M-C-b", spawn "wallpaper.sh new") -- newer wallpaper
+   # ("M-S-C-b", spawn "wallpaper.sh old") -- older wallpaper
+   # ("M-b",   sendMessage ToggleStruts) -- struts are panels.
+   # ("M-S--", swapNextScreen) -- Swap screens - CycleWS
+   # ("M--",   toggleWS)  -- Goto previous screen (cd -) - CycleWS
+   # ("M-0",   windows $ W.greedyView "0")  -- workspace 0
+   # ("M-S-0", (windows $ W.shift "0") >> (windows $W.greedyView "0")) -- shift window to WS 0
+   # ("M-;",   spawn "cheese.sh") -- center mouse on active window
+   # ("M-S-q", return ()) -- don't you fucking quit.  that's what ctrl-alt-backsp is for.
+   # ("M-S-l", spawn "xautolock -locknow")
+
+   #-- misc scripts
+   # ("M-y",   spawn "cli-board.sh") -- copies text into clip board
+   # ("M-S-y", spawn "cheat-sheet.sh") -- views files in .cheat-sheets
+   # ("M-<Escape>", spawn "bender-dock.sh") -- reset screen, xmodmap, etc
+   # ("M-d", spawn "notify-send Date \"`date`\" ") -- show date on current screen.
+
+# cheat sheet
+# @Key - key release, not press
