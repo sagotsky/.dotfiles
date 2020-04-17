@@ -52,9 +52,9 @@ hc keybind $Mod-Control-l       resize right +$resizestep
 
 # tags
 tag_names=( {1..9} 0 )
-tag_keys=( {1..9} 0 )
+tag_keys=( {1..9}  0 )
+hc rename default "${tag_names[0]}" || true
 
-# hc rename default "${tag_names[0]}" || true
 for i in ${!tag_names[@]} ; do
     hc add "${tag_names[$i]}"
     key="${tag_keys[$i]}"
@@ -73,7 +73,7 @@ hc keybind $Mod-comma  use_index -1 --skip-visible
 hc keybind $Mod-r remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
-hc keybind $Mod-p pseudotile toggle
+# hc keybind $Mod-p pseudotile toggle
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
@@ -146,6 +146,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
+hc set focus_follows_mouse 1
 hc set tree_style '╾│ ├└╼─┐'
 
 # unlock, just to be sure
