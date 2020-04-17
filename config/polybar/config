@@ -23,13 +23,13 @@ regular = 3
 bold = 4
 [colors]
 
-background = ${xrdb:bg_dark}
-background-alt =  ${xrdb:bg_dark_alt}
-foreground = ${xrdb:fg_dark}
-foreground-alt = ${xrdb:fg_dark_alt}
+background = ${xrdb:bg_dark:#242424}
+background-alt =  ${xrdb:bg_dark_alt:#404040}
+foreground = ${xrdb:fg_dark:#aaaaaa}
+foreground-alt = ${xrdb:fg_dark_alt:#888888}
 icon-fg-yellow-alert = ${xrdb:alert_low}
 icon-fg-red-alert = ${xrdb:alert_medium}
-icon-fg-normal = ${xrdb:fg_dark}
+icon-fg-normal = ${xrdb:fg_dark:#aaaaaa}
 
 ; primary = #ffb52a
 ; secondary = #e60053
@@ -65,6 +65,8 @@ tray-position = right
 ; wm-restack = bspwm
 ; wm-restack = i3
 override-redirect = false
+; dwm needs this true
+; override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
