@@ -21,6 +21,7 @@ mono = 1
 icon = 2
 regular = 3
 bold = 4
+hellabold = 5
 [colors]
 
 background = ${xrdb:bg_dark:#242424}
@@ -54,7 +55,6 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 modules-left = stdin xwindow
-; modules-center = i3
 ; modules-center = stdin
 modules-right = gcal gmail music-player alsa memory cpu battery date arch-packages powermenu ipc-dunst
 tray-position = right
@@ -64,9 +64,9 @@ tray-position = right
 
 ; wm-restack = bspwm
 ; wm-restack = i3
-override-redirect = false
+; override-redirect = false
 ; dwm needs this true
-; override-redirect = true
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -118,6 +118,8 @@ font-1 = FontAwesome:size=11;4
 font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
+font-4 = "Source Code Pro:size=14:black:antialias=true;4"
+modules-left = ewmh xwindow
 
 
 [module/xwindow]
@@ -492,7 +494,7 @@ margin-top = 0
 margin-bottom = 0
 
 [module/ewmh]
-format = <label-state>
+format = "<label-state>"
 type = internal/xworkspaces
 
 ; Only show workspaces defined on the same output as the bar
@@ -511,15 +513,16 @@ enable-click = false
 ; Default: true
 enable-scroll = false
 
-label-active = " •"
-label-occupied = " •"
-label-urgent = " •"
-label-empty = " •"
+format-font = ${fonts.hellabold}
+
+label-active = "•"
+label-occupied = "•"
+label-urgent = "•"
+label-empty = "•"
 ; label-active-underline = "#aaaaaa"
 ; label-urgent-underline = "#ffaa00"
-label-urgent-foreground = "#ffaa00"
-label-urgent-background = "#ffaa00"
-
+label-urgent-foreground = "#ff5500"
+; label-urgent-background = "#ffaa00"
 label-active-foreground = "#aaaaaa"
 label-occupied-foreground = "#00ffaa"
 label-empty-foreground = "#666666"

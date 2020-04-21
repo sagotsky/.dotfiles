@@ -21,8 +21,11 @@ find ~/.xsession.d/ | xargs -n 1 -P0 sh -c & &> /dev/null &
 
 nitrogen --restore
 
+while : ; do spectrwm ; sleep 1 ; done
 # WM
 # herbstluftwm # lag is odd.  can't tell if it's my scripts or all of hlwm.
-xmonad
+# leftwm # leftwm-state panics
+# dwm
+# xmonad
 # dbus-launch --exit-with-session xmonad # shouldn't be needed
 # dbus-launch --exit-with-session i3
