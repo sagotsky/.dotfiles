@@ -60,10 +60,6 @@ EOF
 #                        keys  command                hint text
 eval "`bind_key_cmd_hint 'rgm' 'bundle-or-docker rails g migration'    'rails g migration AddPartNumberToProducts field:type:index'`"
 eval "`bind_key_cmd_hint 'rgc' 'bundle-or-docker rails g controller'   'rails g controller NAME action action action '`"
-eval "`bind_key_cmd_hint 'rgt' 'bundle-or-docker rails g one_off_task' 'rails g one_off_task NAME'`"
-eval "`bind_key_cmd_hint 'rgp' 'bundle-or-docker rails g post_push_task' 'rails g post_push_task NAME'`"
-eval "`bind_key_cmd_hint 'rgq' 'bundle-or-docker rails g question'       'rails g question IDENTITY --type --choice-set --required-context --do-not-track --text --subtext --profile-data'`"
-
 
 function rails_up {
   docker/run BUNDLE_GEMFILE='' bundle install
