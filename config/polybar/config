@@ -56,7 +56,7 @@ module-margin-left = 1
 module-margin-right = 2
 modules-left = stdin xwindow
 ; modules-center = stdin
-modules-right = gcal gmail music-player alsa memory cpu battery date arch-packages powermenu ipc-dunst
+modules-right = gcal gmail music-player alsa memory cpu battery date arch-packages ipc-dunst
 tray-position = right
 ; tray-padding = 2
 
@@ -119,7 +119,8 @@ font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
 font-4 = "Source Code Pro:size=14:black:antialias=true;4"
-modules-left = ewmh xwindow
+; modules-left = xwindow
+; modules-center = ewmh
 
 
 [module/xwindow]
@@ -209,13 +210,15 @@ interval = 2
 ; format-prefix = "  "
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-foreground = ${colors.foreground}
-format = <ramp-load> <label>
+; format = <ramp-load> <label>
+format = <ramp-load>
 ; format-underline = #f90000
-label = %percentage:2%%
+; label = %percentage:2%%
+label =
 
-ramp-load-0 = ""
-ramp-load-1 = ""
-ramp-load-2 = ""
+ramp-load-0 =
+ramp-load-1 =
+ramp-load-2 =
 ramp-load-3 = ""
 ramp-load-4 = ""
 ramp-load-5 = ""
@@ -237,18 +240,20 @@ interval = 2
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-prefix-foreground = "#ff0000"
 ; format-underline = #4bffdc
-label = %percentage_used%%
-format = <ramp-used> <label>
+; label = %percentage_used%%
+label =
+; format = <ramp-used> <label>
+format = <ramp-used>
 label-font = ${fonts.regular}
 
-ramp-used-0 = ""
-ramp-used-1 = ""
-ramp-used-2 = ""
-ramp-used-3 = ""
-ramp-used-4 = ""
-ramp-used-5 = ""
-ramp-used-6 = ""
-ramp-used-7 = ""
+ramp-used-0 =
+ramp-used-1 =
+ramp-used-2 =
+ramp-used-3 =
+ramp-used-4 =
+ramp-used-5 =
+ramp-used-6 =
+ramp-used-7 =
 ramp-used-8 = ""
 ramp-used-9 = ""
 ramp-used-10 = ""
@@ -318,55 +323,76 @@ format-prefix-foreground = ${colors.icon-fg-normal}
 label = "%date% %time%"
 label-font = ${fonts.regular}
 
-[module/pulseaudio]
-type = internal/pulseaudio
+; [module/pulseaudio]
+; type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume =  VOL %percentage%
-label-volume-foreground = ${root.foreground}
+; ; format-volume = <label-volume> <bar-volume>
+; format-volume = <label-volume> <ramp-volume>
+; label-volume =  VOL %percentage%
+; label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+; label-muted = 🔇 muted
+; label-muted-foreground = #666
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-fill = ─
-bar-volume-empty = ─
-bar-volume-empty-foreground = ${colors.foreground-alt}
+; bar-volume-width = 10
+; bar-volume-foreground-0 = #55aa55
+; bar-volume-foreground-1 = #55aa55
+; bar-volume-foreground-2 = #55aa55
+; bar-volume-foreground-3 = #55aa55
+; bar-volume-foreground-4 = #55aa55
+; bar-volume-foreground-5 = #f5a70a
+; bar-volume-foreground-6 = #ff5555
+; bar-volume-gradient = false
+; bar-volume-indicator = |
+; bar-volume-fill = ─
+; bar-volume-empty = ─
+; bar-volume-empty-foreground = ${colors.foreground-alt}
+
+; ramp-volume-0 = ▁
+; ramp-volume-1 = ▂
+; ramp-volume-2 = ▃
+; ramp-volume-3 = ▄
+; ramp-volume-4 = ▅
+; ramp-volume-5 = ▆
+; ramp-volume-6 = ▇
+; ramp-volume-7 = █
 
 [module/alsa]
 type = internal/alsa
 
-format-volume = <label-volume> <bar-volume>
+; format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume> <ramp-volume>
 label-volume = ""
 label-volume-foreground = ${colors.foreground-alt}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+label-muted = mute
 label-font = ${fonts.regular}
 
-bar-volume-width = 10
+bar-volume-width = 5
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
 bar-volume-foreground-3 = #55aa55
 bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+; bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-fill = ─
-bar-volume-empty = ─
+bar-volume-indicator = "|"
+bar-volume-fill = "-"
+bar-volume-empty = "-"
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+ramp-volume-0 =
+ramp-volume-1 = ▁
+ramp-volume-2 = ▂
+ramp-volume-3 = ▃
+ramp-volume-4 = ▄
+ramp-volume-5 = ▅
+ramp-volume-6 = ▆
+ramp-volume-7 = ▇
+ramp-volume-8 = █
 
 [module/battery]
 type = internal/battery
@@ -515,10 +541,11 @@ enable-scroll = false
 
 format-font = ${fonts.hellabold}
 
-label-active = "•"
-label-occupied = "•"
-label-urgent = "•"
-label-empty = "•"
+; one of these has extra spaces.  not sure why.
+label-active = "• "
+label-occupied = "• "
+label-urgent = "• "
+label-empty = "• "
 ; label-active-underline = "#aaaaaa"
 ; label-urgent-underline = "#ffaa00"
 label-urgent-foreground = "#ff5500"
@@ -526,10 +553,10 @@ label-urgent-foreground = "#ff5500"
 label-active-foreground = "#aaaaaa"
 label-occupied-foreground = "#00ffaa"
 label-empty-foreground = "#666666"
-; label-focused = %ff index%
-; label-unfocused = %uu index%
-; label-visible = %vv index%
-;
+
+ ; label-focused = %ff index%
+ ; label-unfocused = %uu index%
+ ; label-visible = %vv index%
 
 [module/stdin]
 ; see: scripts/init-polybar.sh
