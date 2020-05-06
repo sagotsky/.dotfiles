@@ -119,8 +119,8 @@ font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
 font-4 = "Source Code Pro:size=14:black:antialias=true;4"
-; modules-left = xwindow
-; modules-center = ewmh
+modules-left = ewmh
+modules-center = xwindow
 
 
 [module/xwindow]
@@ -568,7 +568,7 @@ tail = true
 [module/music-player]
 label-font = ${fonts.regular}
 type = custom/script
-exec = playerctl metadata -f '{{ artist }} - {{ title }}' --follow 2>/dev/null
+exec = playerctl-wrapper.sh
 tail = true
 format = %{F#1DB954} %{F-}<label>
 label-foreground = #aaa
