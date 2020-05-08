@@ -2,12 +2,12 @@
 
 there-can-be-only-one.sh
 
-playerctl metadata -f '{{ status }}' --follow 2>/dev/null | while read status ; do
+playerctl metadata -f '{{ status }}{{ title }}' --follow 2>/dev/null | while read status ; do
   case $status in
-    Playing)
+    Playing*)
       playerctl metadata -f "{{ artist }} - {{ title }}"
       ;;
-    Paused)
+    Paused*)
       echo "-"
       ;;
     **)
