@@ -328,7 +328,8 @@ label-font = ${fonts.regular}
 
 ; ; format-volume = <label-volume> <bar-volume>
 ; format-volume = <label-volume> <ramp-volume>
-; label-volume =  VOL %percentage%
+; label-volume =  %percentage%%
+; label-volume-font = ${fonts.regular}
 ; label-volume-foreground = ${root.foreground}
 
 ; label-muted = 🔇 muted
@@ -361,14 +362,14 @@ label-font = ${fonts.regular}
 type = internal/alsa
 
 ; format-volume = <label-volume> <bar-volume>
-format-volume = <label-volume> <ramp-volume>
-label-volume = ""
+; format-volume = <label-volume> <ramp-volume>
+label-volume = " %percentage%%"
 label-volume-foreground = ${colors.foreground-alt}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = mute
-label-font = ${fonts.regular}
+label-volume-font = ${fonts.regular}
 
 bar-volume-width = 5
 bar-volume-foreground-0 = #55aa55
