@@ -21,11 +21,17 @@ find ~/.xsession.d/ | xargs -n 1 -P0 sh -c & &> /dev/null &
 
 nitrogen --restore
 
-while : ; do spectrwm ; sleep 1 ; done
+# dwm # zoom is weird.  wmctrl -d works.  wmctrl -l shows all windows on one workspace.
+xmonad
+
+# spectrwm
+# while : ; do spectrwm ; sleep 1 ; done # similar features to xmonad.  too laggy.  zoom was fubar.
 # WM
 # herbstluftwm # lag is odd.  can't tell if it's my scripts or all of hlwm.
 # leftwm # leftwm-state panics
-# dwm
+# i3
+# awesome
+# dwm # panel behavior is awful
 # xmonad
 # dbus-launch --exit-with-session xmonad # shouldn't be needed
 # dbus-launch --exit-with-session i3
