@@ -60,7 +60,7 @@ modules-right = gcal gmail music-player alsa memory cpu battery date arch-packag
 tray-position = right
 ; tray-padding = 2
 
-;tray-background = #0063ff
+tray-background = ${colors.background}
 
 ; wm-restack = bspwm
 ; wm-restack = i3
