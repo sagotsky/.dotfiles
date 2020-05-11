@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 # runs rubocop on behalf of vim
 # will try to update bundler if necessary since ale will silently drop warnings if we don't have the gem
@@ -15,14 +15,23 @@
 #   rubocop -a $@
 # fi
 
+# NO DOCKER!   JUST INSTALL BUNDLE INSTALL
 # ez-specific.
-if [[ -f "docker/run" ]] ; then
-  cmd="docker-compose exec -T ez-rails-web sh -c bin/rubocop $@"
-  # export COMPOSE_INTERACTIVE_NO_CLI=0
-  echo $cmd
-  `$cmd`
-  # COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose exec -T ez-rails-web sh -c "bin/rubocop " $@ " "
-  # can we keep the args?  -a and friends are stripped
-else
-  rubocop -a $@
-fi
+# if [[ -f "docker/run" ]] ; then
+#   cmd="docker-compose exec -T ez-rails-web sh -c bin/rubocop $@"
+#   # export COMPOSE_INTERACTIVE_NO_CLI=0
+#   echo $cmd
+#   `$cmd`
+#   # COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose exec -T ez-rails-web sh -c "bin/rubocop " $@ " "
+#   # can we keep the args?  -a and friends are stripped
+# else
+#   rubocop -a $@
+# fi
+
+# bin/rubocop -a $@ || bundle install
+# bin/rubocop $@ || bundle install
+# try to run rubocop.  if we can't, silently install it
+
+(bin/rubocop -v || bundle install )&>/dev/null
+
+bin/rubocop -a "$@"
