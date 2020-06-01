@@ -18,6 +18,14 @@ else
   BAR="example"
 fi
 
+# WM="$(grep . ~/.xprofile | grep -v '^#' | tail -n 1)"
+# WM_BAR="bar/$WM"
+# if grep "$WM_BAR" ~/.config/polybar/config &> /dev/null ; then
+#   export WM_BAR
+# fi
+# inherit = ${env:WM_BAR:bar/base} ; mlutiple inheritance isn't actually working.
+
+
 PRIMARY_MONITOR="$(xrandr -q | grep primary | cut -f1 -d' ')"
 export PRIMARY_MONITOR
 

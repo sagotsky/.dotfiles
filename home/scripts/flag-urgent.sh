@@ -1,5 +1,7 @@
 #!/bin/sh
 
+wmctrl -r "$@" -b remove,demands_attention
+sleep 0.1
 wmctrl -r "$@" -b add,demands_attention
 
 # app=$1

@@ -308,3 +308,10 @@ function delay() {
     echo -n '.'
   done
 }
+
+function erd() {
+  in=$1
+  out=${in%.*}.png
+
+  eralchemy -i $in -o $out
+}
