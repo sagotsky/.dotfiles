@@ -64,9 +64,11 @@ tray-background = ${colors.background}
 
 ; wm-restack = bspwm
 ; wm-restack = i3
-; override-redirect = false
+; xmonad needs this false for mod-b to work
+override-redirect = false
+
 ; dwm needs this true
-override-redirect = true
+;override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -119,7 +121,9 @@ font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
 font-4 = "Source Code Pro:size=14:black:antialias=true;4"
-modules-left = ewmh
+; modules-left = ewmh
+modules-left = wm-status
+; modules-left = stdin
 modules-center = xwindow
 
 
@@ -624,6 +628,12 @@ exec = "echo "
 interval = 62
 label-foreground = #ff0000
 click-left = x-terminal-emulator -e "sudo -p 'sudo reboot > ' echo reboot"
+
+[module/wm-status]
+type = custom/script
+exec = RUBYOPT="-W0" workspaces.rb
+#exec-if = [ -p /tmp/.polybar.fifo ]
+tail = true
 
 ; todo:
 ; watch-git
