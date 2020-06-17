@@ -80,7 +80,7 @@ myManageHook =  composeAll
 
 main = do
   -- xmproc <- spawnPipe "xmobar"
-  xmproc <- spawnPipe "init-polybar.sh"
+  -- xmproc <- spawnPipe "init-polybar.sh"
   xmonad $ docks $ withUrgencyHook NoUrgencyHook
        $ ewmh defaultConfig
              {terminal = myTerminal
@@ -95,41 +95,41 @@ main = do
              ,manageHook = manageDocks <+> myManageHook
                            <+> manageHook defaultConfig
              -- http://www.alanwood.net/demos/wgl4.html special chars
-             ,logHook = dynamicLogWithPP $ xmobarPP
-               { ppOutput = hPutStrLn xmproc
-                 , ppTitle           = polybarColor  "#dddddd" "" . shorten 140 . wrap " " " " . const "" -- let polybar do title
-                 , ppCurrent         = polybarColor "#dddddd" ""  . wrap "<" ">" -- . const " ⚫"
-                 , ppVisible         = polybarColor "#aaaaaa" ""  . wrap "<" ">" -- . const " ⚫"
-                 , ppUrgent          = polybarColor "#ec5500" ""  . wrap "<" ">" -- . const " ⚫"
-                 , ppHidden          = polybarColor "#666666" ""  . wrap "<" ">" -- . const " ⚫"
-                 , ppHiddenNoWindows = polybarColor "#333333" ""  . wrap "<" ">" -- . const " ⚫"
+             --,logHook = dynamicLogWithPP $ xmobarPP
+             --  { ppOutput = hPutStrLn xmproc
+             --    , ppTitle           = polybarColor  "#dddddd" "" . shorten 140 . wrap " " " " . const "" -- let polybar do title
+             --    , ppCurrent         = polybarColor "#dddddd" ""  . wrap "<" ">" -- . const " ⚫"
+             --    , ppVisible         = polybarColor "#aaaaaa" ""  . wrap "<" ">" -- . const " ⚫"
+             --    , ppUrgent          = polybarColor "#ec5500" ""  . wrap "<" ">" -- . const " ⚫"
+             --    , ppHidden          = polybarColor "#666666" ""  . wrap "<" ">" -- . const " ⚫"
+             --    , ppHiddenNoWindows = polybarColor "#333333" ""  . wrap "<" ">" -- . const " ⚫"
 
-                 , ppLayout  = polybarColor "#888888" "" . const "" -- hide this.  it's just noise
-                 , ppSep =  " "
-                 -- , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
-                 -- , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"    --- should urget be semi random?  ie #ddd-fff fluctuating or throbbing?  might be a good haskell excersie
-                 -- , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
-                 -- , ppVisible = xmobarColor "#a83300" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
-                 -- , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
-                 -- , ppLayout  = xmobarColor "#888888" "" . wrap "" ""
-                 -- , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
-                 -- , ppExtras = [ logTitles ]
-                 --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" ""
-                 --Current      workspace with focus
-                 --Visible      displayed workspace without focus
-                 --Hidden       workspace that isn't displayed
-                 --HiddenNoWindows
-                 --Urgent
-                 --
-                 --Sep string between sections
-                 --WsSep    sep between ws types
-                 --Title    active window title
-                 --Layout   name of current layout
-                 --Order
-                 --Sort
-                 --Extras   time and date, tertiary loggers
-                 --Output   entire string
-               }
+             --    , ppLayout  = polybarColor "#888888" "" . const "" -- hide this.  it's just noise
+             --    , ppSep =  " "
+             --    -- , ppOrder = \(workspace:layout:title:extras:_) -> workspace : layout : title : [xmobarColor "#666666" "" extras]
+             --    -- , ppUrgent = xmobarColor "white" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"    --- should urget be semi random?  ie #ddd-fff fluctuating or throbbing?  might be a good haskell excersie
+             --    -- , ppCurrent = xmobarColor "#ec5500" "" . sed (const "•") ".*[0-46-9]" . sed (const "• ") ".*5"
+             --    -- , ppVisible = xmobarColor "#a83300" "" .  sed (const "•") ".*[0-46-9]". sed (const "• ") ".*5"
+             --    -- , ppHidden =     xmobarColor "#888888" "" . sed (const "•") ".*[0-9]". sed (const "• ") ".*5"
+             --    -- , ppLayout  = xmobarColor "#888888" "" . wrap "" ""
+             --    -- , ppHiddenNoWindows =     xmobarColor "#666666" "" . sed (const "◦") ".*[0-46-9]". sed (const "◦ ") ".*5" -- replace 5 first, then general.
+             --    -- , ppExtras = [ logTitles ]
+             --    --, ppHidden  = xmobarColor "#aaaaaa" "" . wrap "" ""
+             --    --Current      workspace with focus
+             --    --Visible      displayed workspace without focus
+             --    --Hidden       workspace that isn't displayed
+             --    --HiddenNoWindows
+             --    --Urgent
+             --    --
+             --    --Sep string between sections
+             --    --WsSep    sep between ws types
+             --    --Title    active window title
+             --    --Layout   name of current layout
+             --    --Order
+             --    --Sort
+             --    --Extras   time and date, tertiary loggers
+             --    --Output   entire string
+             --  }
              }
              `additionalKeysP` myKeys
 

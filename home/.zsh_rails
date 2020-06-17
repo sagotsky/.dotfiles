@@ -63,8 +63,12 @@ eval "`bind_key_cmd_hint 'rgm' 'bundle-or-docker rails g migration'    'rails g 
 eval "`bind_key_cmd_hint 'rgc' 'bundle-or-docker rails g controller'   'rails g controller NAME action action action '`"
 
 function rails_up {
-  docker/run BUNDLE_GEMFILE='' bundle install
-  bundle-or-docker rake db:migrate
+  if [[ -f bin/update ]] ; then
+    docker/run bin/update
+  else
+    docker/run BUNDLE_GEMFILE='' bundle install
+    bundle-or-docker rake db:migrate
+  fi
 }
 
 function codeclimate() {

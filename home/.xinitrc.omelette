@@ -4,12 +4,15 @@
 . ~/.shellrc
 
 export $(dbus-launch) # necessary for playerctl + spotify
+
 echo $DISPLAY > ~/.display
 echo $DBUS_SESSION_BUS_ADDRESS > .dbus_session
 
 export BROWSER=firefox
-eval $(keychain --eval)
 export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
+eval $(keychain --eval)
+ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+export SSH_AUTH_SOCK=$_
 
 # x settings
 setxkbmap -option terminate:ctrl_alt_bksp
