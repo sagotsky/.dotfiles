@@ -36,4 +36,4 @@
 
 # bin/rubocop -a "$@"
 # bin/rubocop $@ # lint, but no -a
-bin/rubocop $@
+bin/rubocop -a $@

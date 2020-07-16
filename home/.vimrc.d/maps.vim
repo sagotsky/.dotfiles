@@ -40,7 +40,8 @@ map <leader>s :e ~/.vimrc.d/ <cr> :vs <cr> :e ~/.vimrc<cr>
 map <leader>S :so ~/.vimrc<cr>
 nnoremap <leader>ll         :lclose<cr>:cclose<cr>:pclose<cr>
 
-nnoremap <leader>af       :ALEFix<cr>
+" nnoremap <leader>af       :ALEFix<cr>
+nnoremap <silent><leader>af       :!bin/rubocop -a %<cr>
 
 " neovim's parses ^h as backspace, so bind bakcspace to pane left.
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>

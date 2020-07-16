@@ -129,7 +129,7 @@ command! -nargs=0 -bang GitLsBranchP call fzf#run(fzf#wrap(
 
 " 12/07/19 ale > coc for diagnostics.  on par for formatting, but both
 " formatting at once is terrible
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
@@ -138,13 +138,13 @@ let g:ale_set_highlights = 1
 let g:ale_sign_error = "✘"
 let g:ale_sign_warning = "•"
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_ruby_rubocop_executable = 'bin/rubocop'
-let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
+" let g:ale_ruby_rubocop_executable = 'bundle exec rubocop'
+let g:ale_ruby_rubocop_executable = 'bin/rubocop'
+" let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
 " let g:ale_ruby_rubocop_executable = 'docker/run bin/rubocop'
 " let g:ale_ruby_rubocop_executable = 'COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose -T exec ez-rails-web sh -c "bin/rubocop %"'
 " ['/usr/bin/zsh', '-c', '''COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose -T exec ez-rails-web sh -c
 "bin/rubocop %"'' --config ''/home/sagotsky/repos/ez-rails/.rubocop.yml'' --auto-correct --force-exclusion ''/tmp/nvimVNv22k/4/m_option.rb''']
-
 let g:ale_linters = {
 \ 'ruby': ['ruby', 'rubocop', 'solargraph'],
 \ 'haml': ['haml-lint']
@@ -153,6 +153,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
+\   'rb': ['rubocop'],
 \}
 
 " requires nodejs, yarn
