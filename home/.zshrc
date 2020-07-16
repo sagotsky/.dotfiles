@@ -93,6 +93,9 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
   done
 fi
 
+if [[ "$SSH_AGENT_PID" == "" ]] || [[ "$SSH_AUTH_SOCK" == "" ]] ; then
+  eval $(keychain --eval -q)
+fi
 # source /opt/asdf-vm/asdf.sh
 
 # async_init
