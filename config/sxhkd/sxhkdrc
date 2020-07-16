@@ -38,6 +38,8 @@ XF86HomePage
 XF86Calculator
   toggle.sh gnome-calculator
 
+XF86Display
+  xcalib -a -i
 
 # old xmonad keys
    #-- transparency
