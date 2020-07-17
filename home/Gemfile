@@ -1,0 +1,6 @@
+source "http://rubygems.org"
+
+gem "overcommit"
+gem "pry"
+gem "rubocop"
+gem "xlib-objects"
