@@ -1,6 +1,9 @@
 source "http://rubygems.org"
 
+gem "awesome_print"
 gem "overcommit"
 gem "pry"
+gem "pry-loudmouth"
+gem "pry-theme"
 gem "rubocop"
 gem "xlib-objects"
