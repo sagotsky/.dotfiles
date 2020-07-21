@@ -41,6 +41,7 @@ Plug 'tpope/vim-surround'              " change surrounding characters with cs p
 Plug 'tpope/vim-vinegar'               " file selection
 Plug 'tpope/vim-eunuch'                " wraps unix commands in vim.  trying out :Move for renaming file and buffer at once.
 Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion to handle weird replacements like case or tense
+Plug 'tpope/vim-rails'
 
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
@@ -66,32 +67,29 @@ let g:vimwiki_list = [{'path':'~/.vimwiki', 'syntax':'markdown'}]
 
 Plug 'wincent/terminus'                " more term support.  mouse?
 
-if isdirectory($HOME."/.rbenv")
-  Plug 'vim-scripts/ruby-matchit'          " % support for do/end
+Plug 'vim-scripts/ruby-matchit'          " % support for do/end
 
-  Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
-  Plug 'benmills/vimux'                    " tmux -> rails testing
-  let g:VimuxHeight = "30"
-  let g:turbux_command_rspec = 'docker/run-p bundle exec rspec'
+Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
+Plug 'benmills/vimux'                    " tmux -> rails testing
+let g:VimuxHeight = "30"
+let g:turbux_command_rspec = 'docker/run-p bundle exec rspec'
 
-  Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
-  Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
 
-  Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
-  " Add syntax rule
-  let g:ruby_heredoc_syntax_filetypes = {
-          \ "graphql" : {
-          \   "start" : "GRAPHQL",
-          \},
-          \ "yaml" : {
-          \   "start" : "YML",
-          \},
-          \ "haml" : {
-          \   "start" : "HAML",
-          \},
-    \}
-  " 'start' is heredoc start literal.
-endif
+Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
+" Add syntax rule
+let g:ruby_heredoc_syntax_filetypes = {
+      \ "graphql" : {
+      \   "start" : "GRAPHQL",
+      \},
+      \ "yaml" : {
+      \   "start" : "YML",
+      \},
+      \ "haml" : {
+      \   "start" : "HAML",
+      \},
+      \}
+" 'start' is heredoc start literal.
 
 " experimental
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
@@ -146,14 +144,14 @@ let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 " ['/usr/bin/zsh', '-c', '''COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose -T exec ez-rails-web sh -c
 "bin/rubocop %"'' --config ''/home/sagotsky/repos/ez-rails/.rubocop.yml'' --auto-correct --force-exclusion ''/tmp/nvimVNv22k/4/m_option.rb''']
 let g:ale_linters = {
-\ 'ruby': ['ruby', 'rubocop', 'solargraph'],
+\ 'ruby': ['ruby', 'rubocop'],
 \ 'haml': ['haml-lint']
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
-\   'rb': ['rubocop'],
+\   'rb': ['rubocop']
 \}
 
 " requires nodejs, yarn
