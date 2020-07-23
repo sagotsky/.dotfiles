@@ -28,12 +28,13 @@
 #   rubocop -a $@
 # fi
 
-# bin/rubocop -a $@ || bundle install
-# bin/rubocop $@ || bundle install
-# try to run rubocop.  if we can't, silently install it
 
 (bin/rubocop -v || bundle install )&>/dev/null
 
-# bin/rubocop -a "$@"
-# bin/rubocop $@ # lint, but no -a
-bin/rubocop -a $@
+RUBOCOP_OVERRIDE="./.rubocop.override.yml"
+if [[ -f "$RUBOCOP_OVERRIDE" ]] ; then
+  OPTS="-c $RUBOCOP_OVERRIDE"
+fi
+
+echo opts: $@ $OPTS  >> /tmp/rubo.tmp
+bin/rubocop $@ $OPTS

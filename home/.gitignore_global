@@ -12,3 +12,4 @@ docker/run-p
 Gemfile.local
 Gemfile.local.lock
 
+.rubocop.override.yml
