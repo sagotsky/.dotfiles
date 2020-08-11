@@ -2,6 +2,7 @@
 	email = sagotsky@gmail.com
   name = Jon Sagotsky
 [core]
+  pager = delta
   editor = nvim
 	excludesfile = /home/sagotsky/.gitignore_global
 [color]
@@ -34,3 +35,19 @@
 ; 	autosetuprebase = always
 [pull]
   rebase = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side unobtrusive-line-numbers decorations
+  whitespace-error-style = 22 reverse
+  side-by-side = true
+  line-numbers-left-style = 235
+  line-numbers-right-style = 235
+
+[delta "decorations"]
+  commit-decoration-style = none # bold yellow box ul
+  file-style = bold white
+  file-decoration-style = none
+  hunk-header-decoration-style = none
