@@ -30,6 +30,10 @@ XF86AudioPlay
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
   vol-{up,down,mute}.sh
 
+shift + XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ 150%
+
+
 # APPS
 
 XF86HomePage

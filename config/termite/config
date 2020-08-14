@@ -53,8 +53,8 @@ foreground = #eeeeee
 
 # 20% background transparency (requires a compositor)
 #background = rgba(63, 63, 63, 0.8)
-# background = rgba(0, 0, 0, 0.8)
-background = rgba(30, 30, 30, 1.0)
+background = rgba(0, 0, 0, 0.85)
+# background = rgba(30, 30, 30, 1.0)
 
 # background = #ffffff
 # foreground = #111111

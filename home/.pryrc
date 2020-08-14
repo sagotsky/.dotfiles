@@ -38,8 +38,21 @@ end
 #   pry-loudmouth
 #   awesome_print
 # ]
+def capture_stdout(&block)
+  silent_stdout = $stdout
+  # $stdout = StringIO.new
+  begin
+    yield
+  ensure
+    $stdout = original_stdout
+  end
+end
 
-AwesomePrint.pry!
+begin
+  silent_stdout { require "awesome_print" }
+  AwesomePrint.pry!
+rescue
+end
 Pry.config.theme = 'railscasts'
 Pry.config.pager = false # fix bug in which less eats cursor
 
