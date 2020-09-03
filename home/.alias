@@ -38,7 +38,9 @@ alias wifi-dangerzone="wifi-connect dangerzone2.4"
 alias wifi-select='wifi-connect $(wpa_cli list_networks | fzf | cut -f 1)'
 alias v='nv '
 alias vim='nv '
+alias vs='v .vimrc .vimrc.d/bundles.vim +snext'
 alias vw='nv -c VimwikiIndex'
+alias vim-up='v +PlugUpdate +PlugUpgrade +:quitall'
 alias vnc-server='x11vnc -usepw'
 alias xsel='xsel --logfile ~/.Xsel.log'
 alias :e='nv '
@@ -48,4 +50,3 @@ alias :Q='exit'
 
 # aliases CAN do args
 alias arg="sh -c 'echo \$3 \$2 \$1' --"
-

@@ -34,8 +34,7 @@ Plug 'tpope/vim-commentary'            " gcc -> comment.  #gc -> comment n lines
 Plug 'tpope/vim-endwise'               " ruby append end to new blocks
 Plug 'tpope/vim-fugitive'              " git integration
 Plug 'tpope/vim-repeat'                " binds . for vim-surround
-Plug 'tpope/vim-rsi'                   " readline in insert mode
-Plug 'tpope/vim-rhubarb'               " readline in insert mode
+Plug 'tpope/vim-rhubarb'               " github extensions for fugitive
 Plug 'tpope/vim-sensible'              " common defaults
 Plug 'tpope/vim-surround'              " change surrounding characters with cs prefix
 Plug 'tpope/vim-vinegar'               " file selection
@@ -194,5 +193,7 @@ Plug 'troydm/zoomwintab.vim' " <C-w>o zoom a pane
 " Plug 'pechorin/any-jump.vim' " leader-j jump to def.  not sure how this compares to coc/tags
 Plug 'sk1418/HowMuch' " sum columns
 :com! -range Add HowMuch rs
+
+Plug 'ryvnf/readline.vim' " readline in cmd mode
 
 call plug#end()
