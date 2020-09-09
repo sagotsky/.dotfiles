@@ -36,5 +36,4 @@ if [[ -f "$RUBOCOP_OVERRIDE" ]] ; then
   OPTS="-c $RUBOCOP_OVERRIDE"
 fi
 
-echo opts: $@ $OPTS  >> /tmp/rubo.tmp
-bin/rubocop $@ $OPTS
+bin/rubocop $@ $OPTS --display-cop-names
