@@ -5,4 +5,4 @@ editor:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
-    ci: '!script -q -c "gh pr checks" | grep "0 pending" || (echo -n . ; sleep 30 ; gh ci)'
+    ci: '!script -q /tmp/gh-script -c "gh pr checks" | grep "0 pending" || (echo -n . ; sleep 30 ; gh ci)'
