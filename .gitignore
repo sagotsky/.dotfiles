@@ -22,6 +22,7 @@ home/.vim/plugged/*
 
 config/nvim/.netrwhist
 config/nvim/autoload
+config/gh/hosts.yml
 home/.nvim/.netrwhist
 home/.nvim/autoload/*
 home/.nvim/plugin/*
