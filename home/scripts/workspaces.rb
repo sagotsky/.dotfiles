@@ -139,7 +139,7 @@ class Root
   end
 
   def all_windows
-    @root.property(NET_CLIENT_LIST_STACKING).map do |xlibobj_window|
+    Array(@root.property(NET_CLIENT_LIST_STACKING)).map do |xlibobj_window|
       Window.new @display, xlibobj_window
     end
   end
