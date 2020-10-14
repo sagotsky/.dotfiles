@@ -33,7 +33,9 @@
 
 RUBOCOP_OVERRIDE="./.rubocop.override.yml"
 if [[ -f "$RUBOCOP_OVERRIDE" ]] ; then
-  OPTS="-c $RUBOCOP_OVERRIDE"
+  OPTS="--config $RUBOCOP_OVERRIDE"
 fi
+OPTS="${OPTS} --cache true --display-cop-names"
 
-bin/rubocop $@ $OPTS --display-cop-names
+# bin/rubocop $@ $OPTS --display-cop-names
+RUBOCOP_DAEMON_USE_BUNDLER=true bundle exec rubocop-daemon exec -- $@ $OPTS
