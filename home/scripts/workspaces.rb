@@ -76,7 +76,7 @@ class Cli
   end
 
   def update
-    all = @root.all_windows.each_with_object(@root.workspaces) do |window, workspaces|
+    all = Array(@root.all_windows).each_with_object(@root.workspaces) do |window, workspaces|
       ws = workspaces[window.workspace]
 
       if window.urgent?
