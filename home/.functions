@@ -298,7 +298,7 @@ function fcd() {
 }
 
 function yank() {
-  echo "$@" | xsel
+	echo "$@" | ${DISPLAY:="$(/usr/bin/cat ~/.display)"} xsel
   xsel
 }
 
