@@ -56,7 +56,7 @@ module-margin-left = 1
 module-margin-right = 2
 modules-left = stdin xwindow
 ; modules-center = stdin
-modules-right = gcal gmail music-player alsa memory cpu battery date arch-packages ipc-dunst
+modules-right = gcal gmail music-player alsa memory cpu battery wlan date arch-packages ipc-dunst
 tray-position = right
 ; tray-padding = 2
 
@@ -273,14 +273,18 @@ ramp-used-11-foreground = ${colors.icon-fg-red-alert}
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlp61s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+; format-connected = <ramp-signal> <label-connected>
+format-connected = %{A1:wifi-info.sh:}<label-connected>%{A}
 ; format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
+; label-connected = %essid%
+label-font = ${fonts.regular}
+label-connected = 
+label-connected-foreground = ${colors.icon-fg-normal}
+format-disconnected = 
+label-disconnected-foreground = ${colors.icon-fg-red-alert}
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -291,7 +295,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+; ramp-signal-foreground = ${colors.foreground-alt}
 
 ; [module/eth]
 ; type = internal/network
