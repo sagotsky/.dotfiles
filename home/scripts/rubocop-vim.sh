@@ -38,4 +38,4 @@ fi
 OPTS="${OPTS} --cache true --display-cop-names"
 
 # bin/rubocop $@ $OPTS --display-cop-names
-RUBOCOP_DAEMON_USE_BUNDLER=true bundle exec rubocop-daemon exec -- $@ $OPTS
+RUBOCOP_DAEMON_USE_BUNDLER=true BUNDLE_GEMFILE=Gemfile.local bundle exec rubocop-daemon exec -- $@ $OPTS
