@@ -42,13 +42,15 @@ Plug 'tpope/vim-vinegar'               " file selection
 Plug 'tpope/vim-eunuch'                " wraps unix commands in vim.  trying out :Move for renaming file and buffer at once.
 Plug 'tpope/vim-abolish'               " provides :S, which uses brace expansion to handle weird replacements like case or tense
 Plug 'tpope/vim-rails'
-
+Plug 'tpope/vim-speeddating'           " inc/dec commands handle dates correctly
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
   \ 'colorscheme': 'jellybeans',
   \ 'active': {
   \ 'right': [ ['lineinfo'],
-  \            ['percent'] ]
+  \            ['percent'],
+  \            ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]
+  \ ]
   \ },
   \ 'inactive': {
   \   'right': []
@@ -60,6 +62,21 @@ let g:lightline = {
 function! LightLineFilename()
   return expand('%')
 endfunction
+Plug 'maximbaz/lightline-ale'
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \ }
 
 Plug 'vim-scripts/SQLComplete.vim'     " SQL syntax highlighting
 Plug 'vimwiki/vimwiki'                 " internal wiki
@@ -196,5 +213,8 @@ Plug 'sk1418/HowMuch' " sum columns
 :com! -range Add HowMuch rs
 
 Plug 'ryvnf/readline.vim' " readline in cmd mode
+
+Plug 'triglav/vim-visual-increment' " visual mode will intelligently inc/dec numbers
+set nrformats=alpha
 
 call plug#end()
