@@ -6,9 +6,12 @@
 # trying ruby.  (py is next best choice)
 # not sure if ruby is fast enough, but keeping it all in proc without bash pipes may help
 
-# todo: wmctrl's needs_attention works
-# termite setting the urgency WM_HINT goes unnoticed.
-# figure out what property triggers it.
+=begin
+todo: wmctrl's needs_attention works
+termite setting the urgency WM_HINT goes unnoticed.
+figure out what property triggers it.
+=end
+
 require "xlib-objects"
 require "pry"
 
@@ -62,6 +65,8 @@ class Formatter
 end
 
 class Cli
+  EVENT_DELAY = 0.004 # give windows time to close before we query them.  yeah, it's like that :-\
+
   def initialize(cfg)
     @display = XlibObj::Display.new(":0")
     @root = Root.new(@display)
@@ -71,31 +76,25 @@ class Cli
   def main
     loop do
       e = Xlib::X.next_event(@display)
-      update if Event.new(e).update?
+      if Event.new(e).update?
+        sleep EVENT_DELAY
+        update
+      end
     end
   end
 
   def update
     all = Array(@root.all_windows).each_with_object(@root.workspaces) do |window, workspaces|
       ws = workspaces[window.workspace]
+      next unless ws
 
       if window.urgent?
         ws.urgent!
       else
         ws.occupied!
       end
-      # case
-      # when window.urgent? then ws.urgent!
-      # when
-      # end
-      # next if ws.urgent?
-      # ws.urgent = window.urgent?
-
-      # next if ws.visible? || ws.occupied?
-      # ws.occupied = true
     end
 
-    # binding.pry
 
     puts @formatter.workspaces(all)
   end
@@ -157,8 +156,6 @@ class Root
   def init_events!
     @root.on(:property_change, :property_notify) { | event| puts event }
     @root.on(:substructure_notify, :client_message) { | event| puts event }
-#     XlibObj::Extension::Core::Event::MASKS.keys
-#     XlibObj::Extension::Core::Event::TYPES.keys
   end
 end
 
@@ -178,11 +175,11 @@ class Window
   end
 
   def name
-    @window.property(NET_WM_NAME)&.join
+    window.property(NET_WM_NAME)&.join
   end
 
   def workspace
-    @workspace ||= @window.property(NET_WM_DESKTOP).first
+    @workspace ||= property(NET_WM_DESKTOP)&.first
   end
 
   def focused?
@@ -190,8 +187,19 @@ class Window
   end
 
   def urgent?
-    states = @window.property(NET_WM_STATE)
+    states = property(NET_WM_STATE)
     states&.any? { |state| state.name == NET_WM_STATE_DEMANDS_ATTENTION }
+  end
+
+  private
+
+  def property(name)
+    @window.property(name) if window_exists?
+  end
+
+  def window_exists?
+    all = @display.screens.first.root_window.property(:_NET_CLIENT_LIST_STACKING)
+    all.map(&:id).include?(@window.id)
   end
 end
 
