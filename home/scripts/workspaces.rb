@@ -12,6 +12,8 @@ termite setting the urgency WM_HINT goes unnoticed.
 figure out what property triggers it.
 =end
 
+puts "%{F#333333}⚫ %{F-}"*10 # skeleton output for faster perceived output
+
 require "xlib-objects"
 require "pry"
 
@@ -74,6 +76,7 @@ class Cli
   end
 
   def main
+    update
     loop do
       e = Xlib::X.next_event(@display)
       if Event.new(e).update?
