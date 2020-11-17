@@ -584,8 +584,8 @@ tail = true
 format = %{F#1DB954} %{F-}<label>
 label-foreground = #aaa
 label = "%output:0:32:…%"
-click-left = playerctl next
-double-click-left = playerctl play-pause
+click-left = spotifyctl next
+double-click-left = spotifyctl play-pause
 
 
 [module/gmail]

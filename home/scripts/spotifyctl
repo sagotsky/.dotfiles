@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# playerctl wrapper that forces spotify
+playerctl --player spotify $*

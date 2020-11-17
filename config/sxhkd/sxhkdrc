@@ -16,16 +16,16 @@ super + shift + y
 
 # MUSIC
 super + {Left,Right,Down}
-  playerctl {previous,next,play-pause}
+  spotifyctl {previous,next,play-pause}
 
 XF86AudioPlay
-  playerctl play-pause
+  spotifyctl play-pause
 
 {XF86AudioNext, XF86Forward}
-  playerctl next
+  spotifyctl next
 
 {XF86AudioPrev, XF86Back}
-  playerctl previous
+  spotifyctl previous
 
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
   vol-{up,down,mute}.sh

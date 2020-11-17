@@ -3,7 +3,7 @@
 CONFIG="$HOME/.spotify-skiplist"
 
 check_dependencies() {
-   which playerctl &>/dev/null || abort "You must install playerctl"
+   which spotifyctl &>/dev/null || abort "You must install playerctl"
 }
 
 check_config() {
@@ -28,9 +28,9 @@ fi
 check_dependencies
 check_config
 
-playerctl metadata -f '{{ artist }}' --follow 2>/dev/null | while read artist ; do
+spotifyctl metadata -f '{{ artist }}' --follow 2>/dev/null | while read artist ; do
   if grep "${artist}" $CONFIG ; then
     echo "Skipping ${artist}"
-    playerctl next
+    spotifyctl next
   fi
 done
