@@ -1,0 +1,21 @@
+asdf-vm # generic version manager
+bat # better cat
+fd # better find
+fzf # fuzzy finder
+git
+neovim
+openssh
+peek # screencast recorder
+playerctl
+polybar
+rofi
+sed
+spotify
+sudo
+termite
+the_silver_searcher
+tlp # power management
+tmux
+wget
+xterm
+zsh
