@@ -16,11 +16,13 @@
   logs = log -p -S
   amend = commit --amend --no-edit
 
-  remaster =    ! git fetch && git rebase -i origin/master
-  wip =         ! git commit -m 'wip' && git remaster
+  remaster =       ! git fetch && git rebase -i origin/master
+  wip =            ! git commit -m 'wip' && git remaster
   prune-branches = ! git branch -d $(git branch --merged=master | grep -v ' master')
-  ls-branch = ! git --no-pager diff origin/master --name-only && git ls-files --others --exclude-standard
-	cb = !git co "$(git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/ | fzf)"
+  ls-branch =      ! git --no-pager diff origin/master --name-only && git ls-files --others --exclude-standard
+  pr-files =       ! git ls-branch # trying out an alias - does this mentally map better?
+  pr-specs =       ! git ls-branch | grep _spec.rb
+	cb =             ! git co "$(git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/ | fzf)"
 
 
 [push]
