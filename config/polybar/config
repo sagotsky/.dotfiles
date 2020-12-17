@@ -67,7 +67,7 @@ tray-background = ${colors.background}
 ; wm-restack = i3
 
 ; xmonad: true, leftwm: false
-override-redirect = true
+override-redirect = false
 
 ; dwm needs this true
 ;override-redirect = true
@@ -591,7 +591,7 @@ double-click-left = spotifyctl play-pause
 [module/gmail]
 type = custom/script
 exec = "EMPTY_SNOOZE=600 gmail-check.sh"
-interval = 60
+interval = 180
 click-left = firefox `gmail-check.sh url`
 
 [module/arch-packages]
