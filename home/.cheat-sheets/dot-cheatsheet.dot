@@ -1,0 +1,35 @@
+digraph G {
+  //headers and style
+  labelloc="t";
+  label="Top level label";
+  node [ fontname="Ubuntu"];
+  fontname="Ubuntu";
+  rankdir = "LR"; //left to right
+  node [shape="box"]
+
+  styled_node [
+    label="This node has style"
+    color="red"
+  ]
+
+  styled_node -> plain_old_node
+
+  a -> b -> c -> d
+
+  subgraph cluster_one {
+    label = "clusters group nodes"
+    one
+    two
+    three
+  }
+
+  subgraph cluster_two {
+    label = "clusters inherit labels"
+    four -> one
+    five
+    six
+  }
+
+  two,three -> six
+  five -> a
+}
