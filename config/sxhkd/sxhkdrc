@@ -1,6 +1,6 @@
 # CORE
 super + x
-  dmenu_run -i
+  dmenu_run -i -p ">_"
 
 super + semicolon
   cheese.sh # move mouse to focused window

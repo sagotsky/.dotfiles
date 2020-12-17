@@ -1,0 +1,18 @@
+configuration {
+	modi: "run,ssh,window";
+	lines: 10;
+	font: "Source Code Pro 20";
+	bw: 0;
+	padding: 10;
+	show-icons: true;
+	terminal: "urxvt";
+	sort: true;
+	case-sensitive: false;
+	sidebar-mode: true;
+	matching: "normal";
+	m: "-5";
+	line-margin: 0;
+	separator-style: "solid";
+	scrollbar-width: 0;
+	theme: "polybar";
+}

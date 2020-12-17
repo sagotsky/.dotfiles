@@ -1,7 +1,8 @@
 rofi.combi-mode:  run
 rofi.m:  -5
 rofi.font: Source\ Code\ Pro\ 20
-rofi.theme: /usr/share/rofi/themes/Pop-Darker
+# rofi.theme: /usr/share/rofi/themes/Pop-Darker
+rofi.theme: polybar
 
 rofi.sort: true
 rofi.disable_history: true

@@ -1,0 +1,32 @@
+/**
+ * ROFI Color theme
+ * User: Sagotsky
+ * Copyright: Dave Davenport
+ */
+
+* {
+    /* can these come from env or xresources? */
+    background-color:      #242424;
+    border-color:          black;
+    text-color:           #aaaaaa;
+    font:            "Source Code Pro Semibold 16";
+    highlight: underline white;
+}
+
+#window {
+    anchor:     north;
+    location:   north;
+    width:      100%;
+    padding:    4px;
+    y-offset: 20px;   /* height of polybar */
+    border: 0 0 1 0;
+}
+
+#listview {
+    spacing:    8;
+}
+
+#element selected {
+    /* background-color: SteelBlue; */
+    text-color: #ffffff;
+}
