@@ -25,6 +25,12 @@ find ~/.xsession.d/ -not -type d | xargs -n 1 -P0 sh -c & &> /dev/null &
 nitrogen --restore
 
 xmonad
+# leftwm
+# pretty good!
+#  workspaces.rb doesn't work.  but leftwm-state looks easier to work around.
+#  fullscreen behavior is bad
+#  theme won't stick
+#  not sure how multimonitor will behave
 
 # qtile # so far so good.  terminal spacing is a little weird.
 
