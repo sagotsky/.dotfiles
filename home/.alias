@@ -8,7 +8,6 @@ alias appleterm='/usr/lib/xscreensaver/apple2 -text -program bash -fast'
 alias bd='popd'
 alias bell="echo -e '\a'"
 alias cmus='TERM=xterm-256color cmus'
-alias dot="git --git-dir='$HOME/.dotfiles/.git' --work-tree='$HOME/.dotfiles/' " # work-tree isn't honored by pull in 1.7.2.5.  Works in 1.7.9.3
 alias epoch="date +%s"
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
