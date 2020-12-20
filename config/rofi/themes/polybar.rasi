@@ -7,6 +7,7 @@
 * {
     /* can these come from env or xresources? */
     background-color:      #242424;
+    /* background-color:      rgba(0,0,0,0.5); */
     border-color:          black;
     text-color:           #aaaaaa;
     font:            "Source Code Pro Semibold 16";
@@ -19,7 +20,8 @@
     width:      100%;
     padding:    4px;
     y-offset: 20px;   /* height of polybar */
-    border: 0 0 1 0;
+    border: 0 0 2 0;
+    /* transparency: "real"; */
 }
 
 #listview {

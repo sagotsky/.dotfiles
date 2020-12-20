@@ -6,7 +6,7 @@ configuration {
 	padding: 10;
 	show-icons: true;
 	terminal: "urxvt";
-	sort: true;
+	sort: false;
 	case-sensitive: false;
 	sidebar-mode: true;
 	matching: "normal";
