@@ -313,5 +313,11 @@ function erd() {
   in=$1
   out=${in%.*}.png
 
-  eralchemy -i $in -o $out
+	for bin in eralchemy erd-burntsushi ; do
+		which $bin &>/dev/null
+		if [[ "$?" == "0" ]] ; then
+		  $bin -i $in -o $out
+			return 0
+		fi
+	done
 }
