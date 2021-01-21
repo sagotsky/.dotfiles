@@ -6,7 +6,7 @@ there-can-be-only-one.sh
 TIME=${1:-60}
 SELF=$(basename "$0")
 # FONT=hack-42
-FONT="Source Code Pro Semibold-14"
+FONT="Source Code Pro Semibold-20"
 # FONT="Meslo-42"
 
 sec_to_min() {
