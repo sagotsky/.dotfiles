@@ -6,7 +6,8 @@
 # Usage: use spark (or similar) to bind keys to actionscript: do shell script "~/scripts/osx-window-summoner.sh 1"
 
 declare -a SPACES
-SPACES[1]='Chrome'
+# SPACES[1]='Chrome'
+SPACES[1]='Firefox'
 SPACES[2]='Spotify'
 # SPACES[3]='Mail'
 SPACES[4]='iTerm'
