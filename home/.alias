@@ -4,7 +4,6 @@ alias 531="w3m -T text/html -dump -cols 1000 https://docs.google.com/spreadsheet
 alias .='source '
 alias ack='ack-grep '
 alias add='paste -s -d+ | bc' # sums input
-alias appleterm='/usr/lib/xscreensaver/apple2 -text -program bash -fast'
 alias bd='popd'
 alias bell="echo -e '\a'"
 alias cmus='TERM=xterm-256color cmus'
@@ -19,33 +18,21 @@ if [[ "$(uname)" == "Linux" ]] ; then
 else
   alias ls='ls -G'
 fi
-alias mkpasswd='pwgen -ysCn 16'
 alias myip='curl http://icanhazip.com ; echo'
-alias nounity='UBUNTU_MENUPROXY="" '
 alias nv='TERM=xterm-256color nvim'
 alias tf='tail -f'
-alias rb="rhythmbox-client "
-alias slrake='bundle exec $( rake -T | slmenu_hist.sh rake -l 20 -i |  sed -e "s/\w*#.*//" )'
 alias sudo='sudo ' # force alias preservation, no really
 alias systemctl='sudo systemctl'
 alias t='tmux -2'
 # alias tmux='systemd-run --scope --user tmux'
 alias tx='TERM=xterm tmux -2 attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
-alias wifi-connect="wpa_cli interface wlp4s0 select_network"
-alias wifi-dangerzone="wifi-connect dangerzone2.4"
-alias wifi-select='wifi-connect $(wpa_cli list_networks | fzf | cut -f 1)'
 alias v='nv '
 alias vim='nv '
 alias vs='v ~/.vimrc ~/.vimrc.d/bundles.vim +snext'
 alias vw='nv -c VimwikiIndex'
 alias vim-up='v +PlugUpdate +PlugUpgrade +:quitall'
-alias vnc-server='x11vnc -usepw'
 alias xsel='xsel --logfile ~/.Xsel.log'
 alias :e='nv '
 alias :q='exit'
 alias :Q='exit'
-
-
-# aliases CAN do args
-alias arg="sh -c 'echo \$3 \$2 \$1' --"

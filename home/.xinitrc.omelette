@@ -31,6 +31,7 @@ xmonad
 #  fullscreen behavior is bad
 #  theme won't stick
 #  not sure how multimonitor will behave
+#  0.2.6 broke in aur and hasn't been fixed in a week.  giving up til this is more stable.
 
 # qtile # so far so good.  terminal spacing is a little weird.
 

@@ -77,13 +77,6 @@ function calc() {
 	awk "BEGIN{ print $* }" ;
 }
 
-# returns age of file in seconds
-function age() {
-	CURRENT=$( date +%s )
-	FILEAGE=$( stat -t $1 -c %Z )
-	calc $CURRENT - $FILEAGE
-}
-
 # many or multi grep.  syntactic sugar for grep -l | xargs grep
 function mgrep() {
     EXEC="ls "
@@ -132,19 +125,6 @@ function nosleep() {
     xset s on
 }
 
-function dec2base() {
-    if [ $# -ne 2 ] ; then
-        echo -e "\nUsage: dec2base number base.\n"
-    else
-        echo "$1 $2 o p " | dc
-    fi
-}
-
-# prints n paragraphs of lorem ipsum text.  n defaults to 5 thanks to lipsum.com being cool.
-function loremipsum() {
-     curl -s "http://loripsum.net/api/$1/short/headers/plaintext"
-}
-
 # repeats a command n times.  no loop logic, but should be a small prefix instead of for ;; done
 function rep() {
   [[ $# == 0 ]] && echo -e "\nUsage: rep <n> cmd # Runs cmd n times or forever if no n\n" &&  exit 1
@@ -169,40 +149,6 @@ function rep_til_failure() {
 for n in `seq 100` ; do alias $n="rep $n " ; done
 alias ..='cd ..' # stupid, but I like chaining it to the rep numbers.
 
-#for f in "cd" ; do export $f ; done
-
-# prints color codes for use in tmux and vim
-#function colors() {
-  #for i in {0..255} ; do
-    #printf "\x1b[38;5;${i}mcolour${i}\n";
-  #done | less
-#}
-
-# xephy wrapper
-function xnest() {
-  if [[ $1 == '-h' ]] ; then
-    echo -e "Usage: xnest [widthxheight] program\n\n"
-  fi
-
-  if [[ $1 =~ [0-9]+x[0-9] ]] ; then
-    RESOLUTION=" -screen $1 "
-    shift
-  fi
-
-  NTH=$(find /tmp/.X*-lock | wc -l)
-  X=":$NTH.0"
-
-  Xephyr $X $RESOLUTION &
-  PID=$!
-
-  sleep 1
-  DISPLAY=$X $@
-  kill $PID
-}
-
-function hl() {
-  sed -e "s/$@/$(byellow $@)/g"
-}
 
 function assert_ssh_agent() {
   if [ -z "${SSH_AGENT_PID+xxx}" ] ; then
@@ -210,36 +156,6 @@ function assert_ssh_agent() {
   else
     true
   fi
-}
-
-# downscales a movie to 1000k - good for streaming over powerline to xbox
-function ffmpeg_xbox() {
-  #ffmpeg.git -i "$@" -vcodec mpeg4 -b:v 1000k -s hd480 "$@".avi
-  ffmpeg.git -i "$@" -vcodec h264 -b:v 1000k -s 640x480 "$@".avi
-}
-
-# lists a function's definition
-function func() {
-  awk "/function $1\(/,/^}/" ~/.functions
-}
-
-# wrapper for ssh.  resets xterm colors after connection.  see .ssh/config's localcommands.
-if [[ -x "$(which xtermcontrol)" && "$TERM" == 'xterm' ]] ; then
-  _ssh=$(which ssh)
-
-  function ssh() {
-    FG=$(xtermcontrol --get-fg)
-    BG=$(xtermcontrol --get-bg)
-    $_ssh "$@"
-    xtermcontrol --fg="$FG"
-    xtermcontrol --bg="$BG"
-  }
-fi
-
-# check if dmenu has an option
-function dmenu_has() {
-  match="\[$@ "
-  [ "$(dmenu -h 2>&1 > /dev/null | grep -- $match)" != '' ]
 }
 
 # color print
@@ -320,4 +236,9 @@ function erd() {
 			return 0
 		fi
 	done
+}
+
+inotifydo() {
+	inotifywait -q -m -r . -e MODIFY,CREATE --format '%w%f' #|
+		# grep --line-buffered ${1:-.}
 }
