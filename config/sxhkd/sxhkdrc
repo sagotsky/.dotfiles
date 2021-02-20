@@ -45,6 +45,10 @@ XF86Calculator
 XF86Display
   xcalib -a -i
 
+# WM
+super + b
+   killall polybar || init-polybar.sh
+
 # old xmonad keys
    #-- transparency
    # ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
