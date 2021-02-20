@@ -24,7 +24,8 @@ find ~/.xsession.d/ -not -type d | xargs -n 1 -P0 sh -c & &> /dev/null &
 
 nitrogen --restore
 
-xmonad
+qtile
+# xmonad
 # leftwm
 # pretty good!
 #  workspaces.rb doesn't work.  but leftwm-state looks easier to work around.
