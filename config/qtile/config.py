@@ -24,7 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.lazy import lazy
 from libqtile import layout, bar, widget
 
@@ -32,14 +32,26 @@ from typing import List  # noqa: F401
 
 mod = "mod4"
 
+# todo:
+# multi monitor (test with tv?)
+# cctrl-b toggle bar
+# mod- - swap screen ( and shuft)
+# what's missing?
+# mod- -    back one screen
+# how does dual screen work?
+
+
 keys = [
     # Switch between windows in current stack pane
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
 
     # Move windows up or down in current stack
-    Key([mod, "control"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_up()),
+
+    Key([mod], "l", lazy.layout.increase_ratio()),
+    Key([mod], "h", lazy.layout.decrease_ratio()),
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
@@ -51,7 +63,6 @@ keys = [
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn("x-terminal-emulator")),
 
     # Toggle between different layouts as defined below
@@ -59,17 +70,21 @@ keys = [
     Key([mod], "w", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.spawncmd()),
 ]
-# what's missing?
-# mod-h/l   grow_up/down/left/right
-# mod- -    back one screen
-# how does dual screen work?
 
 
-# groups = [Group(i) for i in "asdfuiop"]
-groups = [Group(i) for i in "1234567890"]
+groups = [
+    Group("1", matches=Match(wm_class=["Firefox"])),
+    Group("2", matches=Match(wm_class=["Spotify"])),
+    Group("3", matches=Match(wm_class=[])),
+    Group("4", matches=Match(wm_class=[])),
+    Group("5", matches=Match(wm_class=["Slack"])),
+    Group("6", matches=Match(wm_class=[])),
+    Group("7", matches=Match(wm_class=[])),
+    Group("8", matches=Match(wm_class=[])),
+    Group("9", matches=Match(wm_class=[])),
+    Group("0", matches=Match(wm_class=["zoom"])),
+]
 
 for i in groups:
     keys.extend([
@@ -77,15 +92,17 @@ for i in groups:
         Key([mod], i.name, lazy.group[i.name].toscreen()),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
     ])
 
 layouts = [
-    layout.MonadTall(border_focus="#ffffff", single_border_width=0, name="Tall", border_width=2),
+    layout.Tile(
+        border_focus="#dddddf",
+        border_normal="#222233",
+        ratio=0.5,
+    ),
     layout.Max(),
+    # layout.MonadTall(border_focus="#ffffff", single_border_width=0, name="Tall", border_width=2), # this one looked good but had different commands.
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -93,7 +110,6 @@ layouts = [
     # layout.Matrix(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
