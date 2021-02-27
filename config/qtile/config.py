@@ -32,14 +32,13 @@ from typing import List  # noqa: F401
 
 mod = "mod4"
 
-# todo:
-# multi monitor (test with tv?)
-# cctrl-b toggle bar
-# mod- - swap screen ( and shuft)
-# what's missing?
-# mod- -    back one screen
-# how does dual screen work?
+"""
+TODO
 
+1. Figure out if dual display is usable.  Add keybindings.
+5. Reset button!
+
+"""
 
 keys = [
     # Switch between windows in current stack pane
@@ -47,17 +46,28 @@ keys = [
     Key([mod], "k", lazy.layout.up()),
 
     # Move windows up or down in current stack
-    Key([mod, "shift"], "k", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_up()),
+    # Tile
+    # Key([mod, "shift"], "k", lazy.layout.shuffle_down()),
+    # Key([mod, "shift"], "j", lazy.layout.shuffle_up()),
 
-    Key([mod], "l", lazy.layout.increase_ratio()),
-    Key([mod], "h", lazy.layout.decrease_ratio()),
+    # MonadTall
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+
+    Key([mod], "l", lazy.layout.increase_ratio(), lazy.layout.grow_main()),
+    Key([mod], "h", lazy.layout.decrease_ratio(), lazy.layout.shrink_main()),
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
 
     # Swap panes of split stack
     Key([mod, "shift"], "space", lazy.layout.rotate()),
+
+    # Toggle window gropus
+    Key([mod], "minus", lazy.screen.toggle_group()),
+
+    # Key([mod, "shift"], "space", lazy.layout.cmd_reset()),
+    Key([mod], "z", lazy.cmd_reset()),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -70,6 +80,7 @@ keys = [
     Key([mod], "w", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
+    Key([mod], "q", lazy.restart()),
 ]
 
 
@@ -96,13 +107,14 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Tile(
+    layout.MonadTall(
         border_focus="#dddddf",
         border_normal="#222233",
-        ratio=0.5,
+        single_border_width=0,
+        name="Tall",
+        border_width=1
     ),
     layout.Max(),
-    # layout.MonadTall(border_focus="#ffffff", single_border_width=0, name="Tall", border_width=2), # this one looked good but had different commands.
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -137,7 +149,7 @@ screens = [
         #     ],
         #     24,
         # ),
-    ),
+    )
 ]
 
 # Drag floating layouts.

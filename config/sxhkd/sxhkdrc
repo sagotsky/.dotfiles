@@ -49,6 +49,9 @@ XF86Display
 super + b
    killall polybar || init-polybar.sh
 
+# Junk drawer
+super + d
+   notify-send Date "`date`"
 # old xmonad keys
    #-- transparency
    # ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
