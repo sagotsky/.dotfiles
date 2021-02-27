@@ -39,3 +39,8 @@ OPTS="${OPTS} --cache true --display-cop-names"
 
 # bin/rubocop $@ $OPTS --display-cop-names
 RUBOCOP_DAEMON_USE_BUNDLER=true BUNDLE_GEMFILE=Gemfile.local bundle exec rubocop-daemon exec -- $@ $OPTS
+if [[ "$?" == "11" ]] ; then
+  BUNDLE_GEMFILE=Gemfile.local bundle install
+  abeep
+  notify-send "rubocop" "is out of date" -u critical
+fi
