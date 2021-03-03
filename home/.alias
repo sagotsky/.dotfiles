@@ -10,6 +10,7 @@ alias cmus='TERM=xterm-256color cmus'
 alias epoch="date +%s"
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
+alias g='git'
 alias git='hub'
 alias gg='git grep -i -I -n --color --break --heading --line-number -e '
 alias lag='ag --pager less '
