@@ -132,7 +132,8 @@ class Workspace
 end
 
 class Root
-  NET_CLIENT_LIST_STACKING=:_NET_CLIENT_LIST_STACKING
+  NET_CLIENT_LIST_STACKING = :_NET_CLIENT_LIST_STACKING
+  NET_CLIENT_LIST = :_NET_CLIENT_LIST
 
   def initialize(display)
     @root = display.screens.first.root_window
@@ -141,20 +142,33 @@ class Root
   end
 
   def all_windows
-    Array(@root.property(NET_CLIENT_LIST_STACKING)).map do |xlibobj_window|
+    client_list = @root.property(NET_CLIENT_LIST_STACKING) || @root.property(NET_CLIENT_LIST)
+    Array(client_list).map do |xlibobj_window|
       Window.new @display, xlibobj_window
     end
   end
 
   def workspaces
-    names = XlibObj::Window::Property.new(@root, :_NET_DESKTOP_NAMES).get
     current_ws = XlibObj::Window::Property.new(@root, :_NET_CURRENT_DESKTOP).get.first
-    names.each_with_object({}).with_index do |(name, workspaces), index|
+    Array(desktop_names).each_with_object({}).with_index do |(name, workspaces), index|
       workspaces[index] = Workspace.new(name, current_ws == index)
     end
   end
 
   private
+
+  def desktop_names
+    names = XlibObj::Window::Property.new(@root, :_NET_DESKTOP_NAMES).get  # Names is preferred, but not all WMs provide it
+    number = XlibObj::Window::Property.new(@root, :_NET_NUMBER_OF_DESKTOPS).get.first
+
+    if names
+      names
+    elsif number
+      (0...number).to_a.map(&:to_s)
+    else
+      []
+    end
+  end
 
   def init_events!
     @root.on(:property_change, :property_notify) { | event| puts event }
@@ -201,8 +215,9 @@ class Window
   end
 
   def window_exists?
-    all = @display.screens.first.root_window.property(:_NET_CLIENT_LIST_STACKING)
-    all.map(&:id).include?(@window.id)
+    root = @display.screens.first.root_window
+    all_windows = root.property(:_NET_CLIENT_LIST_STACKING) || root.property(:_NET_CLIENT_LIST)
+    Array(all_windows).map(&:id).include?(@window.id)
   end
 end
 
