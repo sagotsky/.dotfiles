@@ -26,10 +26,10 @@
 ! https://www.reddit.com/r/unixporn/comments/8giij5/guide_defining_program_colors_through_xresources/
 !
 ! XTerm
-XTerm*background:	FOREGROUND
-XTerm*foreground:	BACKGROUND
+XTerm*background:	#000000
+XTerm*foreground:	FOREGROUND
 XTerm*faceName:		Source Code Pro:semibold:antialias=true:autohint=true
-XTerm*faceSize:		8
+XTerm*faceSize:	  12
 Xterm*boldMode:   true
 XTerm*boldFont:   fixed
 XTerm*altismeta:	true
