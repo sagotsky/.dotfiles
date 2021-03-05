@@ -79,6 +79,8 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
 
+    Key([mod], "t", lazy.window.disable_floating()),
+
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "q", lazy.restart()),
 ]
