@@ -1,0 +1,27 @@
+Adwm*snap: 10
+
+Adwm*sloppy: 2
+Adwm*opacity: 0.8
+Adwm*decoratetiled: 0
+Adwm*hidebastards: 2
+Adwm*strutsactive: 0
+Adwm*mwfact: 0.6
+Adwm*nmaster: 1
+Adwm*attachaside: 0
+Adwm*autoroll: 1
+
+Adwm*deflayout: l
+
+Adwm*tags.number: 7
+Adwm*tags.name0: main
+Adwm*tags.name1: web
+Adwm*tags.name2: doc
+Adwm*tags.name3: dev
+Adwm*tags.name4: scr
+Adwm*tags.name5: gfx
+Adwm*tags.name6: misc
+
+Adwm*tags.layout0: i
+Adwm*tags.layout1: m
+Adwm*tags.layout3: g
+Adwm*tags.layout4: b
