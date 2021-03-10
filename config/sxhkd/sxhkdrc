@@ -1,4 +1,7 @@
 # CORE
+super + shift + Return
+   x-terminal-emulator
+
 super + x
   dmenu_run -i -p ">_"
 
@@ -46,8 +49,8 @@ XF86Display
   xcalib -a -i
 
 # WM
-super + b
-   killall polybar || init-polybar.sh
+# super + b
+#    killall polybar || init-polybar.sh
 
 # Junk drawer
 super + d
