@@ -38,6 +38,12 @@ if [[ "$BAR" == "bender" ]] ; then
   fi
 fi
 
+if pidof dwm ; then
+  export POLYBAR_OVERRIDE_REDIRECT=true
+else
+  export POLYBAR_OVERRIDE_REDIRECT=false
+fi
+
 polybar $BAR &
 
 while read -r line ; do
