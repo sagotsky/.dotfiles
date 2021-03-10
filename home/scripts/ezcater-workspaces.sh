@@ -87,21 +87,21 @@ function hsplit {
 
 # exit
 
-tmux-up ~/repos/avro-schema-registry <<EOF
-  docker/start
-EOF
+# tmux-up ~/repos/avro-schema-registry <<EOF
+#   docker/start
+# EOF
 
-tmux-up ~/repos/kafka-docker <<EOF
-  docker/start
-EOF
+# tmux-up ~/repos/kafka-docker <<EOF
+#   docker/start
+# EOF
 
-tmux-up ~/repos/ezcater-identity identity <<EOF
-  docker/start
-EOF
+# tmux-up ~/repos/ezcater-identity identity <<EOF
+#   docker/start
+# EOF
 
-tmux-up ~/repos/authentication-rails <<EOF
-  docker/start
-EOF
+# tmux-up ~/repos/authentication-rails <<EOF
+#   docker/start
+# EOF
 
 tmux-up ~/repos/ez-rails <<EOF
   vsplit docker/start "sleep 15 ; docker attach `docker ps | grep ez-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
