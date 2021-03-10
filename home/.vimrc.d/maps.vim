@@ -15,9 +15,9 @@ nnoremap <leader>wk         :resize -10<cr>
 
 nnoremap <leader>gs         :Gstatus<cr>
 nnoremap <leader>gS         :GitLsBranchP<cr>
-nnoremap <leader>gc         :Gcommit<cr>
-nnoremap <leader>gB         :Gblame<cr>
-nnoremap <leader>gh         :Gbrowse<cr>
+nnoremap <leader>gc         :Git commit<cr>
+nnoremap <leader>gB         :Git blame<cr>
+nnoremap <leader>gh         :Git browse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 nnoremap <leader>gl         :BCommits!<cr>
