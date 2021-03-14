@@ -149,7 +149,8 @@ class Root
   end
 
   def workspaces
-    current_ws = XlibObj::Window::Property.new(@root, :_NET_CURRENT_DESKTOP).get.first
+    net_current_desktops = XlibObj::Window::Property.new(@root, :_NET_CURRENT_DESKTOP).get
+    current_ws = net_current_desktops.respond_to?(:first) ? net_current_desktops.first : nil
     Array(desktop_names).each_with_object({}).with_index do |(name, workspaces), index|
       workspaces[index] = Workspace.new(name, current_ws == index)
     end
@@ -159,7 +160,8 @@ class Root
 
   def desktop_names
     names = XlibObj::Window::Property.new(@root, :_NET_DESKTOP_NAMES).get  # Names is preferred, but not all WMs provide it
-    number = XlibObj::Window::Property.new(@root, :_NET_NUMBER_OF_DESKTOPS).get.first
+    number_of_desktops_atom =  XlibObj::Window::Property.new(@root, :_NET_NUMBER_OF_DESKTOPS).get
+    number = number_of_desktops_atom.nil? ? nil : number_of_desktops_atom.first
 
     if names
       names
