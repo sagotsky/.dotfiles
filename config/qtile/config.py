@@ -114,7 +114,9 @@ layouts = [
         border_normal="#222233",
         single_border_width=0,
         name="Tall",
-        border_width=1
+        border_width=0,
+        margin = 8,
+        single_margin = 0
     ),
     layout.Max(),
     # layout.Stack(num_stacks=2),
