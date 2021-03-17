@@ -114,7 +114,7 @@ layouts = [
         border_normal="#222233",
         single_border_width=0,
         name="Tall",
-        border_width=0,
+        border_width=1,
         margin = 8,
         single_margin = 0
     ),
@@ -187,7 +187,11 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
+    {'wm_type': 'splash', 'wmname': 'zoom'}, # zoom # wmtype without underscore makes this hit everyting.
 ])
+# _NET_WM_NAME(UTF8_STRING) = "zoom"
+# _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_SPLASH, _KDE_NET_WM_WINDOW_TYPE_OVERRIDE, _NET_WM_WINDOW_TYPE_NORMAL
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
