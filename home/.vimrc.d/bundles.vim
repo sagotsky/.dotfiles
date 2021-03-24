@@ -215,6 +215,12 @@ Plug 'sk1418/HowMuch' " sum columns
 Plug 'ryvnf/readline.vim' " readline in cmd mode
 
 Plug 'triglav/vim-visual-increment' " visual mode will intelligently inc/dec numbers
-set nrformats=alpha
+" set nrformats=alpha
+
+Plug 'kristijanhusak/vim-carbon-now-sh' " :CarbonNowSh saves pretty code screenshot
+let g:carbon_now_sh_options =
+      \ { 't': 'lucario',
+      \   'ds': 'true' }
+
 
 call plug#end()
