@@ -91,9 +91,9 @@ function hsplit {
 #   docker/start
 # EOF
 
-# tmux-up ~/repos/kafka-docker <<EOF
-#   docker/start
-# EOF
+tmux-up ~/repos/kafka-docker <<EOF
+  docker/start
+EOF
 
 # tmux-up ~/repos/ezcater-identity identity <<EOF
 #   docker/start
