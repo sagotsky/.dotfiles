@@ -10,7 +10,7 @@ echo $DBUS_SESSION_BUS_ADDRESS > .dbus_session
 
 export BROWSER=firefox
 export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
-eval $(keychain --eval)
+eval $(nohup keychain --eval)
 ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
 export SSH_AUTH_SOCK=$_
 
@@ -24,26 +24,4 @@ find ~/.xsession.d/ -not -type d | xargs -n 1 -P0 sh -c & &> /dev/null &
 
 nitrogen --restore
 
-qtile
-# xmonad
-# leftwm
-# pretty good!
-#  workspaces.rb doesn't work.  but leftwm-state looks easier to work around.
-#  fullscreen behavior is bad
-#  theme won't stick
-#  not sure how multimonitor will behave
-#  0.2.6 broke in aur and hasn't been fixed in a week.  giving up til this is more stable.
-
-# qtile # so far so good.  terminal spacing is a little weird.
-
-# spectrwm
-# while : ; do spectrwm ; sleep 1 ; done # similar features to xmonad.  too laggy.  zoom was fubar.
-# herbstluftwm # lag is odd.  can't tell if it's my scripts or all of hlwm.
-# leftwm # for a wm based on "the concept of theming" it's awful hard to make the gaps a sane size and change the border color.  fast though.
-# i3 default layout still sucks.  wrokspaces with no windows cease to exist
-# awesome
-# dwm # panel behavior is awful
-# dwm # zoom is weird.  wmctrl -d works.  wmctrl -l shows all windows on one workspace.
-# xmonad
-# dbus-launch --exit-with-session xmonad # shouldn't be needed
-# dbus-launch --exit-with-session i3
+while : ; do wm.sh ; done
