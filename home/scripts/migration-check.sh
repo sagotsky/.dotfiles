@@ -19,6 +19,7 @@
 #     queries via STDIN
 
 LIMIT=16 # how many migrations to test?
+export PGCONNECT_TIMEOUT=3 # sometimes docker isn't ready.  give up instead of hanging.
 
 gitroot() {
   git rev-parse --show-toplevel
@@ -40,12 +41,12 @@ check_migrations() {
 current_migration_versions() {
   echo "select * from schema_migrations order by version desc limit $LIMIT" |
      psql_cmd |
-     egrep " [0-9]+$"
+     grep -E " [0-9]+$"
 }
 
 # this might need to be a variable so non-ezcater apps can use it
 psql_cmd() {
-  $(gitroot)/docker/psql 2>/dev/null
+  $(gitroot)/docker/psql #2>/dev/null
 }
 
 migration_messages="$(check_migrations)"
