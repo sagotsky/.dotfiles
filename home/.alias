@@ -13,6 +13,7 @@ alias fontcache-refresh=' fc-cache -f'
 alias g='git'
 alias git='hub'
 alias gg='git grep -i -I -n --color --break --heading --line-number -e '
+alias .g="git --git-dir='$HOME/.dotfiles/.git' --work-tree='$HOME/.dotfiles/' "
 alias lag='ag --pager less '
 if [[ "$(uname)" == "Linux" ]] ; then
   alias ls='ls --color=auto'
