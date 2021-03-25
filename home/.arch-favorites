@@ -20,3 +20,4 @@ tmux
 wget
 xterm
 zsh
+xinit-xsession
