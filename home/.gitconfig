@@ -15,6 +15,7 @@
   cp = cherry-pick
   logs = log -p -S
   amend = commit --amend --no-edit
+  root = rev-parse --show-toplevel
 
   remaster =       ! git fetch && git rebase -i origin/master
   wip =            ! git commit -m 'wip' && git remaster
