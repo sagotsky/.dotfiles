@@ -36,6 +36,9 @@ XF86AudioPlay
 shift + XF86AudioRaiseVolume
   pactl set-sink-volume @DEFAULT_SINK@ 150%
 
+# Hack: unkill wifi after accidentally pressing the kill wifi button.  (Don't forget to add NOPASSWD to sudoers)
+XF86WLAN
+   sudo /usr/bin/rfkill unblock wlan
 
 # APPS
 
