@@ -1,5 +1,6 @@
 #!/bin/bash
 
+alias tmux='systemd-run --scope --user tmux -2'
 #alt name: tmux-compose?
 function tmux-up {
   DIR=$1

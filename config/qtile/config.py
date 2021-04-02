@@ -171,7 +171,10 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
+floating_layout = layout.Floating(
+    # border_width=2,
+    border_focus="#ddddff",
+    float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     {'wmclass': 'confirm'},
     {'wmclass': 'dialog'},
@@ -188,7 +191,9 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
     {'wm_type': 'splash', 'wmname': 'zoom'}, # zoom # wmtype without underscore makes this hit everyting.
-])
+    ]
+)
+
 # _NET_WM_NAME(UTF8_STRING) = "zoom"
 # _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_SPLASH, _KDE_NET_WM_WINDOW_TYPE_OVERRIDE, _NET_WM_WINDOW_TYPE_NORMAL
 
