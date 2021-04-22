@@ -11,7 +11,7 @@ alias epoch="date +%s"
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
 alias g='git'
-alias git='hub'
+which hub &>/dev/null && alias git='hub'
 alias gg='git grep -i -I -n --color --break --heading --line-number -e '
 alias .g="git --git-dir='$HOME/.dotfiles/.git' --work-tree='$HOME/.dotfiles/' "
 alias lag='ag --pager less '
