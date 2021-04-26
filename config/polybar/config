@@ -123,6 +123,24 @@ modules-left = wm-status
 ; modules-left = stdin
 modules-center = xwindow
 
+[bar/sashimi]
+inherit = bar/base
+monitor = ${env:PRIMARY_MONITOR}
+height = 24
+; mono (including WM pips)
+font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
+; icon
+font-1 = FontAwesome:size=11;4
+; regular
+font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
+; bold
+font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
+font-4 = "Source Code Pro:size=14:black:antialias=true;4"
+; modules-left = ewmh
+modules-left = wm-status
+; modules-left = stdin
+modules-center = xwindow
+
 
 [module/xwindow]
 type = internal/xwindow

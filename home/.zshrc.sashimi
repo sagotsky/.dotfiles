@@ -1,0 +1,24 @@
+export POSTGRES_USER=postgres
+
+cdpath=(~/repos)
+. ~/.alias.arch
+. ~/.zsh_rails
+
+export DIRENV_LOG_FORMAT=''
+eval "$(direnv hook zsh)"
+
+typeset -ag precmd_functions;
+if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+  precmd_functions+=_direnv_hook;
+fi
+
+alias kube-prod="CONTEXT=jon.sagotsky-kubernetes-useast1-production ezkube.sh "
+alias kube-staging="CONTEXT=jon.sagotsky-kubernetes-useast1-staging ezkube.sh "
+alias kube-dev1="CONTEXT=jon.sagotsky-kubernetes-useast1-staging NAMESPACE='--namespace dev1' ezkube.sh "
+
+# nested aliases aren't working.  dunno why
+# echo  kube-{staging,dev1,prod}\ {pos,ezrails}\ console\ "\n" | while read line ; do
+#   alias_name="$(echo $line | tr ' ' '-')"
+#   [[ "$line" != "" ]] && alias $alias_name=\"$line\"
+#   true
+# done

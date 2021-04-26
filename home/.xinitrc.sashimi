@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# env settings
+. ~/.shellrc
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:=$HOME/.config}"
+
+export $(dbus-launch) # necessary for playerctl + spotify
+
+echo $DISPLAY > ~/.display
+echo $DBUS_SESSION_BUS_ADDRESS > .dbus_session
+
+export BROWSER=firefox
+export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
+eval $(nohup keychain --eval)
+ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+export SSH_AUTH_SOCK=$_
+
+# x settings
+setxkbmap -option terminate:ctrl_alt_bksp
+xrdb -merge ~/.Xresources
+xmodmap ~/.xmodmap
+
+# apps
+find ~/.xsession.d/ -not -type d | xargs -n 1 -P0 sh -c & &> /dev/null &
+
+nitrogen --restore
+
+while : ; do wm.sh ; done
