@@ -1,5 +1,15 @@
+# during installation
+wpa_supplicant
+dialog
+netctl
+dhcpcd
+network-tools
+wireless_tools
+
+# userland
 abeep # alsa beep
 asdf-vm # generic version manager
+base-devel
 bat # better cat
 fd # better find
 fzf # fuzzy finder
@@ -11,7 +21,9 @@ playerctl
 polybar
 rofi
 sed
+slack-desktop
 spotify
+spotifywm-git
 sudo
 termite
 the_silver_searcher
