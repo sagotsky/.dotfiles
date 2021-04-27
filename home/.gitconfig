@@ -18,10 +18,11 @@
   root = rev-parse --show-toplevel
   cm = commit -m
 
-  remaster =       ! git fetch && git rebase -i origin/master
+  trunk-name =     ! git config --get branch.main.merge &>/dev/null && echo "main" || echo "master"
+  remaster =       ! git fetch && git rebase -i origin/$(git trunk-name)
   wip =            ! git commit -m 'wip' && git remaster
-  prune-branches = ! git branch -d $(git branch --merged=master | grep -v ' master')
-  ls-branch =      ! git --no-pager diff origin/master --name-only && git ls-files --others --exclude-standard
+  prune-branches = ! git branch -d $(git branch --merged=$(git trunk-name) | grep -v " $(git trunk-name)")
+  ls-branch =      ! git --no-pager diff origin/$(git trunk-name) --name-only && git ls-files --others --exclude-standard
   pr-files =       ! git ls-branch # trying out an alias - does this mentally map better?
   pr-specs =       ! git ls-branch | grep _spec.rb
 	cb =             ! git co "$(git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/ | fzf)"

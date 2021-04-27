@@ -139,7 +139,7 @@ command! -nargs=0 -bang GitLsBranch call fzf#run(fzf#wrap(
 command! -nargs=0 -bang GitLsBranchP call fzf#run(fzf#wrap(
   \ {'source': 'git ls-branch',
   \ 'down': '95%',
-  \  'options': "--preview='DIFF=$(git diff --color=always origin/master {}) ; if [[ $DIFF =~ {} ]] ; then echo $DIFF ; else bat {} --color=always --style=numbers | sed -e 's/^/+/' ; fi'"
+  \  'options': "--preview='DIFF=$(git diff --color=always origin/main {}) ; if [[ $DIFF =~ {} ]] ; then echo $DIFF ; else bat {} --color=always --style=numbers | sed -e 's/^/+/' ; fi'"
   \ }, <bang>0))
 
 " 12/07/19 ale > coc for diagnostics.  on par for formatting, but both
