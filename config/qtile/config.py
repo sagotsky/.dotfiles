@@ -88,7 +88,7 @@ keys = [
 
 groups = [
     Group("1", matches=Match(wm_class=["Firefox"])),
-    Group("2", matches=Match(wm_class=["Spotify"])),
+    Group("2", matches=Match(wm_class=["spotify"])),
     Group("3", matches=Match(wm_class=[])),
     Group("4", matches=Match(wm_class=[])),
     Group("5", matches=Match(wm_class=["Slack"])),

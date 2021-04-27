@@ -7,16 +7,19 @@ network-tools
 wireless_tools
 
 # userland
-abeep # alsa beep
-asdf-vm # generic version manager
-base-devel
-bat # better cat
-fd # better find
-fzf # fuzzy finder
+abeep-git
+asdf-vm
+bat
+dunst
+fd
+fzf
 git
+git-delta-bin
+inetutils
 neovim
 openssh
-peek # screencast recorder
+pacman-contrib
+peek
 playerctl
 polybar
 rofi
@@ -27,9 +30,14 @@ spotifywm-git
 sudo
 termite
 the_silver_searcher
-tlp # power management
+tlp
 tmux
 wget
+wmctrl
+xclip
 xterm
 zsh
 xinit-xsession
+
+qtile
+mypy

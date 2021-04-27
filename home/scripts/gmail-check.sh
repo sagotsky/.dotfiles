@@ -95,7 +95,7 @@ function auth-check() {
 
 function get-atom() {
   URL="https://mail.google.com/$1/feed/atom"
-  ATOM="$(curl -s $(curl-cookie-opt) $URL)"
+  ATOM="$(curl --location -s $(curl-cookie-opt) $URL)"
   auth-check $ATOM
   echo $ATOM
 }
@@ -103,6 +103,7 @@ function get-atom() {
 function check-mail() {
   for segment in `accounts` ; do
     ATOM=$(get-atom $segment)
+
     if [[ "$?" != "1" ]] ; then
       icon `echo "$ATOM" | grep '<entry>'` || true
     else

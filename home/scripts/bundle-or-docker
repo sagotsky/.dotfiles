@@ -5,9 +5,9 @@
 
 export RUBYOPT="$PRYOPT"
 
-if [[ "$DOCKER_SPECS" == '' ]] ; then
-  bundle exec $@
-else
+if [[ -f "docker/run" ]] ; then
   # docker/run RUBYOPT="'$RUBYOPT'" bundle exec $@
   docker/run BUNDLE_GEMFILE="'$BUNDLE_GEMFILE'" bundle exec $@
+else
+  bundle exec $@
 fi

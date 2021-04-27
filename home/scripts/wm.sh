@@ -17,7 +17,8 @@
 # echinus
 # not tiling by default.
 
-qtile start
+# termite
+qtile start -c ~/.config/qtile/config.py &> /tmp/qtile
 # # python based xmonad replacement.  kinda slow.  doesn't like zoom.
 
 # dwm

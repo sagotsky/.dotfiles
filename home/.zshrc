@@ -64,6 +64,7 @@ stty stop undef &>/dev/null     # reclaim ctrl-s as forward search
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
 for FILE ($ZSH/themes/**/*.zsh-theme) ; do source $FILE ; done
+# . ~/source/powerlevel10k/powerlevel10k.zsh-theme
 #update_current_git_vars # this is the slow 30ms
 
 # ctrl-x-e
