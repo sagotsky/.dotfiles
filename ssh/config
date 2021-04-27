@@ -1,7 +1,8 @@
 host *
-  Compression   yes
-  forwardX11 no
-  forwardAgent yes
+  AddKeysToAgent yes
+  Compression    yes
+  forwardX11     no
+  forwardAgent   yes
 
 host rj
   hostname sagotsky.dynamic-dns.net
