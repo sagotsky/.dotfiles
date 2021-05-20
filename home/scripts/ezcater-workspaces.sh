@@ -92,9 +92,9 @@ function hsplit {
 #   docker/start
 # EOF
 
-tmux-up ~/repos/kafka-docker <<EOF
-  docker/start
-EOF
+# tmux-up ~/repos/kafka-docker <<EOF
+#   docker/start
+# EOF
 
 # tmux-up ~/repos/ezcater-identity identity <<EOF
 #   docker/start
@@ -117,4 +117,8 @@ EOF
 # override default name with second arg
 tmux-up ~ autossh <<EOF
   ~/scripts/screen-ssh-tunnel-omelette.sh
+EOF
+
+tmux-up ~/repos/developer-handbook dev-handbook <<EOF
+  docker-compose up
 EOF
