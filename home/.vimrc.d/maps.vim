@@ -13,7 +13,7 @@ nnoremap <leader>wl         :vertical resize +10<cr>
 nnoremap <leader>wj         :resize +10<cr>
 nnoremap <leader>wk         :resize -10<cr>
 
-nnoremap <leader>gs         :Gstatus<cr>
+nnoremap <leader>gs         :G<cr>
 nnoremap <leader>gS         :GitLsBranchP<cr>
 nnoremap <leader>gc         :Git commit<cr>
 nnoremap <leader>gB         :Git blame<cr>
