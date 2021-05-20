@@ -16,6 +16,9 @@ alias kube-prod="CONTEXT=jon.sagotsky-kubernetes-useast1-production ezkube.sh "
 alias kube-staging="CONTEXT=jon.sagotsky-kubernetes-useast1-staging ezkube.sh "
 alias kube-dev1="CONTEXT=jon.sagotsky-kubernetes-useast1-staging NAMESPACE='--namespace dev1' ezkube.sh "
 
+alias eztilt=$HOME/repos/eztilt/eztilt
+alias ezr=$HOME/repos/eztilt/eztilt
+
 # nested aliases aren't working.  dunno why
 # echo  kube-{staging,dev1,prod}\ {pos,ezrails}\ console\ "\n" | while read line ; do
 #   alias_name="$(echo $line | tr ' ' '-')"
