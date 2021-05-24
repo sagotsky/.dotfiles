@@ -17,6 +17,7 @@
   amend = commit --amend --no-edit
   root = rev-parse --show-toplevel
   cm = commit -m
+  pf = push -f
 
   trunk-name =     ! git config --get branch.main.merge &>/dev/null && echo "main" || echo "master"
   remaster =       ! git fetch && git rebase -i origin/$(git trunk-name)
@@ -26,8 +27,10 @@
   pr-files =       ! git ls-branch # trying out an alias - does this mentally map better?
   pr-specs =       ! git ls-branch | grep _spec.rb
 	cb =             ! git co "$(git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/ | fzf)"
+	ls = log --oneline
 
-
+[fetch]
+	prune = true
 [push]
 	default = current
 [grep]
