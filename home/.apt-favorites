@@ -42,7 +42,7 @@ suckless-tools
 sudo
 tmux
 ttf-ancient-fonts
-ttf-mscorefonts-installer 
+ttf-mscorefonts-installer
 unrar
 unzip
 vim
@@ -53,3 +53,4 @@ xtermcontrol
 zlib1g-dev
 
 silversearcher-ag
+ncdu
