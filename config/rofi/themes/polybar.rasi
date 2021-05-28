@@ -19,7 +19,7 @@
     location:   north;
     width:      100%;
     padding:    4px;
-    y-offset: 20px;   /* height of polybar */
+    y-offset: 24px;   /* height of polybar */
     border: 0 0 2 0;
     /* transparency: "real"; */
 }
