@@ -154,13 +154,7 @@ let g:ale_set_highlights = 1
 let g:ale_sign_error = "✘"
 let g:ale_sign_warning = "•"
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_ruby_rubocop_executable = 'bundle exec rubocop'
-" let g:ale_ruby_rubocop_executable = 'bin/rubocop'
-let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
-" let g:ale_ruby_rubocop_executable = 'docker/run bin/rubocop'
-" let g:ale_ruby_rubocop_executable = 'COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose -T exec ez-rails-web sh -c "bin/rubocop %"'
-" ['/usr/bin/zsh', '-c', '''COMPOSE_INTERACTIVE_NO_CLI=0 docker-compose -T exec ez-rails-web sh -c
-"bin/rubocop %"'' --config ''/home/sagotsky/repos/ez-rails/.rubocop.yml'' --auto-correct --force-exclusion ''/tmp/nvimVNv22k/4/m_option.rb''']
+let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 let g:ale_linters = {
 \ 'ruby': ['ruby', 'rubocop'],
 \ 'haml': ['haml-lint']
