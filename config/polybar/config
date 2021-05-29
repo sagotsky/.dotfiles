@@ -59,7 +59,6 @@ modules-right = gcal gmail music-player alsa memory cpu battery wlan date arch-p
 tray-position = right
 ; tray-padding = 2
 
-tray-transparent = true
 tray-background = ${colors.background}
 
 ; wm-restack = bspwm
@@ -283,7 +282,8 @@ ramp-used-11-foreground = ${colors.icon-fg-red-alert}
 
 [module/wlan]
 type = internal/network
-interface = wlp61s0
+; interface = wlp61s0
+interface = wlp0s20f3
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
@@ -635,6 +635,7 @@ label-foreground = #ff0000
 click-left = x-terminal-emulator -e "sudo -p 'sudo reboot > ' echo reboot"
 
 [module/wm-status]
+font = ${fonts.bold}
 type = custom/script
 exec = RUBYOPT="-W0" workspaces.rb
 #exec-if = [ -p /tmp/.polybar.fifo ]
