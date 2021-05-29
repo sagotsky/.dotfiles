@@ -2,6 +2,7 @@
 
 # env settings
 . ~/.shellrc
+[[ -f /opt/asdf-vm/asdf.sh ]] && . /opt/asdf-vm/asdf.sh
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:=$HOME/.config}"
 
 export $(dbus-launch) # necessary for playerctl + spotify
