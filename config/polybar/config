@@ -21,7 +21,6 @@ mono = 1
 icon = 2
 regular = 3
 bold = 4
-hellabold = 5
 [colors]
 
 background = ${xrdb:bg_dark:#242424}
@@ -117,7 +116,6 @@ font-1 = FontAwesome:size=11;4
 font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
-font-4 = "Source Code Pro:size=14:black:antialias=true;4"
 ; modules-left = ewmh
 modules-left = wm-status
 ; modules-left = stdin
@@ -135,7 +133,6 @@ font-1 = FontAwesome:size=11;4
 font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
 ; bold
 font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
-font-4 = "Source Code Pro:size=14:black:antialias=true;4"
 ; modules-left = ewmh
 modules-left = wm-status
 ; modules-left = stdin
@@ -562,8 +559,6 @@ enable-click = false
 ; Create scroll handlers used to cycle desktops
 ; Default: true
 enable-scroll = false
-
-format-font = ${fonts.hellabold}
 
 ; one of these has extra spaces.  not sure why.
 label-active = "• "
