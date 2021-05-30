@@ -51,6 +51,10 @@ XF86Calculator
 XF86Display
   xcalib -a -i
 
+# dedicated backlight keys
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+	xbacklight {+10,-10}
+
 # WM
 # super + b
 #    killall polybar || init-polybar.sh
