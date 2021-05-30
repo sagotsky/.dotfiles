@@ -41,7 +41,7 @@ fi
 		ws=10 name="10"
 
 	# use grid layout, padding, and gaps on workspace 10
-	dkcmd set ws=10 layout=grid pad left=200 right=200 top=100 bottom=100 gap width=50
+	# dkcmd set ws=10 layout=grid pad left=200 right=200 top=100 bottom=100 gap width=50
 
 	# use static workspaces (not default)
 	dkcmd set static_ws=false
@@ -88,14 +88,22 @@ fi
 	# dkcmd set border width=1 colour focus='#6699cc' unfocus='#000000' urgent='#ee5555'
 
 	# alternatively, enable split borders and colours
-	dkcmd set border width=5 outer_width=3 \
+	dkcmd set border width=2 outer_width=1 \
 		colour \
-		focus='#6699cc' \
-		unfocus='#444444' \
+		focus='#222222' \
+		unfocus='#222222' \
 		urgent='#ee5555' \
-		outer_focus='#222222' \
+		outer_focus='#aaaaaa' \
 		outer_unfocus='#222222' \
 		outer_urgent='#222222'
+	# dkcmd set border width=5 outer_width=3 \
+	# 	colour \
+	# 	focus='#6699cc' \
+	# 	unfocus='#444444' \
+	# 	urgent='#ee5555' \
+	# 	outer_focus='#222222' \
+	# 	outer_unfocus='#222222' \
+	# 	outer_urgent='#222222'
 
 
 	# window rules
