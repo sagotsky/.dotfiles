@@ -1,6 +1,6 @@
 #!/bin/sh
 
-there-can-be-only-one.sh
+killall playerctl
 
 playerctl metadata -f '{{ status }}{{ title }}' --follow 2>/dev/null | while read status ; do
   case $status in
