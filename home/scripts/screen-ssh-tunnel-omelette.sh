@@ -8,7 +8,7 @@ killall autossh 2>/dev/null
 # set up ssh tunnels to home exactly once but refresh them if they die
         # ssh 23456               rails 30000             rails 40000
 # TUNNELS='-R 34567:127.0.0.1:22 -R 30000:127.0.0.1:3000 -R 40000:127.0.0.1:4000'
-TUNNELS='-R 34567:127.0.0.1:22 -R 3000:127.0.0.1:3000 -R 4000:127.0.0.1:4000 -R 3001:127.0.0.1:3001'
+TUNNELS='-R 34567:127.0.0.1:22 -R 3000:127.0.0.1:3000 -R 4000:127.0.0.1:4000 -R 3001:127.0.0.1:3001 -R 8002:127.0.0.1:8002'
 
 OPTIONS='-o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o BatchMode=yes'
 AUTOSSH_MAXSTART=2
