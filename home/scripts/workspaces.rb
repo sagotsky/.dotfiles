@@ -182,6 +182,8 @@ class Window
   NET_WM_NAME = :_NET_WM_NAME
   NET_WM_DESKTOP = :_NET_WM_DESKTOP
   NET_WM_STATE = :_NET_WM_STATE
+  WM_HINTS = :WM_HINTS
+  URGENCY_HINT = 1  # this is reverse engineered based on observed WM_HINTS.
 
   NET_WM_STATE_DEMANDS_ATTENTION = :_NET_WM_STATE_DEMANDS_ATTENTION
   def initialize(display, xlibobj_window)
@@ -206,11 +208,20 @@ class Window
   end
 
   def urgent?
-    states = property(NET_WM_STATE)
-    states&.any? { |state| state.name == NET_WM_STATE_DEMANDS_ATTENTION }
+    needs_attention? || urgency_hint?
   end
 
   private
+
+  def needs_attention?
+    states = property(NET_WM_STATE)
+     states&.any? { |state| state.name == NET_WM_STATE_DEMANDS_ATTENTION }
+  end
+
+  def urgency_hint?
+    Array(property(WM_HINTS))[URGENCY_HINT]&.bytes == [1]
+  end
+
 
   def property(name)
     @window.property(name) if window_exists?
