@@ -100,10 +100,10 @@ fi
 		colour \
 		focus='#222222' \
 		unfocus='#222222' \
-		urgent='#ee5555' \
+		urgent='#ff5500' \
 		outer_focus='#aaaaaa' \
 		outer_unfocus='#222222' \
-		outer_urgent='#55ee55'
+		outer_urgent='#ff5500'
 	# dkcmd set border width=5 outer_width=3 \
 	# 	colour \
 	# 	focus='#6699cc' \
