@@ -60,7 +60,8 @@ super + {_,shift} + {w,e}
 
 # next layout doens't exist.  this toggles tile/mono
 super + space
-  dkcmd set layout $(if dkcmd status type=ws num=1 | grep Ltile &>/dev/null ; then echo mono ; else echo tile ; fi	)
+  dk-next-layout
+  # dkcmd set layout $(if dkcmd status type=ws num=1 | grep Ltile &>/dev/null ; then echo mono ; else echo tile ; fi	)
 
 # change gap width
 super + shift + {equal,minus}

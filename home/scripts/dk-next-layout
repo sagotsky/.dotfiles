@@ -1,0 +1,21 @@
+#!/bin/bash
+
+LAYOUTS="
+tile
+mono
+tstack"
+
+current_layout() {
+    dkcmd status type=ws num=1 | grep "^L" | tr -d "L"
+}
+
+next_layout() {
+    echo "$LAYOUTS$LAYOUTS" | grep "$(current_layout)" -A1 -m1 | tail -n 1
+}
+
+set_layout() {
+    dkcmd set layout "$1"
+    echo "$1"
+}
+
+set_layout "$(next_layout)"

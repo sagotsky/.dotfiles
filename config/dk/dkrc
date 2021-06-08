@@ -126,6 +126,7 @@ fi
 	}
   ws_rule Firefox 1
   ws_rule Spotify 2
+  ws_rule spotify 2
   ws_rule Slack   5
   ws_rule zoom    10
 

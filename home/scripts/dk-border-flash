@@ -6,8 +6,11 @@ set_color() {
 }
 
 
-set_color \#eeeeff
-set_color \#ddddee
+dkcmd set border color focus="#ccccdd"
+# set_color \#eeeeff
+set_color \#ccccdd
+dkcmd set border color focus="#222222"
+# set_color \#ddddee
 set_color \#ccccdd
 set_color \#bbbbaa
 set_color \#aaaabb
