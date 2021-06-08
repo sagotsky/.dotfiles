@@ -37,20 +37,20 @@ background_opacity: 0.85
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Meslo LGM Nerd Font
+    family: Meslo LG S # ttf-meslo
     # Style can be specified to pick a specific face.
-    # style: Regular
-    style: Semibold
+    style: Regular
+    # style: Semibold
 
   # The bold font face
   bold:
-    family: Meslo LGM Nerd Font
+    family: Meslo LG S
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: Meslo LGM Nerd Font
+    family: Meslo LG S
     # Style can be specified to pick a specific face.
     # style: Italic
 
@@ -61,7 +61,7 @@ font:
   offset:
     # 2, -11
     x: 0
-    y: 0
+    y: -1
     # y: -18
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
