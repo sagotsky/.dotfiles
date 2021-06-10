@@ -10,7 +10,7 @@
   diff = auto
   branch = auto
 [alias]
-  ls = log --oneline HEAD...HEAD~8
+  ls = log --oneline master...
   amend = commit --amend --no-edit
   cm = commit -m
   co = checkout
