@@ -242,3 +242,11 @@ inotifydo() {
 	inotifywait  -m -r . -e MODIFY,CREATE --format '%w%f' | xargs -n1 $@
 		# grep --line-buffered ${1:-.}
 }
+
+_rb_inflect() {
+	method=$1
+	[[ "$method" =~ ^[a-z_]*$ ]] || return 1
+	ruby -r active_support -n -e "puts ActiveSupport::Inflector.${method}(\$_)"
+}
+
+alias underscore="_rb_inflect underscore"
