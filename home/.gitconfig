@@ -10,7 +10,6 @@
   diff = auto
   branch = auto
 [alias]
-  ls = log --oneline master...
   amend = commit --amend --no-edit
   cm = commit -m
   co = checkout
@@ -23,6 +22,7 @@
   root = rev-parse --show-toplevel
   st = status
 
+  ls = ! git log --oneline $(git trunk-name)...
   trunk-name =     ! git config --get branch.main.merge &>/dev/null && echo "main" || echo "master"
   remaster =       ! git fetch && git rebase -i origin/$(git trunk-name)
   wip =            ! git commit -m 'wip' && git remaster
