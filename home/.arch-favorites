@@ -41,3 +41,4 @@ xinit-xsession
 
 qtile
 mypy
+inotify-tools
