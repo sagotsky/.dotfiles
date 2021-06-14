@@ -4,7 +4,9 @@ export EDITFILES=0
 
 alias pmi='yay -S'
 alias pmls='yay -Qe'
-function pmq() { yay -Ss "$@" | GREP_COLORS='ms=01;36' grep --color=always -E '^[a-z]*\/[a-Z0-9_-]*|$' }
+function pmq() {
+  yay -Ss "$@" | GREP_COLORS='ms=01;36' grep --color=always -E '^[a-z]*\/[a-Z0-9_-]*|$'
+}
 alias pms='echo try pmq instead'
 alias pmr='yay -R'
 alias pmu='yay -Syy'
