@@ -21,6 +21,7 @@ nnoremap <leader>gh         :Git browse<cr>
 nnoremap <leader>gp         :Git pull<cr>
 nnoremap <leader>gP         :Git pp<cr>
 nnoremap <leader>gl         :BCommits!<cr>
+nnoremap <leader>gm         :GMove <C-r>%
 
 nnoremap ]l                 :lnext<cr>
 nnoremap [l                 :lprevious<cr>
