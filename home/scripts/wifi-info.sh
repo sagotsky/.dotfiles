@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEVICE="wlp61s0"
+DEVICE="$(tail -n1 /proc/net/wireless | cut -f1 -d:)"
 
 lan_ip() {
    ip addr |
