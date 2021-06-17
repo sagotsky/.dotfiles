@@ -16,6 +16,7 @@
   cp = cherry-pick
   logs = log -p -S
   pf = push -f
+  pu = push -u
   rb = rebase
   rbc = rb --continue
   rba = rb --abort
