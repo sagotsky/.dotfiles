@@ -123,15 +123,15 @@ modules-center = xwindow
 [bar/sashimi]
 inherit = bar/base
 monitor = ${env:PRIMARY_MONITOR}
-height = 24
+height = 20
 ; mono (including WM pips)
 font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
 ; icon
 font-1 = FontAwesome:size=11;4
 ; regular
-font-2 = "Source Code Pro:size=9:regular:antialias=true;3"
+font-2 = "SauceCodePro Nerd Font:size=9:regular:antialias=true;4"
 ; bold
-font-3 = "Source Code Pro:size=9:bold:antialias=true;4"
+font-3 = "SauceCodePro Nerd Font:size=10:bold:antialias=true;4"
 ; modules-left = ewmh
 modules-left = wm-status
 ; modules-left = stdin
@@ -141,9 +141,22 @@ modules-center = xwindow
 [module/xwindow]
 type = internal/xwindow
 format = <label>
-label = "%title:0:110:...%"
+label = " %title:0:110:...% "
 label-font = ${fonts.bold}
 ; label = %title:0:30:...%
+
+; format-prefix = " "
+; format-suffix = "  "
+; overline-size = 5
+; label-underline = ${colors.background}
+;
+; label-overline = ${colors.background}
+; format-prefix = ""
+; format-suffix = " "
+; format-foreground = #aaccee
+; format-suffix-foreground = #aaccee
+; label-background = #aaccee
+; label-foreground = #000000
 
 [module/bspwm]
 type = internal/bspwm
@@ -334,14 +347,21 @@ date-alt = "%A %m/%d/%Y"
 time = %I:%M %p
 time-alt = %I:%M:%S %p
 
-format-prefix = " "
-format-prefix-foreground = ${colors.icon-fg-normal}
 ; format-padding = 5
 ; format-prefix-foreground = ${colors.foreground-alt}
 ; format-underline = #0a6cf5
 
-label = "%date% %time%"
+label = " %date% %time%"
 label-font = ${fonts.regular}
+
+; label-underline = ${colors.background}
+; label-overline = ${colors.background}
+; format-prefix = ""
+; format-suffix = " "
+; format-foreground = #7a7a7a
+; format-suffix-foreground = #7a7a7a
+; label-background = #7a7a7a
+; label-foreground = #111
 
 ; [module/pulseaudio]
 ; type = internal/pulseaudio
