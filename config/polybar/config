@@ -129,9 +129,9 @@ font-0 = unifont:fontformat=truetype:size=11:antialias=false;2
 ; icon
 font-1 = FontAwesome:size=11;4
 ; regular
-font-2 = "SauceCodePro Nerd Font:size=9:regular:antialias=true;4"
+font-2 = "SauceCodePro Nerd Font:size=9:regular:antialias=true;2"
 ; bold
-font-3 = "SauceCodePro Nerd Font:size=10:bold:antialias=true;4"
+font-3 = "SauceCodePro Nerd Font:size=10:bold:antialias=true;2"
 ; modules-left = ewmh
 modules-left = wm-status
 ; modules-left = stdin
