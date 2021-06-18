@@ -1,7 +1,8 @@
 
 [global]
     always_run_script = true
-    font = source code pro 12
+    # font = source code pro 12
+    font = SauceCodePro Nerd Font SemiBold 10
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -36,7 +37,7 @@
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = left
+    alignment = center
 
     # The frequency with which text that is longer than the notification
     # window allows bounces back and forth.
