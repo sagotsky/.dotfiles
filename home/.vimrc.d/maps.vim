@@ -1,7 +1,7 @@
 let mapleader=" "
 
-nnoremap <silent><leader>/          :Ag <cr>
-nnoremap <leader>?          :Ag <C-R><C-W><cr>
+nnoremap <silent><leader>/          :Rg <cr>
+nnoremap <leader>?          :Rg <C-R><C-W><cr>
 nnoremap <leader>p          0:Files <cr>
 nnoremap <leader>b          0:Buffers <cr>
 nnoremap <leader>r          0:History<cr>
