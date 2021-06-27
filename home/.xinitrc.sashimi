@@ -20,6 +20,7 @@ export SSH_AUTH_SOCK=$_
 setxkbmap -option terminate:ctrl_alt_bksp
 xrdb -merge ~/.Xresources
 xmodmap ~/.xmodmap
+loginctl enable-linger $USER
 
 # apps
 find ~/.xsession.d/ -not -type d | xargs -n 1 -P0 sh -c & &> /dev/null &
