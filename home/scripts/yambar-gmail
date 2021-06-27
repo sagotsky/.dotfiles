@@ -1,0 +1,23 @@
+#!/bin/sh
+
+SLEEP="${1:-300}"
+
+
+yambar_mail_status() {
+    inbox="$1"
+    count="$(gmail-unread-count.sh $inbox)"
+    if [[ "$?" == "-1" ]] ; then
+        echo "gmail-inbox-$inbox-error|string|auth"
+    else
+        [[ "$count" == "0" ]] && unread=false || unread=true
+        echo "gmail-inbox-$inbox-unread|bool|$unread"
+    fi
+}
+
+while : ; do
+    yambar_mail_status 0
+    yambar_mail_status 1
+    echo
+
+    sleep $SLEEP
+done

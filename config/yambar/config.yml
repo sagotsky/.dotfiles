@@ -26,6 +26,7 @@ bar:
   # arch-packages
   # ipc-dunst
   # systray?
+  # prevent dupe scripts
 
   right:
   - script:
@@ -34,6 +35,22 @@ bar:
         - string: { text: " {stdout} ", max: 64}
       path: "/home/sagotsky/scripts/yambar-string-wrapper.sh"
       args: ["playerctl-wrapper.sh"]
+
+  - script:
+      path: "/home/sagotsky/scripts/yambar-gmail"
+      content:
+        - map:
+            tag: gmail-inbox-0-unread
+            values: { true: { string: { text: '', foreground: 00B373ff } } }
+        - map:
+            tag: gmail-inbox-1-unread
+            values: { true: { string: { text: '', foreground: 5484edff } } }
+        - map:
+            tag: gmail-inbox-0-error
+            values: { true: { string: { text: '{gmail-inbox-0-error}', foreground: 00B373ff } } }
+        - map:
+            tag: gmail-inbox-1-error
+            values: { true: { string: { text: '{gmail-inbox-0-error}', foreground: 5484edff } } }
   - alsa:
       card: hw:PCH
       mixer: Master
