@@ -1,0 +1,29 @@
+#!/bin/sh
+
+SLEEP="${1:-10}"
+
+disk_usage() {
+  df / | awk '/dev/ {print $5}'| tr -d "%"
+}
+
+cpu_usage() {
+    vmstat  | awk '/[0-9]/ { printf "%02d\n", $13 }'
+}
+
+mem_usage() {
+    free  | awk '/Mem/ { printf "%02d\n", $2 / $3 }'
+}
+
+fmt_yambar_range() {
+    name="$1"
+    val="$2"
+    echo "$name|range:0-100|$val"
+}
+
+while : ; do
+    fmt_yambar_range cpu  "$(cpu-usage)"
+    fmt_yambar_range mem  "$(mem_usage)"
+    fmt_yambar_range disk "$(disk_usage)"
+    echo
+    sleep "$SLEEP"
+done
