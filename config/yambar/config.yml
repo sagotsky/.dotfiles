@@ -152,6 +152,7 @@ bar:
   left:
   - script:
       path: "/home/sagotsky/scripts/workspaces.rb"
+      args: ['--yambar']
       anchors:
         # - string: &ws { text: "⚫", right-margin: 4 }
         # - string: &ws { text: "﫭 ", right-margin: 9 }

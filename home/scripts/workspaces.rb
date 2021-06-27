@@ -12,7 +12,7 @@ termite setting the urgency WM_HINT goes unnoticed.
 figure out what property triggers it.
 =end
 
-puts "%{F#333333}⚫ %{F-}"*10 # skeleton output for faster perceived output
+# puts "%{F#333333}⚫ %{F-}"*10 # skeleton output for faster perceived output
 
 require "xlib-objects"
 require "pry"
@@ -45,6 +45,25 @@ class Event
   end
 end
 
+class YambarFormatter
+  def workspaces(workspaces_hash)
+    begin
+      workspaces_hash.map do |id, workspace|
+        workspace(id, workspace)
+      end.flatten.join "\n"
+    end + "\n\n"
+  end
+
+  private
+
+  def workspace(id, ws)
+    [
+      "workspace-#{id}-state|string|#{ws.state}",
+      "workspace-#{id}-name|string|#{ws.name}",
+    ]
+  end
+end
+
 class Formatter
   def initialize(cfg)
     @cfg = cfg
@@ -69,10 +88,16 @@ end
 class Cli
   EVENT_DELAY = 0.004 # give windows time to close before we query them.  yeah, it's like that :-\
 
-  def initialize(cfg)
+  def initialize
     @display = XlibObj::Display.new(":0")
     @root = Root.new(@display)
-    @formatter = Formatter.new(cfg)
+    @formatter = begin
+      if ARGV.include?("--yambar")
+        YambarFormatter.new
+      else
+        Formatter.new(Configuration.new)
+      end
+    end
   end
 
   def main
@@ -260,5 +285,4 @@ class Configuration
   end
 end
 
-cfg = Configuration.new
-Cli.new(cfg).main
+Cli.new.main
