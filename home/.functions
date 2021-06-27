@@ -239,7 +239,8 @@ function erd() {
 }
 
 inotifydo() {
-	inotifywait  -m -r . -e MODIFY,CREATE --format '%w%f' | xargs -n1 "$@"
+	# inotifywait  -m -r . -e MODIFY,CREATE --format '%w%f' | xargs -n1 "$@"
+	inotifywait  -m -r . -e MODIFY --format '%w%f' | xargs -n1 "$@"
 		# grep --line-buffered ${1:-.}
 }
 
