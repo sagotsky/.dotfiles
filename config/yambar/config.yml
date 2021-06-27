@@ -1,0 +1,192 @@
+underline: &underline
+  underline:
+    size: 1
+    color: ffffffff
+
+font-sm: &font-sm "SauceCodePro Nerd Font:size=9:light"
+font-md: &font-md "SauceCodePro Nerd Font:size=11.5:regular"
+font-lg: &font-lg "SauceCodePro Nerd Font:size=11.5:bold"
+
+bar:
+  height: 18
+  location: top
+  background: 242424ff
+  foreground: aaaaaaff
+  font: *font-md
+  spacing: 12 # around each module
+  margin: 10 # around bar
+  border:
+    width: 1
+    color: 000000ff
+
+  # Polybar todo
+  # gcal
+  # gmail
+  # wlan
+  # arch-packages
+  # ipc-dunst
+  # systray?
+
+  right:
+  - script:
+      content:
+        - string: { text: "" , foreground: 1DB954ff }
+        - string: { text: " {stdout} ", max: 64}
+      path: "/home/sagotsky/scripts/yambar-string-wrapper.sh"
+      args: ["playerctl-wrapper.sh"]
+  - alsa:
+      card: hw:PCH
+      mixer: Master
+      content:
+        map:
+          on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
+          tag: muted
+          values:
+            true: {string: {text: , foreground: ffffff66}}
+            false:
+              ramp:
+                tag: volume
+                items:
+                  - string: {text: "  {percent}%"}
+                  - string: {text: "  {percent}%"}
+                  - string: {text: "  {percent}%"}
+                  - string: {text: "  {percent}%"}
+                  - string: {text: "  {percent}%"}
+
+  - script:
+      anchors:
+        - string: &cpu  { text: " {cpu}%",  right-margin: 12 }
+        - string: &mem  { text: " {mem}%",  right-margin: 12 }
+        - string: &disk { text: " {disk}%", right-margin: 12 }
+
+        - string: &noop { text: "", left-margin: -12}
+        - string: &normal { foreground: aaaaaaff }
+        - string: &alert { foreground: ffcc66ff }
+        - string: &critical { foreground: ff5555ff, font: *font-lg }
+
+      path: "/home/sagotsky/scripts/yambar-top"
+      args: ["10"]
+      content:
+        # string: { text: "{cpu}" }
+        - ramp:
+            tag: cpu
+            items:
+              - string: { <<: [*noop] }
+              - string: { <<: [*noop] }
+              - string: { <<: [*cpu, *normal] }
+              - string: { <<: [*cpu, *alert] }
+              - string: { <<: [*cpu, *critical] }
+        - ramp:
+            tag: mem
+            items:
+              - string: { <<: [*noop] }
+              - string: { <<: [*noop] }
+              - string: { <<: [*mem, *normal] }
+              - string: { <<: [*mem, *alert] }
+              - string: { <<: [*mem, *critical] }
+        - ramp:
+            tag: disk
+            items:
+              - string: { <<: [*noop] }
+              - string: { <<: [*noop] }
+              - string: { <<: [*disk, *normal] }
+              - string: { <<: [*disk, *alert] }
+              - string: { <<: [*disk, *critical] }
+  - battery:
+      name: BAT0
+      poll-interval: 30
+      content:
+        map:
+          tag: state
+          values:
+            discharging:
+              - ramp:
+                  tag: capacity
+                  items:
+                    - string: {text: , foreground: ff0000ff}
+                    - string: {text: , foreground: ffa600ff}
+                    - string: {text: }
+                    - string: {text: }
+                    - string: {text: }
+                    - string: {text: }
+                    - string: {text: }
+                    - string: {text: }
+                    - string: {text: }
+                    - string: {text: , foreground: 00ff00ff}
+              - string: {text: "{capacity}%", left-margin: 10}
+            charging:
+              - string: {text: , foreground: 00ff00ff}
+              - string: {text: "{capacity}%"}
+            full:
+              - string: {text: , foreground: 00ff00ff}
+              - string: {text: "{capacity}% full"}
+            not charging:
+              - ramp:
+                  tag: capacity
+                  items:
+                    - string: {text:  , foreground: ff0000ff}
+                    - string: {text:  , foreground: ffa600ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+                    - string: {text:  , foreground: 00ff00ff}
+              - string: {text: "{capacity}%", left-margin: 10}
+
+  - clock:
+      time-format: "%I:%M %p"
+      date-format: "%m/%d"
+      content:
+        - string: {text: " "}
+        - string: {text: "{date}", right-margin: 5}
+        # - string: {text: }
+        - string: {text: "{time}"}
+
+  center:
+  - xwindow:
+      content:
+        string: { text: "{title}", font: *font-lg }
+  left:
+  - script:
+      path: "/home/sagotsky/scripts/workspaces.rb"
+      anchors:
+        # - string: &ws { text: "⚫", right-margin: 4 }
+        # - string: &ws { text: "﫭 ", right-margin: 9 }
+
+        - string: &ws { text: "", right-margin: 9, font: *font-sm }
+
+        - string: &urgent   { foreground: ff5500ff }
+        - string: &visible  { foreground: ffffffff}
+        - string: &occupied { foreground: 666666ff}
+        - string: &empty    { foreground: 333333ff }
+
+        - wm_states: &wm_states
+            urgent:   { string: { <<: [*ws, *urgent] } }
+            visible:  { string: { <<: [*ws, *visible] } }
+            occupied: { string: { <<: [*ws, *occupied] } }
+            empty:    { string: { <<: [*ws, *empty] } }
+      content:
+        - map: { tag: workspace-0-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-1-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-2-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-3-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-4-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-5-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-6-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-7-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-8-state, values: { <<: *wm_states } }
+        - map: { tag: workspace-9-state, values: { <<: *wm_states } }
+
+#   -e 's/<1>/  /g' \
+#   -e 's/<2>/  /g' \
+#   -e 's/<3>/  /g' \
+#   -e 's/<4>/  /g' \
+#   -e 's/<5>/  /g' \
+#   -e 's/<6>/  /g' \
+#   -e 's/<7>/  /g' \
+#   -e 's/<8>/  /g' \
+#   -e 's/<9>/  /g' \
+#   -e 's/<0>/  /g' \
