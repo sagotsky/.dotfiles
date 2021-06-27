@@ -21,7 +21,7 @@ fmt_yambar_range() {
 }
 
 while : ; do
-    fmt_yambar_range cpu  "$(cpu-usage)"
+    fmt_yambar_range cpu  "$(cpu_usage)"
     fmt_yambar_range mem  "$(mem_usage)"
     fmt_yambar_range disk "$(disk_usage)"
     echo
