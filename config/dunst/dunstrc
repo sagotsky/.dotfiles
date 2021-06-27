@@ -52,10 +52,10 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = yes
+    word_wrap = no
 
     # Ignore newlines '\n' in notifications.
-    ignore_newline = no
+    ignore_newline = yes
 
 
     # The geometry of the window:
@@ -72,6 +72,8 @@
     # screen width minus the width defined in within the geometry option.
     #geometry = "300x5-30+20"
     geometry = "x1+0+1"
+    # geometry = "640x1+640+1"  # 1920/3
+
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -134,7 +136,7 @@
 
     # Horizontal padding.
     #horizontal_padding = 8
-    horizontal_padding = 0
+    horizontal_padding = 200
 
     # Define a color for the separator.
     # possible values are:
