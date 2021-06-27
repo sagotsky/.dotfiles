@@ -7,6 +7,8 @@ host *
 host rj
   hostname sagotsky.dynamic-dns.net
   forwardX11  no
+  ExitOnForwardFailure yes
+  ServerAliveInterval=60
 
 host dh
 	hostname sagotsky.com
