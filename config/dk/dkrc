@@ -128,9 +128,9 @@ fi
   ws_rule Spotify 2
   ws_rule spotify 2
   ws_rule Slack   5
-  ws_rule zoom    10
 
-	dkcmd rule type="splash" float=true
+	dkcmd rule type="splash" float=true ws=10
+  ws_rule zoom    10
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2
