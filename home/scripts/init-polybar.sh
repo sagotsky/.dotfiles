@@ -2,14 +2,15 @@
 
 # Runs polybar, redirecting stdin into named pipe polybar will read from later
 
+# pkill polybar
 killall polybar &>/dev/null
 there-can-be-only-one.sh
 
-refresh-monitors.sh # does this belong elsewhere?  it needs to hit before this script, but during seems wrong
+# refresh-monitors.sh # does this belong elsewhere?  it needs to hit before this script, but during seems wrong
 
-FIFO='/tmp/.polybar.fifo'
-rm $FIFO &>/dev/null
-mkfifo $FIFO
+# FIFO='/tmp/.polybar.fifo'
+# rm $FIFO &>/dev/null
+# mkfifo $FIFO
 
 
 if grep "$(hostname)" ~/.config/polybar/config &> /dev/null ; then
@@ -46,6 +47,6 @@ fi
 
 polybar $BAR &
 
-while read -r line ; do
-  echo "$line" > $FIFO
-done
+# while read -r line ; do
+#   echo "$line" > $FIFO
+# done
