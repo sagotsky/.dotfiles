@@ -7,8 +7,12 @@ font-sm: &font-sm "SauceCodePro Nerd Font:size=9:light"
 font-md: &font-md "SauceCodePro Nerd Font:size=11.5:regular"
 font-lg: &font-lg "SauceCodePro Nerd Font:size=11.5:bold"
 
+col-normal: &col-normal { foreground: aaaaaaff }
+col-alert: &col-alert { foreground: ffcc66ff }
+col-critical: &col-critical { foreground: ff5555ff, font: *font-lg }
+
 bar:
-  height: 18
+  height: 22
   location: top
   background: 242424ff
   foreground: aaaaaaff
@@ -21,7 +25,6 @@ bar:
 
   # Polybar todo
   # gcal
-  # gmail
   # wlan
   # arch-packages
   # ipc-dunst
@@ -37,20 +40,30 @@ bar:
       args: ["playerctl-wrapper.sh"]
 
   - script:
+      anchors:
+        - string: &noop { text: "", left-margin: -12}
       path: "/home/sagotsky/scripts/yambar-gmail"
       content:
         - map:
             tag: gmail-inbox-0-unread
-            values: { true: { string: { text: '', foreground: 00B373ff } } }
+            values:
+              true: { string: { text: '', foreground: 00B373ff } }
+              false: { string: *noop }
         - map:
             tag: gmail-inbox-1-unread
-            values: { true: { string: { text: '', foreground: 5484edff } } }
+            values:
+              true: { string: { text: '', foreground: 5484edff } }
+              false: { string: *noop }
         - map:
             tag: gmail-inbox-0-error
-            values: { true: { string: { text: '{gmail-inbox-0-error}', foreground: 00B373ff } } }
+            values:
+              true: { string: { text: '{gmail-inbox-0-error}', foreground: 00B373ff } }
+              false: { string: *noop }
         - map:
             tag: gmail-inbox-1-error
-            values: { true: { string: { text: '{gmail-inbox-0-error}', foreground: 5484edff } } }
+            values:
+              true: { string: { text: '{gmail-inbox-0-error}', foreground: 5484edff } }
+              false: { string: *noop }
   - alsa:
       card: hw:PCH
       mixer: Master
@@ -72,43 +85,39 @@ bar:
 
   - script:
       anchors:
-        - string: &cpu  { text: " {cpu}%",  right-margin: 12 }
-        - string: &mem  { text: " {mem}%",  right-margin: 12 }
-        - string: &disk { text: " {disk}%", right-margin: 12 }
+        - cpu: &cpu  { text: " {cpu}%",  right-margin: 12 }
+        - mem: &mem  { text: " {mem}%",  right-margin: 12 }
+        - disk: &disk { text: " {disk}%", right-margin: 12 }
 
-        - string: &noop { text: "", left-margin: -12}
-        - string: &normal { foreground: aaaaaaff }
-        - string: &alert { foreground: ffcc66ff }
-        - string: &critical { foreground: ff5555ff, font: *font-lg }
+        - noop: &noop { text: "", left-margin: -12}
 
       path: "/home/sagotsky/scripts/yambar-top"
       args: ["10"]
       content:
-        # string: { text: "{cpu}" }
         - ramp:
             tag: cpu
             items:
               - string: { <<: [*noop] }
               - string: { <<: [*noop] }
-              - string: { <<: [*cpu, *normal] }
-              - string: { <<: [*cpu, *alert] }
-              - string: { <<: [*cpu, *critical] }
+              - string: { <<: [*cpu, *col-normal] }
+              - string: { <<: [*cpu, *col-alert] }
+              - string: { <<: [*cpu, *col-critical] }
         - ramp:
             tag: mem
             items:
               - string: { <<: [*noop] }
               - string: { <<: [*noop] }
-              - string: { <<: [*mem, *normal] }
-              - string: { <<: [*mem, *alert] }
-              - string: { <<: [*mem, *critical] }
+              - string: { <<: [*mem, *col-normal] }
+              - string: { <<: [*mem, *col-alert] }
+              - string: { <<: [*mem, *col-critical] }
         - ramp:
             tag: disk
             items:
               - string: { <<: [*noop] }
               - string: { <<: [*noop] }
-              - string: { <<: [*disk, *normal] }
-              - string: { <<: [*disk, *alert] }
-              - string: { <<: [*disk, *critical] }
+              - string: { <<: [*disk, *col-normal] }
+              - string: { <<: [*disk, *col-alert] }
+              - string: { <<: [*disk, *col-critical] }
   - battery:
       name: BAT0
       poll-interval: 30
@@ -129,7 +138,7 @@ bar:
                     - string: {text: }
                     - string: {text: }
                     - string: {text: }
-                    - string: {text: , foreground: 00ff00ff}
+                    - string: {text: }
               - string: {text: "{capacity}%", left-margin: 10}
             charging:
               - string: {text: , foreground: 00ff00ff}
@@ -165,15 +174,12 @@ bar:
   center:
   - xwindow:
       content:
-        string: { text: "{title}", font: *font-lg }
+        string: { text: "{title}", font: *font-lg, max: 64 }
   left:
   - script:
       path: "/home/sagotsky/scripts/workspaces.rb"
       args: ['--yambar']
       anchors:
-        # - string: &ws { text: "⚫", right-margin: 4 }
-        # - string: &ws { text: "﫭 ", right-margin: 9 }
-
         - string: &ws { text: "", right-margin: 9, font: *font-sm }
 
         - string: &urgent   { foreground: ff5500ff }
