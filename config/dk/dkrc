@@ -5,8 +5,6 @@
 # 2. sxhkd collisions
 # 3. sxhkd resize ambiguity
 # 4. tab completoin
-# 5. rules - zoom has a type=splash window that should behave differently from main zoom.
-# 6. why are gaps configurable per ws, but borders aren't?  from the docs it's not obvious where i can use ws=n
 
 # example dkrc to show some basic command usage and error reporting
 
@@ -122,12 +120,12 @@ fi
 		app=$1
 		ws=$2
 
-		dkcmd rule class="^$app$" ws="$ws"
+		dkcmd rule class="^${app^}$" ws="$ws" # Upcase
+		dkcmd rule class="^${app~}$" ws="$ws" # downcased
 	}
-  ws_rule Firefox 1
-  ws_rule Spotify 2
+  ws_rule firefox 1
   ws_rule spotify 2
-  ws_rule Slack   5
+  ws_rule slack   5
 
 	dkcmd rule type="splash" float=true ws=10
   ws_rule zoom    10
