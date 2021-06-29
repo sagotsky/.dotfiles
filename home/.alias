@@ -40,3 +40,5 @@ alias xsel='xsel --logfile ~/.Xsel.log'
 alias :e='nv '
 alias :q='exit'
 alias :Q='exit'
+
+# vim: set ft=sh

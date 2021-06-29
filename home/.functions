@@ -251,3 +251,5 @@ _rb_inflect() {
 }
 
 alias underscore="_rb_inflect underscore"
+
+# vim: set ft=sh
