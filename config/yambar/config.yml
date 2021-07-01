@@ -6,6 +6,7 @@ underline: &underline
 font-sm: &font-sm "SauceCodePro Nerd Font:size=9:light"
 font-md: &font-md "SauceCodePro Nerd Font:size=11.5:regular"
 font-lg: &font-lg "SauceCodePro Nerd Font:size=11.5:bold"
+font-icon: &font-icon "SauceCodePro Nerd Font:size=13"
 
 col-normal: &col-normal { foreground: aaaaaaff }
 col-alert: &col-alert { foreground: ffcc66ff }
@@ -34,7 +35,7 @@ bar:
   right:
   - script:
       content:
-        - string: { text: "" , foreground: 1DB954ff }
+        - string: { text: "" , foreground: 1DB954ff, font: *font-icon }
         - string: { text: " {stdout} ", max: 64}
       path: "/home/sagotsky/scripts/yambar-string-wrapper.sh"
       args: ["playerctl-wrapper.sh"]
@@ -47,17 +48,17 @@ bar:
         - map:
             tag: gmail-inbox-0-unread
             values:
-              true: { string: { text: '', foreground: 00B373ff } }
+              true: { string: { text: '', foreground: 00B373ff, font: *font-icon } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-1-unread
             values:
-              true: { string: { text: '', foreground: 5484edff } }
+              true: { string: { text: '', foreground: 5484edff, font: *font-icon } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-0-error
             values:
-              true: { string: { text: '{gmail-inbox-0-error}', foreground: 00B373ff } }
+              true: { string: { text: '{gmail-inbox-0-error}', foreground: 00B373ff, font: *font-icon } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-1-error
@@ -68,20 +69,23 @@ bar:
       card: hw:PCH
       mixer: Master
       content:
-        map:
-          on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
-          tag: muted
-          values:
-            true: {string: {text: , foreground: ffffff66}}
-            false:
-              ramp:
-                tag: volume
-                items:
-                  - string: {text: "  {percent}%"}
-                  - string: {text: "  {percent}%"}
-                  - string: {text: "  {percent}%"}
-                  - string: {text: "  {percent}%"}
-                  - string: {text: "  {percent}%"}
+        list:
+          items:
+            - map:
+                on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
+                tag: muted
+                values:
+                  true: {string: {text: , foreground: ffffff66}}
+                  false:
+                    ramp:
+                      tag: volume
+                      items:
+                        - string: {text: "  ", font: *font-icon}
+                        - string: {text: "  ", font: *font-icon}
+                        - string: {text: "  ", font: *font-icon}
+                        - string: {text: "  ", font: *font-icon}
+                        - string: {text: "  ", font: *font-icon}
+            - string: { text: "{percent}%" }
 
   - script:
       anchors:
@@ -129,17 +133,17 @@ bar:
               - ramp:
                   tag: capacity
                   items:
-                    - string: {text: , foreground: ff0000ff}
-                    - string: {text: , foreground: ffa600ff}
-                    - string: {text: }
-                    - string: {text: }
-                    - string: {text: }
-                    - string: {text: }
-                    - string: {text: }
-                    - string: {text: }
-                    - string: {text: }
-                    - string: {text: }
-              - string: {text: "{capacity}%", left-margin: 10}
+                    - string: {text: , foreground: ff0000ff, font: *font-icon}
+                    - string: {text: , foreground: ffa600ff, font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+                    - string: {text: , font: *font-icon}
+              - string: {text: "{capacity}%", left-margin: 12}
             charging:
               - string: {text: }
               # - string: {text: "{capacity}%"}
@@ -147,23 +151,23 @@ bar:
               - ramp:
                   tag: capacity
                   items:
-                    - string: {text:  , foreground: ff0000ff}
-                    - string: {text:  , foreground: ffa600ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-                    - string: {text:  , foreground: 00ff00ff}
-              - string: {text: "{capacity}%", left-margin: 10}
+                    - string: {text:  , foreground: ff0000ff, font: *font-icon}
+                    - string: {text:  , foreground: ffa600ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+              - string: {text: "{capacity}%", left-margin: 12}
 
   - clock:
       time-format: "%I:%M %p"
       date-format: "%m/%d"
       content:
-        - string: {text: " "}
+        - string: {text: " ", font: *font-md}
         - string: {text: "{date}", right-margin: 5}
         # - string: {text: }
         - string: {text: "{time}"}
