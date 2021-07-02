@@ -163,6 +163,17 @@ bar:
                     - string: {text:  , foreground: 00ff00ff, font: *font-icon}
               - string: {text: "{capacity}%", left-margin: 12}
 
+  - script:
+      path: "/home/sagotsky/scripts/yambar-dunst.sh"
+      args: ["daemon"]
+      content:
+        map:
+          on-click: "yambar-dunst.sh click"
+          tag: "dunst_is_paused"
+          values:
+            true: { string: { text: "", foreground: ff2222ff } }
+            false: { string: { text: "" } }
+
   - clock:
       time-format: "%I:%M %p"
       date-format: "%m/%d"
