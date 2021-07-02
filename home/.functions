@@ -249,7 +249,14 @@ _rb_inflect() {
 	[[ "$method" =~ ^[a-z_]*$ ]] || return 1
 	ruby -r active_support -n -e "puts ActiveSupport::Inflector.${method}(\$_)"
 }
-
 alias underscore="_rb_inflect underscore"
+
+nerd_icons() {
+ curl -s https://www.nerdfonts.com/cheat-sheet |
+	 awk 'BEGIN { FS="[<>]" } ; /class-name/ { print $3, $7}' |
+	 while read -r name num ; do echo -e "\u$num $name" ; done |
+	 fzf
+}
+
 
 # vim: set ft=sh
