@@ -192,37 +192,83 @@ bar:
       path: "/home/sagotsky/scripts/workspaces.rb"
       args: ['--yambar']
       anchors:
-        - string: &ws { text: "", right-margin: 9, font: *font-sm }
-
         - string: &urgent   { foreground: ff5500ff }
         - string: &visible  { foreground: ffffffff}
         - string: &occupied { foreground: 666666ff}
         - string: &empty    { foreground: 333333ff }
 
-        - wm_states: &wm_states
-            urgent:   { string: { <<: [*ws, *urgent] } }
-            visible:  { string: { <<: [*ws, *visible] } }
-            occupied: { string: { <<: [*ws, *occupied] } }
-            empty:    { string: { <<: [*ws, *empty] } }
-      content:
-        - map: { tag: workspace-0-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-1-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-2-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-3-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-4-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-5-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-6-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-7-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-8-state, values: { <<: *wm_states } }
-        - map: { tag: workspace-9-state, values: { <<: *wm_states } }
+        - ws-icon-style: &ws-icon-style { right-margin: 12, font: *font-icon }
 
-#   -e 's/<1>/  /g' \
-#   -e 's/<2>/  /g' \
-#   -e 's/<3>/  /g' \
-#   -e 's/<4>/  /g' \
-#   -e 's/<5>/  /g' \
-#   -e 's/<6>/  /g' \
-#   -e 's/<7>/  /g' \
-#   -e 's/<8>/  /g' \
-#   -e 's/<9>/  /g' \
-#   -e 's/<0>/  /g' \
+        - ws-icon0: &ws-icon0 { text: "", <<: *ws-icon-style }
+        - ws-icon2: &ws-icon1 { text: "", <<: *ws-icon-style }
+        - ws-icon3: &ws-icon2 { text: "", <<: *ws-icon-style }
+        - ws-icon4: &ws-icon3 { text: "", <<: *ws-icon-style }
+        - ws-icon5: &ws-icon4 { text: "", <<: *ws-icon-style }
+        - ws-icon6: &ws-icon5 { text: "", <<: *ws-icon-style }
+        - ws-icon7: &ws-icon6 { text: "", <<: *ws-icon-style }
+        - ws-icon8: &ws-icon7 { text: "", <<: *ws-icon-style }
+        - ws-icon9: &ws-icon8 { text: "", <<: *ws-icon-style }
+        - ws-icon9: &ws-icon9 { text: "", <<: *ws-icon-style }
+
+        - ws0: &ws0
+             urgent:   { string: { <<: [*ws-icon0, *urgent] } }
+             visible:  { string: { <<: [*ws-icon0, *visible] } }
+             occupied: { string: { <<: [*ws-icon0, *occupied] } }
+             empty:    { string: { <<: [*ws-icon0, *empty] } }
+        - ws1: &ws1
+             urgent:   { string: { <<: [*ws-icon1, *urgent] } }
+             visible:  { string: { <<: [*ws-icon1, *visible] } }
+             occupied: { string: { <<: [*ws-icon1, *occupied] } }
+             empty:    { string: { <<: [*ws-icon1, *empty] } }
+        - ws2: &ws2
+             urgent:   { string: { <<: [*ws-icon2, *urgent] } }
+             visible:  { string: { <<: [*ws-icon2, *visible] } }
+             occupied: { string: { <<: [*ws-icon2, *occupied] } }
+             empty:    { string: { <<: [*ws-icon2, *empty] } }
+        - ws3: &ws3
+             urgent:   { string: { <<: [*ws-icon3, *urgent] } }
+             visible:  { string: { <<: [*ws-icon3, *visible] } }
+             occupied: { string: { <<: [*ws-icon3, *occupied] } }
+             empty:    { string: { <<: [*ws-icon3, *empty] } }
+        - ws4: &ws4
+             urgent:   { string: { <<: [*ws-icon4, *urgent] } }
+             visible:  { string: { <<: [*ws-icon4, *visible] } }
+             occupied: { string: { <<: [*ws-icon4, *occupied] } }
+             empty:    { string: { <<: [*ws-icon4, *empty] } }
+        - ws5: &ws5
+             urgent:   { string: { <<: [*ws-icon5, *urgent] } }
+             visible:  { string: { <<: [*ws-icon5, *visible] } }
+             occupied: { string: { <<: [*ws-icon5, *occupied] } }
+             empty:    { string: { <<: [*ws-icon5, *empty] } }
+        - ws6: &ws6
+             urgent:   { string: { <<: [*ws-icon6, *urgent] } }
+             visible:  { string: { <<: [*ws-icon6, *visible] } }
+             occupied: { string: { <<: [*ws-icon6, *occupied] } }
+             empty:    { string: { <<: [*ws-icon6, *empty] } }
+        - ws7: &ws7
+             urgent:   { string: { <<: [*ws-icon7, *urgent] } }
+             visible:  { string: { <<: [*ws-icon7, *visible] } }
+             occupied: { string: { <<: [*ws-icon7, *occupied] } }
+             empty:    { string: { <<: [*ws-icon7, *empty] } }
+        - ws8: &ws8
+             urgent:   { string: { <<: [*ws-icon8, *urgent] } }
+             visible:  { string: { <<: [*ws-icon8, *visible] } }
+             occupied: { string: { <<: [*ws-icon8, *occupied] } }
+             empty:    { string: { <<: [*ws-icon8, *empty] } }
+        - ws9: &ws9
+             urgent:   { string: { <<: [*ws-icon9, *urgent] } }
+             visible:  { string: { <<: [*ws-icon9, *visible] } }
+             occupied: { string: { <<: [*ws-icon9, *occupied] } }
+             empty:    { string: { <<: [*ws-icon9, *empty] } }
+
+      content:
+        - map: { tag: workspace-0-state, values: { <<: *ws0 } }
+        - map: { tag: workspace-1-state, values: { <<: *ws1 } }
+        - map: { tag: workspace-2-state, values: { <<: *ws2 } }
+        - map: { tag: workspace-3-state, values: { <<: *ws3 } }
+        - map: { tag: workspace-4-state, values: { <<: *ws4 } }
+        - map: { tag: workspace-5-state, values: { <<: *ws5 } }
+        - map: { tag: workspace-6-state, values: { <<: *ws6 } }
+        - map: { tag: workspace-7-state, values: { <<: *ws7 } }
+        - map: { tag: workspace-8-state, values: { <<: *ws8 } }
+        - map: { tag: workspace-9-state, values: { <<: *ws9 } }
