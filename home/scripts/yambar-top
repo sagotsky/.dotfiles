@@ -20,10 +20,10 @@ fmt_yambar_range() {
     echo "$name|range:0-100|$val"
 }
 
-while : ; do
+# while : ; do
     fmt_yambar_range cpu  "$(cpu_usage)"
     fmt_yambar_range mem  "$(mem_usage)"
     fmt_yambar_range disk "$(disk_usage)"
     echo
-    sleep "$SLEEP"
-done
+    # sleep "$SLEEP"
+# done

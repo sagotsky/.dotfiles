@@ -48,12 +48,12 @@ bar:
         - map:
             tag: gmail-inbox-0-unread
             values:
-              true: { string: { text: '', foreground: 00B373ff, font: *font-icon } }
+              true: { string: { text: '', foreground: 00B373ff, font: *font-icon, left-margin: 12 } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-1-unread
             values:
-              true: { string: { text: '', foreground: 5484edff, font: *font-icon } }
+              true: { string: { text: '', foreground: 5484edff, font: *font-icon, left-margin: 12 } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-0-error
@@ -97,6 +97,7 @@ bar:
 
       path: "/home/sagotsky/scripts/yambar-top"
       args: ["10"]
+      poll-interval: 10
       content:
         - ramp:
             tag: cpu
