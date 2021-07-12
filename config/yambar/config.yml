@@ -184,6 +184,13 @@ bar:
         # - string: {text: }
         - string: {text: "{time}"}
 
+  - script:
+      path: "/home/sagotsky/scripts/yambar-tray.sh"
+      args: []
+      content:
+        - string: { text: "{padding}", left-margin: 0 }
+
+
   center:
   - xwindow:
       content:
