@@ -27,7 +27,7 @@ case $1 in
         yambar_dunst_is_paused
         trap click_hook USR1
         while : ; do
-            sleep infinity &
+            sleep 3m &
             sleep_pid="$!"
             wait $sleep_pid
             kill $sleep_pid
