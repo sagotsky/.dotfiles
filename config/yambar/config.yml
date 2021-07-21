@@ -29,7 +29,6 @@ bar:
   # wlan
   # arch-packages
   # ipc-dunst
-  # systray?
   # prevent dupe scripts
 
   right:
@@ -188,7 +187,14 @@ bar:
       path: "/home/sagotsky/scripts/yambar-tray.sh"
       args: []
       content:
-        - string: { text: "{padding}", left-margin: 0 }
+        - string: { text: "", left-margin: 0 }
+  - script:
+      path: "/home/sagotsky/scripts/yambar-tray-width.sh"
+      poll-interval: 1
+      args: []
+      content:
+        - string: { text: "{padding}", left-margin: 0  }
+
 
 
   center:

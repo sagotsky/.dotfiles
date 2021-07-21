@@ -15,24 +15,14 @@ sleep 0.1 # make sure yambar starts first so we can draw on tpo of it
 
 left_offset=$(($screen_width - $icon_slots * $icon_size))
 
-# why you freeze bar?
-# echo stalonetray \
-#     --icon-size $icon_size \
-#     --geometry "${icon_slots}x1+${left_offset}+0" \
-#     --sticky \
-#     --skip-taskbar \
-#     --grow-gravity E \
-#     --icon-gravity E \
-#     --parent-bg \
-#     &> /dev/null
-
+# trayer-srg fork!
 trayer \
     --edge top \
     --align right \
     --height 20 \
-    --expand true  \
+    --expand false  \
     --transparent true \
     --alpha 220 \
-    --width 60  \
-    --widthtype pixel  \
+    --width 20  \
+    --widthtype request  \
     &>/dev/null
