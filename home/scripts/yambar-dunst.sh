@@ -19,7 +19,7 @@ click_hook() {
 }
 
 toggle_dunst() {
-    pgrep -f "$(basename $0)" | grep -v $$ | xargs kill -s USR1
+    pgrep -f "$(basename $0)" | grep -v $$ | xargs kill -s USR1 &>/dev/null
 }
 
 case $1 in
