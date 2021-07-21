@@ -26,4 +26,13 @@ left_offset=$(($screen_width - $icon_slots * $icon_size))
 #     --parent-bg \
 #     &> /dev/null
 
-trayer --edge top --align right --height 20 --expand true  --transparent true --alpha 220 --width 44  --widthtype pixel  &>/dev/null
+trayer \
+    --edge top \
+    --align right \
+    --height 20 \
+    --expand true  \
+    --transparent true \
+    --alpha 220 \
+    --width 60  \
+    --widthtype pixel  \
+    &>/dev/null
