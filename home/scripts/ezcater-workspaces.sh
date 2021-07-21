@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias tmux='systemd-run --scope --user tmux -2'
+# alias tmux='systemd-run --scope --user tmux -2'
 #alt name: tmux-compose?
 function tmux-up {
   DIR=$1
@@ -121,4 +121,12 @@ EOF
 
 tmux-up ~/repos/developer-handbook dev-handbook <<EOF
   docker-compose up
+EOF
+
+tmux-up ~/repos/engineering-rfcs rfc<<EOF
+  zsh
+EOF
+
+tmux-up ~/repos/menus-graphql-prototype gql <<EOF
+  zsh
 EOF
