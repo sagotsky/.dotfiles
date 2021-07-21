@@ -17,10 +17,12 @@
 # echinus
 # not tiling by default.
 
-dk
+# chamfer # didn'treally launch
+dk # confuses firefox refresh
 # termite
-# qtile start -c ~/.config/qtile/config.py &> /tmp/qtile
-# # python based xmonad replacement.  kinda slow.  doesn't like zoom.
+# qtile start -c ~/.config/qtile/config.py #&> /tmp/qtile
+# python based xmonad replacement.  kinda slow.  doesn't like zoom.  doesn't like yambar plus tray
+
 
 # dwm
 # fights with polybar.  probably solvable.
@@ -59,6 +61,7 @@ dk
 #  theme won't stick
 #  not sure how multimonitor will behave
 #  0.2.6 broke in aur and hasn't been fixed in a week.  giving up til this is more stable.
+#  yambar won't show up
 
 # xmonad gold standard.  would love to ditch haskell though.
 
