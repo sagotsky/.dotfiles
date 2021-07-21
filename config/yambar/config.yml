@@ -190,7 +190,7 @@ bar:
         - string: { text: "", left-margin: 0 }
   - script:
       path: "/home/sagotsky/scripts/yambar-tray-width.sh"
-      poll-interval: 1
+      poll-interval: 10
       args: []
       content:
         - string: { text: "{padding}", left-margin: 0  }
