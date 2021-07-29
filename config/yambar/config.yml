@@ -21,8 +21,9 @@ bar:
   spacing: 12 # around each module
   margin: 10 # around bar
   border:
-    width: 1
+    width: 0
     color: 000000ff
+    bottom-width: 1
 
   # Polybar todo
   # gcal
