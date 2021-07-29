@@ -128,5 +128,5 @@ tmux-up ~/repos/engineering-rfcs rfc<<EOF
 EOF
 
 tmux-up ~/repos/menus-graphql-prototype gql <<EOF
-  zsh
+  vsplit zsh bin/start
 EOF
