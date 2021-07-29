@@ -29,6 +29,9 @@ super + minus
 super + {_,shift + }{comma,period}
 	dkcmd set {master,stack} {+1,-1}
 
+super + shift + space
+	~/.config/dk/dkrc
+
 # close window, swap tiled window in/out of master, cycle tiled windows in place
 # alt + {q,space,Tab}
 # 	dkcmd win {kill,swap,cycle}
