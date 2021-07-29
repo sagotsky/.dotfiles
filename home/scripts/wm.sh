@@ -18,7 +18,8 @@
 # not tiling by default.
 
 # chamfer # didn'treally launch
-dk # confuses firefox refresh
+~/bin/dk
+# dk # confuses firefox refresh
 # termite
 # qtile start -c ~/.config/qtile/config.py #&> /tmp/qtile
 # python based xmonad replacement.  kinda slow.  doesn't like zoom.  doesn't like yambar plus tray
