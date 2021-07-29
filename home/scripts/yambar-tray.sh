@@ -18,11 +18,12 @@ left_offset=$(($screen_width - $icon_slots * $icon_size))
 # trayer-srg fork!
 trayer \
     --edge top \
+    --tint 0x24242400 \
     --align right \
     --height 20 \
     --expand false  \
     --transparent true \
-    --alpha 220 \
+    --alpha 0 \
     --width 20  \
-    --widthtype request  \
-    &>/dev/null
+    --widthtype request
+    # &>/dev/null
