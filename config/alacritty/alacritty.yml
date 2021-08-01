@@ -15,9 +15,17 @@ env:
 
 # Window dimensions in character columns and lines
 # (changes require restart)
-window.dimensions:
-  columns: 120
-  lines: 60
+window:
+  dimensions:
+    columns: 120
+    lines: 60
+
+  padding:
+    x: 1 # todo: script to toggle?
+    y: 1
+
+  dynamic_padding:
+    false
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -31,7 +39,8 @@ tabspaces: 4
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
-background_opacity: 0.85
+# background_opacity: 0.85
+background_opacity: 0.75
 
 # Font configuration (changes require restart)
 font:

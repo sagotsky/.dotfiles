@@ -17,7 +17,7 @@
 # echinus
 # not tiling by default.
 
-# chamfer # didn'treally launch
+# exec chamfer --config=/usr/share/chamfer/config/config.py --shader-path=/usr/share/chamfer/shaders # didn'treally launch
 ~/bin/dk
 # dk # confuses firefox refresh
 # termite

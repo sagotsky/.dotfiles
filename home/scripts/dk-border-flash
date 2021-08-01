@@ -5,14 +5,11 @@ set_color() {
  sleep 0.04
 }
 
-
+set_color \#ddddee
 dkcmd set border color focus="#ccccdd"
-# set_color \#eeeeff
 set_color \#ccccdd
 dkcmd set border color focus="#222222"
-# set_color \#ddddee
-set_color \#ccccdd
 set_color \#bbbbaa
 set_color \#aaaabb
-set_color \#9999aa
-set_color \#888888
+set_color \#999999
+# set_color \#888888
