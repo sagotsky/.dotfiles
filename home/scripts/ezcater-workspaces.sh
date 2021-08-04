@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.alias
+
 # alias tmux='systemd-run --scope --user tmux -2'
 #alt name: tmux-compose?
 function tmux-up {
@@ -128,5 +130,5 @@ tmux-up ~/repos/engineering-rfcs rfc<<EOF
 EOF
 
 tmux-up ~/repos/menus-graphql-prototype gql <<EOF
-  vsplit zsh bin/start
+  hsplit zsh bin/start
 EOF
