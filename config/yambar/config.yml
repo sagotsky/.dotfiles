@@ -125,11 +125,13 @@ bar:
               - string: { <<: [*disk, *col-critical] }
   - battery:
       name: BAT0
-      poll-interval: 30
+      poll-interval: 15
       content:
         map:
           tag: state
           values:
+            full:
+              - string: {text: "", left-margin: -12}
             discharging:
               - ramp:
                   tag: capacity
