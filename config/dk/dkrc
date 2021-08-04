@@ -95,7 +95,7 @@ fi
 	# dkcmd set border width=1 colour focus='#6699cc' unfocus='#000000' urgent='#ee5555'
 
 	# alternatively, enable split borders and colours
-	dkcmd set border width=2 outer_width=1 \
+	dkcmd set border width=1 outer_width=1 \
 		colour \
 		focus='#222222' \
 		unfocus='#222222' \
@@ -130,6 +130,8 @@ fi
   ws_rule spotify 2
   ws_rule slack   5
   ws_rule zoom    10
+
+	dkcmd rule type="splash" float=true ws=10 # does this have to be before or after zoom?
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2

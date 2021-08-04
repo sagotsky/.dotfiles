@@ -1,15 +1,16 @@
 #!/bin/bash
 
 set_color() {
- dkcmd set border colour outer_focus="$1"
+ dkcmd set border colour outer_focus="$1" focus="$1"
  sleep 0.04
 }
 
-set_color \#ddddee
-dkcmd set border color focus="#ccccdd"
+# set_color \#ddddee
 set_color \#ccccdd
-dkcmd set border color focus="#222222"
 set_color \#bbbbaa
 set_color \#aaaabb
 set_color \#999999
-# set_color \#888888
+set_color \#888888
+set_color \#777777
+
+# dkcmd set border width=1 outer_width=1 unfocus="#ff0000" focus="#00ff00"
