@@ -15,14 +15,18 @@ env:
 
 # Window dimensions in character columns and lines
 # (changes require restart)
+
+-: &window_padding 0
+-: &font_family Meslo LG S # ttf-meslo
+
 window:
   dimensions:
     columns: 120
     lines: 60
 
   padding:
-    x: 1 # todo: script to toggle?
-    y: 1
+    x: *window_padding # todo: script to toggle?
+    y: *window_padding
 
   dynamic_padding:
     false
@@ -46,20 +50,20 @@ background_opacity: 0.75
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Meslo LG S # ttf-meslo
+    family: *font_family
     # Style can be specified to pick a specific face.
     style: Regular
     # style: Semibold
 
   # The bold font face
   bold:
-    family: Meslo LG S
+    family: *font_family
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: Meslo LG S
+    family: *font_family
     # Style can be specified to pick a specific face.
     # style: Italic
 
