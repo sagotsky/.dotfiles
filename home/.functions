@@ -179,6 +179,8 @@ function bwhite()  { echo -en "\e[1;37m$@\e[0m"; }
 
 # watch a file.  do something whenever it changes
 function file-write-do {
+	echo "try entr"
+	exit 1
   FILE=$1
   shift
   while [ $? -eq 0 ] && [ -x /usr/bin/inotifywait ] ; do
@@ -239,6 +241,8 @@ function erd() {
 }
 
 inotifydo() {
+	echo "try entr"
+	exit 1
 	# inotifywait  -m -r . -e MODIFY,CREATE --format '%w%f' | xargs -n1 "$@"
 	inotifywait  -m -r . -e MODIFY --format '%w%f' | xargs -n1 "$@"
 		# grep --line-buffered ${1:-.}
