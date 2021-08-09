@@ -16,7 +16,7 @@ env:
 # Window dimensions in character columns and lines
 # (changes require restart)
 
--: &window_padding 0
+-: &window_padding 1
 -: &font_family Meslo LG S # ttf-meslo
 
 window:
