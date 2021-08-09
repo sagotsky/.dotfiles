@@ -4,14 +4,15 @@
 # Usage: eval $(xrdb_dump.sh)
 
 export_cmd() {
-  echo export $1="$2"
+  echo export "$1"="$2"
 }
 
 xrdb_vars() {
   DISPLAY=$(cat ~/.display) xrdb -query |
     grep '^*' |
     sed -e 's/\*\./xrdb_/' |
-    tr -d \:
+    tr -d \: |
+    tr -d \*
 }
 
 uname | grep "Darwin" &>/dev/null && exit
