@@ -23,7 +23,7 @@
   root = rev-parse --show-toplevel
   st = status
 
-  ls = ! git log --oneline $(git trunk-name)...
+  ls =             ! git log --oneline $(git trunk-name)...
   trunk-name =     ! git config --get branch.main.merge &>/dev/null && echo "main" || echo "master"
   remaster =       ! git fetch && git rebase -i origin/$(git trunk-name)
   wip =            ! git commit -m 'wip' && git remaster
@@ -32,6 +32,10 @@
   pr-files =       ! git ls-branch # trying out an alias - does this mentally map better?
   pr-specs =       ! git ls-branch | grep _spec.rb
 	cb =             ! git co "$(git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/ | fzf)"
+  # read -e doesn't give up arrow.  probably necessary.  rlwrap next?
+  ; sh =             "! gsh() { git status ; while read -p '>> ' -e line ; do git $line ; done } ; gsh"
+  ; buffering is weird
+  ; sh =             "! gsh() { rlwrap -S'>> ' cat | while read line ; do git $line ; sleep 1; echo ; done  ;} ; gsh"
 
 [fetch]
 	prune = true
