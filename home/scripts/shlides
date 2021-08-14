@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# shell slides!
+
+filename="$1"
+page=1
+pause=1
+
+format_line() {
+  figlet -t -f basic
+}
+
+delay() {
+    sleep $pause
+}
+
+redraw() {
+    clear
+    delay
+    grep "." "$filename" | sed "${1}q;d" | format_line
+}
+
+show_page() {
+    page="$1"
+    redraw $page
+    read -n1 key
+
+    echo $page
+    case "$key" in
+        'j') page=$(($page + 1)) ;;
+        'k') page=$(($page - 1)) ;;
+        'q') exit 0 ;;
+    esac
+
+    show_page $page
+}
+
+show_page 1
