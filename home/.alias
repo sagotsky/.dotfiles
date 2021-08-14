@@ -22,14 +22,14 @@ else
   alias ls='ls -G'
 fi
 alias myip='curl http://icanhazip.com ; echo'
+alias nitro-wal='wal -i `cat .config/nitrogen/bg-saved.cfg | grep file | cut -f2 -d=`'
 alias nv='TERM=xterm-256color nvim'
 alias tf='tail -f'
 alias sudo='sudo ' # force alias preservation, no really
 alias systemctl='sudo systemctl'
-alias tmux='tmux -2'
-alias t='tmux -2'
-alias tmux='systemd-run --scope --user tmux'
-alias tx='TERM=xterm tmux -2 attach'
+alias t=tmux
+alias tmux='systemd-run --scope --user -q tmux'
+alias tx='tmux attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='nv '
 alias vim='nv '

@@ -1,28 +1,29 @@
 #!/bin/bash
 
-. ~/.alias
 
-# alias tmux='systemd-run --scope --user tmux -2'
-#alt name: tmux-compose?
+systemd_tmux() {
+  systemd-run --scope --user -q tmux -2 "$@"
+}
+
 function tmux-up {
   DIR=$1
   NAME="${2:-$(basename $DIR)}" # or $2?
 
-  if tmux has-session -t $NAME &>/dev/null ; then
+  if systemd_tmux has-session -t $NAME &>/dev/null ; then
     echo "$NAME already running"
   else
     cd $DIR
 
     # this lets us kill the first window, then replace it
-    tmux set -g remain-on-exit on
-    tmux -2 new-session -d -s "$NAME" #exit
-    tmux set -g remain-on-exit off
+    systemd_tmux set -g remain-on-exit on
+    systemd_tmux -2 new-session -d -s "$NAME" #exit
+    systemd_tmux set -g remain-on-exit off
 
     while read line ; do
       _handle_line $line
     done
 
-    tmux kill-pane
+    systemd_tmux kill-pane
   fi
 }
 
@@ -51,32 +52,32 @@ function _handle_line {
   $TMUX_CMD "$@"
 
   # always leave next window ready for next command
-  tmux new-window -t $NAME
+  systemd_tmux new-window -t $NAME
 }
 
 # always respawn on last pane and prep the next pane.
 function window {
-  tmux respawn-pane -t $NAME -k $@
+  systemd_tmux respawn-pane -t $NAME -k $@
 }
 
 function vsplit {
   # use different strategy than windows.  append panes, then kill first one.  i don't care if they lose the 0 index.
   echo $@ | while IFS= read -r line ; do
     xargs printf '%s\n' <<<"$line" | while read cmd ; do
-      tmux split-window -d -h "$cmd ; zsh"
+      systemd_tmux split-window -d -h "$cmd ; zsh"
     done
   done
-  tmux kill-pane -t 0 # -d left it on original pane
+  systemd_tmux kill-pane -t 0 # -d left it on original pane
 }
 
 function hsplit {
   # use different strategy than windows.  append panes, then kill first one.  i don't care if they lose the 0 index.
   echo $@ | while IFS= read -r line ; do
     xargs printf '%s\n' <<<"$line" | while read cmd ; do
-      tmux split-window -d -v "$cmd ; zsh"
+      systemd_tmux split-window -d -v "$cmd ; zsh"
     done
   done
-  tmux kill-pane -t 0 # -d left it on original pane
+  systemd_tmux kill-pane -t 0 # -d left it on original pane
 }
 
 
