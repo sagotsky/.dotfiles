@@ -36,7 +36,7 @@ bar:
   - script:
       content:
         - string: { text: "" , foreground: 1DB954ff, font: *font-icon }
-        - string: { text: " {stdout} ", max: 48}
+        - string: { text: " {stdout} ", max: 44}
       path: "/home/sagotsky/scripts/yambar-string-wrapper.sh"
       args: ["playerctl-wrapper.sh"] # spotify
 
