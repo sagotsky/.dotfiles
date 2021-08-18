@@ -9,7 +9,7 @@ configuration {
 	sort: false;
 	case-sensitive: false;
 	sidebar-mode: true;
-	matching: "normal";
+	matching: "fuzzy";
 	m: "-5";
 	line-margin: 0;
 	separator-style: "solid";
