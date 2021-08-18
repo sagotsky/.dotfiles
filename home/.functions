@@ -228,16 +228,7 @@ function delay() {
 }
 
 function erd() {
-  in=$1
-  out=${in%.*}.png
-
-	for bin in eralchemy erd-burntsushi ; do
-		which $bin &>/dev/null
-		if [[ "$?" == "0" ]] ; then
-		  $bin -i $in -o $out
-			return 0
-		fi
-	done
+	docker run --rm -v "$(pwd)":/erd vranac/erd $@
 }
 
 inotifydo() {
