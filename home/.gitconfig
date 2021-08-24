@@ -1,6 +1,10 @@
 [user]
-	email = jon.sagotsky@ezcater.com
+	email = sagotsky@gmail.com
   name = Jon Sagotsky
+
+[includeIf "gitdir:~/repos/"]
+  path = .gitconfig.ezcater.inc
+
 [core]
   pager = delta
   editor = nvim
