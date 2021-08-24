@@ -8,6 +8,7 @@ alias add='paste -s -d+ | bc' # sums input
 alias bd='popd'
 alias bell="echo -e '\a'"
 alias cmus='TERM=xterm-256color cmus'
+alias eog="echo Try sxiv instead"
 alias epoch="date +%s"
 alias fn='find ./ -name '
 alias fontcache-refresh=' fc-cache -f'
