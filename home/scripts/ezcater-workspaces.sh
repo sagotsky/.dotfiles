@@ -122,9 +122,9 @@ tmux-up ~ autossh <<EOF
   ~/scripts/screen-ssh-tunnel-omelette.sh
 EOF
 
-tmux-up ~/repos/developer-handbook dev-handbook <<EOF
-  docker-compose up
-EOF
+# tmux-up ~/repos/developer-handbook dev-handbook <<EOF
+#   docker-compose up
+# EOF
 
 tmux-up ~/repos/engineering-rfcs rfc<<EOF
   zsh
