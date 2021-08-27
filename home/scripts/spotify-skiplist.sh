@@ -28,7 +28,7 @@ fi
 check_dependencies
 check_config
 
-spotifyctl metadata -f '{{ artist }}' --follow 2>/dev/null | while read artist ; do
+spotifyctl metadata artist --follow 2>/dev/null | while read artist ; do
   if grep "${artist}" $CONFIG ; then
     echo "Skipping ${artist}"
     spotifyctl next
