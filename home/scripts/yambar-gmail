@@ -9,7 +9,7 @@ yambar_mail_status() {
     if [[ "$?" == "-1" ]] ; then
         echo "gmail-inbox-$inbox-error|string|auth"
     else
-        [[ "$count" == "0" ]] && unread=false || unread=true
+        ([[ "$count" == "0" ]] || [[ "$count" == "" ]]) && unread=false || unread=true
         echo "gmail-inbox-$inbox-unread|bool|$unread"
     fi
 }
