@@ -75,7 +75,7 @@ bar:
                 on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
                 tag: muted
                 values:
-                  true: {string: {text: , foreground: ffffff66}}
+                  true: {string: {text: " 婢 ", foreground: ffffff66, font: *font-icon}}
                   false:
                     ramp:
                       tag: volume
