@@ -1,0 +1,9 @@
+#!/bin/sh
+
+FAVES="firefox
+slack
+spotify
+"
+echo "$FAVES $(dmenu_path)" |
+  dmenu "$@" |
+  ${SHELL:-"/bin/sh"} &
