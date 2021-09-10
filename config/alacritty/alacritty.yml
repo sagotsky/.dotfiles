@@ -16,7 +16,7 @@ env:
 # Window dimensions in character columns and lines
 # (changes require restart)
 
--: &window_padding 1
+-: &window_padding 0
 -: &font_family Meslo LG S # ttf-meslo
 
 window:
@@ -25,7 +25,7 @@ window:
     lines: 60
 
   padding:
-    x: *window_padding # todo: script to toggle?
+    x: 1 # *window_padding # todo: script to toggle?
     y: *window_padding
 
   dynamic_padding:
