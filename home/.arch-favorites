@@ -42,3 +42,4 @@ xinit-xsession
 qtile
 mypy
 inotify-tools
+arc-gtk-theme
