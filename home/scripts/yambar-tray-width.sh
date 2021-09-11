@@ -13,5 +13,7 @@ px_to_spaces() {
     printf "% *s\n" $spaces
 }
 
+sleep 0.2 # be sure trayer is already up
+
 output="$(px_to_spaces `tray_width_px`)"
 echo -e "padding|string|$output\n"
