@@ -8,6 +8,8 @@ font-md: &font-md "SauceCodePro Nerd Font:size=11.5:regular"
 font-lg: &font-lg "SauceCodePro Nerd Font:size=11.5:bold"
 font-icon: &font-icon "SauceCodePro Nerd Font:size=13"
 
+icon-margin: &icon-margin { left-margin: 6, right-margin: 6 }
+
 col-normal: &col-normal { foreground: aaaaaaff }
 col-alert: &col-alert { foreground: ffcc66ff }
 col-critical: &col-critical { foreground: ff5555ff, font: *font-lg }
@@ -18,7 +20,7 @@ bar:
   background: 242424ff
   foreground: aaaaaaff
   font: *font-md
-  spacing: 12 # around each module
+  spacing: 2 # around each module
   margin: 10 # around bar
   border:
     width: 0
@@ -42,18 +44,18 @@ bar:
 
   - script:
       anchors:
-        - string: &noop { text: "", left-margin: -12}
+        - string: &noop { text: "" }
       path: "/home/sagotsky/scripts/yambar-gmail"
       content:
         - map:
             tag: gmail-inbox-0-unread
             values:
-              true: { string: { text: '', foreground: 00B373ff, font: *font-icon, left-margin: 12 } }
+              true: { string: { text: '', foreground: 00B373ff, font: *font-icon, <<: *icon-margin } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-1-unread
             values:
-              true: { string: { text: '', foreground: 5484edff, font: *font-icon, left-margin: 12 } }
+              true: { string: { text: '', foreground: 5484edff, font: *font-icon, <<: *icon-margin } }
               false: { string: *noop }
         - map:
             tag: gmail-inbox-0-error
@@ -89,11 +91,11 @@ bar:
 
   - script:
       anchors:
-        - cpu: &cpu  { text: " {cpu}%",  right-margin: 12 }
-        - mem: &mem  { text: " {mem}%",  right-margin: 12 }
-        - disk: &disk { text: " {disk}%", right-margin: 12 }
+        - cpu: &cpu  { text: " {cpu}%",  <<: *icon-margin }
+        - mem: &mem  { text: " {mem}%",  <<: *icon-margin }
+        - disk: &disk { text: " {disk}%", <<: *icon-margin }
 
-        - noop: &noop { text: "", left-margin: -12}
+        - noop: &noop { text: "", <<: *icon-margin}
 
       path: "/home/sagotsky/scripts/yambar-top"
       args: ["10"]
@@ -131,24 +133,24 @@ bar:
           tag: state
           values:
             full:
-              - string: {text: "", left-margin: -12}
+              - string: {text: "", <<: *icon-margin}
             discharging:
               - ramp:
                   tag: capacity
                   items:
-                    - string: {text: , foreground: ff0000ff, font: *font-icon}
-                    - string: {text: , foreground: ffa600ff, font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-                    - string: {text: , font: *font-icon}
-              - string: {text: "{capacity}%", left-margin: 12}
+                    - string: {text: , foreground: ff0000ff, font: *font-icon, <<: *icon-margin}
+                    - string: {text: , foreground: ffa600ff, font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+                    - string: {text: , font: *font-icon, <<: *icon-margin}
+              - string: {text: "{capacity}%", <<: *icon-margin}
             charging:
-              - string: {text: }
+              - string: {text: , <<: *icon-margin}
               # - string: {text: "{capacity}%"}
             not charging:
               - ramp:
@@ -174,31 +176,28 @@ bar:
           on-click: "yambar-dunst.sh click"
           tag: "dunst_is_paused"
           values:
-            true: { string: { text: "", foreground: ff2222ff } }
-            false: { string: { text: "" } }
+            true: { string: { text: "", foreground: ff2222ff, <<: *icon-margin } }
+            false: { string: { text: "", <<: *icon-margin } }
 
   - clock:
       time-format: "%I:%M %p"
       date-format: "%m/%d"
       content:
-        - string: {text: " ", font: *font-md}
-        - string: {text: "{date}", right-margin: 5}
-        # - string: {text: }
-        - string: {text: "{time}"}
+        - string: {text: " ", font: *font-md, <<: *icon-margin}
+        - string: {text: "{date}" }
+        - string: {text: "{time}", <<: *icon-margin }
 
   - script:
       path: "/home/sagotsky/scripts/yambar-tray.sh"
       args: []
       content:
-        - string: { text: "", left-margin: 0 }
+        - string: { text: "" }
   - script:
       path: "/home/sagotsky/scripts/yambar-tray-width.sh"
       poll-interval: 10
       args: []
       content:
-        - string: { text: "{padding}", left-margin: 0  }
-
-
+        - string: { text: "{padding}"  }
 
   center:
   - xwindow:
@@ -214,7 +213,8 @@ bar:
         - string: &occupied { foreground: 666666ff}
         - string: &empty    { foreground: 333333ff }
 
-        - ws-icon-style: &ws-icon-style { right-margin: 12, font: *font-icon }
+        # - ws-icon-style: &ws-icon-style { right-margin: 0, font: *font-icon }
+        - ws-icon-style: &ws-icon-style {  font: *font-icon, <<: *icon-margin }
 
         - ws-icon0: &ws-icon0 { text: "", <<: *ws-icon-style }
         - ws-icon2: &ws-icon1 { text: "", <<: *ws-icon-style }
