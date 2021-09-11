@@ -1,11 +1,11 @@
 #!/bin/bash
 
-CHARWIDTH=20 # i guess?
+CHARWIDTH=10 # i guess?
 
 tray_width_px() {
-    wmctrl -l -G |
-        grep "b[p]anelb" |   # trayer names its window "panel"
-        awk '{print $5}'
+    xwininfo -name panel | # trayer names its window "panel"
+        grep -i width: |
+        awk '{print $2}'
 }
 
 px_to_spaces() {
