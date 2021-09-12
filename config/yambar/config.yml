@@ -3,7 +3,6 @@ underline: &underline
     size: 1
     color: ffffffff
 
-font-sm: &font-sm "SauceCodePro Nerd Font:size=9:light"
 font-md: &font-md "SauceCodePro Nerd Font:size=11.5:regular"
 font-lg: &font-lg "SauceCodePro Nerd Font:size=11.5:bold"
 font-icon: &font-icon "SauceCodePro Nerd Font:size=13"
@@ -179,6 +178,14 @@ bar:
                     - string: {text:  , foreground: 00ff00ff, font: *font-icon}
               - string: {text: "{capacity}%", left-margin: 12}
 
+  - clock:
+      time-format: "%I:%M %p"
+      date-format: "%m/%d"
+      content:
+        - string: {text: " ", font: *font-md, <<: *icon-margin}
+        - string: {text: "{date}", font: *font-md}
+        - string: {text: "{time}", <<: *icon-margin, font: *font-md}
+
   - script:
       path: "/home/sagotsky/scripts/yambar-dunst.sh"
       args: ["daemon"]
@@ -189,14 +196,6 @@ bar:
           values:
             true: { string: { text: "", foreground: ff2222ff, <<: *icon-margin } }
             false: { string: { text: "", <<: *icon-margin } }
-
-  - clock:
-      time-format: "%I:%M %p"
-      date-format: "%m/%d"
-      content:
-        - string: {text: " ", font: *font-md, <<: *icon-margin}
-        - string: {text: "{date}" }
-        - string: {text: "{time}", <<: *icon-margin }
 
   - script:
       path: "/home/sagotsky/scripts/yambar-tray.sh"
