@@ -29,12 +29,23 @@ bar:
 
   # Polybar todo
   # gcal
-  # wlan
-  # arch-packages
-  # ipc-dunst
-  # prevent dupe scripts
 
   right:
+  - network:
+      name: wlp0s20f3
+      content:
+        map:
+          tag: state
+          values:
+            down: { string: { text: "睊 {name} DOWN", <<: *col-critical} }
+
+            up:
+              map:
+                tag: ipv4
+                default: { string: { text: "" } }
+                values:
+                  "": { string: { text: "睊 {name} NO IP", <<: *col-alert } }
+
   - script:
       content:
         - string: { text: "" , foreground: 1DB954ff, font: *font-icon }
