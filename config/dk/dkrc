@@ -10,7 +10,6 @@
 
 # determine where to place the log file
 logfile="$HOME/.dkrc.log"
-date > $logfile
 [ -d "$HOME/.local/share/xorg" ] && logfile="$HOME/.local/share/xorg/dkrc.log"
 : > "$logfile"
 
@@ -116,24 +115,31 @@ fi
 	# window rules
 	# --------------
 
-	# rules are hashed on class regex.  adding title lets this one be separate i think
-	dkcmd rule title="Zoom Meeting" type="splash" float=true  # does this have to be before or after zoom?
-	dkcmd rule title="zoom" type="splash" float=true  # does this have to be before or after zoom?
-
 	# rule class, instance, and title regexes are always case insensitive
 	ws_rule() {
 		app=$1
 		ws=$2
 
-		dkcmd rule apply class="^${app^}$" ws="$ws" # Upcase
-		dkcmd rule apply class="^${app~}$" ws="$ws" # downcased
+		dkcmd rule class="^${app^}$" ws="$ws" # Upcase
+		dkcmd rule class="^${app~}$" ws="$ws" # downcased
 	}
+	dkcmd rule remove '*'
+
   ws_rule firefox 1
   ws_rule spotify 2
   ws_rule slack   5
 
-  ws_rule zoom    10 # splash screen looks like it lost its splash designation
+  # ws_rule zoom    10 # splash screen looks like it lost its splash designation
 
+	dkcmd rule title="Zoom - Free Account" ws=10 # home
+	dkcmd rule title="Zoom Meetingx"			 ws=10 # yes, it varies!
+	dkcmd rule title="Zoom Meeting"			   ws=10 # main
+	dkcmd rule title="^zoom$"       			 ws=10 bw=1 float=true # splash
+	#  dkcmd status type=full num=1   | grep -i zoom | grep -v rule
+	#           title                  class  instance
+	#0x048005ca "Zoom - Free Account"  "zoom" "zoom"
+	#0x04800606 "Zoom Meetingx"        "zoom" "zoom"
+	#0x0480052e "zoom"                 "zoom" "zoom"
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2
