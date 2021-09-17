@@ -4,4 +4,10 @@
 # useful for toggling display of a panel
 
 # TODO: per user
-kill $(pidof $1) &>/dev/null || exec "$@" &
+pid="$(pidof $1)"
+if [[ "$pid" != "" ]] ; then
+    kill $pid &>/dev/null
+else
+    exec "$@"
+fi
+# kill $(pidof $1) &>/dev/null || exec "$@" &
