@@ -36,14 +36,14 @@ bar:
         map:
           tag: state
           values:
-            down: { string: { text: "睊 {name} DOWN", <<: *col-critical} }
+            down: { string: { text: "睊 {name} DOWN", <<: [*col-critical, *icon-margin]} }
 
             up:
               map:
                 tag: ipv4
                 default: { string: { text: "" } }
                 values:
-                  "": { string: { text: "睊 {name} NO IP", <<: *col-alert } }
+                  "": { string: { text: "睊 {name} NO IP", <<: [*col-alert, *icon-margin] } }
 
   - script:
       content:
