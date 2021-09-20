@@ -21,6 +21,9 @@ super + shift + y
 super + {Left,Right,Down}
   spotifyctl {previous,next,play-pause}
 
+super + i
+  invert-window.sh
+
 XF86AudioPlay
   spotifyctl play-pause
 
