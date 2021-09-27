@@ -13,6 +13,8 @@ col-normal: &col-normal { foreground: aaaaaaff }
 col-alert: &col-alert { foreground: ffcc66ff }
 col-critical: &col-critical { foreground: ff5555ff, font: *font-lg }
 
+blank: &blank { string: { text: "" } }
+
 bar:
   height: 22
   location: top
@@ -77,6 +79,20 @@ bar:
             values:
               true: { string: { text: '{gmail-inbox-0-error}', foreground: 5484edff } }
               false: { string: *noop }
+  - alsa:
+      card: hw:PCH
+      mixer: "Capture"
+      content:
+        map:
+          tag: muted
+          values:
+            true: { string: { text: "", <<: *col-critical } }
+            false:
+              map:
+                tag: volume
+                default: { string: { text: "" , <<: *col-alert  } }
+                values:
+                  63: *blank
   - alsa:
       card: hw:PCH
       mixer: Master
