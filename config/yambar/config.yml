@@ -7,13 +7,13 @@ font-md: &font-md "SauceCodePro Nerd Font:size=11.5:regular"
 font-lg: &font-lg "SauceCodePro Nerd Font:size=11.5:bold"
 font-icon: &font-icon "SauceCodePro Nerd Font:size=13"
 
-icon-margin: &icon-margin { left-margin: 6, right-margin: 6 }
+icon-margin: &icon-margin {left-margin: 6, right-margin: 6}
 
-col-normal: &col-normal { foreground: aaaaaaff }
-col-alert: &col-alert { foreground: ffcc66ff }
-col-critical: &col-critical { foreground: ff5555ff, font: *font-lg }
+col-normal: &col-normal {foreground: aaaaaaff}
+col-alert: &col-alert {foreground: ffcc66ff}
+col-critical: &col-critical {foreground: ff5555ff, font: *font-lg}
 
-blank: &blank { string: { text: "" } }
+blank: &blank {string: {text: ""}}
 
 bar:
   height: 22
@@ -38,47 +38,50 @@ bar:
         map:
           tag: state
           values:
-            down: { string: { text: "睊 {name} DOWN", <<: [*col-critical, *icon-margin]} }
+            down:
+              string: {text: "睊 {name} DOWN", <<: [*col-critical, *icon-margin]}
 
             up:
               map:
                 tag: ipv4
-                default: { string: { text: "" } }
+                default: {string: {text: ""}}
                 values:
-                  "": { string: { text: "睊 {name} NO IP", <<: [*col-alert, *icon-margin] } }
+                  "":
+                    string: {text: "睊 {name} NO IP", <<: [*col-alert, *icon-margin]}
 
   - script:
       content:
-        - string: { text: "" , foreground: 1DB954ff, font: *font-icon }
-        - string: { text: " {stdout} ", max: 44}
+        - string: {text: "", foreground: 1DB954ff, font: *font-icon}
+        - string: {text: " {stdout} ", max: 44}
       path: "/home/sagotsky/scripts/yambar-string-wrapper.sh"
-      args: ["playerctl-wrapper.sh"] # spotify
+      args: ["playerctl-wrapper.sh"]    # spotify
 
   - script:
       anchors:
-        - string: &noop { text: "" }
+        - string: &noop {text: ""}
       path: "/home/sagotsky/scripts/yambar-gmail"
       content:
         - map:
             tag: gmail-inbox-0-unread
             values:
-              true: { string: { text: '', foreground: 00B373ff, font: *font-icon, <<: *icon-margin } }
-              false: { string: *noop }
+              true:
+                string: {text: '', foreground: 00B373ff, font: *font-icon, <<: *icon-margin}
+              false: {string: *noop}
         - map:
             tag: gmail-inbox-1-unread
             values:
-              true: { string: { text: '', foreground: 5484edff, font: *font-icon, <<: *icon-margin } }
-              false: { string: *noop }
+              true: {string: {text: '', foreground: 5484edff, font: *font-icon, <<: *icon-margin}}
+              false: {string: *noop}
         - map:
             tag: gmail-inbox-0-error
             values:
-              true: { string: { text: '{gmail-inbox-0-error}', foreground: 00B373ff, font: *font-icon } }
-              false: { string: *noop }
+              true: {string: {text: '{gmail-inbox-0-error}', foreground: 00B373ff, font: *font-icon}}
+              false: {string: *noop}
         - map:
             tag: gmail-inbox-1-error
             values:
-              true: { string: { text: '{gmail-inbox-0-error}', foreground: 5484edff } }
-              false: { string: *noop }
+              true: {string: {text: '{gmail-inbox-0-error}', foreground: 5484edff}}
+              false: {string: *noop}
   - alsa:
       card: hw:PCH
       mixer: "Capture"
@@ -86,11 +89,11 @@ bar:
         map:
           tag: muted
           values:
-            true: { string: { text: "", <<: *col-critical } }
+            true: {string: {text: "", <<: *col-critical}}
             false:
               map:
                 tag: volume
-                default: { string: { text: "" , <<: *col-alert  } }
+                default: {string: {text: "", <<: *col-alert}}
                 values:
                   63: *blank
   - alsa:
@@ -113,15 +116,15 @@ bar:
                         - string: {text: "  ", font: *font-icon}
                         - string: {text: "  ", font: *font-icon}
                         - string: {text: "  ", font: *font-icon}
-            - string: { text: "{percent}%" }
+            - string: {text: "{percent}%"}
 
   - script:
       anchors:
-        - cpu: &cpu  { text: " {cpu}%",  <<: *icon-margin }
-        - mem: &mem  { text: " {mem}%",  <<: *icon-margin }
-        - disk: &disk { text: " {disk}%", <<: *icon-margin }
+        - cpu: &cpu  {text: " {cpu}%", <<: *icon-margin}
+        - mem: &mem  {text: " {mem}%", <<: *icon-margin}
+        - disk: &disk {text: " {disk}%", <<: *icon-margin}
 
-        - noop: &noop { text: "", <<: *icon-margin}
+        - noop: &noop {text: "", <<: *icon-margin}
 
       path: "/home/sagotsky/scripts/yambar-top"
       args: ["10"]
@@ -130,27 +133,27 @@ bar:
         - ramp:
             tag: cpu
             items:
-              - string: { <<: [*noop] }
-              - string: { <<: [*noop] }
-              - string: { <<: [*cpu, *col-normal] }
-              - string: { <<: [*cpu, *col-alert] }
-              - string: { <<: [*cpu, *col-critical] }
+              - string: {<<: [*noop]}
+              - string: {<<: [*noop]}
+              - string: {<<: [*cpu, *col-normal]}
+              - string: {<<: [*cpu, *col-alert]}
+              - string: {<<: [*cpu, *col-critical]}
         - ramp:
             tag: mem
             items:
-              - string: { <<: [*noop] }
-              - string: { <<: [*noop] }
-              - string: { <<: [*mem, *col-normal] }
-              - string: { <<: [*mem, *col-alert] }
-              - string: { <<: [*mem, *col-critical] }
+              - string: {<<: [*noop]}
+              - string: {<<: [*noop]}
+              - string: {<<: [*mem, *col-normal]}
+              - string: {<<: [*mem, *col-alert]}
+              - string: {<<: [*mem, *col-critical]}
         - ramp:
             tag: disk
             items:
-              - string: { <<: [*noop] }
-              - string: { <<: [*noop] }
-              - string: { <<: [*disk, *col-normal] }
-              - string: { <<: [*disk, *col-alert] }
-              - string: { <<: [*disk, *col-critical] }
+              - string: {<<: [*noop]}
+              - string: {<<: [*noop]}
+              - string: {<<: [*disk, *col-normal]}
+              - string: {<<: [*disk, *col-alert]}
+              - string: {<<: [*disk, *col-critical]}
   - battery:
       name: BAT0
       poll-interval: 15
@@ -210,108 +213,108 @@ bar:
           on-click: "yambar-dunst.sh click"
           tag: "dunst_is_paused"
           values:
-            true: { string: { text: "", foreground: ff2222ff, <<: *icon-margin } }
-            false: { string: { text: "", <<: *icon-margin } }
+            true: {string: {text: "", foreground: ff2222ff, <<: *icon-margin}}
+            false: {string: {text: "", <<: *icon-margin}}
 
   - script:
       path: "/home/sagotsky/scripts/yambar-tray.sh"
       args: []
       content:
-        - string: { text: "" }
+        - string: {text: ""}
   - script:
       path: "/home/sagotsky/scripts/yambar-tray-width.sh"
       poll-interval: 10
       args: []
       content:
-        - string: { text: "{padding}"  }
+        - string: {text: "{padding}"}
 
   center:
-  - xwindow:
-      content:
-        string: { text: "{title}", font: *font-lg, max: 64 }
+    - xwindow:
+        content:
+          string: {text: "{title}", font: *font-lg, max: 64}
   left:
   - script:
       path: "/home/sagotsky/scripts/workspaces.rb"
       args: ['--yambar']
       anchors:
-        - string: &urgent   { foreground: ff5500ff }
-        - string: &visible  { foreground: ffffffff}
-        - string: &occupied { foreground: 666666ff}
-        - string: &empty    { foreground: 333333ff }
+        - string: &urgent   {foreground: ff5500ff}
+        - string: &visible  {foreground: ffffffff}
+        - string: &occupied {foreground: 666666ff}
+        - string: &empty    {foreground: 333333ff}
 
-        # - ws-icon-style: &ws-icon-style { right-margin: 0, font: *font-icon }
-        - ws-icon-style: &ws-icon-style {  font: *font-icon, <<: *icon-margin }
+        # - ws-icon-style: &ws-icon-style {right-margin: 0, font: *font-icon}
+        - ws-icon-style: &ws-icon-style {font: *font-icon, <<: *icon-margin}
 
-        - ws-icon0: &ws-icon0 { text: "", <<: *ws-icon-style, left-margin: -6 } # offset becaues this is the first one
-        - ws-icon2: &ws-icon1 { text: "", <<: *ws-icon-style }
-        - ws-icon3: &ws-icon2 { text: "", <<: *ws-icon-style }
-        - ws-icon4: &ws-icon3 { text: "", <<: *ws-icon-style }
-        - ws-icon5: &ws-icon4 { text: "", <<: *ws-icon-style }
-        - ws-icon6: &ws-icon5 { text: "", <<: *ws-icon-style }
-        - ws-icon7: &ws-icon6 { text: "", <<: *ws-icon-style }
-        - ws-icon8: &ws-icon7 { text: "", <<: *ws-icon-style }
-        - ws-icon9: &ws-icon8 { text: "", <<: *ws-icon-style }
-        - ws-icon9: &ws-icon9 { text: "", <<: *ws-icon-style }
+        - ws-icon0: &ws-icon0 {text: "", <<: *ws-icon-style, left-margin: -6}    # offset becaues this is the first one
+        - ws-icon2: &ws-icon1 {text: "", <<: *ws-icon-style}
+        - ws-icon3: &ws-icon2 {text: "", <<: *ws-icon-style}
+        - ws-icon4: &ws-icon3 {text: "", <<: *ws-icon-style}
+        - ws-icon5: &ws-icon4 {text: "", <<: *ws-icon-style}
+        - ws-icon6: &ws-icon5 {text: "", <<: *ws-icon-style}
+        - ws-icon7: &ws-icon6 {text: "", <<: *ws-icon-style}
+        - ws-icon8: &ws-icon7 {text: "", <<: *ws-icon-style}
+        - ws-icon9: &ws-icon8 {text: "", <<: *ws-icon-style}
+        - ws-icon9: &ws-icon9 {text: "", <<: *ws-icon-style}
 
         - ws0: &ws0
-             urgent:   { string: { <<: [*ws-icon0, *urgent] } }
-             visible:  { string: { <<: [*ws-icon0, *visible] } }
-             occupied: { string: { <<: [*ws-icon0, *occupied] } }
-             empty:    { string: { <<: [*ws-icon0, *empty] } }
+             urgent:   {string: {<<: [*ws-icon0, *urgent]}}
+             visible:  {string: {<<: [*ws-icon0, *visible]}}
+             occupied: {string: {<<: [*ws-icon0, *occupied]}}
+             empty:    {string: {<<: [*ws-icon0, *empty]}}
         - ws1: &ws1
-             urgent:   { string: { <<: [*ws-icon1, *urgent] } }
-             visible:  { string: { <<: [*ws-icon1, *visible] } }
-             occupied: { string: { <<: [*ws-icon1, *occupied] } }
-             empty:    { string: { <<: [*ws-icon1, *empty] } }
+             urgent:   {string: {<<: [*ws-icon1, *urgent]}}
+             visible:  {string: {<<: [*ws-icon1, *visible]}}
+             occupied: {string: {<<: [*ws-icon1, *occupied]}}
+             empty:    {string: {<<: [*ws-icon1, *empty]}}
         - ws2: &ws2
-             urgent:   { string: { <<: [*ws-icon2, *urgent] } }
-             visible:  { string: { <<: [*ws-icon2, *visible] } }
-             occupied: { string: { <<: [*ws-icon2, *occupied] } }
-             empty:    { string: { <<: [*ws-icon2, *empty] } }
+             urgent:   {string: {<<: [*ws-icon2, *urgent]}}
+             visible:  {string: {<<: [*ws-icon2, *visible]}}
+             occupied: {string: {<<: [*ws-icon2, *occupied]}}
+             empty:    {string: {<<: [*ws-icon2, *empty]}}
         - ws3: &ws3
-             urgent:   { string: { <<: [*ws-icon3, *urgent] } }
-             visible:  { string: { <<: [*ws-icon3, *visible] } }
-             occupied: { string: { <<: [*ws-icon3, *occupied] } }
-             empty:    { string: { <<: [*ws-icon3, *empty] } }
+             urgent:   {string: {<<: [*ws-icon3, *urgent]}}
+             visible:  {string: {<<: [*ws-icon3, *visible]}}
+             occupied: {string: {<<: [*ws-icon3, *occupied]}}
+             empty:    {string: {<<: [*ws-icon3, *empty]}}
         - ws4: &ws4
-             urgent:   { string: { <<: [*ws-icon4, *urgent] } }
-             visible:  { string: { <<: [*ws-icon4, *visible] } }
-             occupied: { string: { <<: [*ws-icon4, *occupied] } }
-             empty:    { string: { <<: [*ws-icon4, *empty] } }
+             urgent:   {string: {<<: [*ws-icon4, *urgent]}}
+             visible:  {string: {<<: [*ws-icon4, *visible]}}
+             occupied: {string: {<<: [*ws-icon4, *occupied]}}
+             empty:    {string: {<<: [*ws-icon4, *empty]}}
         - ws5: &ws5
-             urgent:   { string: { <<: [*ws-icon5, *urgent] } }
-             visible:  { string: { <<: [*ws-icon5, *visible] } }
-             occupied: { string: { <<: [*ws-icon5, *occupied] } }
-             empty:    { string: { <<: [*ws-icon5, *empty] } }
+             urgent:   {string: {<<: [*ws-icon5, *urgent]}}
+             visible:  {string: {<<: [*ws-icon5, *visible]}}
+             occupied: {string: {<<: [*ws-icon5, *occupied]}}
+             empty:    {string: {<<: [*ws-icon5, *empty]}}
         - ws6: &ws6
-             urgent:   { string: { <<: [*ws-icon6, *urgent] } }
-             visible:  { string: { <<: [*ws-icon6, *visible] } }
-             occupied: { string: { <<: [*ws-icon6, *occupied] } }
-             empty:    { string: { <<: [*ws-icon6, *empty] } }
+             urgent:   {string: {<<: [*ws-icon6, *urgent]}}
+             visible:  {string: {<<: [*ws-icon6, *visible]}}
+             occupied: {string: {<<: [*ws-icon6, *occupied]}}
+             empty:    {string: {<<: [*ws-icon6, *empty]}}
         - ws7: &ws7
-             urgent:   { string: { <<: [*ws-icon7, *urgent] } }
-             visible:  { string: { <<: [*ws-icon7, *visible] } }
-             occupied: { string: { <<: [*ws-icon7, *occupied] } }
-             empty:    { string: { <<: [*ws-icon7, *empty] } }
+             urgent:   {string: {<<: [*ws-icon7, *urgent]}}
+             visible:  {string: {<<: [*ws-icon7, *visible]}}
+             occupied: {string: {<<: [*ws-icon7, *occupied]}}
+             empty:    {string: {<<: [*ws-icon7, *empty]}}
         - ws8: &ws8
-             urgent:   { string: { <<: [*ws-icon8, *urgent] } }
-             visible:  { string: { <<: [*ws-icon8, *visible] } }
-             occupied: { string: { <<: [*ws-icon8, *occupied] } }
-             empty:    { string: { <<: [*ws-icon8, *empty] } }
+             urgent:   {string: {<<: [*ws-icon8, *urgent]}}
+             visible:  {string: {<<: [*ws-icon8, *visible]}}
+             occupied: {string: {<<: [*ws-icon8, *occupied]}}
+             empty:    {string: {<<: [*ws-icon8, *empty]}}
         - ws9: &ws9
-             urgent:   { string: { <<: [*ws-icon9, *urgent] } }
-             visible:  { string: { <<: [*ws-icon9, *visible] } }
-             occupied: { string: { <<: [*ws-icon9, *occupied] } }
-             empty:    { string: { <<: [*ws-icon9, *empty] } }
+             urgent:   {string: {<<: [*ws-icon9, *urgent]}}
+             visible:  {string: {<<: [*ws-icon9, *visible]}}
+             occupied: {string: {<<: [*ws-icon9, *occupied]}}
+             empty:    {string: {<<: [*ws-icon9, *empty]}}
 
       content:
-        - map: { tag: workspace-0-state, values: { <<: *ws0 } }
-        - map: { tag: workspace-1-state, values: { <<: *ws1 } }
-        - map: { tag: workspace-2-state, values: { <<: *ws2 } }
-        - map: { tag: workspace-3-state, values: { <<: *ws3 } }
-        - map: { tag: workspace-4-state, values: { <<: *ws4 } }
-        - map: { tag: workspace-5-state, values: { <<: *ws5 } }
-        - map: { tag: workspace-6-state, values: { <<: *ws6 } }
-        - map: { tag: workspace-7-state, values: { <<: *ws7 } }
-        - map: { tag: workspace-8-state, values: { <<: *ws8 } }
-        - map: { tag: workspace-9-state, values: { <<: *ws9 } }
+        - map: {tag: workspace-0-state, values: {<<: *ws0}}
+        - map: {tag: workspace-1-state, values: {<<: *ws1}}
+        - map: {tag: workspace-2-state, values: {<<: *ws2}}
+        - map: {tag: workspace-3-state, values: {<<: *ws3}}
+        - map: {tag: workspace-4-state, values: {<<: *ws4}}
+        - map: {tag: workspace-5-state, values: {<<: *ws5}}
+        - map: {tag: workspace-6-state, values: {<<: *ws6}}
+        - map: {tag: workspace-7-state, values: {<<: *ws7}}
+        - map: {tag: workspace-8-state, values: {<<: *ws8}}
+        - map: {tag: workspace-9-state, values: {<<: *ws9}}
