@@ -203,6 +203,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 Plug 'troydm/zoomwintab.vim' " <C-w>o zoom a pane
+nnoremap <leader>z          :ZoomWinTabToggle<cr>
 " Plug 'pechorin/any-jump.vim' " leader-j jump to def.  not sure how this compares to coc/tags
 Plug 'sk1418/HowMuch' " sum columns
 :com! -range Add HowMuch rs
