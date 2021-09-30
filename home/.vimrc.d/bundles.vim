@@ -165,6 +165,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
+let g:ale_yaml_yamllint_options = '-d relaxed'
 
 " requires nodejs, yarn
 " Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
