@@ -93,9 +93,9 @@ bar:
             false:
               map:
                 tag: volume
-                default: {string: {text: "", <<: *col-alert}}
+                default: *blank
                 values:
-                  63: *blank
+                  0: {string: {text: "", <<: *col-alert}}
   - alsa:
       card: hw:PCH
       mixer: Master
