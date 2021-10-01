@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set_color() {
- dkcmd set border colour outer_focus="$1" focus="$1"
+ dkcmd set border width=1 outer_width=0 colour focus="$1" # outer_focus="#000000"
  sleep 0.04
 }
 
