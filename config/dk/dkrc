@@ -129,17 +129,14 @@ fi
   ws_rule broken  2 # spotify
   ws_rule slack   5
 
-  # ws_rule zoom    10 # splash screen looks like it lost its splash designation
 
-	dkcmd rule title="Zoom - Free Account" ws=10 # home
-	dkcmd rule title="Zoom Meetingx"			 ws=10 # yes, it varies!
-	dkcmd rule title="Zoom Meeting"			   ws=10 # main
+	dkcmd rule title="^Zoom - Free Account$" ws=10 float=false # home
+	dkcmd rule title="^Zoom Meeting$"				 ws=10 float=false # meeting
+	dkcmd rule title="^Zoom Meetingx$"       ws=10 float=false # meeting
+
 	dkcmd rule title="^zoom$"       			 ws=10 bw=1 float=true # splash
-	#  dkcmd status type=full num=1   | grep -i zoom | grep -v rule
-	#           title                  class  instance
-	#0x048005ca "Zoom - Free Account"  "zoom" "zoom"
-	#0x04800606 "Zoom Meetingx"        "zoom" "zoom"
-	#0x0480052e "zoom"                 "zoom" "zoom"
+	dkcmd rule title="^zooml$"       			 ws=10 bw=1 float=true # splash
+	dkcmd rule title="^zoom1$"       			 ws=10 bw=1 float=true # splash
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2
