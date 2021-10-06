@@ -25,7 +25,7 @@ bar:
   margin: 10 # around bar
   border:
     width: 0
-    color: 000000ff
+    color: 161616ff
     bottom-width: 1
 
   # Polybar todo
