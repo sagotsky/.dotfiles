@@ -37,6 +37,7 @@ alias vim='nv '
 alias vs='v ~/.vimrc ~/.vimrc.d/bundles.vim +snext'
 alias vw='nv -c VimwikiIndex'
 alias vim-up='v +PlugUpdate +PlugUpgrade +:quitall'
+alias webrick="ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => 8000, :DocumentRoot => Dir.pwd).start'"
 alias xsel='xsel --logfile ~/.Xsel.log'
 alias :e='nv '
 alias :q='exit'
