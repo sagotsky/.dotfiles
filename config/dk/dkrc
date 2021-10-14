@@ -129,12 +129,11 @@ fi
   ws_rule broken  2 # spotify
   ws_rule slack   5
 
-
 	dkcmd rule title="^Zoom - Free Account$" ws=10 float=false # home
 	dkcmd rule title="^Zoom Meeting$"				 ws=10 float=false # meeting
 	dkcmd rule title="^Zoom Meetingx$"       ws=10 float=false # meeting
 
-	dkcmd rule title="^zoom$"       			 ws=10 bw=1 float=true # splash
+	dkcmd rule title="^zoom$"       			 ws=10 bw=1 #float=true # could be anything!
 	dkcmd rule title="^zooml$"       			 ws=10 bw=1 float=true # splash
 	dkcmd rule title="^zoom1$"       			 ws=10 bw=1 float=true # splash
 

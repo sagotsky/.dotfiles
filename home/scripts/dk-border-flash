@@ -1,16 +1,18 @@
 #!/bin/bash
 
 set_color() {
- dkcmd set border width=1 outer_width=0 colour focus="$1" # outer_focus="#000000"
- sleep 0.04
-}
+#outer focus becomes only focus when picom rounds corners
+#inner focus can become only focus if it's 100% of the width
+ dkcmd set border colour \
+     outer_focus="$1" \
+     focus="#000000"
 
-# set_color \#ddddee
-set_color \#ccccdd
-set_color \#bbbbaa
-set_color \#aaaabb
-set_color \#999999
-set_color \#888888
+ sleep 0.03
+}
 set_color \#777777
+set_color \#999999
+set_color \#aaaaaa
+set_color \#cccccc
 
 # dkcmd set border width=1 outer_width=1 unfocus="#ff0000" focus="#00ff00"
+dkcmd set border width=2 outer_width=1 #unfocus="#ff0000" focus="#00ff00"
