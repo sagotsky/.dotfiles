@@ -15,4 +15,4 @@ set_color \#aaaaaa
 set_color \#cccccc
 
 # dkcmd set border width=1 outer_width=1 unfocus="#ff0000" focus="#00ff00"
-dkcmd set border width=2 outer_width=1 #unfocus="#ff0000" focus="#00ff00"
+# dkcmd set border width=2 outer_width=1 #unfocus="#ff0000" focus="#00ff00"

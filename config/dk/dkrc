@@ -94,7 +94,7 @@ fi
 	# dkcmd set border width=1 colour focus='#6699cc' unfocus='#000000' urgent='#ee5555'
 
 	# alternatively, enable split borders and colours
-	dkcmd set border width=1 outer_width=0 \
+	dkcmd set border width=2 outer_width=1 \
 		colour \
 		focus='#222222' \
 		unfocus='#222222' \
@@ -133,9 +133,9 @@ fi
 	dkcmd rule title="^Zoom Meeting$"				 ws=10 float=false # meeting
 	dkcmd rule title="^Zoom Meetingx$"       ws=10 float=false # meeting
 
-	dkcmd rule title="^zoom$"       			 ws=10 bw=1 #float=true # could be anything!
-	dkcmd rule title="^zooml$"       			 ws=10 bw=1 float=true # splash
-	dkcmd rule title="^zoom1$"       			 ws=10 bw=1 float=true # splash
+	dkcmd rule title="^zoom$"       			 ws=10 #float=true # could be anything!
+	dkcmd rule title="^zooml$"       			 ws=10 float=true # splash
+	dkcmd rule title="^zoom1$"       			 ws=10 float=true # splash
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2
