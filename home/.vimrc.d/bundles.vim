@@ -53,12 +53,16 @@ let g:lightline = {
   \ ]
   \ },
   \ 'inactive': {
-  \   'right': []
+  \   'right': [
+  \            [ 'linter_errors', 'linter_warnings'  ]
+  \            ]
   \ },
   \ 'component_function': {
   \   'filename': 'LightLineFilename'
   \ }
 \}
+let g:lightline#ale#indicator_warnings = "WARNING: "
+let g:lightline#ale#indicator_errors = "ERRORS: "
 function! LightLineFilename()
   return expand('%')
 endfunction
