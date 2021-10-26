@@ -16,8 +16,8 @@ env:
 # Window dimensions in character columns and lines
 # (changes require restart)
 
--: &window_padding 0
--: &font_family Meslo LG S # ttf-meslo
+-window_padding: &window_padding 0
+-font_family: &font_family Meslo LG S # ttf-meslo
 
 window:
   dimensions:
@@ -74,7 +74,7 @@ font:
   offset:
     # 2, -11
     x: 0
-    y: -1
+    y: 0
     # y: -18
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
