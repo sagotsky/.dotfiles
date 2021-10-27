@@ -1,0 +1,24 @@
+CommitMsg:
+  ALL:
+    enabled: false
+PreCommit:
+  ALL:
+    enabled: false
+PrePush:
+  RuboCop:
+    enabled: true
+    command: ['bundle', 'exec', 'rubocop'] # Invoke within Bundler context
+    on_warn: fail # Treat all warnings as failures
+    problem_on_unmodified_line: ignore
+    parallelize: true
+
+  TrailingWhitespace:
+    enabled: true
+    exclude:
+      - '**/*.rb' # RuboCop will handle these
+      - '**/db/structure.sql' # Ignore trailing whitespace in generated files
+PostCheckout:
+  CustomScript:
+    enabled: true
+    description: "Make sure recent migrations have files in the current branch"
+    required_executable: "migration-check.sh"
