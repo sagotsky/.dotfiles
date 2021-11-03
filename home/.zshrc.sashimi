@@ -12,7 +12,8 @@ if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
   precmd_functions+=_direnv_hook;
 fi
 
-alias kube-prod="CONTEXT=jon.sagotsky-kubernetes-useast1-production ezkube.sh "
+# alias kube-prod="CONTEXT=jon.sagotsky-kubernetes-useast1-production ezkube.sh "
+alias kube-prod="CONTEXT=production1-eks-useast1 ezkube.sh "
 alias kube-staging="CONTEXT=staging-eks-useast1 ezkube.sh "
 alias kube-dev1="CONTEXT=staging-eks-useast1 NAMESPACE='--namespace dev1' ezkube.sh "
 
