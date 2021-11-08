@@ -43,27 +43,26 @@
 
 ! https://www.reddit.com/r/unixporn/comments/8giij5/guide_defining_program_colors_through_xresources/
 !
-! XTerm
-XTerm*background:	#000000
-XTerm*foreground:	FOREGROUND
-XTerm*faceName:		Source Code Pro:semibold:antialias=true:autohint=true
-XTerm*faceSize:	  12
-Xterm*boldMode:   true
-XTerm*boldFont:   fixed
-XTerm*altismeta:	true
-XTerm*metaSendsEscape:  TRUE
-XTerm*borderWidth:	0
-XTerm*bellIsUrgent:     true
-XTerm*scrollBar:	false
-XTerm*visualBell:       true
-XTerm*faceSize1:		5
-XTerm*faceSize2:		6
-XTerm*faceSize3:	  8
-XTerm*faceSize4:		10
-XTerm*faceSize5:		12
-XTerm*faceSize6:		14
-Xterm*metaSendsEscape: true
-Xterm*selectToClipboard: true
+! xterm
+xterm*background:	#000000
+xterm*foreground:	FOREGROUND
+xterm*faceName:		Source Code Pro:semibold:antialias=true:autohint=true
+xterm*faceSize:	  12
+xterm*boldMode:   true
+xterm*boldFont:   fixed
+xterm*altismeta:	true
+xterm*metaSendsEscape:  TRUE
+xterm*borderWidth:	0
+xterm*bellIsUrgent:     true
+xterm*scrollBar:	false
+xterm*visualBell:       true
+xterm*faceSize1:		5
+xterm*faceSize2:		6
+xterm*faceSize3:	  8
+xterm*faceSize4:		10
+xterm*faceSize5:		12
+xterm*faceSize6:		14
+xterm*selectToClipboard: true
 
 !rxvt-unicode
 /* URxvt*font:		xft:Source Code Pro:semibold:antialias=true:style=semibold:size=10 */
@@ -128,52 +127,52 @@ Vim*font:             -*-terminus-*-*-*-*-14-*-*-*-*-*-*-*
 Vim.background:       black
 
 !black
-XTerm*color0: black
+xterm*color0: black
 URxvt*color0: black
 !red3
-XTerm*color1: #dd3333
+xterm*color1: #dd3333
 URxvt*color1: #dd3333
 !green3
-XTerm*color2: #33dd33
+xterm*color2: #33dd33
 URxvt*color2: #33dd33
 !yellow3
-XTerm*color3: #dddd33
+xterm*color3: #dddd33
 URxvt*color3: #dddd33
 !blue3
-XTerm*color4: royalblue
+xterm*color4: royalblue
 URxvt*color4: royalblue
 !magenta3
-XTerm*color5: #dd33dd
+xterm*color5: #dd33dd
 URxvt*color5: #dd33dd
 !cyan3
-XTerm*color6: #33ddcc
+xterm*color6: #33ddcc
 URxvt*color6: #33ddcc
 !gray90
-XTerm*color7: gray90
+xterm*color7: gray90
 URxvt*color7: gray90
 !gray30
-XTerm*color8: gray30
+xterm*color8: gray30
 URxvt*color8: gray30
 !red
-XTerm*color9: red
+xterm*color9: red
 URxvt*color9: red
 !green
-XTerm*color10: green
+xterm*color10: green
 URxvt*color10: green
 !yellow
-XTerm*color11: yellow
+xterm*color11: yellow
 URxvt*color11: yellow
 !blue
-XTerm*color12: steelblue
+xterm*color12: steelblue
 URxvt*color12: steelblue
 !magenta
-XTerm*color13: magenta
+xterm*color13: magenta
 URxvt*color13: magenta
 !cyan
-XTerm*color14: #33dddd
+xterm*color14: #33dddd
 URxvt*color14: #33dddd
 !white
-XTerm*color15: white
+xterm*color15: white
 URxvt*color15: white
 
 XLock.mode:     random
