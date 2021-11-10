@@ -25,7 +25,7 @@ window:
     lines: 60
 
   padding:
-    x: 1 # *window_padding # todo: script to toggle?
+    x: 0 # *window_padding # todo: script to toggle?
     y: *window_padding
 
   dynamic_padding:
@@ -44,7 +44,7 @@ tabspaces: 4
 draw_bold_text_with_bright_colors: true
 
 # background_opacity: 0.85
-background_opacity: 0.75
+background_opacity: 0.85
 
 # Font configuration (changes require restart)
 font:
