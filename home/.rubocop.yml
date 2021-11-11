@@ -1,0 +1,7 @@
+Lint/RedundantCopDisableDirective:
+  AutoCorrect: false
+
+# to override, use:
+# inherit_from:
+#   - ./.rubocop.yml
+#   - ../../.rubocop.yml
