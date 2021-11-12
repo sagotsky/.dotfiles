@@ -175,6 +175,7 @@ let g:ale_yaml_yamllint_options = '-d relaxed'
 " Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
 
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['rspec']
 Plug 'jparise/vim-graphql'
 Plug 'enricobacis/paste.vim' " fast paste
 Plug 'yuttie/comfortable-motion.vim' " smooth scrolling so pair partners don't get lost
