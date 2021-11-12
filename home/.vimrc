@@ -31,9 +31,9 @@ set grepprg=rg\ --vimgrep         " use ripgrep for search
 
 " set runtimepath+=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
-if v:version >= 704
-  set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
-endif
+" if v:version >= 704
+"   set regexpengine=1                " older engine is somehow faster for ruby syntax highlighting
+" endif
 
 try                             "persistent undo files
   set undodir=~/.vim_runtime/undodir
@@ -49,20 +49,11 @@ for file in split(glob('~/.vimrc.d/*.vim'), '\n')
   endif
 endfor
 
-filetype plugin indent on
-
-" if has('ruby')
-"   echo "has ruby"
-" endif
-
-" let g:python_host_prog = '/usr/bin/python3'
+filetype indent on
 
 " todo: hide the autocmds in a file
 autocmd VimResized * exe "normal \<c-w>="
 
-" when did ftplugin stop working?
-exe 'source ~/.vim/ftplugin/ruby.vim'
-"
 " install new bundles after saving bundles file
 if !exists("*BundlesUpdated")
   function BundlesUpdated()
