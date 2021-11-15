@@ -63,7 +63,10 @@ stty stop undef &>/dev/null     # reclaim ctrl-s as forward search
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
-for FILE ($ZSH/themes/**/*.zsh-theme) ; do source $FILE ; done
+# for FILE ($ZSH/themes/**/*.zsh-theme) ; do source $FILE ; done
+p10k_homebrew="/opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme"
+[ -f "$p10k_homebrew" ] && source "$p10k_homebrew"
+
 # . ~/source/powerlevel10k/powerlevel10k.zsh-theme
 #update_current_git_vars # this is the slow 30ms
 
@@ -137,7 +140,8 @@ fi
 #stop_profiling
 # zprof
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
 # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git .zsh//themes/powerlevel10k
+#
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
