@@ -63,7 +63,7 @@ stty stop undef &>/dev/null     # reclaim ctrl-s as forward search
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
-[[ -d "$ZSH/themes" ]] && for FILE ($ZSH/themes/**/*.zsh-theme) ; do source $FILE ; done
+for file in $(find "$ZSH/themes/" -name "*.zsh-theme") ; do source $FILE ; done
 
 p10k_homebrew="/opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f "$p10k_homebrew" ] && source "$p10k_homebrew"
@@ -101,7 +101,6 @@ fi
 if which keychain &>/dev/null && [[ "$SSH_AGENT_PID" == "" ]] || [[ "$SSH_AUTH_SOCK" == "" ]] ; then
   eval $(keychain --eval -q)
 fi
-# source /opt/asdf-vm/asdf.sh
 
 # async_init
 
@@ -142,6 +141,9 @@ fi
 # zprof
 
 [[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
+[[ -f /opt/homebrew/lib/asdf.sh ]] && source /opt/homebrew/lib/asdf.sh
+
+PATH="$HOME/.asdf/shims:$PATH"
 # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git .zsh//themes/powerlevel10k
 #
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

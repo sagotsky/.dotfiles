@@ -29,7 +29,7 @@ alias tf='tail -f'
 alias sudo='sudo ' # force alias preservation, no really
 alias systemctl='sudo systemctl'
 alias t=tmux
-alias tmux='systemd-run --scope --user -q tmux'
+if which systemd-run &>/dev/null ; then alias tmux='systemd-run --scope --user -q tmux' ; fi
 alias tx='tmux attach'
 alias wgetr="wget -r -np -nH –cut-dirs=3 -R index.html"
 alias v='nv '
