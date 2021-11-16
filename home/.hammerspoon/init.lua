@@ -7,6 +7,7 @@ apps = {
   {'2', 'Spotify'},
   {'4', 'iTerm'},
   {'5', 'Slack'},
+  {'6', 'Messages'},
   {'0', 'Zoom'},
 }
 for i, app in ipairs(apps) do
