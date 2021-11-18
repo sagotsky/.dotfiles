@@ -26,6 +26,10 @@ hs.hotkey.bind(mod, 'F', function()
   end
 end)
 
+-- cron
+hs.timer.doEvery(hs.timer.hours(1), function()
+  os.execute[[ ~/scripts/daily.sh ~/Dropbox\ \(Maestral\)/bing_farmer.sh ]]
+end)
 
 -- auto reload this file
 function reloadConfig(files)
