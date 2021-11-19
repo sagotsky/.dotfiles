@@ -15,6 +15,7 @@ set nofoldenable                  " disable folds
 set nowrap                        " no word wrap
 set number                        " line numbers on
 set scrolloff=4                   " scroll at 4 lines from top/bottom
+set shiftround                    " rounds out white space errors.
 set shiftwidth=2                  " tab width
 set showcmd                       " keybindings show their full name
 set showmatch                     " shows matching parens
