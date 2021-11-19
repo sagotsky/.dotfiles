@@ -49,7 +49,7 @@ blink() {
 }
 
 alarm() {
-    [[ "$?" == "0" ]] && mpv /usr/share/sounds/freedesktop/stereo/complete.oga &>/dev/null &
+    [[ "$?" == "0" ]] && mpv --volume=60 /usr/share/sounds/freedesktop/stereo/complete.oga &>/dev/null &
 }
 
 (
