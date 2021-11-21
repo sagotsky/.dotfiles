@@ -15,12 +15,15 @@ super + shift + {h,j,k,l}
 super + ctrl + {h,j,k,l}
 	dkcmd win resize {w=-20,h=+20,h=-20,w=+20}
 
-super + {Return,w,Tab,t}
-	dkcmd win {swap,kill,full,float}
+super + {Return,Tab,t}
+	dkcmd win {swap,full,float}
 
 # restart dk
 super + shift + q
 	dkcmd restart
+
+super + shift + w
+	dkcmd win kill
 
 super + minus
 	dkcmd ws last
