@@ -14,8 +14,8 @@ figure out what property triggers it.
 
 # puts "%{F#333333}⚫ %{F-}"*10 # skeleton output for faster perceived output
 
-require "xlib-objects"
-require "pry"
+require 'xlib-objects'
+require 'pry'
 
 class Event
   EVENT_MAP = %i[
@@ -26,7 +26,7 @@ class Event
     CirculateNotify CirculateRequest PropertyNotify SelectionClear
     SelectionRequest SelectionNotify ColormapNotify ClientMessage MappingNotify
     GenericEvent LASTEvent
-  ].each_with_object({}) { |constant, hash| hash[Xlib.const_get(constant)] = constant  }
+  ].each_with_object({}) { |constant, hash| hash[Xlib.const_get(constant)] = constant }
 
   def initialize(xlib_event)
     @attributes = xlib_event.members.zip(xlib_event.values).to_h
@@ -59,7 +59,7 @@ class YambarFormatter
   def workspace(id, ws)
     [
       "workspace-#{id}-state|string|#{ws.state}",
-      "workspace-#{id}-name|string|#{ws.name}",
+      "workspace-#{id}-name|string|#{ws.name}"
     ]
   end
 end
@@ -89,15 +89,13 @@ class Cli
   EVENT_DELAY = 0.004 # give windows time to close before we query them.  yeah, it's like that :-\
 
   def initialize
-    @display = XlibObj::Display.new(":0")
+    @display = XlibObj::Display.new(':0')
     @root = Root.new(@display)
-    @formatter = begin
-      if ARGV.include?("--yambar")
-        YambarFormatter.new
-      else
-        Formatter.new(Configuration.new)
-      end
-    end
+    @formatter = if ARGV.include?('--yambar')
+                   YambarFormatter.new
+                 else
+                   Formatter.new(Configuration.new)
+                 end
   end
 
   def main
@@ -122,7 +120,6 @@ class Cli
         ws.occupied!
       end
     end
-
 
     puts @formatter.workspaces(all)
   end
@@ -184,8 +181,8 @@ class Root
   private
 
   def desktop_names
-    names = XlibObj::Window::Property.new(@root, :_NET_DESKTOP_NAMES).get  # Names is preferred, but not all WMs provide it
-    number_of_desktops_atom =  XlibObj::Window::Property.new(@root, :_NET_NUMBER_OF_DESKTOPS).get
+    names = XlibObj::Window::Property.new(@root, :_NET_DESKTOP_NAMES).get # Names is preferred, but not all WMs provide it
+    number_of_desktops_atom = XlibObj::Window::Property.new(@root, :_NET_NUMBER_OF_DESKTOPS).get
     number = number_of_desktops_atom.nil? ? nil : number_of_desktops_atom.first
 
     if names
@@ -198,8 +195,8 @@ class Root
   end
 
   def init_events!
-    @root.on(:property_change, :property_notify) { | event| puts event }
-    @root.on(:substructure_notify, :client_message) { | event| puts event }
+    @root.on(:property_change, :property_notify) { |event| puts event }
+    @root.on(:substructure_notify, :client_message) { |event| puts event }
   end
 end
 
@@ -208,7 +205,7 @@ class Window
   NET_WM_DESKTOP = :_NET_WM_DESKTOP
   NET_WM_STATE = :_NET_WM_STATE
   WM_HINTS = :WM_HINTS
-  URGENCY_HINT = 1  # this is reverse engineered based on observed WM_HINTS.
+  URGENCY_HINT = 1 # this is reverse engineered based on observed WM_HINTS.
 
   NET_WM_STATE_DEMANDS_ATTENTION = :_NET_WM_STATE_DEMANDS_ATTENTION
   def initialize(display, xlibobj_window)
@@ -240,13 +237,12 @@ class Window
 
   def needs_attention?
     states = property(NET_WM_STATE)
-     states&.any? { |state| state.name == NET_WM_STATE_DEMANDS_ATTENTION }
+    states&.any? { |state| state.name == NET_WM_STATE_DEMANDS_ATTENTION }
   end
 
   def urgency_hint?
     Array(property(WM_HINTS))[URGENCY_HINT]&.bytes == [1]
   end
-
 
   def property(name)
     @window.property(name) if window_exists?
@@ -261,23 +257,26 @@ end
 
 class Configuration
   attr_reader :delimiter, :pre_urgent, :post_urgent, :pre_visible,
-    :post_visible, :pre_occupied, :post_occupied, :pre_empty, :post_empty
+              :post_visible, :pre_occupied, :post_occupied, :pre_empty, :post_empty
 
   def initialize
-    @delimiter = " "
-    @workspaces = Array.new(10, &:itself).zip(Array.new(10).fill("⚫")).to_h # hash of ws id => name
+    @delimiter = ' '
+    @workspaces = Array.new(10, &:itself).zip(Array.new(10).fill('⚫')).to_h # hash of ws id => name
 
-    @pre_urgent = "%{F#ff5500}"
-    @post_urgent = "%{F-}"
+    @pre_urgent = '%{F#ff5500}'
+    @post_urgent = '%{F-}'
 
-    @pre_visible = "%{F#ffffff}"
-    @post_visible = "%{F-}"
+    # TODO: visible and focused
+    # focused visible windows are one thing. what if looking at root win?
 
-    @pre_occupied = "%{F#777777}"
-    @post_occupied = "%{F-}"
+    @pre_visible = '%{F#ffffff}'
+    @post_visible = '%{F-}'
 
-    @pre_empty = "%{F#333333}"
-    @post_empty = "%{F-}"
+    @pre_occupied = '%{F#777777}'
+    @post_occupied = '%{F-}'
+
+    @pre_empty = '%{F#333333}'
+    @post_empty = '%{F-}'
   end
 
   def ws_name(ws)
