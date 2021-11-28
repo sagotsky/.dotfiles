@@ -1,7 +1,10 @@
 Lint/RedundantCopDisableDirective:
   AutoCorrect: false
 
-# to override, use:
+Lint/UnusedMethodArgument:
+  AutoCorrect: false
+
+# to override, define a .rubocop.override.yml in your project.  gitignore it.  call it explicitly with rubocop wrapper
 # inherit_from:
 #   - ./.rubocop.yml
 #   - ../../.rubocop.yml
