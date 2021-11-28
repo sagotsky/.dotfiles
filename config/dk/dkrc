@@ -142,8 +142,8 @@ fi
 	dkcmd rule title="^Zoom Cloud Meetings"  ws=10 float=false # login screen
 
 	dkcmd rule title="^zoom$"       			 ws=10 #float=true # could be anything!
-	dkcmd rule title="^zooml$" type=splash      			 ws=10 float=true ignore=true # splash
-	dkcmd rule title="^zoom1$" type=splash       			 ws=10 float=true ignore=true # splash
+	# dkcmd rule title="^zooml$" type=splash      			 ws=10 float=true ignore=true # splash
+	# dkcmd rule title="^zoom1$" type=splash       			 ws=10 float=true ignore=true # splash
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2

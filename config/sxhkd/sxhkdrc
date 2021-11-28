@@ -17,6 +17,9 @@ super + y
 super + shift + y
   cheat-sheet.sh # views files in .cheat-sheets
 
+super + shift + z
+   toggle-monitor-layout.sh
+
 # MUSIC
 super + {Left,Right,Down}
   spotifyctl {previous,next,play-pause}
@@ -69,7 +72,7 @@ super + d
 super + {_,shift +,ctrl +}o
   transset -a {--dec 0.03, --inc 0.03, --max 1}
 
-ctrl + space
+ctrl + period
    dunstctl close
 
 # old xmonad keys
