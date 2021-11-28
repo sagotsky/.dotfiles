@@ -32,7 +32,7 @@ set_b() {
 intro_message() { echo "Tabata starts in..." ; seq 5 -1 1 | output_timer; }
 
 intro_message
-seq 8 | while read -r round ; do
+seq 4 | while read -r round ; do
     clear
     echo -e "\n-- round $round --"
     echo
