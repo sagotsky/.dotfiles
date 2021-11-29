@@ -14,5 +14,5 @@ configuration {
 	line-margin: 0;
 	separator-style: "solid";
 	scrollbar-width: 0;
-	theme: "polybar";
 }
+@theme "polybar"
