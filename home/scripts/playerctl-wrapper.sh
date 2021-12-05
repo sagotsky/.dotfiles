@@ -1,6 +1,6 @@
 #!/bin/sh
 
-killall playerctl
+killall playerctl &>/dev/null
 
 playerctl metadata -f '{{ status }}{{ title }}' --follow 2>/dev/null | while read status ; do
   case $status in
