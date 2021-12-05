@@ -110,7 +110,7 @@ function check-mail() {
 # todo: firefox || icons
 
 mail=$(check-mail ${1:-0})
-[ "$(echo $mail | grep [a-Z] | wc -c)" == "1" ] && sleep ${EMPTY_SNOOZE:-0}
+[ "$(echo $mail | grep [a-zA-Z] | wc -c)" == "1" ] && sleep ${EMPTY_SNOOZE:-0}
 echo $mail
 
 
