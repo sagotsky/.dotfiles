@@ -63,7 +63,7 @@ stty stop undef &>/dev/null     # reclaim ctrl-s as forward search
 # try to load selective plugins from oh-my-zsh
 ZSH="$HOME/.zsh/"
 for FILE ($ZSH/plugins/**/*sh) ; do source $FILE ; done
-for file in $(find "$ZSH/themes/" -name "*.zsh-theme") ; do source $FILE ; done
+for FILE in $(find "$ZSH/themes/" -name "*.zsh-theme") ; do source $FILE ; done
 
 p10k_homebrew="/opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f "$p10k_homebrew" ] && source "$p10k_homebrew"
