@@ -234,8 +234,8 @@ bar:
           string: {text: "{title}", font: *font-lg, max: 64}
   left:
   - script:
-      path: "/home/sagotsky/scripts/workspaces.rb"
-      args: ['--yambar']
+      path: "/home/sagotsky/source/wm_tail/scripts/wm_tail.sh"
+      args: ["wm-formatter-yambar.sh"]
       anchors:
         - string: &urgent   {foreground: ff5500ff}
         - string: &visible  {foreground: ffffffff}
