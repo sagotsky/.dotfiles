@@ -29,8 +29,8 @@ super + minus
 	dkcmd ws last
 
 # change number of windows in master or first stack
-super + {_,shift + }{comma,period}
-	dkcmd set {master,stack} {+1,-1}
+# super + {_,shift + }{comma,period}
+# 	dkcmd set {master,stack} {+1,-1}
 
 super + shift + space
 	~/.config/dk/dkrc
