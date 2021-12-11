@@ -245,7 +245,7 @@ bar:
         # - ws-icon-style: &ws-icon-style {right-margin: 0, font: *font-icon}
         - ws-icon-style: &ws-icon-style {font: *font-icon, <<: *icon-margin}
 
-        - ws-icon0: &ws-icon0 {text: "", <<: *ws-icon-style, left-margin: -6}    # offset becaues this is the first one
+        - ws-icon0: &ws-icon0 {text: "", <<: *ws-icon-style, left-margin: 0}    # offset becaues this is the first one
         - ws-icon2: &ws-icon1 {text: "", <<: *ws-icon-style}
         - ws-icon3: &ws-icon2 {text: "", <<: *ws-icon-style}
         - ws-icon4: &ws-icon3 {text: "", <<: *ws-icon-style}
