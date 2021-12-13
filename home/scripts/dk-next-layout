@@ -6,7 +6,7 @@ mono
 tstack"
 
 current_layout() {
-    dkcmd status type=ws num=1 | grep "^L" | tr -d "L"
+    dkcmd status num=1 | grep "^L" | tr -d "L"
 }
 
 next_layout() {
