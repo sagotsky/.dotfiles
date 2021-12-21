@@ -62,4 +62,4 @@ alarm() {
     blink
 
     dzen_format
-) | dzen2 -fn "$FONT" -bg Grey15 -p -e "button3=exec:killall -9 dzen2;button1=exec:$SELF $TIME" &
+) | dzen2 -fn "$FONT" -bg Grey15 -p -e "button3=exec:killall -9 dzen2;button1=exec:$SELF $TIME" -xs 1 &
