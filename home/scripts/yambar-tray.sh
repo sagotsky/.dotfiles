@@ -18,5 +18,6 @@ trayer \
     --transparent true \
     --alpha 0 \
     --width 20  \
+    --monitor primary \
     --widthtype request
     # &>/dev/null
