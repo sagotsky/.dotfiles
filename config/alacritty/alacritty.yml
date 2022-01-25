@@ -31,6 +31,8 @@ window:
   dynamic_padding:
     false
 
+  opacity: 0.85
+
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
 dpi:
@@ -43,8 +45,6 @@ tabspaces: 4
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
-# background_opacity: 0.85
-background_opacity: 0.85
 
 # Font configuration (changes require restart)
 font:
