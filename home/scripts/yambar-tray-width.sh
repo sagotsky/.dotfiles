@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -xe
 
-CHARWIDTH=10 # i guess?
+CHARWIDTH=8 # i guess?
 
 tray_width_px() {
     xwininfo -name panel | # trayer names its window "panel"
@@ -9,7 +9,7 @@ tray_width_px() {
 }
 
 px_to_spaces() {
-    spaces="$((${1:-0} / $CHARWIDTH + 1))"
+    spaces="$((1 + ${1:-0} / $CHARWIDTH))"
     printf "% *s\n" $spaces
 }
 
