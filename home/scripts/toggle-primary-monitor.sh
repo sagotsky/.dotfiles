@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-autorandr --load horizontal
+# autorandr --load horizontal
 
 # works for getting off secondary.  how about reconnecting?
 NEXT_PRIMARY=$(xrandr -q | grep ' connected' | grep -v 'primary' | cut -f 1 -d' ')
@@ -11,6 +11,6 @@ fi
 
 # will this drop the other screen?  or just switch primary?
 xrandr --output $NEXT_PRIMARY --primary
-xmonad --restart
+# xmonad --restart
 
 sleep 1 ; nitrogen --restore
