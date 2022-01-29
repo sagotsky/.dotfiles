@@ -18,8 +18,9 @@
 # not tiling by default.
 
 # exec chamfer --config=/usr/share/chamfer/config/config.py --shader-path=/usr/share/chamfer/shaders # didn'treally launch
-# /usr/bin/dk
-~/bin/dk-master
+/usr/bin/dk # automatic mode has potential.  feels like it's off the happy path though.
+# bspwm
+# ~/bin/dk-master
 # qtile start -c ~/.config/qtile/config.py #&> /tmp/qtile
 # python based xmonad replacement.  kinda slow.  doesn't like zoom.  doesn't like yambar plus tray
 
