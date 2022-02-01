@@ -7,11 +7,11 @@ disk_usage() {
 }
 
 cpu_usage() {
-    vmstat  | awk '/[0-9]/ { printf "%02d\n", $13 }'
+    vmstat  | awk '/[0-9]/ { print $13 }'
 }
 
 mem_usage() {
-    free  | awk '/Mem/ { printf "%02d\n", $2 / $3 }'
+    free  | awk '/Mem/ { printf int($2 / $3) }'
 }
 
 fmt_yambar_range() {
