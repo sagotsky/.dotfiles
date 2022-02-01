@@ -18,7 +18,7 @@ super + shift + y
   cheat-sheet.sh # views files in .cheat-sheets
 
 super + shift + z
-   toggle-monitor-layout.sh
+   dock-laptop.sh
 
 # MUSIC
 super + {Left,Right,Down}
