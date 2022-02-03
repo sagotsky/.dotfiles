@@ -3,6 +3,8 @@
 external_screen="DP-1-1.1"
 internal_screen="eDP-1"
 
+notify-send "docking" -h string:fgcolor:#ffffff -h string:bgcolor:#00b373
+
 ~/.screenlayout/vertical-2.sh
 xmodmap ~/.xmodmap
 
