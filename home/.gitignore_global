@@ -7,6 +7,7 @@ docker-compose.override.yml
 .docker-pryrc-local
 .docker-pryrc
 docker/run-p
+docker/psql-exec
 
 .solargraph.yml
 Gemfile.local

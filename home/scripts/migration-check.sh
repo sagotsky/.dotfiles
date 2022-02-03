@@ -46,7 +46,7 @@ current_migration_versions() {
 
 # this might need to be a variable so non-ezcater apps can use it
 psql_cmd() {
-  $(gitroot)/docker/psql #2>/dev/null
+  $(gitroot)/docker/psql-exec #2>/dev/null # swap out `run --rm` for `exec -T`
 }
 
 migration_messages="$(check_migrations)"
