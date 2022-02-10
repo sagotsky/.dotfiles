@@ -192,9 +192,9 @@ bar:
                     - string: {text:  , foreground: 00ff00ff, font: *font-icon}
                     - string: {text:  , foreground: 00ff00ff, font: *font-icon}
                     - string: {text:  , foreground: 00ff00ff, font: *font-icon}
-                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
-                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
-                    - string: {text:  , foreground: 00ff00ff, font: *font-icon}
+                    - string: {text:  , font: *font-icon}
+                    - string: {text:  , font: *font-icon}
+                    - string: {text:  , font: *font-icon}
               - string: {text: "{capacity}%", left-margin: 12}
 
   - clock:
