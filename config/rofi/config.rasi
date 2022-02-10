@@ -15,4 +15,5 @@ configuration {
 	separator-style: "solid";
 	scrollbar-width: 0;
 }
-@theme "polybar"
+/* @theme "polybar" */
+@theme "onedark"
