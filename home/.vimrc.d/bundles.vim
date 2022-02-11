@@ -84,7 +84,11 @@ let g:lightline.component_type = {
 
 Plug 'vim-scripts/SQLComplete.vim'     " SQL syntax highlighting
 Plug 'vimwiki/vimwiki'                 " internal wiki
-let g:vimwiki_list = [{'path':'~/.vimwiki', 'syntax':'markdown'}]
+let g:vimwiki_list = [
+    \{'path':'~/Dropbox/vimwikis/ez',       'syntax':'markdown'},
+    \{'path':'~/Dropbox/vimwikis/personal', 'syntax':'markdown'},
+    \{'path':'~/Dropbox/vimwikis/plm',      'syntax':'markdown'},
+    \]
 let g:vimwiki_key_mappings = { 'all_maps': 1, 'headers': 0 }
 
 Plug 'wincent/terminus'                " more term support.  mouse?
