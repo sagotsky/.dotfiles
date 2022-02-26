@@ -14,6 +14,7 @@ function dump-cookies() {
   sqlite3 -separator $'\t' "$@" <<- EOF
 .mode
 .header off
+.separator "\t"
     select
       host,
       case substr(host,1,1)='.' when 0 then 'FALSE' else 'TRUE' end,
@@ -74,6 +75,8 @@ function auth-check() {
 function get-atom() {
   URL="https://mail.google.com/mail/u/$1/feed/atom"
   ATOM="$(curl --location -s $(curl-cookie-opt) $URL)"
+  debug $URL
+  debug $(curl-cookie-opt)
   auth-check $ATOM
   echo $ATOM
 }
@@ -84,7 +87,6 @@ function check-mail() {
   if [[ "$?" != "1" ]] ; then
     echo $ATOM | sed -r -e 's/.*fullcount>([0-9]+).*/\1/'
   else
-
     find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name 'cookies-gmail.txt' -delete # they're expired
     # firefox http://gmail.com
     echo 'AUTH'
