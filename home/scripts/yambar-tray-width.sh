@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash
 
 CHARWIDTH=8 # i guess?
 
