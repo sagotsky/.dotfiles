@@ -56,6 +56,8 @@ XF86Calculator
 
 XF86Display
   xcalib -a -i
+super + shift + i
+  xcalib -a -i
 
 # dedicated backlight keys
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
