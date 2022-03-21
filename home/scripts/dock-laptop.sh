@@ -9,12 +9,13 @@ notify-send "docking" -h string:fgcolor:#ffffff -h string:bgcolor:#00b373
 xmodmap ~/.xmodmap
 killall yambar
 killall xcompmgr &>/dev/null
+killall trayer
 
 # `xrandr -q` lags for 3s.  this tries to skip the query by offering a fallback.
 xrandr --output "$external_screen" --primary ||                     # try external
     xrandr --output "$internal_screen" --primary       # fallback to laptop
 
-yambar &
 caps-unlock.sh # just in case I hit caps before xmodmap
 nitrogen --restore
 ~/.xsession.d/xcompmgr &>/dev/null &
+yambar &
