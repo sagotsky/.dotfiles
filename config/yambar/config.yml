@@ -154,6 +154,15 @@ bar:
               - string: {<<: [*disk, *col-normal]}
               - string: {<<: [*disk, *col-alert]}
               - string: {<<: [*disk, *col-critical]}
+
+  - script:
+      content:
+        - string: {text: " ", foreground: 0db7edff, font: *font-icon}
+        - string: {text: " {stdout} ", max: 44}
+
+      path: "/home/sagotsky/scripts/yambar-string-wrapper.sh"
+      args: ["docker-counter.sh"]    # spotify
+
   - battery:
       name: BAT0
       poll-interval: 15
