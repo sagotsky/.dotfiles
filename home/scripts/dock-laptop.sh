@@ -15,7 +15,9 @@ killall trayer
 xrandr --output "$external_screen" --primary ||                     # try external
     xrandr --output "$internal_screen" --primary       # fallback to laptop
 
-caps-unlock.sh # just in case I hit caps before xmodmap
+dkcmd restart
+xbacklight-50
+CAPS_UNLOCK.SH # just in case I hit caps before xmodmap
 nitrogen --restore
 ~/.xsession.d/xcompmgr &>/dev/null &
 yambar &
