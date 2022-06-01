@@ -111,6 +111,10 @@ tmux-up ~/repos/ez-rails <<EOF
   vsplit docker/start "sleep 15 ; docker attach `docker ps | grep ez-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
 EOF
 
+tmux-up ~/repos/payouts-rails <<EOF
+  vsplit docker/start "sleep 15 ; docker attach `docker ps | grep payouts-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
+EOF
+
 # tmux-up ~/repos/ez-rails <<EOF
 #   docker-compose up ezrails-db
 #   foreman start
@@ -126,10 +130,10 @@ EOF
 #   docker-compose up
 # EOF
 
-tmux-up ~/repos/engineering-rfcs rfc<<EOF
-  zsh
-EOF
+# tmux-up ~/repos/engineering-rfcs rfc<<EOF
+#   zsh
+# EOF
 
-tmux-up ~/repos/menus-graphql-prototype gql <<EOF
-  hsplit zsh bin/start
-EOF
+# tmux-up ~/repos/menus-graphql-prototype gql <<EOF
+#   hsplit zsh bin/start
+# EOF
