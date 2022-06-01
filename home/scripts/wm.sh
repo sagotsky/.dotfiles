@@ -19,7 +19,8 @@
 
 # exec chamfer --config=/usr/share/chamfer/config/config.py --shader-path=/usr/share/chamfer/shaders # didn'treally launch
 /usr/bin/dk # automatic mode has potential.  feels like it's off the happy path though.
-# bspwm
+# bspwm # saw similar off screen behavior as left.  could yambar be culprit?
+# leftwm # 5/22/22 getting better, but multimonitor shows artifacts on secondary screen.  can't remove margin or change color still.
 # ~/bin/dk-master
 # qtile start -c ~/.config/qtile/config.py #&> /tmp/qtile
 # python based xmonad replacement.  kinda slow.  doesn't like zoom.  doesn't like yambar plus tray
@@ -55,7 +56,6 @@
 # # wingo
 # # arch package busted.  not a total dealbreaker but def an ill omen
 
-# leftwm
 # pretty good!
 #  workspaces.rb doesn't work.  but leftwm-state looks easier to work around.
 #  fullscreen behavior is bad
