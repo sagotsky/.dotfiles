@@ -141,7 +141,8 @@ fi
 	dkcmd rule title="^Zoom Meetingx$"       ws=10 float=false # meeting
 	dkcmd rule title="^Zoom Cloud Meetings"  ws=10 float=false # login screen
 
-	dkcmd rule title="^zoom$"       			 ws=10 #float=true # could be anything!
+	dkcmd rule title="^Zoom$"       			 ws=10 #float=true # could be anything!
+	dkcmd rule title="^Chat$"       			 ws=10 float=true # could be anything!
 	# dkcmd rule title="^zooml$" type=splash      			 ws=10 float=true ignore=true # splash
 	# dkcmd rule title="^zoom1$" type=splash       			 ws=10 float=true ignore=true # splash
 
