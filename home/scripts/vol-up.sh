@@ -1,5 +1,5 @@
 #!/bin/sh
 
-amixer sset Master 4%+ unmute > /dev/null
-touch /dev/snd/controlC0 
-
+pactl set-sink-volume 1 +4% > /dev/null
+# amixer sset Master 4%+ unmute > /dev/null
+touch /dev/snd/controlC0
