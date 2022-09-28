@@ -4,8 +4,8 @@ set_color() {
 #outer focus becomes only focus when picom rounds corners
 #inner focus can become only focus if it's 100% of the width
  dkcmd set border colour \
-     outer_focus="$1" \
-     focus="$1"
+     outer_focus="$1"
+     # focus="$1"
 
  sleep 0.03
 }

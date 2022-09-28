@@ -3,6 +3,7 @@
 FAVES="firefox
 slack
 spotify
+shoo.sh
 "
 echo "$FAVES $(dmenu_path)" |
   dmenu "$@" |
