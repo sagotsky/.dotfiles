@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pacmd list-sinks | grep '*' | cut -f 2 -d:
