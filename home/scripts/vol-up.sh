@@ -1,5 +1,6 @@
 #!/bin/sh
 
-amixer sset Master 4%+ > /dev/null
-# pactl set-sink-volume $(pacmd-default-sink) +4% > /dev/null
-# touch /dev/snd/controlC0
+N=${1:-4}
+
+amixer -D pulse -c 0 sset Master $N%+ > /dev/null
+amixer -D pulse -c 2 sset PCM $N%+ > /dev/null
