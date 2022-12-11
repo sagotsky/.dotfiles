@@ -42,6 +42,10 @@ XF86AudioPlay
 shift + XF86AudioRaiseVolume
   pactl set-sink-volume @DEFAULT_SINK@ 150%
 
+# # mouse up
+# super + {button4,button5}
+#   pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%}
+
 # Hack: unkill wifi after accidentally pressing the kill wifi button.  (Don't forget to add NOPASSWD to sudoers)
 XF86WLAN
    sudo /usr/bin/rfkill unblock wlan
@@ -66,6 +70,9 @@ super + shift + i
 # WM
 # super + b
 #    killall polybar || init-polybar.sh
+
+super + r
+   nitrogen --random --set-zoom-fill --head=0 --save ; nitrogen --random --set-zoom-fill --head=1 --save
 
 # Junk drawer
 super + d
