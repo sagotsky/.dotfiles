@@ -21,5 +21,5 @@ rubocop() {
     fi
 }
 
-(rubocop -v || notify-send -u critical bundle "updating rubocop" && bundle install )&>/dev/null
+(rubocop -v || notify-send bundle "updating rubocop" && bundle install )&>/dev/null
 rubocop "$@"

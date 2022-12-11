@@ -5,6 +5,7 @@ slack
 spotify
 shoo.sh
 pcmanfm
+netctl-picker.sh
 "
 echo "$FAVES $(dmenu_path)" |
   dmenu "$@" |
