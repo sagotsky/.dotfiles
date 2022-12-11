@@ -1,0 +1,3 @@
+# state machines
+flowchart LR;
+  node1[one label] -- event name --> node2[two label];
