@@ -8,3 +8,5 @@
 --colors=line:style:bold
 --pretty
 --smart-case
+# Ignore files larger than 64 kilobytes.
+--max-filesize=64K
