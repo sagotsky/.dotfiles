@@ -20,6 +20,9 @@ if hash sxhkd >/dev/null 2>&1; then
 	sxhkd -c "$config_dir/sxhkdrc" "$HOME/.config/sxhkd/sxhkdrc" &
 fi
 
+killall dk-ws-border-color &>/dev/null
+$_ &
+
 
 { # compound command to redirect all output
 

@@ -16,22 +16,8 @@ set_color() {
 # set_color \#aaaaaa
 # set_color \#cccccc
 
-workspace_index="$(wmctrl -d | grep '\*' | cut -f 1 -d' ')"
-case "$workspace_index" in
-    0) c="#ff0000" ;;
-    1) c="#00ff00" ;;
-    2) c="#0000ff" ;;
-    3) c="#ff00ff" ;;
-    4) c="#00ffff" ;;
-    5) c="#ffff00" ;;
-    6) c="#ffffff" ;;
-    7) c="#aaccee" ;;
-    8) c="#eeccaa" ;;
-    9) c="#cceeaa" ;;
-esac
 
 dkcmd set border colour \
-     outer_focus="$c" \
      focus="#222222"
 # dkcmd set border width=1 outer_width=1 unfocus="#ff0000" focus="#00ff00"
 # dkcmd set border width=2 outer_width=1 #unfocus="#ff0000" focus="#00ff00"

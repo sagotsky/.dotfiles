@@ -1,10 +1,10 @@
 # focus next or previous window
 super + {j,k}
-	dkcmd win focus {next,prev} && dk-border-flash
+	dkcmd win focus {next,prev}
 
 # view, send, or follow to a workspace (by number)
 super + {_,shift + ,ctrl + }{1-9,0}
-	dkcmd ws {view,send,follow} {1-9,10} && dk-border-flash
+	dkcmd ws {view,send,follow} {1-9,10}
 
 # move window, signed (+/-) for relative changes
 # TODO: wtf is resize doing moving and resizing?
