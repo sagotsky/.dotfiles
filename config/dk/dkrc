@@ -132,22 +132,7 @@ $_ &
   ws_rule broken  2 # spotify
   ws_rule slack   5
 
-	# wtf is fixed.  why is float not honored?
-	 # title                              class     inst      ws     	x       y       w       h      border  hoff   float   full   fakefull   fixed   stick   urgent   callback   transid
-	 # 0x03e00030 "Zoom - Free Account"   "zoom"    "zoom"    10      10      33      941    1033     2      0      0       0          0      0       0        0          none      0x00000000
-	 # 0x03e00041 "Zoom"     							"zoom"    "zoom"    10      760     369     400    365      2      0      1       0          0      1       0        0          none      0x00000000
-	 # 0x03e00050 "zoom"     							"zoom"    "zoom"    10      680     371     560    360      0      0      1       0          0      1       0        0          none      0x00000000
-	 # 0x03e00064 "zoom"     							"zoom"    "zoom"    10      1445    33      465    1037     0      0      0       0          0      0       0        0          none      0x00000000
-
-	dkcmd rule title="^Zoom - Free Account$" ws=10 float=false # home
-	dkcmd rule title="^Zoom Meeting$"				 ws=10 float=false # meeting
-	dkcmd rule title="^Zoom Meetingx$"       ws=10 float=false # meeting
-	dkcmd rule title="^Zoom Cloud Meetings"  ws=10 float=false # login screen
-
-	dkcmd rule title="^Zoom$"       			 ws=10 #float=true # could be anything!
-	dkcmd rule title="^Chat$"       			 ws=10 float=true # could be anything!
-	# dkcmd rule title="^zooml$" type=splash      			 ws=10 float=true ignore=true # splash
-	# dkcmd rule title="^zoom1$" type=splash       			 ws=10 float=true ignore=true # splash
+	dkcmd rule class="zoom" ws=10 float=false ignore=true
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2
