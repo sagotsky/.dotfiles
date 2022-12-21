@@ -31,4 +31,5 @@ dkcmd status type=bar |
     grep '^W'  --line-buffered |
     while read -r line ; do
         refresh_border_color
+        sleep 0.1
     done
