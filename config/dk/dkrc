@@ -20,10 +20,6 @@ if hash sxhkd >/dev/null 2>&1; then
 	sxhkd -c "$config_dir/sxhkdrc" "$HOME/.config/sxhkd/sxhkdrc" &
 fi
 
-killall dk-ws-border-color &>/dev/null
-$_ &
-
-
 { # compound command to redirect all output
 
 	# workspace settings
@@ -132,7 +128,10 @@ $_ &
   ws_rule broken  2 # spotify
   ws_rule slack   5
 
-	dkcmd rule class="zoom" ws=10 float=false ignore=true
+	dkcmd rule class="zoom" ws=10 float=0 ignore=0
+	# # dkcmd rule class="zoom" ws=10 float=1 ignore=1
+	# dkcmd rule class="zoom" ws=10 float=1 ignore=0
+	# dkcmd rule class="zoom" ws=10 float=0 ignore=0
 
 	# open window(s) on a specific workspace (assigned monitor)
 	# dkcmd rule class="^gimp$" ws=2
