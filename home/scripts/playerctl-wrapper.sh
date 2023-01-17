@@ -2,7 +2,7 @@
 
 killall playerctl &>/dev/null
 
-playerctl metadata -f '{{ status }}{{ title }}' --follow 2>/dev/null | while read status ; do
+playerctl -p spotify metadata -f '{{ status }}{{ title }}' --follow 2>/dev/null | while read status ; do
   case $status in
     Playing*)
       playerctl metadata -f "{{ artist }} - {{ title }}"
