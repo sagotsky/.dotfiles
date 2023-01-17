@@ -174,6 +174,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_yaml_yamllint_options = '-d relaxed'
+let g:ale_virtualtext_cursor=0
 
 " requires nodejs, yarn
 " Plug 'neoclide/coc.nvim', {'brand': 'release', 'do': { -> coc#util#install()}}
