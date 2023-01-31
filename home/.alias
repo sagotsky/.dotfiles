@@ -22,6 +22,7 @@ if [[ "$(uname)" == "Linux" ]] ; then
 else
   alias ls='ls -G'
 fi
+alias mermaid='echo "\nuse mmdc\n" >&2; mmdc'
 alias myip='curl http://icanhazip.com ; echo'
 alias nitro-wal='wal -i `cat .config/nitrogen/bg-saved.cfg | grep file | cut -f2 -d=`'
 alias nv='TERM=xterm-256color nvim'

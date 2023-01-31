@@ -1,0 +1,4 @@
+A->B   sync call (solid arrow head)
+A->>B  async call (empty arrow head)
+A<--B  return value (dashed line)
+A<<--B async return value (dashed + empty arrow head)
