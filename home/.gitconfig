@@ -18,7 +18,7 @@
   cm = commit -m
   co = checkout
   cp = cherry-pick
-  logs = log -p -S
+  logs = log -p -G
   pf = push -f
   pu = push -u
   rb = rebase
