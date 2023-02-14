@@ -121,7 +121,7 @@ let g:ruby_heredoc_syntax_filetypes = {
 Plug 'pbrisbin/vim-mkdir'           " mkdir support
 Plug 'haya14busa/incsearch.vim'
 
-Plug 'bronson/vim-trailing-whitespace' " highlight trailing whitespace
+" Plug 'bronson/vim-trailing-whitespace' " highlight trailing whitespace
 Plug 'alcesleo/vim-uppercase-sql'
 
 Plug 'nelstrom/vim-textobj-rubyblock'
