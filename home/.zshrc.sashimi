@@ -1,3 +1,5 @@
+# vim: set ft=sh
+
 export POSTGRES_USER=postgres
 
 cdpath=(~/repos ~/.config)
