@@ -87,6 +87,9 @@ ctrl + period
 ctrl + {_,shift + }period
    dunstctl {close,close-all}
 
+super + z
+   shoo.sh
+
 # old xmonad keys
    #-- transparency
    # ("M-o",   spawn "transset-df -a --dec 0.03") -- make transparent
