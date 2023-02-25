@@ -13,7 +13,7 @@ super + shift + {h,j,k,l}
 
 # resize window, signed (+/-) for relative changes
 super + ctrl + {h,j,k,l}
-	dkcmd win resize {w=-20,h=-20,h=+20,w=+20}
+	dkcmd win resize {w=-20,h=+20,h=-20,w=+20}
 
 super + {Return,Tab}
 	dkcmd win {swap,full}
