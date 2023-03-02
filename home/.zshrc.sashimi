@@ -32,7 +32,7 @@ alias ezr=$HOME/repos/eztilt/eztilt
 function rds() {
   log_path="$HOME/rds_logs"
   mkdir -p $log_path
-  log_file="$log_path/log_$(date +%Y-%m-%d_%k-%M-%S).sql"
+  log_file="$log_path/log_$(date +%Y-%m-%d_%H-%M-%S).sql"
   ( # subshell prevents secrets from persisting
     eval "$(doppler secrets download --no-file --format docker -p ezrails-dev-backups-ruby -c production | grep SCRUBBED)"
     PGPASSWORD=$SCRUBBED_DEV_PASSWORD psql -h $SCRUBBED_EZRAILS_DNS_NAME -U $SCRUBBED_DEV_USER md2 -L $log_file --echo-queries -a
