@@ -6,14 +6,14 @@ PreCommit:
     enabled: false
 PrePush:
   RuboCop:
-    enabled: true
+    enabled: false
     command: ['bundle', 'exec', 'rubocop'] # Invoke within Bundler context
     on_warn: fail # Treat all warnings as failures
     problem_on_unmodified_line: ignore
     parallelize: true
 
   TrailingWhitespace:
-    enabled: true
+    enabled: false
     exclude:
       - '**/*.rb' # RuboCop will handle these
       - '**/db/structure.sql' # Ignore trailing whitespace in generated files
