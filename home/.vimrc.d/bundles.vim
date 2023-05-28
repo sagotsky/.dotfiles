@@ -229,5 +229,6 @@ let g:carbon_now_sh_options =
       \ { 't': 'lucario',
       \   'ds': 'true' }
 
+Plug 'github/copilot.vim' " :Copilot setup
 
 call plug#end()
