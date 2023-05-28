@@ -10,3 +10,4 @@
 --smart-case
 # Ignore files larger than 64 kilobytes.
 --max-filesize=64K
+--sort=path
