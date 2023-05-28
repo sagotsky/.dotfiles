@@ -91,9 +91,17 @@ function hsplit {
 
 # exit
 
-# tmux-up ~/repos/avro-schema-registry <<EOF
-#   docker/start
-# EOF
+tmux-up ~/repos/avro-schema-registry <<EOF
+  docker/start
+EOF
+
+tmux-up ~/repos/direct-connect-rails <<EOF
+  docker/start
+EOF
+
+tmux-up ~/repos/omnichannel-rails <<EOF
+  docker/start
+EOF
 
 # tmux-up ~/repos/kafka-docker <<EOF
 #   docker/start
