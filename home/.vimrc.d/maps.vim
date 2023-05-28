@@ -88,4 +88,4 @@ imap <C-c> <Esc>
 " nmap <silent> gr <Plug>(coc-references)
 
 " Edits current file's spec.  Unlike vim-rails, this will create a new file
-command! -nargs=0 Spec execute 'edit' substitute(expand('%'), 'app/\(.*\).rb', 'spec/\1_spec.rb', '')
+command! -nargs=0 Spec execute 'edit' substitute(expand('%'), '\(.\{-}\)/\(app\|public\)/\(.*\).rb', '\1/spec/\3_spec.rb', '')
