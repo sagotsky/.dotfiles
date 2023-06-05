@@ -133,9 +133,6 @@ fi
 #stop_profiling
 # zprof
 
-[[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
-[[ -f /opt/homebrew/lib/asdf.sh ]] && source /opt/homebrew/lib/asdf.sh
-
 PATH="$HOME/bin/:$PATH" # bin should outweigh .asdf, fight me.
 # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git .zsh//themes/powerlevel10k
 #
@@ -148,3 +145,6 @@ if [[ "$-" == *i* ]] ; then  # only for interactive shells
     [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
   done
 fi
+
+[[ -f /opt/homebrew/lib/asdf.sh ]] && source /opt/homebrew/lib/asdf.sh
+[[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
