@@ -91,13 +91,6 @@ function preexec() {
   shell_title $*
 }
 
-## Source some configs (.local files don't go in git)
-if [[ "$-" == *i* ]] ; then  # only for interactive shells
-  for FILE in .{alias,functions}{,.$HOST} .shellrc .zshrc.$HOST; do
-    [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
-  done
-fi
-
 if which keychain &>/dev/null && [[ "$SSH_AGENT_PID" == "" ]] || [[ "$SSH_AUTH_SOCK" == "" ]] ; then
   eval $(keychain --eval -q)
 fi
@@ -148,3 +141,10 @@ PATH="$HOME/bin/:$PATH" # bin should outweigh .asdf, fight me.
 #
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#
+## Source some configs (.local files don't go in git)
+if [[ "$-" == *i* ]] ; then  # only for interactive shells
+  for FILE in .{alias,functions}{,.$HOST} .shellrc .zshrc.$HOST; do
+    [[ -e "$HOME/$FILE" ]] && source "$HOME/$FILE"
+  done
+fi
