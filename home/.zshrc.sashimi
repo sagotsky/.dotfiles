@@ -43,7 +43,10 @@ function rds() {
 function prompt_tilt_current_context() {
   if [[ -f "./current-eztilt-context" ]]; then
     CURRENT="$(head -n1 current-eztilt-context)"
-    p10k segment -t "$CURRENT" -f 242
+
+    POD="$([ -f $CURRENT/default_pod ] && cut -f2 -d'/' $CURRENT/default_pod || echo no--pod)"
+
+    p10k segment -t "$CURRENT $POD" -f 242
   fi
 }
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=tilt_current_context
