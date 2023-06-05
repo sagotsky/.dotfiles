@@ -39,3 +39,11 @@ function rds() {
   )
   echo $log_file
 }
+
+function prompt_tilt_current_context() {
+  if [[ -f "./current-eztilt-context" ]]; then
+    CURRENT="$(head -n1 current-eztilt-context)"
+    p10k segment -t "$CURRENT" -f 242
+  fi
+}
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=tilt_current_context
