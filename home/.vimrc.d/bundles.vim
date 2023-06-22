@@ -101,8 +101,6 @@ let g:VimuxHeight = "30"
 let g:turbux_command_rspec = 'docker/run bundle exec rspec'
 
 Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
-
-Plug 'joker1007/vim-ruby-heredoc-syntax' " syntax highlight heredocs in ruby
 " Add syntax rule
 let g:ruby_heredoc_syntax_filetypes = {
       \ "graphql" : {
@@ -113,6 +111,12 @@ let g:ruby_heredoc_syntax_filetypes = {
       \},
       \ "haml" : {
       \   "start" : "HAML",
+      \},
+      \ "ruby" : {
+      \   "start" : "RUBY",
+      \},
+      \ "eruby" : {
+      \   "start" : "ERB",
       \},
       \}
 " 'start' is heredoc start literal.
