@@ -50,3 +50,7 @@ function prompt_tilt_current_context() {
   fi
 }
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=tilt_current_context
+
+function ez_service_name() {
+  awk -e '/^name: / { print $2 }' service.yml
+}
