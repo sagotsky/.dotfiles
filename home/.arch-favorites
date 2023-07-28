@@ -44,3 +44,4 @@ mypy
 inotify-tools
 arc-gtk-theme
 firefox-tridactyl-native-bin
+pasystray
