@@ -19,6 +19,7 @@
   co = checkout
   cp = cherry-pick
   logs = log -p -G
+  main = co main
   pf = push -f
   pu = push -u
   rb = rebase
