@@ -235,4 +235,8 @@ let g:carbon_now_sh_options =
 
 Plug 'github/copilot.vim' " :Copilot setup
 
+Plug 'AndrewRadev/sideways.vim'  " move args in list left and right
+nnoremap <leader>,   :SidewaysLeft<CR>
+nnoremap <leader>.   :SidewaysRight<CR>
+
 call plug#end()
