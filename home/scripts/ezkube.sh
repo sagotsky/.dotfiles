@@ -29,4 +29,6 @@ else
 fi
 
 PODNAME=$(echo $POD | cut -f1 -d' ')
+echo "try k9s --context $CONTEXT --namespace $NAMESPACE"
+for n in 1 2 3 4 5 ; do >&2 echo -n "." ; sleep 1 ; done ; echo
 kubectl $CONTEXT $NAMESPACE exec -it $PODNAME -- $CMD
