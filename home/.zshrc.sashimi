@@ -1,6 +1,7 @@
 # vim: set ft=sh
 
 export POSTGRES_USER=postgres
+export EDITOR=nvim
 
 cdpath=(~/repos ~/.config)
 . ~/.alias.arch
