@@ -124,9 +124,10 @@ fi
 	}
 	dkcmd rule remove '*'
 
-  ws_rule firefox 1
-  ws_rule broken  2 # spotify
-  ws_rule slack   5
+  ws_rule firefox  1
+  ws_rule spotify  2
+  ws_rule obsidian 3
+  ws_rule slack    5
 
 	dkcmd rule class="zoom" ws=10 float=0 ignore=0
 	# # dkcmd rule class="zoom" ws=10 float=1 ignore=1
