@@ -2,7 +2,7 @@
 
 bindkey -s '\erc'   "bundle-or-docker bin/rails console\n"
 bindkey -s '\err'   "bundle-or-docker rake routes | grep "
-bindkey -s '\erdb'  "bundle-or-docker bin/rails db\n"
+bindkey -s '\erdb'  "bundle-or-docker bin/rails db -p\n"
 bindkey -s '\erdm'  "bundle-or-docker rake db:migrate\n"
 bindkey -s '\erdr'  "bundle-or-docker rake db:rollback\n"
 bindkey -s '\erds'  "bundle-or-docker rake db:migrate:status | grep -v 'NO FILE'\n"
