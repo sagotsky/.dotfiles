@@ -9,3 +9,6 @@ gem "pry-theme"
 gem "rubocop"
 gem "solargraph"
 gem "xlib-objects"
+
+gem "docker-sync"
+gem "gpgme"

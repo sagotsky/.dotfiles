@@ -96,7 +96,7 @@ Plug 'wincent/terminus'                " more term support.  mouse?
 Plug 'vim-scripts/ruby-matchit'          " % support for do/end
 
 Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
-Plug 'benmills/vimux'                    " tmux -> rails testing
+Plug 'benmills/vimux'                   " tmux -> rails testing
 let g:VimuxHeight = "30"
 let g:turbux_command_rspec = 'docker/run bundle exec rspec'
 
@@ -166,8 +166,10 @@ let g:ale_set_highlights = 1
 let g:ale_sign_error = "✘"
 let g:ale_sign_warning = "•"
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
-let g:ale_ruby_rubocop_options = '--cache true --display-cop-names ' " parallel breaks -a
+" let g:ale_ruby_rubocop_executable = 'rubocop-vim.sh'
+let g:ale_ruby_rubocop_executable = 'rubocop'
+" let g:ale_ruby_rubocop_options = '--cache true --display-cop-names ' " parallel breaks -a
+" let g:ale_ruby_rubocop_options = '--display-cop-names ' " parallel breaks -a
 let g:ale_linters = {
 \ 'ruby': ['rubocop', 'ruby'],
 \ 'haml': ['haml-lint']

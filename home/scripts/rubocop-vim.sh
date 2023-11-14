@@ -11,15 +11,26 @@ opts() {
         echo ""
     fi
 }
+# no opts temporarily
+opts() {
+    echo ""
+}
 
 
-rubocop() {
-    if [ -f bin/rubocop ] ; then
+# notify-send debug "running rubocop-vim"
+exec_rubocop() {
+    if [ -f "docker/run-q" ] ; then
+        notify-send debug "docker/run-q bundle exec rubocop $@ `opts`" # bin/rubocop loops
+        docker/run-q bin/rubocop "$@" `opts`
+    elif [ -f bin/rubocop ] ; then
+        notify-send debug "bin"
         bin/rubocop "$@" `opts`
     else
+        notify-send debug "bundle"
         bundle exec rubocop "$@" `opts`
     fi
 }
 
-(rubocop -v || notify-send bundle "updating rubocop" && bundle install )&>/dev/null
-rubocop "$@"
+# (rubocop -v || notify-send bundle "updating rubocop" && bundle install )&>/dev/null
+exec_rubocop "$@"
+notify-send debug "done"

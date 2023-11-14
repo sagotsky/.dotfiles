@@ -119,9 +119,10 @@ tmux-up ~/repos/ez-rails <<EOF
   vsplit docker/start-selenium "sleep 15 ; docker attach `docker ps | grep ez-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
 EOF
 
-# tmux-up ~/repos/payouts-rails <<EOF
-#   vsplit docker/start "sleep 15 ; docker attach `docker ps | grep payouts-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
-# EOF
+tmux-up ~/repos/payouts-rails <<EOF
+  cd ~/repos/eztilt
+  # vsplit docker/start "sleep 15 ; docker attach `docker ps | grep payouts-rails-web | awk '{print $1}'` --detach-keys 'ctrl-c'"
+EOF
 
 # tmux-up ~/repos/ez-rails <<EOF
 #   docker-compose up ezrails-db

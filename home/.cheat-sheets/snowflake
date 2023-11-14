@@ -1,1 +1,3 @@
 RANK() OVER ( [ PARTITION BY <expr1> ] ORDER BY <expr2> [ { ASC | DESC } ] [ <window_frame> ] )
+
+CASE WHEN <cond1> THEN <result1> ELSE <resultN> END
