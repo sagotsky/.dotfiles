@@ -1,10 +1,3 @@
--font_family = "Meslo LG S"
--window_padding = 0
-custom_cursor_colors = true
-hide_cursor_when_typing = false
-render_timer = false
-tabspaces = 4
-
 [bell]
 animation = "EaseOutExpo"
 duration = 10
@@ -39,10 +32,6 @@ yellow = "0xdddd33"
 [colors.primary]
 background = "0x000000"
 foreground = "0xebebeb"
-
-[dpi]
-x = 90.0
-y = 90.0
 
 [env]
 TERM = "xterm-256color"
@@ -307,12 +296,6 @@ mode = "~AppKeypad"
 [[mouse.bindings]]
 action = "PasteSelection"
 mouse = "Middle"
-
-[mouse.double_click]
-threshold = 300
-
-[mouse.triple_click]
-threshold = 300
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
