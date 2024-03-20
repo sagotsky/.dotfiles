@@ -240,4 +240,6 @@ Plug 'AndrewRadev/sideways.vim'  " move args in list left and right
 nnoremap <leader>,   :SidewaysLeft<CR>
 nnoremap <leader>.   :SidewaysRight<CR>
 
+Plug 'izzergh/rumpelstiltskin' " emoji/unicode fuzzy finder
+nnoremap <leader>:   :Rumpel<CR>
 call plug#end()
