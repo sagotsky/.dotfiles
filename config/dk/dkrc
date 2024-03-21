@@ -129,7 +129,18 @@ fi
   ws_rule obsidian 3
   ws_rule slack    5
 
-	dkcmd rule class="zoom" ws=10 float=0 ignore=0
+	ws_rule zoom 10
+	# ignore_cfg (boolean) determine if the window should ignore configure
+	# request events (size or location changes).
+
+	# ignore_msg (boolean) determine if the window should ignore client message
+	# window activation events (grabbing focus).
+
+	# focus (boolean) determine if the window should be focused and view it's
+	# workspace. If mon is also set it will be activated first before viewing the
+	# workspace.
+
+	# dkcmd rule class="zoom" ws=10 float=0 ignore=0
 	# # dkcmd rule class="zoom" ws=10 float=1 ignore=1
 	# dkcmd rule class="zoom" ws=10 float=1 ignore=0
 	# dkcmd rule class="zoom" ws=10 float=0 ignore=0
