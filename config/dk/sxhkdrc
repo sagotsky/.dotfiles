@@ -37,8 +37,8 @@ super + {comma,period}
 super + shift + space
 	~/.config/dk/dkrc
 
-super + b
-	toggle.sh yambar
+# super + b
+# 	toggle.sh yambar
 
 # close window, swap tiled window in/out of master, cycle tiled windows in place
 # alt + {q,space,Tab}

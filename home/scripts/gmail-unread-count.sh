@@ -89,7 +89,7 @@ function check-mail() {
   else
     find /home/sagotsky/.mozilla/firefox -maxdepth 2 -mindepth 2 -name 'cookies-gmail.txt' -delete # they're expired
     # firefox http://gmail.com
-    echo 'AUTH'
+    echo # 'AUTH'
   fi
   debug $ATOM
 

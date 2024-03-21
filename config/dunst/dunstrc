@@ -25,7 +25,7 @@
     # width = (0, 300)
     # constant width of 300
 
-    width = 970 # see: bartender bar.  cuts off at date/clock.
+    width = 1300 # see: bartender bar.  cuts off at date/clock.
 
     # The maximum height of a single notification, excluding the frame.
     # height = 32
