@@ -226,12 +226,19 @@ inotifydo() {
 		# grep --line-buffered ${1:-.}
 }
 
+_rb_string_method() {
+	method=$1
+	[[ "$method" =~ ^[a-z_]*$ ]] || return 1
+	ruby -n -e "str = \$_; puts str.${method}"
+}
 _rb_inflect() {
 	method=$1
 	[[ "$method" =~ ^[a-z_]*$ ]] || return 1
 	ruby -r active_support -n -e "puts ActiveSupport::Inflector.${method}(\$_)"
 }
+
 alias underscore="_rb_inflect underscore"
+alias upcase="_rb_string_method upcase"
 
 nerd_icons() {
  curl -s https://www.nerdfonts.com/cheat-sheet |
