@@ -8,6 +8,6 @@
 --colors=line:style:bold
 --pretty
 --smart-case
-# Ignore files larger than 64 kilobytes.
---max-filesize=64K
+# Ignore files larger than 25664 kilobytes.
+--max-filesize=256K
 --sort=path
