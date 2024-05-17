@@ -8,8 +8,8 @@
 [core]
   pager = delta
   editor = nvim
-	excludesfile = /home/sagotsky/.gitignore_global
-	attributesfile = /home/sagotsky/.gitattributes
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes
 [color]
   status = auto
   diff = auto
