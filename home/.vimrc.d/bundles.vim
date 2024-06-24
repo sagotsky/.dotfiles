@@ -103,7 +103,7 @@ Plug 'vim-scripts/ruby-matchit'          " % support for do/end
 Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
 Plug 'benmills/vimux'                   " tmux -> rails testing
 let g:VimuxHeight = "30"
-let g:turbux_command_rspec = 'docker/run bundle exec rspec'
+let g:turbux_command_rspec = 'run rspec'
 
 Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
 " Add syntax rule
@@ -246,5 +246,8 @@ nnoremap <leader>,   :SidewaysLeft<CR>
 nnoremap <leader>.   :SidewaysRight<CR>
 
 Plug 'izzergh/rumpelstiltskin' " emoji/unicode fuzzy finder
+
+Plug 'wsdjeg/vim-fetch' " enables :e path/to/file.ext:lineno
+
 nnoremap <leader>:   :Rumpel<CR>
 call plug#end()
