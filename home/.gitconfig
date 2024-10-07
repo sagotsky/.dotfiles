@@ -78,3 +78,9 @@
   file-style = bold white
   file-decoration-style = none
   hunk-header-decoration-style = none
+
+[log]
+  date = relative
+
+[format]
+  pretty = format:%C(auto,yellow)%h %C(auto,blue)%>(16,trunc)%ad %C(auto,green)%<(20,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D
