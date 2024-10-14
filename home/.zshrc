@@ -71,7 +71,7 @@ for FILE in $(find "$ZSH/themes/" -name "*.zsh-theme") ; do source $FILE ; done
 p10k_homebrew="/opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f "$p10k_homebrew" ] && source "$p10k_homebrew"
 
-p10k_local_install="~/source/powerlevel10k/powerlevel10k.zsh-theme"
+p10k_local_install="$HOME/source/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f "$p10k_local_install" ] && source "$p10k_local_install"
 
 # ctrl-x-e
