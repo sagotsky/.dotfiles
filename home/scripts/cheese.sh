@@ -2,7 +2,7 @@
 
 # Cheese - manipulate your mouse
 #
-# Dragging across 3200 pixels sucks.  Cheese uses xdotool to 
+# Dragging across 3200 pixels sucks.  Cheese uses xdotool to
 # move the mouse to a desired location.  Tilers rejoice!
 
 
@@ -22,6 +22,7 @@ function jiggle {
 
 }
 
+there-can-be-only-one-sh # too much cheese makes the mouse funky
 eval $(xdotool getwindowgeometry --shell $(xdotool getactivewindow))
 xdotool mousemove --window $(xdotool getactivewindow) $(( WIDTH / 2 - 8 )) $(( HEIGHT / 2 - 16  ))
 jiggle

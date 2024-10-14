@@ -1,6 +1,6 @@
 # focus next or previous window
 super + {j,k}
-	dkcmd win focus {next,prev}
+	dkcmd win focus {next,prev} && cheese.sh
 
 # view, send, or follow to a workspace (by number)
 super + {_,shift + ,ctrl + }{1-9,0}
