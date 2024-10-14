@@ -71,8 +71,8 @@ for FILE in $(find "$ZSH/themes/" -name "*.zsh-theme") ; do source $FILE ; done
 p10k_homebrew="/opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f "$p10k_homebrew" ] && source "$p10k_homebrew"
 
-# . ~/source/powerlevel10k/powerlevel10k.zsh-theme
-#update_current_git_vars # this is the slow 30ms
+p10k_local_install="~/source/powerlevel10k/powerlevel10k.zsh-theme"
+[ -f "$p10k_local_install" ] && source "$p10k_local_install"
 
 # ctrl-x-e
 autoload -U edit-command-line
@@ -152,3 +152,4 @@ fi
 [[ -f /opt/homebrew/lib/asdf.sh ]] && source /opt/homebrew/lib/asdf.sh
 [[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
 [[ -f /opt/homebrew/Cellar/asdf/0.14.0/libexec/asdf.sh ]] && source /opt/homebrew/Cellar/asdf/0.14.0/libexec/asdf.sh
+true
