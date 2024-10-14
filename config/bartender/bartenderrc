@@ -1,19 +1,42 @@
+FG="#aaaaaa"
+BG="#232323"
+FONT0='xft:FireMono:size=10'
+FONT1='xft:FireMono:size=10:style=bold'
 launch_bar() {
-    lemonbar -B '#232323' \
+    lemonbar  \
+      -B $BG \
+      -F $FG \
       -n 'bartender' \
-      -f 'Monaspace:size=10'
+      -f $FONT0 -f $FONT1
+      # -f 'Monaspace:size=10' -f 'Monaspace:size=11:bold'
 }
 
 bar() {
-    echo "$(bar_left $wm_tail)  \
+    echo "$(bar_left   $wm_tail)  \
           $(bar_center $window) \
-          $(bar_right $spotify $battery $clock debug: [try: $tray])   \
+          $(bar_right  $spotify $battery $dunst_status $clock $tray)   \
          "
 }
+# todo: tray volume spotify gmail
 
           # $(bar_right [$mem $cpu $disk] [$clock])"
 clock() {
     echo "$( bar_fg \#ffffff $*)"
+}
+
+bar_alt_font() {
+  echo "%{T1}$*%{T-}"
+}
+
+dunst_status() {
+  case $1 in
+    true)  echo zzz ;;
+    false) echo ZZZ ;;
+  esac
+}
+
+tray() {
+  bar_fg $BG $* # hack: invisible text so spaces aren't eaten.
 }
 
 battery() {
