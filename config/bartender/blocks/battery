@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Emits state, charge%
+# states: Discharging, Charging
+
+capacity() { head -n 1 /sys/class/power_supply/BAT0/capacity ; }
+status() { head -n 1 /sys/class/power_supply/BAT0/status ; }
+
+while echo "$(status) $(capacity)" ; do sleep 30 ; done

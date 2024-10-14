@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cpu_usage() {
+    vmstat  | awk '/[0-9]/ { printf "%02d\n", $13 }'
+}
+
+while : ; do cpu_usage ; sleep 10 ; done

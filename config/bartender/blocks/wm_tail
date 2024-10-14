@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+~/source/wm_tail/wm_tail.rb | ~/source/wm_tail/scripts/wm-formatter-lemonbar.sh

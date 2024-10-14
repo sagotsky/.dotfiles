@@ -1,0 +1,35 @@
+launch_bar() {
+    lemonbar -B '#232323' \
+      -n 'bartender' \
+      -f 'Monaspace:size=10'
+}
+
+bar() {
+    echo "$(bar_left $wm_tail)  \
+          $(bar_center $window) \
+          $(bar_right $spotify $battery $clock debug: [try: $tray])   \
+         "
+}
+
+          # $(bar_right [$mem $cpu $disk] [$clock])"
+clock() {
+    echo "$( bar_fg \#ffffff $*)"
+}
+
+battery() {
+  status=$1
+  level=$2
+
+  case $status in
+    Discharging)
+      bar_fg \#ffff00 $level% ;;
+    *)
+      echo battery $status $level ;;
+  esac
+}
+
+cpu() { echo "CPU: $1%"; }
+mem() { echo "RAM: $1%"; }
+disk() { echo "HD: $1%"; }
+
+# vim: ft=bash

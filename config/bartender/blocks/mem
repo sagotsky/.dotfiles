@@ -1,0 +1,7 @@
+#!/bin/sh
+
+mem_usage() {
+    free  | awk '/Mem/ { printf "%02d\n", $2 / $3 }'
+}
+
+while : ; do mem_usage ; sleep 10 ; done

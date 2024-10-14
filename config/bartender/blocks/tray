@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# launches trayer.  based on how wide it is, emits ####s as padding for your bar.
+
+CHARWIDTH=11 # i guess?
+REFRESH_SECONDS=10.0
+# can this take in fontsize to better approximate a size? dunno
+
+echo ' '
+
+# trayer-srg fork!
+tray() {
+    trayer \
+        --edge top \
+        --tint 0x24242400 \
+        --align right \
+        --height 20 \
+        --expand false  \
+        --transparent true \
+        --alpha 0 \
+        --width 20  \
+        --monitor primary \
+        --widthtype request
+}
+
+find_or_init_tray() {
+    (pidof trayer || tray &) &> /dev/null
+}
+
+tray_width_px() {
+    XWININFO="$(xwininfo -name panel 2>/dev/null )" # trayer names its window "panel"
+    if [ "$?" -eq "1" ] ; then
+        echo "0"
+    else
+        echo "$XWININFO" | awk '/Width/ {print $2}'
+    fi
+}
+
+px_to_chars() {
+    chars=$(( (1 + $1) / $CHARWIDTH))
+    printf '%*s\n' $chars | tr ' ' '#'
+}
+
+while find_or_init_tray ; do
+    sleep $REFRESH_SECONDS # sleep first so tray can finish launching
+    px="$(tray_width_px)"
+    echo "$(px_to_chars $px)" # why only one space?
+done

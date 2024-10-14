@@ -1,0 +1,19 @@
+#!/bin/bash
+
+volume() {
+  pactl list sinks | grep '^\s*Volume:' | cut -f 2 -d / | tr -d "%"
+}
+
+muted() {
+  pactl list sinks | grep "Mute: yes" &>/dev/null && echo "muted"
+}
+
+volume_muted() {
+  echo "$(volume) $(muted)"
+}
+
+volume_muted
+
+pactl subscribe | grep --line-buffered sink | while read line ; do
+  volume_muted
+done

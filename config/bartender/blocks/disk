@@ -1,0 +1,7 @@
+#!/bin/sh
+
+disk_usage() {
+  df / | awk '/dev/ {print $5}'| tr -d "%"
+}
+
+while : ; do disk_usage ; sleep 120 ; done

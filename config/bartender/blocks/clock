@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+while date +"%m/%d %I:%M %p" ; do sleep 10 ; done
