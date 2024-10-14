@@ -6,7 +6,7 @@ CHARWIDTH=11 # i guess?
 REFRESH_SECONDS=10.0
 # can this take in fontsize to better approximate a size? dunno
 
-echo ' '
+echo ' ##### '
 
 # trayer-srg fork!
 tray() {
