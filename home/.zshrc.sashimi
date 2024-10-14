@@ -2,9 +2,11 @@
 
 export POSTGRES_USER=postgres
 export EDITOR=nvim
+export PATH=~/.asdf/bin:~/.asdf/shims:$PATH
 
 cdpath=(~/repos ~/.config)
-. ~/.alias.arch
+# . ~/.alias.arch
+. ~/.alias.debian
 . ~/.zsh_rails
 
 export DIRENV_LOG_FORMAT=''
