@@ -40,14 +40,14 @@ TERM = "xterm-256color"
 size = 9.0
 
 [font.bold]
-family = "Meslo LG S"
 style = "Bold"
+family = "MesloLGSNerdFont"
 
 [font.italic]
-family = "Meslo LG S"
+family = "MesloLGSNerdFont"
 
 [font.normal]
-family = "Meslo LG S"
+family = "MesloLGSNerdFont"
 style = "Regular"
 
 [font.offset]
