@@ -24,7 +24,7 @@ tray() {
 }
 
 find_or_init_tray() {
-    (pidof trayer || tray &) &> /dev/null
+    (pidof trayer -q || tray &) &> /dev/null
 }
 
 tray_width_px() {
