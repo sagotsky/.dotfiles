@@ -198,7 +198,7 @@ let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 
 Plug 'powerman/vim-plugin-AnsiEsc' " parse ansi colors for logs
-Plug 'inside/vim-search-pulse' " flashy search results
+" Plug 'inside/vim-search-pulse' " flashy search results
 let g:vim_search_pulse_duration = 150
 let g:vim_search_pulse_mode = 'pattern'
 
