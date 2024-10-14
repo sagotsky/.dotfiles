@@ -1,5 +1,13 @@
 # Todo: move common xprofile stuff in here
 
-source ~/.xinitrc.$(hostname)
+echo "" > ~/.xsession-errors
+echo
+echo --------------------
+date
+echo $SHELL
+echo
+
+echo "${HOME}/.xinitrc.$(hostname)"
+${HOME}/.xinitrc.$(hostname)
 
 # vim: set ft=shell
