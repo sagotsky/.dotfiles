@@ -12,6 +12,7 @@ echo $DBUS_SESSION_BUS_ADDRESS > .dbus_session
 export MOZ_X11_EGL=1 # prevent firefox from flickering in dk
 export BROWSER=firefox
 export GTK2_RC_FILES='/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc'
+export GTK_THEME='Adwaita-dark'
 eval $(nohup keychain --eval)
 ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
 export SSH_AUTH_SOCK=$_
@@ -23,6 +24,7 @@ xmodmap ~/.xmodmap
 loginctl enable-linger $USER
 
 # apps
+mkdir -p ~/.xsession.d
 find ~/.xsession.d/ -not -type d | xargs -n 1 -P0 sh -c & &> /dev/null &
 
 nitrogen --restore
