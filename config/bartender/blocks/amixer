@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+DEVICE="/dev/snd/controlC0"
+
+there-can-be-only-one.sh
+which inotifywait &>/dev/null || (echo "install inotifywait" && exit 1)
+
+while : ; do
+  level_mute="$(awk -F'[][]' '/Left/ { gsub("%","") ; print $2,$4}' <(amixer sget Master))"
+  echo $level_mute # var cuts unwanted newlines
+  inotifywait $DEVICE -e ACCESS -qq
+done

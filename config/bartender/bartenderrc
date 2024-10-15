@@ -20,14 +20,14 @@ launch_bar() {
 bar() {
     echo "$(bar_left   ' '$wm_tail)  \
           $(bar_center $window ) \
-          $(bar_right  $gmail $spotify $battery $dunst_status $clock $tray)    "
+          $(bar_right  $gmail $spotify $battery $dunst_status $amixer $clock $tray)    "
 }
 # todo: tray volume spotify gmail
 
           # $(bar_right [$mem $cpu $disk] [$clock])"
-clock() {
-    echo "$( bar_fg \#ffffff $*)"
-}
+# clock() {
+#     echo "$( bar_fg \#ffffff $*)"
+# }
 
 bar_alt_font() {
   echo "%{T1}$*%{T-}"
@@ -62,6 +62,21 @@ battery() {
       bar_fg $C_GREEN  ;;
     *)
       echo battery $status $level ;;
+  esac
+}
+
+amixer() {
+  level=$1
+  output=$2 # on/off
+
+  if ((  100 >= $level && $level > 70 )) then icon=" "
+  elif (( 70 >= $level && $level > 30 )) then icon=" "
+  elif (( 30 >= $level && $level >  0 )) then icon=" "
+  fi
+
+  case $output in
+    on) echo "$icon$level%" ;;
+    off) echo "  " ;;
   esac
 }
 
