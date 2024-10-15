@@ -3,7 +3,10 @@ BG="#232323"
 FONT0='MesloLGSNerdFont:size=10'
 FONT1='MesloLGSNerdFont:size=10:style=bold'
 C_RED="#FF0000"
+C_ORANGE="#FF5500"
+C_YELLOW="#FFFF00"
 C_WHITE="#FFFFFF"
+C_GREEN="#55FF55"
 
 launch_bar() {
     lemonbar  \
@@ -17,8 +20,7 @@ launch_bar() {
 bar() {
     echo "$(bar_left   ' '$wm_tail)  \
           $(bar_center $window ) \
-          $(bar_right  $gmail $spotify $battery $dunst_status $clock $tray)   \
-         "
+          $(bar_right  $gmail $spotify $battery $dunst_status $clock $tray)    "
 }
 # todo: tray volume spotify gmail
 
@@ -46,9 +48,18 @@ battery() {
   status=$1
   level=$2
 
+  if ((  100 >= $level && $level > 80 )) then icon=" " ; color=$FG
+  elif (( 80 >= $level && $level > 60 )) then icon=" " ; color=$FG
+  elif (( 60 >= $level && $level > 40 )) then icon=" " ; color=$C_YELLOW
+  elif (( 40 >= $level && $level > 20 )) then icon=" " ; color=$C_ORANGE
+  elif (( 20 >= $level && $level >  0 )) then icon=" " ; color=$C_RED
+  fi
+
   case $status in
     Discharging)
-      bar_fg \#ffff00 $level% ;;
+      bar_fg $color $icon $level% ;;
+    Charging)
+      bar_fg $C_GREEN  ;;
     *)
       echo battery $status $level ;;
   esac
