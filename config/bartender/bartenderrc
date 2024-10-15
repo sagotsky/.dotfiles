@@ -13,10 +13,11 @@ launch_bar() {
       -f "$FONT0"  -f "$FONT1"
 }
 
+
 bar() {
-    echo "$(bar_left   $wm_tail)  \
-          $(bar_center $window) \
-          $(bar_right  $spotify $battery $dunst_status $clock $tray)   \
+    echo "$(bar_left   ' '$wm_tail)  \
+          $(bar_center $window ) \
+          $(bar_right  $gmail $spotify $battery $dunst_status $clock $tray)   \
          "
 }
 # todo: tray volume spotify gmail

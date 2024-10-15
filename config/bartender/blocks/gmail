@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gmail-unread-count.sh 0
