@@ -1,7 +1,7 @@
 FG="#aaaaaa"
 BG="#232323"
-FONT0='MesloLGSNerdFont:size=10'
-FONT1='MesloLGSNerdFont:size=10:style=bold'
+FONT0='MesloLGSNerdFont:size=9'
+FONT1='MesloLGSNerdFont:size=9:style=bold'
 C_RED="#AA0000"
 C_ORANGE="#AA5500"
 C_YELLOW="#AAAA00"
