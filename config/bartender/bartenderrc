@@ -1,10 +1,10 @@
 FG="#aaaaaa"
 BG="#232323"
-FONT0='MesloLGSNerdFont:size=9'
-FONT1='MesloLGSNerdFont:size=9:style=bold'
+FONT0='MesloLGSNerdFont:size=8'
+FONT1='MesloLGSNerdFont:size=8:style=bold'
 C_RED="#AA0000"
-C_ORANGE="#AA5500"
-C_YELLOW="#AAAA00"
+C_ORANGE="#eeaa00"
+C_YELLOW="#cccc00"
 C_WHITE="#FFFFFF"
 C_GREEN="#55AA55"
 
@@ -50,9 +50,10 @@ battery() {
 
   if ((  100 >= $level && $level > 80 )) then icon=" " ; color=$FG
   elif (( 80 >= $level && $level > 60 )) then icon=" " ; color=$FG
-  elif (( 60 >= $level && $level > 40 )) then icon=" " ; color=$C_YELLOW
-  elif (( 40 >= $level && $level > 20 )) then icon=" " ; color=$C_ORANGE
-  elif (( 20 >= $level && $level >  0 )) then icon=" " ; color=$C_RED
+  elif (( 60 >= $level && $level > 40 )) then icon=" " ; color=$FG
+  elif (( 40 >= $level && $level > 25 )) then icon=" " ; color=$C_YELLOW
+  elif (( 25 >= $level && $level > 15 )) then icon=" " ; color=$C_ORANGE
+  elif (( 15 >= $level && $level >  0 )) then icon=" " ; color=$C_RED
   fi
 
   case $status in
