@@ -2,11 +2,11 @@ FG="#aaaaaa"
 BG="#232323"
 FONT0='MesloLGSNerdFont:size=10'
 FONT1='MesloLGSNerdFont:size=10:style=bold'
-C_RED="#FF0000"
-C_ORANGE="#FF5500"
-C_YELLOW="#FFFF00"
+C_RED="#AA0000"
+C_ORANGE="#AA5500"
+C_YELLOW="#AAAA00"
 C_WHITE="#FFFFFF"
-C_GREEN="#55FF55"
+C_GREEN="#55AA55"
 
 launch_bar() {
     lemonbar  \
