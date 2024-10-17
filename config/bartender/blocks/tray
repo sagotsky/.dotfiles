@@ -4,6 +4,8 @@
 
 CHARWIDTH=11 # i guess?
 REFRESH_SECONDS=10.0
+TRAY_HEIGHT_PX=18
+TRAY_WIDTH_PX=18
 # can this take in fontsize to better approximate a size? dunno
 
 echo ' ##### '
@@ -14,11 +16,11 @@ tray() {
         --edge top \
         --tint 0x24242400 \
         --align right \
-        --height 20 \
+        --height $TRAY_HEIGHT_PX \
         --expand false  \
         --transparent true \
         --alpha 0 \
-        --width 20  \
+        --width $TRAY_WIDTH_PX  \
         --monitor primary \
         --widthtype request
 }
