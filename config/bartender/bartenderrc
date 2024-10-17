@@ -33,7 +33,7 @@ gmail() {
 }
 
 spotify() {
-  echo "$(bar_fg \#1DB954  )$*"
+  echo "$(bar_fg \#1DB954  ) $*"
 }
 # todo: tray volume spotify gmail
 

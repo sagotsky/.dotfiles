@@ -8,7 +8,7 @@ while which playerctl &>/dev/null ; do
   playerctl -p spotify metadata -f '{{ status }}{{ title }}' --follow 2>/dev/null | while read status ; do
     case $status in
       Playing*)
-        playerctl metadata -f "{{ artist }} - {{ title }}"
+        playerctl metadata -f "{{ trunc(artist, 16) }} - {{ trunc(title, 32) }}"
         ;;
       Paused*)
         echo "-"
