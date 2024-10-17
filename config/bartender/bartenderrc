@@ -31,6 +31,10 @@ gmail() {
   else echo mail: $COUNT
   fi
 }
+
+spotify() {
+  echo "$(bar_fg \#1DB954  )$*"
+}
 # todo: tray volume spotify gmail
 
           # $(bar_right [$mem $cpu $disk] [$clock])"
