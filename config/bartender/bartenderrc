@@ -70,6 +70,8 @@ battery() {
       bar_fg $color $icon $level% ;;
     Charging)
       bar_fg $C_GREEN  ;;
+    Full)
+      : ;;
     *)
       echo battery $status $level ;;
   esac
