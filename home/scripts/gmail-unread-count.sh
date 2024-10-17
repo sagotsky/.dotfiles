@@ -1,9 +1,11 @@
 #!/usr/bin/bash
 
+# 
+
 set -euf -o pipefail
 
 DEBUG=${DEBUG:-''}
-EMPTY_SNOOZE=${EMPTY_SNOOZE:-0}  # if mail is empty, sleep for some seconds.  no snooze if its full so it can check when its empty sooner.
+EMPTY_SNOOZE=${EMPTY_SNOOZE:-300}  # if mail is empty, sleep for some seconds.  no snooze if its full so it can check when its empty sooner.
 
 # checks all gmail accounts using firefox cookies
 
