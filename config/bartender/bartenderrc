@@ -48,8 +48,8 @@ bar_alt_font() {
 
 dunst_status() {
   case $1 in
-    true)  bar_fg $FG " " ;;
-    false) bar_fg $C_RED " " ;;
+    true)   bar_fg $C_RED " " ;;
+    false)  bar_fg $FG " " ;;
   esac
 }
 
