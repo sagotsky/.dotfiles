@@ -22,8 +22,6 @@ alias kube-prod="CONTEXT=production1-eks-useast1 ezkube.sh "
 alias kube-staging="CONTEXT=staging-eks-useast1 ezkube.sh "
 alias kube-dev1="CONTEXT=staging-eks-useast1 NAMESPACE='--namespace dev1' ezkube.sh "
 
-# alias eztilt=$HOME/repos/eztilt/eztilt
-# alias ezr=$HOME/repos/eztilt/eztilt
 function eztilt() {
   cd $HOME/repos/eztilt
   ./eztilt $@
