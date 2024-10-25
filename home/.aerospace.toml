@@ -37,6 +37,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -114,29 +115,31 @@ alt-cmd-ctrl-shift-l = 'move right'
 alt-cmd-ctrl-shift-minus = 'resize smart -50'
 alt-cmd-ctrl-shift-equal = 'resize smart +50'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-cmd-ctrl-1 = 'workspace 1'
-alt-cmd-ctrl-2 = 'workspace 2'
-alt-cmd-ctrl-3 = 'workspace 3'
-alt-cmd-ctrl-4 = 'workspace 4'
-alt-cmd-ctrl-5 = 'workspace 5'
-alt-cmd-ctrl-6 = 'workspace 6'
-alt-cmd-ctrl-7 = 'workspace 7'
-alt-cmd-ctrl-8 = 'workspace 8'
-alt-cmd-ctrl-9 = 'workspace 9'
-alt-cmd-ctrl-0 = 'workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-cmd-ctrl-shift-1 = 'move-node-to-workspace 1'
-alt-cmd-ctrl-shift-2 = 'move-node-to-workspace 2'
-alt-cmd-ctrl-shift-3 = 'move-node-to-workspace 3'
-alt-cmd-ctrl-shift-4 = 'move-node-to-workspace 4'
-alt-cmd-ctrl-shift-5 = 'move-node-to-workspace 5'
-alt-cmd-ctrl-shift-6 = 'move-node-to-workspace 6'
-alt-cmd-ctrl-shift-7 = 'move-node-to-workspace 7'
-alt-cmd-ctrl-shift-8 = 'move-node-to-workspace 8'
-alt-cmd-ctrl-shift-9 = 'move-node-to-workspace 9'
-alt-cmd-ctrl-shift-0 = 'move-node-to-workspace 0'
+# shift version apparently needs to be above shiftless variant.
+alt-cmd-ctrl-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
+alt-cmd-ctrl-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
+alt-cmd-ctrl-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
+alt-cmd-ctrl-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
+alt-cmd-ctrl-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
+alt-cmd-ctrl-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
+alt-cmd-ctrl-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
+alt-cmd-ctrl-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
+alt-cmd-ctrl-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
+alt-cmd-ctrl-shift-0 = 'move-node-to-workspace 0 --focus-follows-window'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-cmd-ctrl-1 = 'summon-workspace 1'
+alt-cmd-ctrl-2 = 'summon-workspace 2'
+alt-cmd-ctrl-3 = 'summon-workspace 3'
+alt-cmd-ctrl-4 = 'summon-workspace 4'
+alt-cmd-ctrl-5 = 'summon-workspace 5'
+alt-cmd-ctrl-6 = 'summon-workspace 6'
+alt-cmd-ctrl-7 = 'summon-workspace 7'
+alt-cmd-ctrl-8 = 'summon-workspace 8'
+alt-cmd-ctrl-9 = 'summon-workspace 9'
+alt-cmd-ctrl-0 = 'summon-workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-cmd-ctrl-tab = 'workspace-back-and-forth'
@@ -144,34 +147,70 @@ alt-cmd-ctrl-tab = 'workspace-back-and-forth'
 alt-cmd-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-cmd-ctrl-shift-semicolon = 'mode service'
+# alt-cmd-ctrl-shift-semicolon = 'mode service'
+
+###### there is a broken keybinding somewhere blocking some commands from working!
+alt-cmd-ctrl-w = 'focus-monitor --wrap-around up'
+alt-cmd-ctrl-e = 'focus-monitor --wrap-around down'
+
+# this service binding does not close and ends up consuming my custom additions
+
+
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-[mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+# [mode.service.binding]
+# esc = ['reload-config', 'mode main']
+# r = ['flatten-workspace-tree', 'mode main'] # reset layout
+# f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+# backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-alt-cmd-ctrl-shift-h = ['join-with left', 'mode main']
-alt-cmd-ctrl-shift-j = ['join-with down', 'mode main']
-alt-cmd-ctrl-shift-k = ['join-with up', 'mode main']
-alt-cmd-ctrl-shift-l = ['join-with right', 'mode main']
+# alt-cmd-ctrl-shift-h = ['join-with left', 'mode main']
+# alt-cmd-ctrl-shift-j = ['join-with down', 'mode main']
+# alt-cmd-ctrl-shift-k = ['join-with up', 'mode main']
+# alt-cmd-ctrl-shift-l = ['join-with right', 'mode main']
 
 
 
 # custom wm commands
-# alt-cmd-ctrl-shift-q = ['reload-config', 'mode main']
+alt-cmd-ctrl-shift-q = ['reload-config'] #, 'mode main']
+
+# alt-cmd-ctrl-w = 'focus-monitor --wrap-around up'
+alt-cmd-ctrl-shift-w = 'move-node-to-monitor up --wrap-around'
 
 # launchers
+# alt-cmd-ctrl-enter = 'exec-and-forget open -n /Volumes/Macintosh\ HD/Applications/Alacritty.app'
 
 
-# alt-cmd-ctrl-enter = 'exec-and-forget open -a iTerm.app -n'
 
 
 # alt-z = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 # alt-y = 'exec-and-forget open -n -a Terminal.app'
+alt-cmd-ctrl-enter = 'exec-and-forget open -n -a iTerm.app'
+
+
+# TODO
+# cmd-shift-f = 'macos-native-fullscreen'
+# cmd-f = 'fullscreen'
+# alt-g = 'split horizontal'
+# alt-v = 'split vertical'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.com/slackmacgap'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'zoom'
+# if.app-id = 'us.zoom.xos'
+run = ['move-node-to-workspace 0']
