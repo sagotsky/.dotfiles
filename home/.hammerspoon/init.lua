@@ -7,8 +7,8 @@ apps = {
   {'2', 'Spotify'},
   {'4', 'iTerm'},
   {'5', 'Slack'},
-  {'6', 'Messages'},
-  {'0', 'Zoom'},
+  {'6', 'Visual Studio Code'},
+  {'0', 'zoom.us'},
 }
 for i, app in ipairs(apps) do
   hs.hotkey.bind(mod, app[1], function()
@@ -27,9 +27,6 @@ hs.hotkey.bind(mod, 'F', function()
 end)
 
 -- cron
-hs.timer.doEvery(hs.timer.hours(1), function()
-  os.execute[[ ~/scripts/daily.sh ~/Dropbox\ \(Maestral\)/bing_farmer.sh ]]
-end)
 
 -- auto reload this file
 function reloadConfig(files)

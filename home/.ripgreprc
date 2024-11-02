@@ -1,3 +1,4 @@
+--color=auto
 # look like ag
 --colors=match:bg:yellow
 --colors=match:fg:black

@@ -146,6 +146,17 @@ function rep_til_failure() {
   echo -e "\n\e[7m[ rep #${REP_COUNT} at $(date) ]\e[27m\n"
 }
 
+function rep_til_it_works() {
+	false
+	while [[ "$?" -gt "0" ]] ; do
+		COUNT=$(( COUNT + 1 ))
+    echo -e "\n\e[7m[ rep #${COUNT} at $(date) ]\e[27m\n"
+		$*
+		sleep 10
+
+	done
+}
+
 for n in `seq 100` ; do alias $n="rep $n " ; done
 alias ..='cd ..' # stupid, but I like chaining it to the rep numbers.
 
@@ -247,5 +258,13 @@ nerd_icons() {
 	 fzf
 }
 
+asdf_gimme() {
+	asdf plugin add $@
+	asdf install $@ latest
+	asdf global $@ current
+}
 
+asdf_up() {
+	asdf plugin update --all
+}
 # vim: set ft=sh

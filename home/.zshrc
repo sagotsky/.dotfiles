@@ -136,7 +136,6 @@ fi
 #stop_profiling
 # zprof
 
-PATH="$HOME/bin/:$PATH" # bin should outweigh .asdf, fight me.
 # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git .zsh//themes/powerlevel10k
 #
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -152,4 +151,6 @@ fi
 [[ -f /opt/homebrew/lib/asdf.sh ]] && source /opt/homebrew/lib/asdf.sh
 [[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
 [[ -f /opt/homebrew/Cellar/asdf/0.14.0/libexec/asdf.sh ]] && source /opt/homebrew/Cellar/asdf/0.14.0/libexec/asdf.sh
+
+export PATH="$HOME/bin/:/opt/homebrew/bin/:$PATH" # bin should outweigh .asdf, fight me.
 true
