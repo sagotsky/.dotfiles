@@ -9,7 +9,12 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+# after-startup-command = []
+
+# requires borders: brew tap FelixKratz/formulae && brew install borders
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -59,10 +64,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 0
 inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
+outer.left =       2
+outer.bottom =     2
+outer.top =        2
+outer.right =      2
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -142,9 +147,9 @@ alt-cmd-ctrl-9 = 'summon-workspace 9'
 alt-cmd-ctrl-0 = 'summon-workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-cmd-ctrl-tab = 'workspace-back-and-forth'
+# alt-cmd-ctrl-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-cmd-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-cmd-ctrl-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 # alt-cmd-ctrl-shift-semicolon = 'mode service'
@@ -176,7 +181,7 @@ alt-cmd-ctrl-e = 'focus-monitor --wrap-around down'
 
 
 # custom wm commands
-alt-cmd-ctrl-shift-q = ['reload-config'] #, 'mode main']
+alt-cmd-ctrl-shift-q = 'reload-config' #, 'mode main']
 
 # alt-cmd-ctrl-w = 'focus-monitor --wrap-around up'
 alt-cmd-ctrl-shift-w = 'move-node-to-monitor up --wrap-around'
@@ -189,12 +194,12 @@ alt-cmd-ctrl-shift-w = 'move-node-to-monitor up --wrap-around'
 
 # alt-z = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 # alt-y = 'exec-and-forget open -n -a Terminal.app'
-alt-cmd-ctrl-enter = 'exec-and-forget open -n -a iTerm.app'
+alt-cmd-ctrl-enter = 'exec-and-forget open -a iTerm.app'
 
 
 # TODO
 # cmd-shift-f = 'macos-native-fullscreen'
-# cmd-f = 'fullscreen'
+alt-cmd-ctrl-f = 'fullscreen'
 # alt-g = 'split horizontal'
 # alt-v = 'split vertical'
 
