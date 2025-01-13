@@ -15,6 +15,7 @@
   diff = auto
   branch = auto
 [alias]
+  alias = config --get-regexp ^alias
   amend = commit --amend --no-edit
   cm = commit -m
   co = checkout
