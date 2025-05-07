@@ -1,8 +1,11 @@
-ruby 3.0.2
-nodejs 18.0.0
+ruby 3.3.1
+nodejs 22.3.0
 kubectl 1.16.3
 yarn 1.22.18
-awscli 2.4.15
+awscli
+jq 1.7.1
 python 3.11.3
 neovim 0.9.5
 doppler 3.68.0
+ripgrep 14.1.0
+awscli 2.23.6

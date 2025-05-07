@@ -103,7 +103,7 @@ Plug 'vim-scripts/ruby-matchit'          " % support for do/end
 Plug 'jgdavey/vim-turbux'               " tmux -> rails testing
 Plug 'benmills/vimux'                   " tmux -> rails testing
 let g:VimuxHeight = "30"
-let g:turbux_command_rspec = 'docker/run bundle exec rspec'
+let g:turbux_command_rspec = 'run bundle exec rspec'
 
 Plug 'vim-ruby/vim-ruby'                 " ruby specific shortcuts
 " Add syntax rule
