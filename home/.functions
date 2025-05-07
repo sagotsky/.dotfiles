@@ -225,9 +225,9 @@ function delay() {
   done
 }
 
-function erd() {
-	docker run --rm -v "$(pwd)":/erd vranac/erd $@
-}
+# function erd() {
+# 	docker run --rm -v "$(pwd)":/erd vranac/erd $@
+# }
 
 inotifydo() {
 	echo "try entr"
@@ -267,4 +267,20 @@ asdf_gimme() {
 asdf_up() {
 	asdf plugin update --all
 }
+
+timekeeper() {
+	SECONDS=180
+	for n in `seq $SECONDS` ; do echo -n '.' ; done ; echo "\n\n" ; while : ; do echo -n '.' ; sleep 1 ; done
+}
+
+pritunl_up() {
+	pritunl-client list --json |
+		jq '.[] | select(.run_state != "Active").id' |
+		xargs pritunl-client start
+}
+
+
+
+
+
 # vim: set ft=sh
