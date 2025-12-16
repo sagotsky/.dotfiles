@@ -195,8 +195,8 @@ alt-cmd-ctrl-shift-w = 'move-node-to-monitor up --wrap-around'
 # alt-z = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 # alt-y = 'exec-and-forget open -n -a Terminal.app'
 # alt-cmd-ctrl-enter = 'exec-and-forget open -a iTerm.app'
-# alt-enter = '''exec-and-forget osascript -e '
-alt-cmd-ctrl-enter = '''exec-and-forget osascript -e '
+# alt-cmd-ctrl-enter = '''exec-and-forget osascript -e '
+alt-enter = '''exec-and-forget osascript -e '
 tell application "iTerm2"
       create window with default profile
 end tell'
