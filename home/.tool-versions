@@ -1,6 +1,6 @@
 ruby 3.3.1
 nodejs 22.3.0
-kubectl 1.16.3
+kubectl 1.28.1
 yarn 1.22.18
 awscli
 jq 1.7.1
@@ -9,3 +9,4 @@ neovim 0.9.5
 doppler 3.68.0
 ripgrep 14.1.0
 awscli 2.23.6
+golang 1.25.4

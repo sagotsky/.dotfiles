@@ -176,7 +176,8 @@ let g:ale_ruby_rubocop_options = '--cache true --display-cop-names ' " parallel 
 " let g:ale_ruby_rubocop_options = '--display-cop-names ' " parallel breaks -a
 let g:ale_linters = {
 \ 'ruby': ['rubocop', 'ruby'],
-\ 'haml': ['haml-lint']
+\ 'haml': ['haml-lint'],
+\ 'go': ['gobuild', 'govet']
 \}
 let g:ale_fixers = {
 \   'ruby': ['rubocop', 'remove_trailing_lines', 'trim_whitespace'],
