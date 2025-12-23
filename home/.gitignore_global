@@ -16,5 +16,4 @@ Gemfile.local.lock
 
 .rubocop.override.yml
 
-.claude/
 CLAUDE.md

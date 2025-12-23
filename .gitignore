@@ -23,6 +23,10 @@ home/.vim/plugged/*
 config/nvim/.netrwhist
 config/nvim/autoload
 config/gh/hosts.yml
+home/.claude/*
+!home/.claude/settings.json
+!home/.claude/**.md
+!home/.claude/skills
 home/.nvim/.netrwhist
 home/.nvim/autoload/*
 home/.nvim/plugin/*
