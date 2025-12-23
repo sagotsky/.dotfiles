@@ -17,3 +17,5 @@ Gemfile.local.lock
 .rubocop.override.yml
 
 CLAUDE.md
+
+**/.DS_Store
