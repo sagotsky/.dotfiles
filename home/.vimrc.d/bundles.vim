@@ -182,6 +182,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'ruby': ['rubocop', 'remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'go': ['gofmt'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_yaml_yamllint_options = '-d relaxed'
