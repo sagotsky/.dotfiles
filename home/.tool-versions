@@ -1,6 +1,6 @@
 ruby 3.3.1
-nodejs 22.3.0
-kubectl 1.28.1
+nodejs 24.5.0
+kubectl 1.31.1
 yarn 1.22.18
 awscli
 jq 1.7.1

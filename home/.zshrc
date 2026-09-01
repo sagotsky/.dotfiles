@@ -151,7 +151,8 @@ fi
 [[ -f /opt/homebrew/lib/asdf.sh ]] && source /opt/homebrew/lib/asdf.sh
 [[ -f /opt/homebrew/bin/asdf.sh ]] && source /opt/homebrew/bin/asdf.sh
 # [[ -f /opt/asdf-vm/asdf.sh ]] && source /opt/asdf-vm/asdf.sh
-[[ -f /opt/homebrew/Cellar/asdf/0.15.0/libexec/asdf.sh ]] && source /opt/homebrew/Cellar/asdf/0.15.0/libexec/asdf.sh
+# [[ -f /opt/homebrew/Cellar/asdf/0.15.0/libexec/asdf.sh ]] && source /opt/homebrew/Cellar/asdf/0.15.0/libexec/asdf.sh
+# [[ -f /opt/homebrew/Cellar/asdf/0.20.0/libexec/asdf.sh ]] && source /opt/homebrew/Cellar/asdf/0.20.0/libexec/asdf.sh
 
 export PATH="$HOME/bin/:/opt/homebrew/bin/:$PATH" # bin should outweigh .asdf, fight me.
 true
