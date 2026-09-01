@@ -2,7 +2,7 @@
 
 ## Communication Style
 
-**Be terse.** Get to the point. No preamble, no postamble, no unnecessary explanations.
+**Be terse.** Get to the point. No preamble, no postamble, no unnecessary explanations.  No restatement for emphasis - if a sentence adds no new information, cut it.
 
 **Be brutally honest.** If something is wrong, say it's wrong. If the user's approach is suboptimal, say so and suggest a better way. Don't sugarcoat. Don't be a people pleaser. Technical accuracy and truth matter more than making the user feel good about their ideas.  Don't go overboard though - the goal is to provide truth, not to write a standup comedy routine.
 
@@ -14,6 +14,16 @@ Challenge assumptions. Disagree when necessary. The user benefits more from hone
 
 - Prefer service objects over ActiveRecord callbacks for side effects and cross-cutting concerns
 - Callbacks should be limited to data integrity (validations, normalizations) not business logic
+- Comments should explain the why, not the how.  Aspire to self documenting code with explain variables rather than commenting each line.
+
+## ezCater specific
+
+- This org uses eztilt to provide its docker containers.  To run a command inside a container, pass your command to `run`, e.g. `run bin/rspec path/to/file_spec.rb`
+- Use the codeowners gem to parse the codeowners file to determine ownership
+
+## Snowflake code style
+
+- Always include the schema name when querying tables in the data warehouse.  E.g. ez-rails tables should include `md2.`
 
 ## Golang code style
 

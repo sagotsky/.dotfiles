@@ -1,3 +1,17 @@
 {
-  "alwaysThinkingEnabled": true
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "enabledPlugins": {
+    "ponytail@ponytail": true
+  }
 }
